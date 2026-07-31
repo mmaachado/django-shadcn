@@ -1,5 +1,5 @@
-import shutil
 import tempfile
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Annotated
 
@@ -9,15 +9,14 @@ from rich.status import Status
 
 from .components import dependencies
 from .console import console
-from .constants import COMPONENTS_REPO_URL, DEFAULT_COMPONENTS_DIRECTORY
+from .constants import (
+    COMPONENTS_REPO_REF,
+    COMPONENTS_REPO_URL,
+    destination_for,
+)
+from .merge import MergeResult, WriteMode, merge, obsolete_files
 
 app = typer.Typer(no_args_is_help=True)
-
-# Components that install to templates/ root instead of templates/cotton/,
-# mapped to their destination folder name
-TEMPLATE_ROOT_COMPONENTS = {
-    'allauth': 'account',  # allauth component installs to templates/account/
-}
 
 
 def get_component_dependencies(component: str) -> list[str]:
@@ -25,81 +24,166 @@ def get_component_dependencies(component: str) -> list[str]:
     return dependencies.get(component, [])
 
 
-def _install_component(
-    components_to_install: set[str],
-    overwrite: bool,
-) -> None:
-    """Install a component and its dependencies."""
-    # Separate components by destination
-    root_names = set(TEMPLATE_ROOT_COMPONENTS.keys())
-    cotton_components = components_to_install - root_names
-    root_components = components_to_install & root_names
+def resolve_components(components: Iterable[str]) -> set[str]:
+    """The requested components plus everything they depend on."""
+    resolved: set[str] = set()
+    pending = list(components)
 
-    # Install cotton components (UI components)
-    if cotton_components:
-        component_excludes = [f'!{comp}' for comp in cotton_components]
-        excludes = ['*'] + component_excludes
+    while pending:
+        component = pending.pop()
 
-        copier.run_copy(
-            src_path=COMPONENTS_REPO_URL,
-            dst_path=DEFAULT_COMPONENTS_DIRECTORY,
-            vcs_ref='main',
-            exclude=excludes,
-            overwrite=overwrite,
+        if component in resolved:
+            continue
+
+        resolved.add(component)
+        pending.extend(get_component_dependencies(component))
+
+    return resolved
+
+
+def _reject_unknown(components: Iterable[str]) -> None:
+    """Stop before touching the network or the disk."""
+    unknown = sorted(set(components) - set(dependencies))
+
+    if not unknown:
+        return
+
+    console.print(f'[bold red]Unknown component: {", ".join(unknown)}[/]')
+    console.print(f'Available: {", ".join(sorted(dependencies))}')
+
+    raise typer.Exit(code=1)
+
+
+def mode_for(
+    component: str, requested: set[str], mode: WriteMode
+) -> WriteMode:
+    """Mirroring applies only to what was asked for.
+
+    `allauth` pulls in eight components; syncing it must not wipe whatever
+    the user changed in `button`.
+    """
+    if mode is WriteMode.sync and component not in requested:
+        return WriteMode.safe
+
+    return mode
+
+
+def _download(components: set[str], destination: Path) -> None:
+    """Fetch the components into a directory we control."""
+    excludes = ['*'] + [f'!{component}' for component in components]
+
+    copier.run_copy(
+        src_path=COMPONENTS_REPO_URL,
+        dst_path=destination,
+        vcs_ref=COMPONENTS_REPO_REF,
+        exclude=excludes,
+        overwrite=True,
+        quiet=True,
+    )
+
+
+def _confirm_removals(component: str, source: Path, destination: Path) -> None:
+    doomed = obsolete_files(source, destination)
+
+    if not doomed:
+        return
+
+    console.print(
+        f'[bold yellow]Syncing {component} removes {len(doomed)} file(s):[/]'
+    )
+    for path in doomed:
+        console.print(f'  [red]- {path}[/]')
+
+    if not typer.confirm('Continue?'):
+        raise typer.Abort()
+
+
+def _report(component: str, result: MergeResult) -> None:
+    for path in result.created:
+        console.print(f'  [green]created[/]     {path}')
+    for path in result.overwritten:
+        console.print(f'  [yellow]overwritten[/] {path}')
+    for path in result.removed:
+        console.print(f'  [red]removed[/]     {path}')
+    for path in result.skipped:
+        console.print(f'  [dim]skipped     {path}[/]')
+
+    if result.changed:
+        console.print(f'[bold green]:heavy_check_mark: Added {component}[/]')
+    else:
+        console.print(
+            f'[dim]:heavy_check_mark: {component} already present[/]'
         )
-
-    # Install template root components (like allauth -> templates/account/)
-    for comp in root_components:
-        dest_folder = TEMPLATE_ROOT_COMPONENTS[comp]
-        component_excludes = [f'!{comp}']
-        excludes = ['*'] + component_excludes
-
-        # Copy to a temp location first
-        with tempfile.TemporaryDirectory() as tmpdir:
-            copier.run_copy(
-                src_path=COMPONENTS_REPO_URL,
-                dst_path=Path(tmpdir),
-                vcs_ref='main',
-                exclude=excludes,
-                overwrite=True,
-            )
-
-            # Move from temp/{comp}/* to templates/{dest_folder}/
-            src_path = Path(tmpdir) / comp
-            dest_path = Path('templates') / dest_folder
-
-            if src_path.exists():
-                if dest_path.exists() and overwrite:
-                    shutil.rmtree(dest_path)
-                dest_path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copytree(src_path, dest_path)
 
 
 @app.command(name='add')
 def add(
-    component: Annotated[
-        str, typer.Argument(help='Name of the component to add')
+    components: Annotated[
+        list[str], typer.Argument(help='Names of the components to add')
     ],
     overwrite: Annotated[
-        bool, typer.Option(help='Overwrite existing component files')
-    ] = True,
+        bool,
+        typer.Option('--overwrite', help='Replace files that already exist'),
+    ] = False,
+    sync: Annotated[
+        bool,
+        typer.Option(
+            '--sync',
+            help='Mirror each component, deleting files it no longer ships',
+        ),
+    ] = False,
+    yes: Annotated[
+        bool,
+        typer.Option('--yes', '-y', help='Skip the confirmation prompt'),
+    ] = False,
 ):
     """
-    Add a new django_shadcn component to your project
+    Add django_shadcn components to your project
+
+    Existing files are kept untouched unless --overwrite or --sync is given.
     """
-
-    component_dependencies = get_component_dependencies(component)
-    components_to_install = {component}
-
-    if component_dependencies:
-        for dependency in component_dependencies:
-            components_to_install.add(dependency)
-
-    with Status(f'Adding {component} component'):
-        _install_component(components_to_install, overwrite)
-
-    for comp in components_to_install:
+    if overwrite and sync:
         console.print(
-            f'[bold green]:heavy_check_mark: Added {comp} component '
-            'successfully![/]',
+            '[bold red]Use either --overwrite or --sync, not both[/]'
+        )
+        raise typer.Exit(code=1)
+
+    _reject_unknown(components)
+
+    mode = WriteMode.safe
+    if overwrite:
+        mode = WriteMode.overwrite
+    elif sync:
+        mode = WriteMode.sync
+
+    requested = set(components)
+    to_install = resolve_components(requested)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        with Status(f'Fetching {len(to_install)} component(s)'):
+            _download(to_install, Path(tmpdir))
+
+        skipped = 0
+
+        for component in sorted(to_install):
+            source = Path(tmpdir) / component
+            destination = destination_for(component)
+
+            if not source.is_dir():
+                console.print(f'[bold red]{component} was not downloaded[/]')
+                raise typer.Exit(code=1)
+
+            component_mode = mode_for(component, requested, mode)
+
+            if component_mode is WriteMode.sync and not yes:
+                _confirm_removals(component, source, destination)
+
+            result = merge(source, destination, component_mode)
+            _report(component, result)
+            skipped += len(result.skipped)
+
+    if skipped:
+        console.print(
+            f'\n[yellow]{skipped} existing file(s) left untouched. '
+            'Run with --overwrite to replace them.[/]'
         )

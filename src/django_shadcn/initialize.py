@@ -6,7 +6,11 @@ from rich.panel import Panel
 from rich.status import Status
 
 from .console import console
-from .constants import COMPONENTS_REPO_URL, DEFAULT_COMPONENTS_DIRECTORY
+from .constants import (
+    COMPONENTS_REPO_REF,
+    COMPONENTS_REPO_URL,
+    DEFAULT_COMPONENTS_DIRECTORY,
+)
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 
@@ -21,8 +25,9 @@ def init():
         copier.run_copy(
             src_path=COMPONENTS_REPO_URL,
             dst_path=Path.cwd(),
-            vcs_ref='main',
+            vcs_ref=COMPONENTS_REPO_REF,
             exclude=['*', '!input.css'],
+            quiet=True,
         )
     console.print(
         Panel(
