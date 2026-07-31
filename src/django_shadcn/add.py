@@ -84,7 +84,7 @@ def add(
     ] = True,
 ):
     """
-    Add a new shadcn_django component to your project
+    Add a new django_shadcn component to your project
     """
 
     component_dependencies = get_component_dependencies(component)

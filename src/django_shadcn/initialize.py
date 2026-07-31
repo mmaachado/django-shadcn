@@ -14,7 +14,7 @@ app = typer.Typer(no_args_is_help=True, add_completion=False)
 @app.command(name="init")
 def init():
     """
-    Initialize setup for shadcn_django components
+    Initialize setup for django_shadcn components
     """
     DEFAULT_COMPONENTS_DIRECTORY.mkdir(parents=True, exist_ok=True)
     with Status("Adding tailwind config for shadcn components"):
@@ -27,7 +27,7 @@ def init():
     console.print(
         Panel(
             "[bold green]"
-            ":rocket: Initialized shadcn_django components!\n\n"
+            ":rocket: Initialized django_shadcn components!\n\n"
             ":heavy_check_mark: Created "
             + f"'{DEFAULT_COMPONENTS_DIRECTORY}'\n"
             ":heavy_check_mark: Added TailwindCSS config required for shadcn components\n\n"

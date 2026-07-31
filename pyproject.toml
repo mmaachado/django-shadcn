@@ -1,11 +1,25 @@
 [project]
-name = "shadcn_django"
-version = "0.24.1"
+authors = [
+    { name = "Marcelo Machado", email = "uniqueduckinbox@duck.com" },
+    { name = "Sarthak Jariwala", email = "sarthak@sarthakjariwala.com" },
+]
+name = "django-shadcn"
+version = "1.0.0"
 description = "shadcn/ui for Django"
 readme = "README.md"
-authors = [{ name = "Sarthak Jariwala", email = "sarthak@sarthakjariwala.com" }]
 requires-python = ">=3.12"
-keywords = ["django", "shadcn", "ui", "shadcn-django", "components", "shadcnui"]
+keywords = [
+    "django",
+    "shadcn",
+    "ui",
+    "django-shadcn",
+    "components",
+    "shadcnui",
+    "library",
+    "cotton",
+    "alpinejs",
+    "tailwindcss",
+]
 classifiers = [
     "Framework :: Django",
     "Environment :: Web Environment",
@@ -19,9 +33,11 @@ classifiers = [
 ]
 dependencies = ["copier>=9.5.0", "typer>=0.15.1"]
 
-[project.scripts]
-shadcn_django = "shadcn_django.main:app"
+[dependency-groups]
+dev = ["ignr>=2.3", "pytest>=9.1.1", "pytest-cov>=7.1.0"]
 
+[project.scripts]
+django_shadcn = "django_shadcn.main:app"
 
 [build-system]
 requires = ["hatchling"]

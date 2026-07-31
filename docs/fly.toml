@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for shadcn-django on 2025-03-05T09:07:20-08:00
+# fly.toml app configuration file generated for django-shadcn on 2025-03-05T09:07:20-08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'shadcn-django'
+app = 'django-shadcn'
 primary_region = 'sjc'
 
 [build]
