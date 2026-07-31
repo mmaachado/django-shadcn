@@ -1,0 +1,58 @@
+name: Stale issue handler
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every day, 20 minutes before midnight: https://crontab.guru/#40_23_*_*_*
+    - cron: "40 23 * * *"
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mark and close stale issues
+        uses: actions/stale@v11
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          ascending: true
+          days-before-issue-stale: 90
+          days-before-issue-close: 14
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          remove-issue-stale-when-updated: true
+          stale-issue-label: "stale"
+          exempt-issue-labels: "roadmap,component,pinned"
+          stale-issue-message: >
+            No activity on this issue for 90 days, so it is being marked as
+            stale. Comment if it is still relevant and it stays open;
+            otherwise it closes in 14 days.
+          close-issue-message: >
+            Closing after 14 days without activity. Comment here or open a
+            new issue if this is still happening.
+          operations-per-run: 300
+
+      - name: Mark and close stale pull requests
+        uses: actions/stale@v11
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          ascending: true
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
+          days-before-pr-stale: 60
+          days-before-pr-close: 14
+          remove-pr-stale-when-updated: true
+          stale-pr-label: "stale"
+          exempt-pr-labels: "roadmap,pinned"
+          stale-pr-message: >
+            No activity on this pull request for 60 days, so it is being
+            marked as stale. Push a commit or comment to keep it open;
+            otherwise it closes in 14 days.
+          close-pr-message: >
+            Closing after 14 days without activity. Reopen it whenever you
+            want to pick the work back up.
+          operations-per-run: 300

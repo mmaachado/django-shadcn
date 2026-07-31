@@ -15,24 +15,24 @@ def get_all_components() -> list[str]:
     return list(dependencies.keys())
 
 
-@app.command(name="list")
+@app.command(name='list')
 def list_components():
     """List all available components"""
     components = get_all_components()
 
     # Create styled component items and pretty print using Panel
     styled_components = [
-        Text(component, style="green") for component in sorted(components)
+        Text(component, style='green') for component in sorted(components)
     ]
 
     columns = Columns(styled_components, column_first=False, padding=(0, 2))
 
     panel = Panel(
         columns,
-        title="[bold blue]Available Components",
-        subtitle=f"[bold cyan]Total: {len(components)} components",
+        title='[bold blue]Available Components',
+        subtitle=f'[bold cyan]Total: {len(components)} components',
         box=box.ROUNDED,
-        border_style="blue",
+        border_style='blue',
         padding=(1, 2),
     )
 

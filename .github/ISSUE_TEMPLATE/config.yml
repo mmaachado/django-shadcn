@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Get help
+    url: https://github.com/mmaachado/django-shadcn/discussions/new?category=general
+    about: Something is not working the way you expected and you are not sure it is a bug.
+  - name: Request a block
+    url: https://github.com/mmaachado/django-shadcn/discussions/new?category=blocks
+    about: A full page or section built out of several components, like a dashboard or a login screen.

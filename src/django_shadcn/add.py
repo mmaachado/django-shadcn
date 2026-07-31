@@ -13,10 +13,10 @@ from .constants import COMPONENTS_REPO_URL, DEFAULT_COMPONENTS_DIRECTORY
 
 app = typer.Typer(no_args_is_help=True)
 
-# Components that install to templates/ root instead of templates/cotton/
-# Maps component name to destination folder name (if different from component name)
+# Components that install to templates/ root instead of templates/cotton/,
+# mapped to their destination folder name
 TEMPLATE_ROOT_COMPONENTS = {
-    "allauth": "account",  # allauth component installs to templates/account/
+    'allauth': 'account',  # allauth component installs to templates/account/
 }
 
 
@@ -31,18 +31,19 @@ def _install_component(
 ) -> None:
     """Install a component and its dependencies."""
     # Separate components by destination
-    cotton_components = components_to_install - set(TEMPLATE_ROOT_COMPONENTS.keys())
-    root_components = components_to_install & set(TEMPLATE_ROOT_COMPONENTS.keys())
+    root_names = set(TEMPLATE_ROOT_COMPONENTS.keys())
+    cotton_components = components_to_install - root_names
+    root_components = components_to_install & root_names
 
     # Install cotton components (UI components)
     if cotton_components:
-        component_excludes = [f"!{comp}" for comp in cotton_components]
-        excludes = ["*"] + component_excludes
+        component_excludes = [f'!{comp}' for comp in cotton_components]
+        excludes = ['*'] + component_excludes
 
         copier.run_copy(
             src_path=COMPONENTS_REPO_URL,
             dst_path=DEFAULT_COMPONENTS_DIRECTORY,
-            vcs_ref="main",
+            vcs_ref='main',
             exclude=excludes,
             overwrite=overwrite,
         )
@@ -50,22 +51,22 @@ def _install_component(
     # Install template root components (like allauth -> templates/account/)
     for comp in root_components:
         dest_folder = TEMPLATE_ROOT_COMPONENTS[comp]
-        component_excludes = [f"!{comp}"]
-        excludes = ["*"] + component_excludes
+        component_excludes = [f'!{comp}']
+        excludes = ['*'] + component_excludes
 
         # Copy to a temp location first
         with tempfile.TemporaryDirectory() as tmpdir:
             copier.run_copy(
                 src_path=COMPONENTS_REPO_URL,
                 dst_path=Path(tmpdir),
-                vcs_ref="main",
+                vcs_ref='main',
                 exclude=excludes,
                 overwrite=True,
             )
 
             # Move from temp/{comp}/* to templates/{dest_folder}/
             src_path = Path(tmpdir) / comp
-            dest_path = Path("templates") / dest_folder
+            dest_path = Path('templates') / dest_folder
 
             if src_path.exists():
                 if dest_path.exists() and overwrite:
@@ -74,13 +75,13 @@ def _install_component(
                 shutil.copytree(src_path, dest_path)
 
 
-@app.command(name="add")
+@app.command(name='add')
 def add(
     component: Annotated[
-        str, typer.Argument(help="Name of the component to add")
+        str, typer.Argument(help='Name of the component to add')
     ],
     overwrite: Annotated[
-        bool, typer.Option(help="Overwrite existing component files")
+        bool, typer.Option(help='Overwrite existing component files')
     ] = True,
 ):
     """
@@ -94,10 +95,11 @@ def add(
         for dependency in component_dependencies:
             components_to_install.add(dependency)
 
-    with Status(f"Adding {component} component"):
+    with Status(f'Adding {component} component'):
         _install_component(components_to_install, overwrite)
 
     for comp in components_to_install:
         console.print(
-            f"[bold green]:heavy_check_mark: Added {comp} component successfully![/]",
+            f'[bold green]:heavy_check_mark: Added {comp} component '
+            'successfully![/]',
         )
