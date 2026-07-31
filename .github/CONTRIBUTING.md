@@ -55,8 +55,11 @@ your work:
 ```bash
 cd docs
 uv sync
-uv run manage.py runserver
+uv run python manage.py runserver
 ```
+
+It renders the components straight out of `components/`, so what you see is what
+the CLI installs — there is no second copy to keep in sync.
 
 ## Adding a component
 

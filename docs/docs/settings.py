@@ -66,10 +66,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "docs.urls"
 
+# Render the library straight from components/ instead of a copy, so the
+# playground can never drift from what the CLI installs.
+COTTON_DIR = "components"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "templates", BASE_DIR.parent],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

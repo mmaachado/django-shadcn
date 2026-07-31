@@ -13,7 +13,7 @@
         <script src="{% static 'js/alpine.min.js' %}" defer></script>
         <script src="{% static 'js/prism.min.js' %}" defer></script>
 
-        <script defer src="https://umami.sarthakjariwala.com/script.js" data-website-id="d1af24fb-ce0c-4719-b5c5-a9db50d478c2" data-domains="shadcn-django.com"></script>
+        {% comment %} <script defer src="https://umami.sarthakjariwala.com/script.js" data-website-id="d1af24fb-ce0c-4719-b5c5-a9db50d478c2" data-domains="shadcn-django.com"></script> {% endcomment %}
 
         <link rel='stylesheet' href="{% static 'css/prism.css' %}">
         <link rel='stylesheet' href="{% static 'css/output.css' %}">
@@ -38,7 +38,7 @@
                                 <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
                                 <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
                             </svg>
-                            <span class="hidden font-bold lg:inline-block">shadcn/django</span>
+                            <span class="hidden font-bold lg:inline-block">django/shadcn-ui</span>
                         </a>
                         <nav class="flex items-center gap-4 text-sm xl:gap-6">
                             <a href="/" class="text-muted-foreground transition-colors hover:text-foreground {% if request.path == '/' or '/introduction' in request.path %}text-foreground{% endif %}">
@@ -77,7 +77,7 @@
                             <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
                             <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
                         </svg>
-                        <span class="font-bold">shadcn/django</span>
+                        <span class="font-bold">django/shadcn-ui</span>
                     </a>
 
                     <!-- Right side actions -->
