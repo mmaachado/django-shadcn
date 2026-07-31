@@ -4,7 +4,7 @@ authors = [
     { name = "Sarthak Jariwala", email = "sarthak@sarthakjariwala.com" },
 ]
 name = "django-shadcn"
-version = "1.0.0"
+dynamic = ["version"]
 description = "shadcn/ui for Django"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -52,8 +52,11 @@ dev = [
 django_shadcn = "django_shadcn.main:app"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.hatch.build.targets.sdist]
 # Allowlist: anything not named here stays out of the published archive.
