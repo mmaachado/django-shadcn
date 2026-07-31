@@ -1,0 +1,95 @@
+name: "Bug report"
+description: Something is broken in the CLI or in a component
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search open and closed issues before submitting — it may already be reported.
+
+        If you are not sure whether this is a bug, open a [discussion](https://github.com/mmaachado/django-shadcn/discussions/new?category=general) instead.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: What happened, and what did you expect to happen instead?
+      placeholder: Running `add button` a second time replaced my customized template.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - CLI (init, add, list)
+        - Component template
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: components
+    attributes:
+      label: Affected components
+      description: Leave empty if this is not about a specific component.
+      placeholder: button, dropdown_menu
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How to reproduce
+      description: Exact commands and, when it is a rendering problem, the template that triggers it.
+      placeholder: |
+        1. uvx django_shadcn@latest init
+        2. uvx django_shadcn@latest add button
+        3. Render `<c-button>Save</c-button>`
+    validations:
+      required: true
+
+  - type: input
+    id: package-version
+    attributes:
+      label: django-shadcn version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: django-version
+    attributes:
+      label: Django version
+      placeholder: "5.1.4"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Python version and OS
+      placeholder: "3.12.13, Windows 11"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output
+      description: Command output or traceback. Paste the text rather than a screenshot.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before submitting
+      description: By submitting this issue, you agree to follow our [contributing guide](https://github.com/mmaachado/django-shadcn/blob/master/.github/CONTRIBUTING.md).
+      options:
+        - label: I have searched the existing issues
+          required: true

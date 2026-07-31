@@ -1,0 +1,44 @@
+name: "Component request"
+description: Ask for a shadcn/ui component that is not ported yet
+title: "[component]: "
+labels: ["component"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Run `uvx django_shadcn@latest list` to see what already ships, and search open issues before submitting.
+
+        For a full page or section built out of several components, open a [blocks request](https://github.com/mmaachado/django-shadcn/discussions/new?category=blocks) instead.
+
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      placeholder: switch
+    validations:
+      required: true
+
+  - type: input
+    id: upstream
+    attributes:
+      label: Link to the shadcn/ui component
+      placeholder: https://ui.shadcn.com/docs/components/switch
+    validations:
+      required: false
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What are you building with it?
+      description: Helps us prioritize and get the variants right.
+      placeholder: A settings page where each preference is a toggle.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a pull request for this component
+          required: false
