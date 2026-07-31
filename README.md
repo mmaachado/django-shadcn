@@ -18,4 +18,4 @@ Please read the [contributing guide](./.github/CONTRIBUTING.md).
 
 ## License
 
-Licensed under the [MIT license](./.github/LICENSE)
+Licensed under the [MIT license](./LICENSE)
