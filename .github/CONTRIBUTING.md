@@ -102,6 +102,26 @@ Please write commit messages as `category(scope): message`, using one of:
 
 For example: `feat(components): add the switch component`.
 
+## Releases
+
+Maintainers only. The version is never written in a file — it comes from the git
+tag, so cutting a release means creating one:
+
+```bash
+git checkout master && git pull
+git tag -a v1.0.0 -m "v1.0.0"
+git push origin v1.0.0
+```
+
+The Release workflow builds, checks that the artifact matches the tag, publishes
+to PyPI and opens the GitHub release. Running it manually from the Actions tab
+publishes to TestPyPI instead, which is the way to rehearse a change to the
+pipeline without spending a version number.
+
+Never move or recreate a published tag. PyPI refuses to accept a version it has
+already seen, even after it is deleted, so a broken release is fixed by
+publishing the next patch version and yanking the broken one.
+
 ## Requesting components and blocks
 
 For a component that is not ported yet, open a component request issue. For a
