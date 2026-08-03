@@ -1,0 +1,14 @@
+<c-vars orientation="vertical"></c-vars>
+
+<div class="
+    relative m-0! shrink-0 self-stretch bg-input
+
+    {% if orientation == 'horizontal' %}h-[1px] w-full
+    {% else %}h-auto w-[1px]
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="none" data-slot="button-group-separator" data-orientation="{{ orientation }}"
+    aria-orientation="{{ orientation }}" {{ attrs }}></div>

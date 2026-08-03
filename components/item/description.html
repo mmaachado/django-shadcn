@@ -1,0 +1,10 @@
+<p class="
+    line-clamp-2 text-sm leading-normal font-normal text-balance
+    text-muted-foreground
+    [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="item-description" {{ attrs }}>
+    {{ slot }}
+</p>

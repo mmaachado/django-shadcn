@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load code_display %}
+
+{% block body %}
+
+<c-docs.layout.content>
+
+    <c-docs.page-header
+        title="Aspect Ratio"
+        description="Displays content within a desired ratio."
+    >
+        <div class="w-[450px]">
+            <c-aspect-ratio ratio="16/9" class="overflow-hidden rounded-lg bg-muted">
+                <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+                    16 / 9
+                </div>
+            </c-aspect-ratio>
+        </div>
+    </c-docs.page-header>
+
+    <c-docs.component-section title="Installation">
+        <c-docs.code-example language="bash">uvx django_shadcn@latest add aspect_ratio</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Usage">
+        <c-docs.demo-section>
+            <div class="w-[300px]">
+                <c-aspect-ratio ratio="16/9" class="overflow-hidden rounded-lg bg-muted">
+                    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+                        16 / 9
+                    </div>
+                </c-aspect-ratio>
+            </div>
+        </c-docs.demo-section>
+        <c-docs.code-example language="html">{{ "<c-aspect-ratio ratio='16/9' class='overflow-hidden rounded-lg'>
+    <img src='/cover.jpg' alt='' class='size-full object-cover' />
+</c-aspect-ratio>" | display_code }}</c-docs.code-example>
+        <c-docs.para>
+            Radix reserves the space with a padding hack. Here it is the native
+            <c-docs.code>aspect-ratio</c-docs.code> CSS property, so
+            <c-docs.code>ratio</c-docs.code> takes anything the property accepts:
+            <c-docs.code>16/9</c-docs.code>, <c-docs.code>4/3</c-docs.code>,
+            <c-docs.code>1.85</c-docs.code>. The default is
+            <c-docs.code>1/1</c-docs.code>.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="Square" language="html">
+            <div class="w-[200px]">
+                <c-aspect-ratio class="overflow-hidden rounded-lg bg-muted">
+                    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+                        1 / 1
+                    </div>
+                </c-aspect-ratio>
+            </div>
+            <c-slot name="code">{{ "<c-aspect-ratio class='overflow-hidden rounded-lg bg-muted'>...</c-aspect-ratio>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Portrait" language="html">
+            <div class="w-[200px]">
+                <c-aspect-ratio ratio="3/4" class="overflow-hidden rounded-lg bg-muted">
+                    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+                        3 / 4
+                    </div>
+                </c-aspect-ratio>
+            </div>
+            <c-slot name="code">{{ "<c-aspect-ratio ratio='3/4' class='overflow-hidden rounded-lg bg-muted'>...</c-aspect-ratio>" | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+</c-docs.layout.content>
+{% endblock %}

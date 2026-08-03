@@ -1,8 +1,10 @@
+<c-vars background="bg-muted/30"></c-vars>
+
 <div class="space-y-2 pb-8 pt-4 md:pb-10">
     <h1 class="scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl">{{ title }}</h1>
     <p class="text-lg text-muted-foreground text-balance">{{ description }}</p>
     {% if slot %}
-    <div class="flex min-h-[350px] w-full items-center justify-center rounded-xl border border-border bg-muted/30 p-10 mt-6">
+    <div class="flex min-h-[350px] w-full items-center justify-center rounded-xl border border-border {{ background }} p-10 mt-6">
         {{ slot }}
     </div>
     {% endif %}

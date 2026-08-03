@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* The component library lives outside this directory, so auto-detection
+   never reaches it. */
+@source "../../templates";
+@source "../../../components";
+
 @custom-variant dark (&:is(.dark *));
 
 /* Geist font family - the signature shadcn/ui typeface */

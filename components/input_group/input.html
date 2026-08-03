@@ -1,0 +1,16 @@
+<input
+    class="
+    flex h-9 w-full min-w-0 flex-1 rounded-none border-0 bg-transparent px-3 py-1
+    text-sm shadow-none transition-colors
+    file:border-0 file:bg-transparent file:text-sm file:font-medium
+    placeholder:text-muted-foreground
+    focus-visible:outline-hidden focus-visible:ring-0
+    disabled:cursor-not-allowed disabled:opacity-50
+    md:text-sm dark:bg-transparent
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="input-group-control"
+    {{ attrs }}
+>

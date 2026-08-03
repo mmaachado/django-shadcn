@@ -1,0 +1,8 @@
+<div class="
+    flex items-center gap-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="item-actions" {{ attrs }}>
+    {{ slot }}
+</div>

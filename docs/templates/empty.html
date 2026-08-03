@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load code_display %}
+
+{% block body %}
+
+<c-docs.layout.content>
+
+    <c-docs.page-header
+        title="Empty"
+        description="Use to display an empty state, when there is nothing to show yet."
+    >
+        <c-empty class="w-full border">
+            <c-empty.header>
+                <c-empty.media variant="icon">
+                    <c-icon name="search" />
+                </c-empty.media>
+                <c-empty.title>No results found</c-empty.title>
+                <c-empty.description>
+                    Try adjusting your search or filters to find what you are
+                    looking for.
+                </c-empty.description>
+            </c-empty.header>
+            <c-empty.content>
+                <c-button variant="outline">Clear filters</c-button>
+            </c-empty.content>
+        </c-empty>
+    </c-docs.page-header>
+
+    <c-docs.component-section title="Installation">
+        <c-docs.code-example language="bash">uvx django_shadcn@latest add empty</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Usage">
+        <c-docs.code-example language="html">{{ "<c-empty>
+    <c-empty.header>
+        <c-empty.media variant='icon'>
+            <c-icon name='search' />
+        </c-empty.media>
+        <c-empty.title>No results found</c-empty.title>
+        <c-empty.description>Try a different search.</c-empty.description>
+    </c-empty.header>
+    <c-empty.content>
+        <c-button variant='outline'>Clear filters</c-button>
+    </c-empty.content>
+</c-empty>" | display_code }}</c-docs.code-example>
+        <c-docs.para>
+            The border is dashed but no border width is applied, exactly as
+            upstream. Add <c-docs.code>border</c-docs.code> when you want the
+            outline to show.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="Outline" language="html">
+            <c-empty class="w-full border">
+                <c-empty.header>
+                    <c-empty.media variant="icon">
+                        <c-icon name="x" />
+                    </c-empty.media>
+                    <c-empty.title>No projects</c-empty.title>
+                    <c-empty.description>
+                        Projects you create will show up here.
+                    </c-empty.description>
+                </c-empty.header>
+                <c-empty.content>
+                    <c-button>Create project</c-button>
+                </c-empty.content>
+            </c-empty>
+            <c-slot name="code">{{ "<c-empty class='border'>...</c-empty>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Without media" language="html">
+            <c-empty class="w-full border">
+                <c-empty.header>
+                    <c-empty.title>Nothing here yet</c-empty.title>
+                    <c-empty.description>
+                        Read the <a href="/introduction">introduction</a> to get
+                        started.
+                    </c-empty.description>
+                </c-empty.header>
+            </c-empty>
+            <c-slot name="code">{{ "<c-empty>
+    <c-empty.header>
+        <c-empty.title>Nothing here yet</c-empty.title>
+        <c-empty.description>Read the docs to get started.</c-empty.description>
+    </c-empty.header>
+</c-empty>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Loading" language="html">
+            <c-empty class="w-full border">
+                <c-empty.header>
+                    <c-empty.media>
+                        <c-spinner class="size-6" />
+                    </c-empty.media>
+                    <c-empty.title>Loading projects</c-empty.title>
+                    <c-empty.description>This will only take a moment.</c-empty.description>
+                </c-empty.header>
+            </c-empty>
+            <c-slot name="code">{{ "<c-empty.media>
+    <c-spinner class='size-6' />
+</c-empty.media>" | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+</c-docs.layout.content>
+{% endblock %}

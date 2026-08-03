@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load code_display %}
+
+{% block body %}
+
+<c-docs.layout.content>
+
+    <c-docs.page-header
+        title="Spinner"
+        description="An indicator that something is in progress."
+    >
+        <c-spinner />
+    </c-docs.page-header>
+
+    <c-docs.component-section title="Installation">
+        <c-docs.code-example language="bash">uvx django_shadcn@latest add spinner</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Usage">
+        <c-docs.demo-section>
+            <c-spinner />
+        </c-docs.demo-section>
+        <c-docs.code-example language="html">{{ "<c-spinner />" | display_code }}</c-docs.code-example>
+        <c-docs.para>
+            It is the lucide <c-docs.code>loader-circle</c-docs.code> icon with
+            <c-docs.code>animate-spin</c-docs.code>, already carrying
+            <c-docs.code>role="status"</c-docs.code> and an accessible label.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="Sizes" language="html">
+            <div class="flex items-center gap-4">
+                <c-spinner class="size-3" />
+                <c-spinner />
+                <c-spinner class="size-6" />
+                <c-spinner class="size-8" />
+            </div>
+            <c-slot name="code">{{ "<c-spinner class='size-3' />
+<c-spinner />
+<c-spinner class='size-6' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Inside a button" language="html">
+            <div class="flex items-center gap-3">
+                <c-button disabled>
+                    <c-spinner />
+                    Saving
+                </c-button>
+                <c-button variant="outline" disabled>
+                    <c-spinner />
+                    Please wait
+                </c-button>
+            </div>
+            <c-slot name="code">{{ "<c-button disabled>
+    <c-spinner />
+    Saving
+</c-button>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Color" language="html">
+            <div class="flex items-center gap-4">
+                <c-spinner class="size-6 text-muted-foreground" />
+                <c-spinner class="size-6 text-primary" />
+                <c-spinner class="size-6 text-destructive" />
+            </div>
+            <c-slot name="code">{{ "<c-spinner class='size-6 text-primary' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+</c-docs.layout.content>
+{% endblock %}

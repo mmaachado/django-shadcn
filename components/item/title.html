@@ -1,0 +1,8 @@
+<div class="
+    flex w-fit items-center gap-2 text-sm leading-snug font-medium
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="item-title" {{ attrs }}>
+    {{ slot }}
+</div>

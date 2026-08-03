@@ -72,7 +72,7 @@ def test_add_refuses_overwrite_and_sync_together(tmp_path, monkeypatch):
 def test_resolve_pulls_in_dependencies():
     resolved = resolve_components(['combobox'])
 
-    assert resolved == {'combobox', 'button', 'popover'}
+    assert resolved == {'combobox', 'button', 'popover', 'icon'}
 
 
 def test_resolve_handles_several_components():

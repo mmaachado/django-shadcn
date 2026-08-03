@@ -141,30 +141,44 @@
                                     <h4 class="px-2 py-1 text-sm font-semibold tracking-tight">Components</h4>
                                     <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm">
                                         <c-docs.link href="/accordion" class="{% if '/accordion' in request.path %}bg-accent font-medium{% endif %}">Accordion</c-docs.link>
-                                        <c-docs.link href="/alert" class="{% if '/alert' in request.path %}bg-accent font-medium{% endif %}">Alert</c-docs.link>
+                                        <c-docs.link href="/alert" class="{% if '/alert/' == request.path %}bg-accent font-medium{% endif %}">Alert</c-docs.link>
                                         <c-docs.link href="/alert-dialog" class="{% if '/alert-dialog' in request.path %}bg-accent font-medium{% endif %}">Alert Dialog</c-docs.link>
+                                        <c-docs.link href="/aspect-ratio" class="{% if '/aspect-ratio' in request.path %}bg-accent font-medium{% endif %}">Aspect Ratio</c-docs.link>
+                                        <c-docs.link href="/avatar" class="{% if '/avatar' in request.path %}bg-accent font-medium{% endif %}">Avatar</c-docs.link>
                                         <c-docs.link href="/badge" class="{% if '/badge' in request.path %}bg-accent font-medium{% endif %}">Badge</c-docs.link>
-                                        <c-docs.link href="/button" class="{% if '/button' in request.path %}bg-accent font-medium{% endif %}">Button</c-docs.link>
+                                        <c-docs.link href="/breadcrumb" class="{% if '/breadcrumb' in request.path %}bg-accent font-medium{% endif %}">Breadcrumb</c-docs.link>
+                                        <c-docs.link href="/button" class="{% if '/button/' == request.path %}bg-accent font-medium{% endif %}">Button</c-docs.link>
+                                        <c-docs.link href="/button-group" class="{% if '/button-group' in request.path %}bg-accent font-medium{% endif %}">Button Group</c-docs.link>
                                         <c-docs.link href="/card" class="{% if '/card' in request.path %}bg-accent font-medium{% endif %}">Card</c-docs.link>
                                         <c-docs.link href="/checkbox" class="{% if '/checkbox' in request.path %}bg-accent font-medium{% endif %}">Checkbox</c-docs.link>
                                         <c-docs.link href="/combobox" class="{% if '/combobox' in request.path %}bg-accent font-medium{% endif %}">Combobox</c-docs.link>
                                         <c-docs.link href="/command" class="{% if '/command/' == request.path %}bg-accent font-medium{% endif %}">Command</c-docs.link>
                                         <c-docs.link href="/command-dialog" class="{% if '/command-dialog' in request.path %}bg-accent font-medium{% endif %}">Command Dialog</c-docs.link>
-                                        <c-docs.link href="/dialog" class="{% if '/dialog' in request.path %}bg-accent font-medium{% endif %}">Dialog</c-docs.link>
+                                        <c-docs.link href="/dialog" class="{% if '/dialog/' == request.path %}bg-accent font-medium{% endif %}">Dialog</c-docs.link>
                                         <c-docs.link href="/dropdown-menu" class="{% if '/dropdown-menu' in request.path %}bg-accent font-medium{% endif %}">Dropdown Menu</c-docs.link>
+                                        <c-docs.link href="/empty" class="{% if '/empty' in request.path %}bg-accent font-medium{% endif %}">Empty</c-docs.link>
+                                        <c-docs.link href="/field" class="{% if '/field' in request.path %}bg-accent font-medium{% endif %}">Field</c-docs.link>
                                         <c-docs.link href="/form" class="{% if '/form' in request.path %}bg-accent font-medium{% endif %}">Form</c-docs.link>
-                                        <c-docs.link href="/input" class="{% if '/input' in request.path %}bg-accent font-medium{% endif %}">Input</c-docs.link>
+                                        <c-docs.link href="/icon" class="{% if '/icon' in request.path %}bg-accent font-medium{% endif %}">Icon</c-docs.link>
+                                        <c-docs.link href="/input" class="{% if '/input/' == request.path %}bg-accent font-medium{% endif %}">Input</c-docs.link>
+                                        <c-docs.link href="/input-group" class="{% if '/input-group' in request.path %}bg-accent font-medium{% endif %}">Input Group</c-docs.link>
+                                        <c-docs.link href="/item" class="{% if '/item' in request.path %}bg-accent font-medium{% endif %}">Item</c-docs.link>
+                                        <c-docs.link href="/kbd" class="{% if '/kbd' in request.path %}bg-accent font-medium{% endif %}">Kbd</c-docs.link>
                                         <c-docs.link href="/label" class="{% if '/label' in request.path %}bg-accent font-medium{% endif %}">Label</c-docs.link>
+                                        <c-docs.link href="/native-select" class="{% if '/native-select' in request.path %}bg-accent font-medium{% endif %}">Native Select</c-docs.link>
                                         <c-docs.link href="/navigation-menu" class="{% if '/navigation-menu' in request.path %}bg-accent font-medium{% endif %}">Navigation Menu</c-docs.link>
                                         <c-docs.link href="/popover" class="{% if '/popover' in request.path %}bg-accent font-medium{% endif %}">Popover</c-docs.link>
                                         <c-docs.link href="/progress" class="{% if '/progress' in request.path %}bg-accent font-medium{% endif %}">Progress</c-docs.link>
                                         <c-docs.link href="/select" class="{% if '/select' in request.path %}bg-accent font-medium{% endif %}">Select</c-docs.link>
                                         <c-docs.link href="/separator" class="{% if '/separator' in request.path %}bg-accent font-medium{% endif %}">Separator</c-docs.link>
                                         <c-docs.link href="/sheet" class="{% if '/sheet' in request.path %}bg-accent font-medium{% endif %}">Sheet</c-docs.link>
+                                        <c-docs.link href="/skeleton" class="{% if '/skeleton' in request.path %}bg-accent font-medium{% endif %}">Skeleton</c-docs.link>
+                                        <c-docs.link href="/spinner" class="{% if '/spinner' in request.path %}bg-accent font-medium{% endif %}">Spinner</c-docs.link>
                                         <c-docs.link href="/table" class="{% if '/table' in request.path %}bg-accent font-medium{% endif %}">Table</c-docs.link>
                                         <c-docs.link href="/tabs" class="{% if '/tabs' in request.path %}bg-accent font-medium{% endif %}">Tabs</c-docs.link>
                                         <c-docs.link href="/textarea" class="{% if '/textarea' in request.path %}bg-accent font-medium{% endif %}">Textarea</c-docs.link>
                                         <c-docs.link href="/toast" class="{% if '/toast' in request.path %}bg-accent font-medium{% endif %}">Toast</c-docs.link>
+                                        <c-docs.link href="/typography" class="{% if '/typography' in request.path %}bg-accent font-medium{% endif %}">Typography</c-docs.link>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,8 @@
+<div class="
+    flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="item-content" {{ attrs }}>
+    {{ slot }}
+</div>

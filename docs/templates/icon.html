@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load code_display %}
+
+{% block body %}
+
+<c-docs.layout.content>
+
+    <c-docs.page-header
+        title="Icon"
+        description="Lucide icons as a cotton component. Every icon used by the library goes through it."
+    >
+        <div class="flex items-center gap-6">
+            <c-icon name="search" />
+            <c-icon name="check" />
+            <c-icon name="chevron-down" />
+            <c-icon name="x" />
+        </div>
+    </c-docs.page-header>
+
+    <c-docs.component-section title="Installation">
+        <c-docs.code-example language="bash">uvx django_shadcn@latest add icon</c-docs.code-example>
+        <c-docs.para>
+            Components that use icons pull this one in on their own, so most of the
+            time it is already installed.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Usage">
+        <c-docs.demo-section>
+            <c-icon name="search" />
+        </c-docs.demo-section>
+        <c-docs.code-example language="html">{{ "<c-icon name='search' />" | display_code }}</c-docs.code-example>
+        <c-docs.para>
+            The <c-docs.code>name</c-docs.code> is the icon name as it appears on
+            <a href="https://lucide.dev/icons" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4">lucide.dev</a>,
+            in kebab-case. Only the icons shipped with the library are available —
+            see the list below.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="Sizing" language="html">
+            <div class="flex items-end gap-4">
+                <c-icon name="search" class="size-4" />
+                <c-icon name="search" class="size-6" />
+                <c-icon name="search" class="size-8" />
+            </div>
+            <c-slot name="code">{{ "<c-icon name='search' class='size-4' />
+<c-icon name='search' class='size-6' />
+<c-icon name='search' class='size-8' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Color" language="html">
+            <div class="flex items-center gap-4">
+                <c-icon name="check" class="size-5 text-muted-foreground" />
+                <c-icon name="check" class="size-5 text-primary" />
+                <c-icon name="check" class="size-5 text-destructive" />
+            </div>
+            <c-slot name="code">{{ "<c-icon name='check' class='size-5 text-muted-foreground' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Inside a button" language="html">
+            <c-button variant="outline">
+                <c-icon name="search" class="size-4" />
+                Search
+            </c-button>
+            <c-slot name="code">{{ "<c-button variant='outline'>
+    <c-icon name='search' class='size-4' />
+    Search
+</c-button>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Reacting to state" language="html">
+            <div x-data="{ open: false }" class="flex items-center gap-3">
+                <c-button variant="outline" x-on:click="open = !open">Toggle</c-button>
+                <c-icon
+                    name="chevron-down"
+                    class="size-5 transition-transform"
+                    x-bind:class="{ 'rotate-180': open }"
+                />
+            </div>
+            <c-slot name="code">{{ "<c-icon
+    name='chevron-down'
+    class='size-5 transition-transform'
+    x-bind:class=\"{ 'rotate-180': open }\"
+/>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Accessibility" language="html">
+            <div class="flex items-center gap-4">
+                <c-icon name="x" class="size-5" aria-hidden="true" />
+                <c-icon name="search" class="size-5" role="img" aria-label="Search" />
+            </div>
+            <c-slot name="code">{{ "<!-- decorative, next to a visible label -->
+<c-icon name='x' class='size-5' aria-hidden='true' />
+
+<!-- carries the meaning on its own -->
+<c-icon name='search' class='size-5' role='img' aria-label='Search' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Available icons">
+        <c-docs.para>
+            The library ships only the icons its components use. Each one lives in
+            its own file under <c-docs.code>icon/</c-docs.code> and is generated
+            from lucide, never written by hand.
+        </c-docs.para>
+        <c-docs.demo-section>
+            <div class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                {% for name in icons %}
+                    <div class="flex flex-col items-center gap-2 rounded-md border p-4">
+                        <c-icon name="{{ name }}" class="size-6" />
+                        <span class="text-xs text-muted-foreground">{{ name }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </c-docs.demo-section>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Adding an icon">
+        <c-docs.para>
+            Reference it in your markup with <c-docs.code>&lt;c-icon name="..."&gt;</c-docs.code>
+            and run the generator. It reads the icon names straight out of the
+            templates, downloads what is missing from lucide and drops whatever
+            nothing references anymore.
+        </c-docs.para>
+        <c-docs.code-example language="bash">uv run python scripts/generate_icons.py</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="License">
+        <c-docs.para>
+            Icons come from <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4">Lucide</a>,
+            under the ISC license. The full notice ships with the component, in
+            <c-docs.code>icon/LICENSE</c-docs.code>.
+        </c-docs.para>
+    </c-docs.component-section>
+
+</c-docs.layout.content>
+{% endblock %}

@@ -1,0 +1,8 @@
+<li class="
+    [&>svg]:size-3.5
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" {{ attrs }}>
+    {% if slot %}{{ slot }}{% else %}<c-icon name="chevron-right" />{% endif %}
+</li>

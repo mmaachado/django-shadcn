@@ -1,0 +1,9 @@
+<c-vars ratio="1/1"></c-vars>
+
+<div class="
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " style="aspect-ratio: {{ ratio }}" data-slot="aspect-ratio" {{ attrs }}>
+    {{ slot }}
+</div>

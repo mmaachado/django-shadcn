@@ -1,0 +1,34 @@
+<c-vars size="xs" variant="ghost" type="button"></c-vars>
+
+<button
+    type="{{ type }}"
+    class="
+    inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm
+    font-medium shadow-none transition-colors
+    focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+    disabled:pointer-events-none disabled:opacity-50
+    [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+
+    {% if variant == 'default' %}bg-primary text-primary-foreground hover:bg-primary/90
+    {% elif variant == 'destructive' %}bg-destructive text-destructive-foreground hover:bg-destructive/90
+    {% elif variant == 'outline' %}border border-input bg-background hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'secondary' %}bg-secondary text-secondary-foreground hover:bg-secondary/80
+    {% elif variant == 'ghost' %}hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'link' %}text-primary underline-offset-4 hover:underline
+    {% endif %}
+
+    {% if size == 'xs' %}h-6 gap-1 rounded-[calc(var(--radius)-5px)] px-2 has-[>svg]:px-2 [&>svg:not([class*='size-'])]:size-3.5
+    {% elif size == 'sm' %}h-8 gap-1.5 rounded-md px-2.5 has-[>svg]:px-2.5
+    {% elif size == 'icon-xs' %}size-6 rounded-[calc(var(--radius)-5px)] p-0 has-[>svg]:p-0
+    {% elif size == 'icon-sm' %}size-8 rounded-md p-0 has-[>svg]:p-0
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-size="{{ size }}"
+    {{ attrs }}
+>
+    {{ slot }}
+</button>

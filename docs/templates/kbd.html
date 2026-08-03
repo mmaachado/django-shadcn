@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load code_display %}
+
+{% block body %}
+
+<c-docs.layout.content>
+
+    <c-docs.page-header
+        title="Kbd"
+        description="Displays a keyboard key or a combination of keys."
+    >
+        <c-kbd.group>
+            <c-kbd>Ctrl</c-kbd>
+            <c-kbd>K</c-kbd>
+        </c-kbd.group>
+    </c-docs.page-header>
+
+    <c-docs.component-section title="Installation">
+        <c-docs.code-example language="bash">uvx django_shadcn@latest add kbd</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Usage">
+        <c-docs.demo-section>
+            <c-kbd>K</c-kbd>
+        </c-docs.demo-section>
+        <c-docs.code-example language="html">{{ "<c-kbd>K</c-kbd>" | display_code }}</c-docs.code-example>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="Group" language="html">
+            <div class="flex items-center gap-4">
+                <c-kbd.group>
+                    <c-kbd>Ctrl</c-kbd>
+                    <c-kbd>K</c-kbd>
+                </c-kbd.group>
+                <c-kbd.group>
+                    <c-kbd>⌘</c-kbd>
+                    <c-kbd>⇧</c-kbd>
+                    <c-kbd>P</c-kbd>
+                </c-kbd.group>
+            </div>
+            <c-slot name="code">{{ "<c-kbd.group>
+    <c-kbd>Ctrl</c-kbd>
+    <c-kbd>K</c-kbd>
+</c-kbd.group>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Inside a button" language="html">
+            <c-button variant="outline" size="sm">
+                Search
+                <c-kbd.group>
+                    <c-kbd>⌘</c-kbd>
+                    <c-kbd>K</c-kbd>
+                </c-kbd.group>
+            </c-button>
+            <c-slot name="code">{{ "<c-button variant='outline' size='sm'>
+    Search
+    <c-kbd.group>
+        <c-kbd>⌘</c-kbd>
+        <c-kbd>K</c-kbd>
+    </c-kbd.group>
+</c-button>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="In a sentence" language="html">
+            <p class="text-sm text-muted-foreground">
+                Press <c-kbd>Esc</c-kbd> to close this dialog.
+            </p>
+            <c-slot name="code">{{ "Press <c-kbd>Esc</c-kbd> to close this dialog." | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+</c-docs.layout.content>
+{% endblock %}

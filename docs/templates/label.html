@@ -9,11 +9,9 @@
         title="Label"
         description="Renders an accessible label associated with controls."
     >
-        <div class="flex items-center space-x-2">
-            <c-checkbox id="terms" />
-            <c-label for="terms">
-                Accept terms and conditions
-            </c-label>
+        <div class="grid w-full max-w-sm gap-2 text-left">
+            <c-label for="email">Email</c-label>
+            <c-input id="email" type="email" placeholder="you@example.com" />
         </div>
     </c-docs.page-header>
 
@@ -22,9 +20,65 @@
     </c-docs.component-section>
 
     <c-docs.component-section title="Usage">
-        <c-docs.code-example language="html">{{ "<c-label for='terms'>
-    Accept terms and conditions
-</c-label>" | display_code }}</c-docs.code-example>
+        <c-docs.code-example language="html">{{ "<c-label for='email'>Email</c-label>
+<c-input id='email' type='email' />" | display_code }}</c-docs.code-example>
+        <c-docs.para>
+            The <c-docs.code>for</c-docs.code> attribute has to match the control's
+            <c-docs.code>id</c-docs.code>. That is what lets a click on the text
+            focus the field, and what a screen reader announces.
+        </c-docs.para>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Examples">
+        <c-docs.example-item title="With an input" language="html">
+            <div class="grid w-full max-w-sm gap-2">
+                <c-label for="project">Project name</c-label>
+                <c-input id="project" placeholder="django-shadcn" />
+            </div>
+            <c-slot name="code">{{ "<c-label for='project'>Project name</c-label>
+<c-input id='project' placeholder='django-shadcn' />" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="With a checkbox" language="html">
+            <div class="flex items-center space-x-2">
+                <c-checkbox id="newsletter" />
+                <c-label for="newsletter">Subscribe to the newsletter</c-label>
+            </div>
+            <c-slot name="code">{{ "<c-checkbox id='newsletter' />
+<c-label for='newsletter'>Subscribe to the newsletter</c-label>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Required" language="html">
+            <div class="grid w-full max-w-sm gap-2">
+                <c-label for="handle">
+                    Handle
+                    <span class="text-destructive" aria-hidden="true">*</span>
+                </c-label>
+                <c-input id="handle" required />
+            </div>
+            <c-slot name="code">{{ "<c-label for='handle'>
+    Handle
+    <span class='text-destructive' aria-hidden='true'>*</span>
+</c-label>" | display_code }}</c-slot>
+        </c-docs.example-item>
+
+        <c-docs.example-item title="Disabled control" language="html">
+            <div class="grid w-full max-w-sm gap-2">
+                <c-input id="locked" class="peer" placeholder="Not editable" disabled />
+                <c-label for="locked">Locked field</c-label>
+            </div>
+            <c-slot name="code">{{ "<c-input id='locked' class='peer' disabled />
+<c-label for='locked'>Locked field</c-label>" | display_code }}</c-slot>
+        </c-docs.example-item>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Notes">
+        <c-docs.para>
+            The dimmed style for a disabled control comes from
+            <c-docs.code>peer-disabled:</c-docs.code>, so the control needs the
+            <c-docs.code>peer</c-docs.code> class and has to come before the label
+            in the markup.
+        </c-docs.para>
     </c-docs.component-section>
 
 </c-docs.layout.content>

@@ -1,0 +1,8 @@
+<a class="
+    transition-colors hover:text-foreground
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="breadcrumb-link" {{ attrs }}>
+    {{ slot }}
+</a>
