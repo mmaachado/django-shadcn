@@ -85,18 +85,18 @@
                 <c-avatar>
                     <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
                     <c-avatar.fallback>MM</c-avatar.fallback>
-                    <c-avatar.badge class="bg-emerald-500" />
+                    <c-avatar.badge class="bg-emerald-500!" />
                 </c-avatar>
                 <c-avatar size="lg">
                     <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
                     <c-avatar.fallback>MM</c-avatar.fallback>
-                    <c-avatar.badge class="bg-emerald-500" />
+                    <c-avatar.badge class="bg-emerald-500!" />
                 </c-avatar>
             </div>
             <c-slot name="code">{{ "<c-avatar>
     <c-avatar.image src='https://github.com/mmaachado.png' alt='@mmaachado' />
     <c-avatar.fallback>MM</c-avatar.fallback>
-    <c-avatar.badge class='bg-emerald-500' />
+    <c-avatar.badge class='bg-emerald-500!' />
 </c-avatar>" | display_code }}</c-slot>
         </c-docs.example-item>
 
@@ -126,6 +126,23 @@
     <c-avatar.group-count>+3</c-avatar.group-count>
 </c-avatar.group>" | display_code }}</c-slot>
         </c-docs.example-item>
+    </c-docs.component-section>
+
+    <c-docs.component-section title="Notes">
+        <c-docs.para>
+            The badge defaults to <c-docs.code>bg-primary</c-docs.code>. Colouring
+            it takes the <c-docs.code>!</c-docs.code> suffix —
+            <c-docs.code>bg-emerald-500!</c-docs.code> — because two background
+            utilities on the same element are decided by their order in the
+            compiled stylesheet, not by the order you wrote them. Tailwind sorts
+            them by name, so <c-docs.code>bg-primary</c-docs.code> lands after
+            <c-docs.code>bg-emerald-500</c-docs.code> and wins.
+        </c-docs.para>
+        <c-docs.para>
+            The rule holds for any class of yours that collides with one the
+            component already sets. It applies to every component here, not just
+            this one.
+        </c-docs.para>
     </c-docs.component-section>
 
 </c-docs.layout.content>

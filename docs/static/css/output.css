@@ -1069,8 +1069,8 @@
   .bg-destructive {
     background-color: var(--destructive);
   }
-  .bg-emerald-500 {
-    background-color: var(--color-emerald-500);
+  .bg-emerald-500\! {
+    background-color: var(--color-emerald-500) !important;
   }
   .bg-input {
     background-color: var(--input);
