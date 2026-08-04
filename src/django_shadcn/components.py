@@ -34,6 +34,7 @@ dependencies = {
     'hover_card': [],
     'icon': [],
     'input': [],
+    'input_otp': ['icon'],
     'input_group': ['button', 'input', 'textarea'],
     'item': ['separator'],
     'kbd': [],

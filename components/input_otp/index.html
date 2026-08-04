@@ -1,0 +1,45 @@
+<c-vars maxlength="6"></c-vars>
+
+{% comment %}
+Upstream leans on the input-otp package. Here one real input sits transparent
+over the slots and holds the whole code, so paste, autofill from an SMS and the
+mobile keyboard all behave, and the slots below only draw what it contains.
+{% endcomment %}
+<div
+    x-data="{
+        length: Number($el.dataset.maxlength),
+        value: '',
+        focused: false,
+        get chars() {
+            return this.value.split('');
+        },
+        isActive(index) {
+            return this.focused
+                && (index === this.value.length
+                    || (index === this.length - 1
+                        && this.value.length === this.length));
+        }
+    }"
+    class="
+    relative flex items-center gap-2 has-disabled:opacity-50
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-maxlength="{{ maxlength }}"
+    data-slot="input-otp"
+>
+    <input
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        maxlength="{{ maxlength }}"
+        x-model="value"
+        @focus="focused = true"
+        @blur="focused = false"
+        class="absolute inset-0 z-10 size-full cursor-default text-transparent
+        caret-transparent opacity-0 outline-none disabled:cursor-not-allowed"
+        {{ attrs }}
+    >
+    {{ slot }}
+</div>

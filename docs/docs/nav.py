@@ -48,6 +48,7 @@ NAV = [
             ("icon", "Icon"),
             ("input", "Input"),
             ("input-group", "Input Group"),
+            ("input-otp", "Input OTP"),
             ("item", "Item"),
             ("kbd", "Kbd"),
             ("label", "Label"),
