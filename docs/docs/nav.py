@@ -38,6 +38,7 @@ NAV = [
             ("combobox", "Combobox"),
             ("command", "Command"),
             ("command-dialog", "Command Dialog"),
+            ("context-menu", "Context Menu"),
             ("dialog", "Dialog"),
             ("dropdown-menu", "Dropdown Menu"),
             ("empty", "Empty"),

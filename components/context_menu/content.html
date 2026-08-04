@@ -1,0 +1,13 @@
+<div x-show="open" x-cloak @click.outside="open = false"
+    @scroll.window.passive="open = false"
+    @resize.window.passive="open = false" x-bind:style="`left: ${x}px; top: ${y}px`"
+    x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100" role="menu" class="
+    fixed z-50 min-w-[8rem] rounded-md border
+    bg-popover p-1 text-popover-foreground shadow-md
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="context-menu-content" {{ attrs }}>
+    {{ slot }}
+</div>

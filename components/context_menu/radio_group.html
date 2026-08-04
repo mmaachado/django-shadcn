@@ -1,0 +1,6 @@
+<c-vars value=""></c-vars>
+
+<div x-data="{ value: '{{ value }}' }" role="group" class="{% if class %}{{ class }}{% endif %}"
+    data-slot="context-menu-radio-group" {{ attrs }}>
+    {{ slot }}
+</div>

@@ -22,6 +22,7 @@ dependencies = {
     'card': [],
     'combobox': ['button', 'popover', 'icon'],
     'collapsible': [],
+    'context_menu': ['icon'],
     'command': ['icon'],
     'command_dialog': ['command'],
     'dialog': ['button', 'icon'],
