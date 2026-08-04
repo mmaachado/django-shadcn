@@ -60,3 +60,15 @@ dependencies = {
     'tooltip': [],
     'typography': [],
 }
+
+
+def canonical(name: str) -> str:
+    """Accept the cotton tag spelling as well as the directory name.
+
+    The tag is <c-toggle-group> while the directory has to be toggle_group,
+    so both reach the CLI and both should work.
+    """
+    if name in dependencies:
+        return name
+
+    return name.replace('-', '_')

@@ -16,7 +16,7 @@ description.es: Un conjunto de toggles que comparten un mismo contorno.
 ## Installation
 
 ```bash
-uvx django_shadcn@latest add toggle-group
+uvx django_shadcn@latest add toggle_group
 ```
 
 ## Usage

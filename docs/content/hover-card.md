@@ -28,7 +28,7 @@ description.es: Una tarjeta de vista previa que abre al pasar el ratón por un e
 ## Installation
 
 ```bash
-uvx django_shadcn@latest add hover-card
+uvx django_shadcn@latest add hover_card
 ```
 
 ## Usage

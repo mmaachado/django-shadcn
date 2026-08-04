@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- `add` now accepts the spelling you see in the markup. The tag is
+  `<c-toggle-group>` but the directory has to be `toggle_group`, and only the
+  second worked; `add toggle-group`, `add hover-card`, `add radio-group` and
+  `add scroll-area` failed with "Unknown component". Both spellings work now.
+- The install command on four documentation pages named the component the way
+  the CLI rejected it.
+
 ## 1.0.0 — 2026-08-04
 
 First stable release. `django-shadcn` ships 51 cotton components, a CLI that

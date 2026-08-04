@@ -25,7 +25,7 @@ description.es: Un conjunto de opciones donde solo se puede elegir una.
 ## Installation
 
 ```bash
-uvx django_shadcn@latest add radio-group
+uvx django_shadcn@latest add radio_group
 ```
 
 ## Usage

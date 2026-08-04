@@ -22,7 +22,7 @@ description.es: Un área desplazable con barra de desplazamiento acorde al tema.
 ## Installation
 
 ```bash
-uvx django_shadcn@latest add scroll-area
+uvx django_shadcn@latest add scroll_area
 ```
 
 ## Usage

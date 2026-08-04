@@ -101,3 +101,19 @@ def test_every_component_has_an_index_template(
     for component in set(component_names) - without_root:
         index = components_root / component / 'index.html'
         assert index.is_file(), f'{component} has no index.html'
+
+
+def test_install_commands_in_the_docs_name_real_components():
+    """The docs shipped an `add toggle-group` that the CLI rejected."""
+    docs = Path(__file__).resolve().parent.parent / 'docs' / 'content'
+
+    commands = re.compile(r'django_shadcn@latest add ([a-z0-9_\- ]+)')
+    wrong = []
+
+    for page in sorted(docs.glob('*.md')):
+        for line in commands.findall(page.read_text(encoding='utf-8')):
+            for name in line.split():
+                if name not in dependencies:
+                    wrong.append(f'{page.name}: add {name}')
+
+    assert not wrong, f'install commands that fail: {wrong}'
