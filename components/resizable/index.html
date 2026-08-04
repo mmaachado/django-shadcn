@@ -1,0 +1,61 @@
+<c-vars orientation="horizontal"></c-vars>
+
+{% comment %}
+Upstream leans on react-resizable-panels. Dragging here adjusts the flex-grow
+of the two panels either side of the handle, so the units cancel out and the
+group keeps filling whatever space it was given.
+{% endcomment %}
+<div
+    x-data="{
+        vertical: $el.dataset.orientation === 'vertical',
+        drag: null,
+        start(event, handle) {
+            const previous = handle.previousElementSibling;
+            const next = handle.nextElementSibling;
+            if (!previous || !next) return;
+
+            this.drag = {
+                previous,
+                next,
+                origin: this.vertical ? event.clientY : event.clientX,
+                previousSize: this.vertical
+                    ? previous.offsetHeight : previous.offsetWidth,
+                nextSize: this.vertical
+                    ? next.offsetHeight : next.offsetWidth,
+            };
+            handle.setPointerCapture(event.pointerId);
+        },
+        move(event) {
+            if (!this.drag) return;
+
+            const position = this.vertical ? event.clientY : event.clientX;
+            const total = this.drag.previousSize + this.drag.nextSize;
+            const size = Math.min(
+                Math.max(this.drag.previousSize + position - this.drag.origin, 0),
+                total
+            );
+
+            this.drag.previous.style.flexGrow = size;
+            this.drag.next.style.flexGrow = total - size;
+        },
+        stop() {
+            this.drag = null;
+        }
+    }"
+    @pointermove.window="move($event)"
+    @pointerup.window="stop()"
+    @pointercancel.window="stop()"
+    aria-orientation="{{ orientation }}"
+    data-orientation="{{ orientation }}"
+    class="
+    group/resizable flex h-full w-full
+    aria-[orientation=vertical]:flex-col
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="resizable-panel-group"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

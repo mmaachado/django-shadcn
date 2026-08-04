@@ -59,6 +59,7 @@ NAV = [
             ("popover", "Popover"),
             ("progress", "Progress"),
             ("radio-group", "Radio Group"),
+            ("resizable", "Resizable"),
             ("scroll-area", "Scroll Area"),
             ("select", "Select"),
             ("separator", "Separator"),

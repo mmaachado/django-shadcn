@@ -1,0 +1,17 @@
+<c-vars default_size="1"></c-vars>
+
+<div
+    x-init="$el.style.flexGrow = Number($el.dataset.defaultSize) || 1"
+    class="
+    overflow-hidden
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    style="flex-basis: 0"
+    data-default-size="{{ default_size }}"
+    data-slot="resizable-panel"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

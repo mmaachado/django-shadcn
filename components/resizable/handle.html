@@ -1,0 +1,39 @@
+<c-vars with_handle="false"></c-vars>
+
+{% comment %}
+A group stacked vertically is divided by horizontal handles, which is why the
+orientation reported here is the opposite of the group's.
+{% endcomment %}
+<div
+    role="separator"
+    tabindex="0"
+    @pointerdown.prevent="start($event, $el)"
+    x-bind:aria-orientation="vertical ? 'horizontal' : 'vertical'"
+    class="
+    relative flex w-px shrink-0 items-center justify-center bg-border
+    cursor-col-resize touch-none select-none
+    after:absolute after:inset-y-0 after:left-1/2 after:w-1
+    after:-translate-x-1/2
+    focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1
+    focus-visible:outline-hidden
+    aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full
+    aria-[orientation=horizontal]:cursor-row-resize
+    aria-[orientation=horizontal]:after:left-0
+    aria-[orientation=horizontal]:after:h-1
+    aria-[orientation=horizontal]:after:w-full
+    aria-[orientation=horizontal]:after:translate-x-0
+    aria-[orientation=horizontal]:after:-translate-y-1/2
+    [&[aria-orientation=horizontal]>div]:rotate-90
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="resizable-handle"
+    {{ attrs }}
+>
+    {% if with_handle == 'true' %}
+    <div class="z-10 flex h-4 w-3 items-center justify-center rounded-xs border bg-border">
+        <c-icon name="grip-vertical" class="size-2.5" />
+    </div>
+    {% endif %}
+</div>

@@ -46,6 +46,7 @@ dependencies = {
     'popover': [],
     'progress': [],
     'radio_group': [],
+    'resizable': ['icon'],
     'scroll_area': [],
     'select': ['icon'],
     'sheet': ['button', 'icon'],
