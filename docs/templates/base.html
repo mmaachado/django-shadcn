@@ -8,6 +8,18 @@
         <meta name="csrf-token" content="" />
         <meta name="description" content="Django port of shadcn/ui. Beautiful, accessible components for Django using Tailwind CSS and Alpine.js." />
 
+        <script>
+            // Runs before the first paint, so the page never flashes the
+            // wrong theme on the way to the one the visitor picked.
+            (function () {
+                var stored = localStorage.getItem('theme');
+                var dark = stored
+                    ? stored === 'dark'
+                    : matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', dark);
+            })();
+        </script>
+
         <script src="{% static 'js/alpine-collapse.min.js' %}" defer></script>
         <script src="{% static 'js/htmx.min.js' %}" defer></script>
         <script src="{% static 'js/alpine.min.js' %}" defer></script>
@@ -82,6 +94,34 @@
 
                     <!-- Right side actions -->
                     <div class="flex flex-1 items-center justify-end gap-2">
+                        <!-- Theme toggle -->
+                        <button
+                            type="button"
+                            @click="
+                                localStorage.setItem(
+                                    'theme',
+                                    document.documentElement.classList.toggle('dark') ? 'dark' : 'light'
+                                )
+                            "
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 w-9"
+                            aria-label="Toggle theme"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 dark:hidden">
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden size-4 dark:block">
+                                <circle cx="12" cy="12" r="4"/>
+                                <path d="M12 2v2"/>
+                                <path d="M12 20v2"/>
+                                <path d="m4.93 4.93 1.41 1.41"/>
+                                <path d="m17.66 17.66 1.41 1.41"/>
+                                <path d="M2 12h2"/>
+                                <path d="M20 12h2"/>
+                                <path d="m6.34 17.66-1.41 1.41"/>
+                                <path d="m19.07 4.93-1.41 1.41"/>
+                            </svg>
+                        </button>
+
                         <!-- GitHub link -->
                         <a
                             href="https://github.com/mmaachado/django-shadcn"
