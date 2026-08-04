@@ -27,6 +27,7 @@ dependencies = {
     'command_dialog': ['command'],
     'dialog': ['button', 'icon'],
     'checkbox': [],
+    'drawer': [],
     'dropdown_menu': [],
     'empty': [],
     'field': ['label', 'separator'],

@@ -1,0 +1,50 @@
+<c-vars direction="bottom"></c-vars>
+
+{% comment %}
+Upstream leans on vaul. Here the panel is a positioned element that Alpine
+shows and hides, plus a drag that follows the pointer and closes if you pull
+far enough. Vaul's momentum and snap points are not reproduced.
+{% endcomment %}
+<div
+    x-data="{
+        open: false,
+        offset: 0,
+        dragging: false,
+        origin: 0,
+        show() {
+            this.open = true;
+            this.offset = 0;
+            document.body.classList.add('overflow-hidden');
+        },
+        hide() {
+            this.open = false;
+            this.offset = 0;
+            document.body.classList.remove('overflow-hidden');
+        },
+        startDrag(event) {
+            this.dragging = true;
+            this.origin = event.clientY;
+        },
+        moveDrag(event) {
+            if (!this.dragging) return;
+            this.offset = Math.max(0, event.clientY - this.origin);
+        },
+        endDrag(panel) {
+            if (!this.dragging) return;
+            this.dragging = false;
+            if (this.offset > panel.offsetHeight * 0.4) {
+                this.hide();
+            } else {
+                this.offset = 0;
+            }
+        }
+    }"
+    @keydown.escape.window="if (open) hide()"
+    @pointermove.window="moveDrag($event)"
+    class="group/drawer {% if class %}{{ class }}{% endif %}"
+    data-direction="{{ direction }}"
+    data-slot="drawer"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

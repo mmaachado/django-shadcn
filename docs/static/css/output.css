@@ -9,6 +9,7 @@
     --color-red-400: oklch(0.704 0.191 22.216);
     --color-red-600: oklch(0.577 0.245 27.325);
     --color-emerald-500: oklch(0.696 0.17 162.48);
+    --color-black: #000;
     --spacing: 0.25rem;
     --breakpoint-2xl: 96rem;
     --container-sm: 24rem;
@@ -410,6 +411,9 @@
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
+  }
+  .mt-auto {
+    margin-top: auto;
   }
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
@@ -908,6 +912,9 @@
   .cursor-default {
     cursor: default;
   }
+  .cursor-grab {
+    cursor: grab;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -1207,6 +1214,9 @@
   }
   .bg-background\/80 {
     background-color: color-mix(in oklab, var(--background) 80%, transparent);
+  }
+  .bg-black\/50 {
+    background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
   }
   .bg-border {
     background-color: var(--border);
@@ -1780,6 +1790,127 @@
   .group-has-\[\>input\]\/input-group\:pb-2\.5 {
     &:is(:where(.group\/input-group):has(>input) *) {
       padding-bottom: calc(var(--spacing) * 2.5);
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:inset-x-0 {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      inset-inline: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:bottom-0 {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      bottom: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:mt-24 {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      margin-top: calc(var(--spacing) * 24);
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:block {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      display: block;
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:max-h-\[80vh\] {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      max-height: 80vh;
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:rounded-t-lg {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:border-t {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      border-top-style: var(--tw-border-style);
+      border-top-width: 1px;
+    }
+  }
+  .group-data-\[direction\=bottom\]\/drawer\:text-center {
+    &:is(:where(.group\/drawer)[data-direction="bottom"] *) {
+      text-align: center;
+    }
+  }
+  .group-data-\[direction\=left\]\/drawer\:inset-y-0 {
+    &:is(:where(.group\/drawer)[data-direction="left"] *) {
+      inset-block: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=left\]\/drawer\:left-0 {
+    &:is(:where(.group\/drawer)[data-direction="left"] *) {
+      left: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=left\]\/drawer\:w-3\/4 {
+    &:is(:where(.group\/drawer)[data-direction="left"] *) {
+      width: calc(3/4 * 100%);
+    }
+  }
+  .group-data-\[direction\=left\]\/drawer\:border-r {
+    &:is(:where(.group\/drawer)[data-direction="left"] *) {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 1px;
+    }
+  }
+  .group-data-\[direction\=right\]\/drawer\:inset-y-0 {
+    &:is(:where(.group\/drawer)[data-direction="right"] *) {
+      inset-block: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=right\]\/drawer\:right-0 {
+    &:is(:where(.group\/drawer)[data-direction="right"] *) {
+      right: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=right\]\/drawer\:w-3\/4 {
+    &:is(:where(.group\/drawer)[data-direction="right"] *) {
+      width: calc(3/4 * 100%);
+    }
+  }
+  .group-data-\[direction\=right\]\/drawer\:border-l {
+    &:is(:where(.group\/drawer)[data-direction="right"] *) {
+      border-left-style: var(--tw-border-style);
+      border-left-width: 1px;
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:inset-x-0 {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      inset-inline: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:top-0 {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      top: calc(var(--spacing) * 0);
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:mb-24 {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      margin-bottom: calc(var(--spacing) * 24);
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:max-h-\[80vh\] {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      max-height: 80vh;
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:rounded-b-lg {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      border-bottom-right-radius: var(--radius);
+      border-bottom-left-radius: var(--radius);
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:border-b {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      border-bottom-style: var(--tw-border-style);
+      border-bottom-width: 1px;
+    }
+  }
+  .group-data-\[direction\=top\]\/drawer\:text-center {
+    &:is(:where(.group\/drawer)[data-direction="top"] *) {
+      text-align: center;
     }
   }
   .group-data-\[disabled\=true\]\/field\:opacity-50 {
@@ -2873,6 +3004,20 @@
       text-align: left;
     }
   }
+  .group-data-\[direction\=left\]\/drawer\:sm\:max-w-sm {
+    &:is(:where(.group\/drawer)[data-direction="left"] *) {
+      @media (width >= 40rem) {
+        max-width: var(--container-sm);
+      }
+    }
+  }
+  .group-data-\[direction\=right\]\/drawer\:sm\:max-w-sm {
+    &:is(:where(.group\/drawer)[data-direction="right"] *) {
+      @media (width >= 40rem) {
+        max-width: var(--container-sm);
+      }
+    }
+  }
   .md\:sticky {
     @media (width >= 48rem) {
       position: sticky;
@@ -2967,6 +3112,11 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .md\:gap-1\.5 {
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 1.5);
     }
   }
   .md\:gap-6 {
