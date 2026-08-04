@@ -1,0 +1,39 @@
+<c-vars side="bottom" align="center"></c-vars>
+
+<div
+    x-show="open"
+    x-cloak
+    @mouseenter="show()"
+    @mouseleave="hide()"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+    class="
+    absolute z-50 w-64 rounded-md border bg-popover p-4
+    text-popover-foreground shadow-md outline-hidden
+
+    {% if side == 'top' %}bottom-full mb-1
+    {% elif side == 'bottom' %}top-full mt-1
+    {% elif side == 'left' %}right-full top-0 mr-1
+    {% elif side == 'right' %}left-full top-0 ml-1
+    {% endif %}
+
+    {% if align == 'center' %}left-1/2 -translate-x-1/2
+    {% elif align == 'start' %}left-0
+    {% elif align == 'end' %}right-0
+    {% endif %}
+
+    {% if class %}
+    {{ class }}
+    {% endif %}
+    "
+    data-slot="hover-card-content"
+    data-side="{{ side }}"
+    data-align="{{ align }}"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

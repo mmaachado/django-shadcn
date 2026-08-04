@@ -1,0 +1,56 @@
+<c-vars value="50" min="0" max="100" step="1"></c-vars>
+
+{% comment %}
+The range input carries the value, the keyboard and the form submission, and
+sits transparent on top. Track, range and thumb below it are what you see, so
+the styling stays in utility classes instead of vendor pseudo-elements.
+{% endcomment %}
+<div
+    x-data="{
+        value: {{ value }},
+        min: {{ min }},
+        max: {{ max }},
+        get percent() {
+            return (this.value - this.min) / (this.max - this.min) * 100;
+        }
+    }"
+    class="
+    relative flex w-full touch-none items-center select-none
+    has-[:disabled]:opacity-50
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="slider"
+>
+    <input
+        type="range"
+        min="{{ min }}"
+        max="{{ max }}"
+        step="{{ step }}"
+        x-model="value"
+        class="peer absolute inset-0 size-full cursor-pointer opacity-0
+        disabled:cursor-not-allowed"
+        {{ attrs }}
+    >
+    <div
+        class="relative h-1.5 w-full grow overflow-hidden rounded-full bg-muted"
+        data-slot="slider-track"
+    >
+        <div
+            class="absolute h-full bg-primary"
+            x-bind:style="`width: ${percent}%`"
+            data-slot="slider-range"
+        ></div>
+    </div>
+    <div
+        class="
+        pointer-events-none absolute block size-4 shrink-0 rounded-full border
+        border-primary bg-background shadow-sm ring-ring/50
+        transition-[color,box-shadow]
+        peer-focus-visible:ring-4 peer-hover:ring-4
+        "
+        x-bind:style="`left: calc(${percent}% - ${percent / 100 * 16}px)`"
+        data-slot="slider-thumb"
+    ></div>
+</div>

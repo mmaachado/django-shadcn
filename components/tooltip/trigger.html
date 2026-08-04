@@ -1,0 +1,11 @@
+<div
+    @mouseenter="open = true"
+    @mouseleave="open = false"
+    @focusin="open = true"
+    @focusout="open = false"
+    class="inline-flex {% if class %}{{ class }}{% endif %}"
+    data-slot="tooltip-trigger"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

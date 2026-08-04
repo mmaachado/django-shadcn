@@ -1,0 +1,32 @@
+<c-vars pressed="false"></c-vars>
+
+<button
+    type="button"
+    x-data="{ on: {{ pressed|lower }} }"
+    @click="on = !on"
+    x-bind:data-state="on ? 'on' : 'off'"
+    x-bind:aria-pressed="on"
+    class="
+    inline-flex w-auto min-w-0 shrink-0 items-center justify-center gap-2
+    rounded-md bg-transparent px-3 text-sm font-medium whitespace-nowrap
+    transition-[color,box-shadow] outline-none
+    hover:bg-accent hover:text-accent-foreground
+    focus:z-10 focus-visible:z-10 focus-visible:border-ring
+    focus-visible:ring-[3px] focus-visible:ring-ring/50
+    disabled:pointer-events-none disabled:opacity-50
+    data-[state=on]:bg-accent data-[state=on]:text-accent-foreground
+    [&_svg]:pointer-events-none [&_svg]:shrink-0
+    [&_svg:not([class*='size-'])]:size-4
+
+    group-data-[size=default]/toggle-group:h-9
+    group-data-[size=sm]/toggle-group:h-8
+    group-data-[size=lg]/toggle-group:h-10
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="toggle-group-item"
+    {{ attrs }}
+>
+    {{ slot }}
+</button>

@@ -1,0 +1,11 @@
+<c-vars default_open="false"></c-vars>
+
+<div
+    x-data="{ open: {{ default_open|lower }} }"
+    x-bind:data-state="open ? 'open' : 'closed'"
+    class="{% if class %}{{ class }}{% endif %}"
+    data-slot="collapsible"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

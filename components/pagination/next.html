@@ -1,0 +1,23 @@
+{% comment %}
+Cotton drops {{ attrs }} spread onto another <c-...> tag, so this renders the
+anchor itself instead of wrapping pagination.link.
+{% endcomment %}
+<a
+    aria-label="Go to next page"
+    class="
+    inline-flex h-9 items-center justify-center gap-1 rounded-md px-2.5 py-2
+    text-sm font-medium whitespace-nowrap transition-colors
+    hover:bg-accent hover:text-accent-foreground
+    focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+    sm:pr-2.5
+    [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="pagination-link"
+    {{ attrs }}
+>
+    <span class="hidden sm:block">{% if slot %}{{ slot }}{% else %}Next{% endif %}</span>
+    <c-icon name="chevron-right" />
+</a>
