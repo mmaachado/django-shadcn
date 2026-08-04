@@ -1,197 +1,93 @@
 from django.conf import settings
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import redirect
+from django.shortcuts import render as render_page
+from django.urls import reverse
+from django.utils.translation import get_language_from_path, override
+
+from .content import PageNotFound
+from .content import render as render_content
+from .nav import NAV
 
 ICONS_DIRECTORY = settings.BASE_DIR.parent / "components" / "icon"
 
-# Django tags inside a display_code string would be picked up by the template
-# lexer, so this one comes in through the context instead.
-CHOICES_SNIPPET = """<c-native-select name="country">
-    {% for value, label in form.country.field.choices %}
-        <c-native-select.option value="{{ value }}">{{ label }}</c-native-select.option>
-    {% endfor %}
-</c-native-select>"""
 
-
-def introduction(request):
-    return render(request, "introduction.html")
-
-
-def installation(request):
-    return render(request, "installation.html")
-
-
-def accordion(request):
-    return render(request, "accordion.html")
-
-
-def alert(request):
-    return render(request, "alert.html")
-
-
-def alert_dialog(request):
-    return render(request, "alert_dialog.html")
-
-
-def aspect_ratio(request):
-    return render(request, "aspect_ratio.html")
-
-
-def avatar(request):
-    return render(request, "avatar.html")
-
-
-def badge(request):
-    return render(request, "badge.html")
-
-
-def breadcrumb(request):
-    return render(request, "breadcrumb.html")
-
-
-def button(request):
-    return render(request, "button.html")
-
-
-def button_group(request):
-    return render(request, "button_group.html")
-
-
-def card(request):
-    return render(request, "card.html")
-
-
-def checkbox(request):
-    return render(request, "checkbox.html")
-
-
-def combobox(request):
-    return render(request, "combobox.html")
-
-
-def command(request):
-    return render(request, "command.html")
-
-
-def command_dialog(request):
-    return render(request, "command_dialog.html")
-
-
-def dialog(request):
-    return render(request, "dialog.html")
-
-
-def dropdown_menu(request):
-    return render(request, "dropdown_menu.html")
-
-
-def empty(request):
-    return render(request, "empty.html")
-
-
-def field(request):
-    handle_errors = ["Handle is already taken.", "Handle must be lowercase."]
-    return render(request, "field.html", {"handle_errors": handle_errors})
-
-
-def form(request):
-    return render(request, "form.html")
-
-
-def icon(request):
-    """Lists whatever is in the icon directory, so the page cannot go stale."""
-    names = sorted(
+def icon_names():
+    """Whatever is in the icon directory, so the page cannot go stale."""
+    return sorted(
         path.stem.replace("_", "-")
         for path in ICONS_DIRECTORY.glob("*.html")
         if path.stem != "index"
     )
-    return render(request, "icon.html", {"icons": names})
 
 
-def input(request):
-    return render(request, "input.html")
+# Pages whose examples come from data instead of being written out, because
+# rendering from Django data is the point of the example.
+PAGE_CONTEXT = {
+    "icon": lambda: {"icons": icon_names()},
+    "field": lambda: {
+        "handle_errors": [
+            "Handle is already taken.",
+            "Handle must be lowercase.",
+        ]
+    },
+    "native-select": lambda: {
+        "countries": [
+            ("br", "Brazil"),
+            ("pt", "Portugal"),
+            ("us", "United States"),
+        ]
+    },
+}
 
 
-def input_group(request):
-    return render(request, "input_group.html")
+def language_links(slug):
+    """The current page in every language we publish."""
+    links = []
+
+    for code, name in settings.LANGUAGES:
+        with override(code):
+            links.append((code, name, reverse("page", kwargs={"slug": slug})))
+
+    return links
 
 
-def item(request):
-    return render(request, "item.html")
+def home(request):
+    """The bare domain, honouring a language the visitor already picked.
+
+    With prefix_default_language=False the unprefixed URLs *are* English, so
+    Django ignores the language cookie there on purpose. That is right for
+    every page but the entry point, where someone arriving without a prefix
+    should land in the language they chose last time.
+    """
+    chosen = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
+    unprefixed = get_language_from_path(request.path_info) is None
+
+    if (
+        unprefixed
+        and chosen != settings.LANGUAGE_CODE
+        and chosen in dict(settings.LANGUAGES)
+    ):
+        with override(chosen):
+            return redirect("home")
+
+    return page(request, slug="introduction")
 
 
-def kbd(request):
-    return render(request, "kbd.html")
+def page(request, slug):
+    try:
+        meta, content = render_content(slug, PAGE_CONTEXT.get(slug, dict)())
+    except PageNotFound:
+        raise Http404(slug) from None
 
-
-def label(request):
-    return render(request, "label.html")
-
-
-def native_select(request):
-    countries = [
-        ("br", "Brazil"),
-        ("pt", "Portugal"),
-        ("us", "United States"),
-    ]
-    return render(
+    return render_page(
         request,
-        "native_select.html",
-        {"countries": countries, "choices_snippet": CHOICES_SNIPPET},
+        "page.html",
+        {
+            "meta": meta,
+            "content": content,
+            "nav": NAV,
+            "slug": slug,
+            "languages": language_links(slug),
+        },
     )
-
-
-def navigation_menu(request):
-    return render(request, "navigation_menu.html")
-
-
-def popover(request):
-    return render(request, "popover.html")
-
-
-def progress(request):
-    return render(request, "progress.html")
-
-
-def select(request):
-    return render(request, "select.html")
-
-
-def separator(request):
-    return render(request, "separator.html")
-
-
-def skeleton(request):
-    return render(request, "skeleton.html")
-
-
-def spinner(request):
-    return render(request, "spinner.html")
-
-
-def sheet(request):
-    sides = ["top", "right", "bottom", "left"]
-    return render(request, "sheet.html", {"sides": sides})
-
-
-def table(request):
-    return render(request, "table.html")
-
-
-def tabs(request):
-    return render(request, "tabs.html")
-
-
-def textarea(request):
-    return render(request, "textarea.html")
-
-
-def typography(request):
-    return render(request, "typography.html")
-
-
-def toast(request):
-    return render(request, "toast.html")
-
-
-def allauth(request):
-    return render(request, "allauth.html")

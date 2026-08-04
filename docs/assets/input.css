@@ -4,6 +4,7 @@
 /* The component library lives outside this directory, so auto-detection
    never reaches it. */
 @source "../templates";
+@source "../content/**/*.md";
 @source "../../components";
 
 @custom-variant dark (&:is(.dark *));
@@ -242,6 +243,55 @@
     background-color: var(--muted-foreground);
   }
 
+  /* Markdown output. Scoped to direct children so the typography never
+     reaches inside a rendered component demo. */
+  .docs-content > h2 {
+    @apply mt-10 scroll-m-20 border-b border-border pb-3 text-xl font-semibold tracking-tight;
+  }
+
+  .docs-content > h2:first-child {
+    @apply mt-0;
+  }
+
+  .docs-content > h3 {
+    @apply mt-8 scroll-m-20 text-base font-semibold tracking-tight;
+  }
+
+  .docs-content > p {
+    @apply mt-4 leading-7 text-muted-foreground;
+  }
+
+  .docs-content > ul {
+    @apply mt-4 ml-6 list-disc space-y-2 text-muted-foreground;
+  }
+
+  .docs-content > ol {
+    @apply mt-4 ml-6 list-decimal space-y-2 text-muted-foreground;
+  }
+
+  .docs-content > blockquote {
+    @apply mt-4 border-l-2 border-border pl-6 italic text-muted-foreground;
+  }
+
+  .docs-content > table {
+    @apply mt-4 w-full text-sm;
+  }
+
+  .docs-content > table th {
+    @apply border-b border-border px-3 py-2 text-left font-medium;
+  }
+
+  .docs-content > table td {
+    @apply border-b border-border px-3 py-2 text-muted-foreground;
+  }
+
+  .docs-content > p a,
+  .docs-content > ul a,
+  .docs-content > ol a,
+  .docs-content > table a {
+    @apply font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground;
+  }
+
   /* Code block enhancements */
   pre[class*="language-"] {
     @apply rounded-lg border border-border text-sm;
@@ -332,6 +382,11 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: var(--muted);
+}
+
+/* Room for the copy button. */
+pre[class*="language-"] {
+  padding-right: 3rem;
 }
 
 .dark .token.cdata,

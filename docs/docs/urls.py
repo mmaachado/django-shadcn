@@ -1,110 +1,20 @@
-"""
-URL configuration for docs project.
+from django.conf.urls.i18n import i18n_patterns
+from django.urls import include, path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from .llms import llms_full_txt, llms_txt
+from .views import home, page
 
-from django.urls import path
-
-from .views import (
-    accordion,
-    alert,
-    alert_dialog,
-    allauth,
-    aspect_ratio,
-    avatar,
-    badge,
-    breadcrumb,
-    button,
-    button_group,
-    card,
-    checkbox,
-    combobox,
-    command,
-    command_dialog,
-    dialog,
-    dropdown_menu,
-    empty,
-    field,
-    form,
-    icon,
-    input,
-    input_group,
-    installation,
-    introduction,
-    item,
-    kbd,
-    label,
-    native_select,
-    navigation_menu,
-    popover,
-    progress,
-    select,
-    separator,
-    sheet,
-    skeleton,
-    spinner,
-    table,
-    tabs,
-    textarea,
-    toast,
-    typography,
-)
-
+# set_language stores the choice in a cookie, so it survives a visit to
+# the bare domain later. It must sit outside the localized patterns.
 urlpatterns = [
-    path("", introduction, name="introduction"),
-    path("introduction/", introduction, name="introduction"),
-    path("installation/", installation, name="installation"),
-    path("accordion/", accordion, name="accordion"),
-    path("alert/", alert, name="alert"),
-    path("alert-dialog/", alert_dialog, name="alert_dialog"),
-    path("aspect-ratio/", aspect_ratio, name="aspect_ratio"),
-    path("avatar/", avatar, name="avatar"),
-    path("badge/", badge, name="badge"),
-    path("breadcrumb/", breadcrumb, name="breadcrumb"),
-    path("button/", button, name="button"),
-    path("button-group/", button_group, name="button_group"),
-    path("card/", card, name="card"),
-    path("checkbox/", checkbox, name="checkbox"),
-    path("combobox/", combobox, name="combobox"),
-    path("command/", command, name="command"),
-    path("command-dialog/", command_dialog, name="command_dialog"),
-    path("dialog/", dialog, name="dialog"),
-    path("dropdown-menu/", dropdown_menu, name="dropdown_menu"),
-    path("empty/", empty, name="empty"),
-    path("field/", field, name="field"),
-    path("form/", form, name="form"),
-    path("icon/", icon, name="icon"),
-    path("input/", input, name="input"),
-    path("input-group/", input_group, name="input_group"),
-    path("item/", item, name="item"),
-    path("kbd/", kbd, name="kbd"),
-    path("label/", label, name="label"),
-    path("native-select/", native_select, name="native_select"),
-    path("navigation-menu/", navigation_menu, name="navigation_menu"),
-    path("popover/", popover, name="popover"),
-    path("progress/", progress, name="progress"),
-    path("select/", select, name="select"),
-    path("separator/", separator, name="separator"),
-    path("sheet/", sheet, name="sheet"),
-    path("skeleton/", skeleton, name="skeleton"),
-    path("spinner/", spinner, name="spinner"),
-    path("table/", table, name="table"),
-    path("tabs/", tabs, name="tabs"),
-    path("textarea/", textarea, name="textarea"),
-    path("toast/", toast, name="toast"),
-    path("typography/", typography, name="typography"),
-    # Blocks
-    path("allauth/", allauth, name="allauth"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
+
+# English keeps the bare paths; the other languages get a prefix.
+urlpatterns += i18n_patterns(
+    path("", home, name="home"),
+    path("llms.txt", llms_txt, name="llms"),
+    path("llms-full.txt", llms_full_txt, name="llms-full"),
+    path("<slug:slug>/", page, name="page"),
+    prefix_default_language=False,
+)

@@ -1,6 +1,6 @@
-{% load static %}
+{% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
                 <div class="container flex h-14 max-w-screen-2xl items-center px-4 md:px-8">
                     <!-- Logo -->
                     <div class="mr-4 hidden md:flex">
-                        <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                        <a href="{% url 'home' %}" class="mr-4 flex items-center gap-2 lg:mr-6">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-5">
                                 <rect width="256" height="256" fill="none"></rect>
                                 <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
@@ -53,14 +53,14 @@
                             <span class="hidden font-bold lg:inline-block">django/shadcn-ui</span>
                         </a>
                         <nav class="flex items-center gap-4 text-sm xl:gap-6">
-                            <a href="/" class="text-muted-foreground transition-colors hover:text-foreground {% if request.path == '/' or '/introduction' in request.path %}text-foreground{% endif %}">
-                                Docs
+                            <a href="{% url 'home' %}" class="text-muted-foreground transition-colors hover:text-foreground {% if slug == 'introduction' or slug == 'installation' %}text-foreground{% endif %}">
+                                {% trans "Docs" %}
                             </a>
-                            <a href="/accordion" class="text-muted-foreground transition-colors hover:text-foreground {% if request.path != '/' and '/introduction' not in request.path and '/installation' not in request.path and '/allauth' not in request.path %}text-foreground{% endif %}">
-                                Components
+                            <a href="{% url 'page' slug='accordion' %}" class="text-muted-foreground transition-colors hover:text-foreground {% if slug != 'introduction' and slug != 'installation' and slug != 'allauth' %}text-foreground{% endif %}">
+                                {% trans "Components" %}
                             </a>
-                            <a href="/allauth" class="text-muted-foreground transition-colors hover:text-foreground {% if '/allauth' in request.path %}text-foreground{% endif %}">
-                                Blocks
+                            <a href="{% url 'page' slug='allauth' %}" class="text-muted-foreground transition-colors hover:text-foreground {% if slug == 'allauth' %}text-foreground{% endif %}">
+                                {% trans "Blocks" %}
                             </a>
                         </nav>
                     </div>
@@ -69,7 +69,7 @@
                     <button
                         @click="mobileMenuOpen = !mobileMenuOpen"
                         class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden"
-                        aria-label="Toggle menu"
+                        aria-label="{% trans 'Toggle menu' %}"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" x-show="!mobileMenuOpen">
                             <line x1="4" x2="20" y1="12" y2="12"/>
@@ -83,7 +83,7 @@
                     </button>
 
                     <!-- Mobile Logo -->
-                    <a href="/" class="flex items-center gap-2 md:hidden ml-2">
+                    <a href="{% url 'home' %}" class="flex items-center gap-2 md:hidden ml-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-5">
                             <rect width="256" height="256" fill="none"></rect>
                             <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
@@ -94,6 +94,42 @@
 
                     <!-- Right side actions -->
                     <div class="flex flex-1 items-center justify-end gap-2">
+                        <!-- Language -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button
+                                type="button"
+                                @click="open = !open"
+                                @click.outside="open = false"
+                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 w-9"
+                                aria-label="{% trans 'Change language' %}"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </button>
+                            <div
+                                x-show="open"
+                                x-transition
+                                style="display: none;"
+                                class="absolute right-0 mt-2 min-w-[9rem] rounded-md border border-border bg-popover p-1 shadow-md"
+                            >
+                                {% for code, name, url in languages %}
+                                <form action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{ url }}" />
+                                    <button
+                                        type="submit"
+                                        name="language"
+                                        value="{{ code }}"
+                                        class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground {% if code == LANGUAGE_CODE %}bg-accent font-medium{% endif %}"
+                                    >{{ name }}</button>
+                                </form>
+                                {% endfor %}
+                            </div>
+                        </div>
+
                         <!-- Theme toggle -->
                         <button
                             type="button"
@@ -104,7 +140,7 @@
                                 )
                             "
                             class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                            aria-label="Toggle theme"
+                            aria-label="{% trans 'Toggle theme' %}"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 dark:hidden">
                                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
@@ -149,7 +185,7 @@
                         <button
                             @click="mobileMenuOpen = false"
                             class="absolute top-4 right-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent h-8 w-8 md:hidden"
-                            aria-label="Close menu"
+                            aria-label="{% trans 'Close menu' %}"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M18 6 6 18"/>
@@ -159,68 +195,16 @@
 
                         <div class="sidebar-scroll h-full overflow-y-auto py-6 md:py-8">
                             <div class="flex flex-col gap-6">
-                                <!-- Getting Started -->
+                                {% for section, entries in nav %}
                                 <div class="flex flex-col gap-1">
-                                    <h4 class="px-2 py-1 text-sm font-semibold tracking-tight">Getting Started</h4>
+                                    <h4 class="px-2 py-1 text-sm font-semibold tracking-tight">{{ section }}</h4>
                                     <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm">
-                                        <c-docs.link href="/" class="{% if request.path == '/' or '/introduction' in request.path %}bg-accent font-medium{% endif %}">Introduction</c-docs.link>
-                                        <c-docs.link href="/installation" class="{% if 'installation' in request.path %}bg-accent font-medium{% endif %}">Installation</c-docs.link>
+                                        {% for entry_slug, label in entries %}
+                                        <c-docs.link href="{% url 'page' slug=entry_slug %}" class="{% if entry_slug == slug %}bg-accent font-medium{% endif %}">{{ label }}</c-docs.link>
+                                        {% endfor %}
                                     </div>
                                 </div>
-
-                                <!-- Blocks -->
-                                <div class="flex flex-col gap-1">
-                                    <h4 class="px-2 py-1 text-sm font-semibold tracking-tight">Blocks</h4>
-                                    <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm">
-                                        <c-docs.link href="/allauth" class="{% if '/allauth' in request.path %}bg-accent font-medium{% endif %}">django-allauth</c-docs.link>
-                                    </div>
-                                </div>
-
-                                <!-- Components -->
-                                <div class="flex flex-col gap-1">
-                                    <h4 class="px-2 py-1 text-sm font-semibold tracking-tight">Components</h4>
-                                    <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm">
-                                        <c-docs.link href="/accordion" class="{% if '/accordion' in request.path %}bg-accent font-medium{% endif %}">Accordion</c-docs.link>
-                                        <c-docs.link href="/alert" class="{% if '/alert/' == request.path %}bg-accent font-medium{% endif %}">Alert</c-docs.link>
-                                        <c-docs.link href="/alert-dialog" class="{% if '/alert-dialog' in request.path %}bg-accent font-medium{% endif %}">Alert Dialog</c-docs.link>
-                                        <c-docs.link href="/aspect-ratio" class="{% if '/aspect-ratio' in request.path %}bg-accent font-medium{% endif %}">Aspect Ratio</c-docs.link>
-                                        <c-docs.link href="/avatar" class="{% if '/avatar' in request.path %}bg-accent font-medium{% endif %}">Avatar</c-docs.link>
-                                        <c-docs.link href="/badge" class="{% if '/badge' in request.path %}bg-accent font-medium{% endif %}">Badge</c-docs.link>
-                                        <c-docs.link href="/breadcrumb" class="{% if '/breadcrumb' in request.path %}bg-accent font-medium{% endif %}">Breadcrumb</c-docs.link>
-                                        <c-docs.link href="/button" class="{% if '/button/' == request.path %}bg-accent font-medium{% endif %}">Button</c-docs.link>
-                                        <c-docs.link href="/button-group" class="{% if '/button-group' in request.path %}bg-accent font-medium{% endif %}">Button Group</c-docs.link>
-                                        <c-docs.link href="/card" class="{% if '/card' in request.path %}bg-accent font-medium{% endif %}">Card</c-docs.link>
-                                        <c-docs.link href="/checkbox" class="{% if '/checkbox' in request.path %}bg-accent font-medium{% endif %}">Checkbox</c-docs.link>
-                                        <c-docs.link href="/combobox" class="{% if '/combobox' in request.path %}bg-accent font-medium{% endif %}">Combobox</c-docs.link>
-                                        <c-docs.link href="/command" class="{% if '/command/' == request.path %}bg-accent font-medium{% endif %}">Command</c-docs.link>
-                                        <c-docs.link href="/command-dialog" class="{% if '/command-dialog' in request.path %}bg-accent font-medium{% endif %}">Command Dialog</c-docs.link>
-                                        <c-docs.link href="/dialog" class="{% if '/dialog/' == request.path %}bg-accent font-medium{% endif %}">Dialog</c-docs.link>
-                                        <c-docs.link href="/dropdown-menu" class="{% if '/dropdown-menu' in request.path %}bg-accent font-medium{% endif %}">Dropdown Menu</c-docs.link>
-                                        <c-docs.link href="/empty" class="{% if '/empty' in request.path %}bg-accent font-medium{% endif %}">Empty</c-docs.link>
-                                        <c-docs.link href="/field" class="{% if '/field' in request.path %}bg-accent font-medium{% endif %}">Field</c-docs.link>
-                                        <c-docs.link href="/form" class="{% if '/form' in request.path %}bg-accent font-medium{% endif %}">Form</c-docs.link>
-                                        <c-docs.link href="/icon" class="{% if '/icon' in request.path %}bg-accent font-medium{% endif %}">Icon</c-docs.link>
-                                        <c-docs.link href="/input" class="{% if '/input/' == request.path %}bg-accent font-medium{% endif %}">Input</c-docs.link>
-                                        <c-docs.link href="/input-group" class="{% if '/input-group' in request.path %}bg-accent font-medium{% endif %}">Input Group</c-docs.link>
-                                        <c-docs.link href="/item" class="{% if '/item' in request.path %}bg-accent font-medium{% endif %}">Item</c-docs.link>
-                                        <c-docs.link href="/kbd" class="{% if '/kbd' in request.path %}bg-accent font-medium{% endif %}">Kbd</c-docs.link>
-                                        <c-docs.link href="/label" class="{% if '/label' in request.path %}bg-accent font-medium{% endif %}">Label</c-docs.link>
-                                        <c-docs.link href="/native-select" class="{% if '/native-select' in request.path %}bg-accent font-medium{% endif %}">Native Select</c-docs.link>
-                                        <c-docs.link href="/navigation-menu" class="{% if '/navigation-menu' in request.path %}bg-accent font-medium{% endif %}">Navigation Menu</c-docs.link>
-                                        <c-docs.link href="/popover" class="{% if '/popover' in request.path %}bg-accent font-medium{% endif %}">Popover</c-docs.link>
-                                        <c-docs.link href="/progress" class="{% if '/progress' in request.path %}bg-accent font-medium{% endif %}">Progress</c-docs.link>
-                                        <c-docs.link href="/select" class="{% if '/select' in request.path %}bg-accent font-medium{% endif %}">Select</c-docs.link>
-                                        <c-docs.link href="/separator" class="{% if '/separator' in request.path %}bg-accent font-medium{% endif %}">Separator</c-docs.link>
-                                        <c-docs.link href="/sheet" class="{% if '/sheet' in request.path %}bg-accent font-medium{% endif %}">Sheet</c-docs.link>
-                                        <c-docs.link href="/skeleton" class="{% if '/skeleton' in request.path %}bg-accent font-medium{% endif %}">Skeleton</c-docs.link>
-                                        <c-docs.link href="/spinner" class="{% if '/spinner' in request.path %}bg-accent font-medium{% endif %}">Spinner</c-docs.link>
-                                        <c-docs.link href="/table" class="{% if '/table' in request.path %}bg-accent font-medium{% endif %}">Table</c-docs.link>
-                                        <c-docs.link href="/tabs" class="{% if '/tabs' in request.path %}bg-accent font-medium{% endif %}">Tabs</c-docs.link>
-                                        <c-docs.link href="/textarea" class="{% if '/textarea' in request.path %}bg-accent font-medium{% endif %}">Textarea</c-docs.link>
-                                        <c-docs.link href="/toast" class="{% if '/toast' in request.path %}bg-accent font-medium{% endif %}">Toast</c-docs.link>
-                                        <c-docs.link href="/typography" class="{% if '/typography' in request.path %}bg-accent font-medium{% endif %}">Typography</c-docs.link>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </aside>
@@ -251,9 +235,9 @@
             <footer class="border-t border-border/40 py-6 md:py-0">
                 <div class="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row px-4 md:px-8 max-w-screen-2xl">
                     <p class="text-sm text-muted-foreground text-balance text-center md:text-left">
-                        Designed by <a href="https://x.com/shadcn" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">shadcn</a>.
-                        Ported for Django by <a href="https://github.com/SarthakJariwala" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">Sarthak Jariwala</a>.
-                        Complemented by <a href="https://github.com/mmaachado" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">Marcelo Machado</a>.
+                        {% trans "Designed by" %} <a href="https://x.com/shadcn" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">shadcn</a>.
+                        {% trans "Ported for Django by" %} <a href="https://github.com/SarthakJariwala" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">Sarthak Jariwala</a>.
+                        {% trans "Complemented by" %} <a href="https://github.com/mmaachado" target="_blank" rel="noopener noreferrer" class="font-medium underline underline-offset-4 hover:text-foreground">Marcelo Machado</a>.
                     </p>
                 </div>
             </footer>

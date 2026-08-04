@@ -296,3 +296,6 @@ $RECYCLE.BIN/
 
 # Django collectstatic output for the docs playground
 docs/staticfiles/
+
+# Compiled catalogs are committed: the deploy has no gettext to build them.
+!docs/locale/**/*.mo
