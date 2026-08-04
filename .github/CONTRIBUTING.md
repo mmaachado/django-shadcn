@@ -116,6 +116,12 @@ git tag -a v1.0.0 -m "v1.0.0"
 git push origin v1.0.0
 ```
 
+Add the section to `CHANGELOG.md` first, headed `## <version>`. The workflow
+copies it into the GitHub release and appends the generated commit list below
+it. Without a matching section the release still goes out, carrying only the
+generated notes — which is why anything a reader has to know before upgrading
+belongs in the changelog and not in a commit message.
+
 The Release workflow builds, checks that the artifact matches the tag, publishes
 to PyPI and opens the GitHub release. Running it manually from the Actions tab
 publishes to TestPyPI instead, which is the way to rehearse a change to the

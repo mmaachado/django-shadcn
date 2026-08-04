@@ -55,6 +55,19 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      # Runs after the package is already on PyPI, so it must never fail the
+      # job: a missing section leaves an empty file and the generated notes
+      # stand on their own.
+      - name: Take the release notes from the changelog
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          awk -v version="${GITHUB_REF_NAME#v}" '
+            $0 == "## " version || index($0, "## " version " ") == 1 { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md || true
+          wc -l < release-notes.md
+
       - name: Create the GitHub release
         if: startsWith(github.ref, 'refs/tags/')
         env:
@@ -63,5 +76,6 @@ jobs:
           gh release create "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
           --title "$GITHUB_REF_NAME"
+          --notes-file release-notes.md
           --generate-notes
           dist/*
