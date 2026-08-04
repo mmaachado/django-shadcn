@@ -2,7 +2,7 @@
 
 <div
   x-data="{
-    open: {{ default_open|lower }},
+    open: {% if default_open == 'true' %}true{% else %}false{% endif %},
 
     showDialog() {
       this.open = true;

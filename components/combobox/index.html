@@ -2,10 +2,10 @@
   name="" />
 
 <div x-data="{
-    open: {{ default_open|lower }},
-    value: '{{ selected_value }}',
-    buttonText: '{{ button_text }}',
-    options: {{ options|default:'[]'|safe }},
+    open: {% if default_open == 'true' %}true{% else %}false{% endif %},
+    value: $el.dataset.selectedValue,
+    buttonText: $el.dataset.buttonText,
+    options: JSON.parse($el.dataset.options),
     search: '',
     highlightedIndex: -1,
     filteredOptions: [],
@@ -50,7 +50,7 @@
       // Toggle selection if already selected
       if (this.value === selectedValue) {
         this.value = '';
-        this.buttonText = '{{ button_text }}';
+        this.buttonText = $el.dataset.buttonText;
       } else {
         this.value = selectedValue;
 
@@ -81,7 +81,10 @@
         }
       });
     }
-  }" class="relative {% if class %}{{ class }}{% endif %}" {{ attrs }}>
+  }" class="relative {% if class %}{{ class }}{% endif %}" data-selected-value="{{ selected_value }}"
+  data-button-text="{{ button_text }}"
+  data-options='[{% for option in options %}{"value": "{{ option.value|escapejs }}", "label": "{{ option.label|escapejs }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'
+  {{ attrs }}>
   <!-- Hidden input field to store the selected value -->
   {% if name %}
   <input type="hidden" name="{{ name }}" x-bind:value="value" />

@@ -7,9 +7,9 @@ the styling stays in utility classes instead of vendor pseudo-elements.
 {% endcomment %}
 <div
     x-data="{
-        value: {{ value }},
-        min: {{ min }},
-        max: {{ max }},
+        value: Number($el.dataset.value),
+        min: Number($el.dataset.min),
+        max: Number($el.dataset.max),
         get percent() {
             return (this.value - this.min) / (this.max - this.min) * 100;
         }
@@ -21,6 +21,9 @@ the styling stays in utility classes instead of vendor pseudo-elements.
         {{ class }}
     {% endif %}
     "
+    data-value="{{ value }}"
+    data-min="{{ min }}"
+    data-max="{{ max }}"
     data-slot="slider"
 >
     <input

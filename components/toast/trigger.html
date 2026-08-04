@@ -1,7 +1,7 @@
 <c-vars toast_target></c-vars>
 
 <div
-    @click="$dispatch('show-toast', '{{ toast_target }}')"
+    x-data="{ own: $el.dataset.toastTarget }" data-toast-target="{{ toast_target }}" @click="$dispatch('show-toast', own)"
     class="{% if class %}{{ class }}{% endif %}"
     x-data
 >

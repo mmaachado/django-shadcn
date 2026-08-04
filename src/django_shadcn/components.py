@@ -38,6 +38,7 @@ dependencies = {
     'item': ['separator'],
     'kbd': [],
     'label': [],
+    'menubar': ['icon'],
     'native_select': ['icon'],
     'navigation_menu': ['icon'],
     'pagination': ['icon'],

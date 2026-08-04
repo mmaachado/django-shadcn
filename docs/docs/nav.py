@@ -51,6 +51,7 @@ NAV = [
             ("item", "Item"),
             ("kbd", "Kbd"),
             ("label", "Label"),
+            ("menubar", "Menubar"),
             ("native-select", "Native Select"),
             ("navigation-menu", "Navigation Menu"),
             ("pagination", "Pagination"),

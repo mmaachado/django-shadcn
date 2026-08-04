@@ -2,7 +2,7 @@
 
 <button
     type="button"
-    x-data="{ on: {{ pressed|lower }} }"
+    x-data="{ on: {% if pressed == 'true' %}true{% else %}false{% endif %} }"
     @click="on = !on"
     x-bind:data-state="on ? 'on' : 'off'"
     x-bind:aria-pressed="on"

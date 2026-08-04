@@ -17,10 +17,11 @@
       }
     }
   }"
-  @keydown.window="if (event.key === '{{ shortcut_key }}' && (event.metaKey || event.ctrlKey)) {
+  @keydown.window="if (event.key === $el.dataset.shortcutKey && (event.metaKey || event.ctrlKey)) {
     event.preventDefault();
     toggleDialog();
   }"
+  data-shortcut-key="{{ shortcut_key }}"
   {{ attrs }}
 >
   <div @click="toggleDialog" class="{% if class %}{{ class }}{% endif %}">

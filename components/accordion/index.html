@@ -2,9 +2,9 @@
 
 <div
   x-data="{
-    open: {{ open }},
-    type: '{{ type }}',
-    collapsible: {{ collapsible|lower }},
+    open: JSON.parse($el.dataset.open),
+    type: $el.dataset.type,
+    collapsible: {% if collapsible == 'true' %}true{% else %}false{% endif %},
 
     toggle(value) {
       if (this.type === 'single') {
@@ -27,6 +27,8 @@
     }
   }"
   class="{% if class %}{{ class }}{% endif %}"
+  data-type="{{ type }}"
+  data-open="{{ open }}"
   {{ attrs }}
 >
   {{ slot }}

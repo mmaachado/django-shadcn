@@ -2,7 +2,8 @@
 
 <span
   class="block truncate {% if class %}{{ class }}{% endif %}"
-  x-text="displayText || '{{ placeholder }}'"
+  x-text="displayText || $el.dataset.placeholder"
+  data-placeholder="{{ placeholder }}"
   {{ attrs }}
 >
 </span>

@@ -2,6 +2,31 @@
 
 ## Unreleased
 
+### Security
+
+- **Values passed to a component no longer reach Alpine as code.** Components
+  wrote things like `x-data="{ value: '{{ value }}' }"`. Django escapes that
+  for HTML, but the browser turns the entities back into quotes before Alpine
+  evaluates the attribute as JavaScript, so a value carrying a quote could
+  close the string and run whatever followed. Anything looping user or
+  database content into a component — `<c-tabs.trigger value="{{ tag.slug }}">`
+  is the obvious shape — was exposed.
+
+  Values now travel through `data-*` attributes, where Django's escaping is the
+  right escaping, and Alpine reads them at runtime instead of having them baked
+  into the expression. Booleans render as literal `true`/`false` and interpolate
+  nothing at all. `combobox` built its options list with `|safe`, which skipped
+  escaping entirely; it now emits real JSON through the built-in `escapejs`.
+
+  Affected: `accordion`, `alert_dialog`, `combobox`, `command`,
+  `command_dialog`, `context_menu`, `dialog`, `menubar`, `navigation_menu`,
+  `popover`, `select`, `sheet`, `slider`, `tabs`, `toast`, `toggle`,
+  `toggle_group`, `hover_card`, `collapsible`.
+
+  Component APIs are unchanged — `<c-combobox :options="[...]">` still takes a
+  Python list. Copies already in your project keep the old markup; run
+  `add <name> --overwrite` to take the fix.
+
 ### Fixed
 
 - `add` now accepts the spelling you see in the markup. The tag is

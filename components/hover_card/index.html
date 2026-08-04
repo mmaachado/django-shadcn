@@ -6,15 +6,15 @@
         timer: null,
         show() {
             clearTimeout(this.timer);
-            this.timer = setTimeout(() => this.open = true, {{ open_delay }});
+            this.timer = setTimeout(() => this.open = true, Number($el.dataset.openDelay));
         },
         hide() {
             clearTimeout(this.timer);
-            this.timer = setTimeout(() => this.open = false, {{ close_delay }});
+            this.timer = setTimeout(() => this.open = false, Number($el.dataset.closeDelay));
         }
     }"
     class="relative inline-block {% if class %}{{ class }}{% endif %}"
-    data-slot="hover-card"
+    data-open-delay="{{ open_delay }}" data-close-delay="{{ close_delay }}" data-slot="hover-card"
     {{ attrs }}
 >
     {{ slot }}

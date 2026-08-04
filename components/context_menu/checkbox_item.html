@@ -1,6 +1,6 @@
 <c-vars checked="false"></c-vars>
 
-<div role="menuitemcheckbox" x-data="{ checked: {{ checked|lower }} }" @click="checked = !checked"
+<div role="menuitemcheckbox" x-data="{ checked: {% if checked == 'true' %}true{% else %}false{% endif %} }" @click="checked = !checked"
     x-bind:aria-checked="checked" x-bind:data-state="checked ? 'checked' : 'unchecked'" class="
     relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8
     text-sm outline-hidden select-none
