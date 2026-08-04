@@ -1,0 +1,11 @@
+<button
+    type="button"
+    @click="open = !open"
+    x-bind:aria-expanded="open"
+    x-bind:data-state="open ? 'open' : 'closed'"
+    class="{% if class %}{{ class }}{% endif %}"
+    data-slot="collapsible-trigger"
+    {{ attrs }}
+>
+    {{ slot }}
+</button>

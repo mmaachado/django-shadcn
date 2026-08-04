@@ -1,0 +1,9 @@
+<div class="
+    group/avatar-group flex -space-x-2
+    *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="avatar-group" {{ attrs }}>
+    {{ slot }}
+</div>

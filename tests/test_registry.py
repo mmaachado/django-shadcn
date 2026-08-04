@@ -9,8 +9,9 @@ from pathlib import Path
 
 from django_shadcn.components import dependencies
 
-# Cotton tags that never map to a component of their own.
-RESERVED_TAGS = frozenset({'vars', 'slot'})
+# Cotton tags that never map to a component of their own. `component` is the
+# dynamic tag: <c-component :is="..."> resolves at render time.
+RESERVED_TAGS = frozenset({'vars', 'slot', 'component'})
 
 COTTON_TAG = re.compile(r'<c-([a-zA-Z0-9_]+)')
 
@@ -62,15 +63,40 @@ def test_no_duplicate_dependencies():
         )
 
 
+def owning_tag(source: str, index: int) -> str:
+    """The tag whose attribute list contains the character at `index`."""
+    start = source.rfind('<', 0, index)
+    return source[start : start + 3]
+
+
+def test_attrs_are_never_spread_onto_another_component(components_root):
+    """cotton silently drops {{ attrs }} placed on a <c-*> tag.
+
+    Its compiler masks {{ ... }} before parsing the tag, so the attributes
+    never reach the child and disappear without an error. Components that
+    build on another one have to render the HTML element themselves.
+    """
+    offenders = []
+
+    for template in components_root.rglob('*.html'):
+        source = template.read_text(encoding='utf-8')
+        for match in re.finditer(r'\{\{\s*attrs\s*\}\}', source):
+            if owning_tag(source, match.start()) == '<c-':
+                offenders.append(template.relative_to(components_root))
+
+    assert not offenders, f'attrs spread onto a component in: {offenders}'
+
+
 def test_every_component_has_an_index_template(
     component_names, components_root
 ):
     """<c-name> resolves to name/index.html, so it has to exist.
 
     `allauth` ships page templates into templates/account/ rather than a
-    cotton component, and `form` is only a set of subcomponents.
+    cotton component. `form` and `typography` are only sets of
+    subcomponents, with no root element of their own.
     """
-    without_root = {'allauth', 'form'}
+    without_root = {'allauth', 'form', 'typography'}
 
     for component in set(component_names) - without_root:
         index = components_root / component / 'index.html'

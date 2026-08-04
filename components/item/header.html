@@ -1,0 +1,8 @@
+<div class="
+    flex basis-full items-center justify-between gap-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="item-header" {{ attrs }}>
+    {{ slot }}
+</div>

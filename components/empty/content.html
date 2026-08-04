@@ -1,0 +1,8 @@
+<div class="
+    flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="empty-content" {{ attrs }}>
+    {{ slot }}
+</div>

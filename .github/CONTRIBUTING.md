@@ -55,8 +55,11 @@ your work:
 ```bash
 cd docs
 uv sync
-uv run manage.py runserver
+uv run python manage.py runserver
 ```
+
+It renders the components straight out of `components/`, so what you see is what
+the CLI installs — there is no second copy to keep in sync.
 
 ## Adding a component
 
@@ -112,6 +115,12 @@ git checkout master && git pull
 git tag -a v1.0.0 -m "v1.0.0"
 git push origin v1.0.0
 ```
+
+Add the section to `CHANGELOG.md` first, headed `## <version>`. The workflow
+copies it into the GitHub release and appends the generated commit list below
+it. Without a matching section the release still goes out, carrying only the
+generated notes — which is why anything a reader has to know before upgrading
+belongs in the changelog and not in a commit message.
 
 The Release workflow builds, checks that the artifact matches the tag, publishes
 to PyPI and opens the GitHub release. Running it manually from the Actions tab

@@ -1,0 +1,6 @@
+<img class="
+    absolute inset-0 aspect-square size-full rounded-full object-cover
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="avatar-image" x-data x-on:error="$el.style.display = 'none'" {{ attrs }}>

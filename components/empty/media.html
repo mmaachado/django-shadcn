@@ -1,0 +1,16 @@
+<c-vars variant="default"></c-vars>
+
+<div class="
+    mb-2 flex shrink-0 items-center justify-center
+    [&_svg]:pointer-events-none [&_svg]:shrink-0
+
+    {% if variant == 'default' %}bg-transparent
+    {% elif variant == 'icon' %}flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="empty-icon" data-variant="{{ variant }}" {{ attrs }}>
+    {{ slot }}
+</div>

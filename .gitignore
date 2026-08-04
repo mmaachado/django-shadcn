@@ -293,3 +293,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
+
+# Django collectstatic output for the docs playground
+docs/staticfiles/
+
+# Compiled catalogs are committed: the deploy has no gettext to build them.
+!docs/locale/**/*.mo

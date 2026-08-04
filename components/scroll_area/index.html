@@ -1,0 +1,29 @@
+{% comment %}
+Radix replaces the native scrollbar with its own elements and JavaScript. Here
+the native one is styled instead, which keeps momentum scrolling and the
+platform behaviour at the cost of Firefox only honouring width and colour.
+{% endcomment %}
+<div
+    class="relative {% if class %}{{ class }}{% endif %}"
+    data-slot="scroll-area"
+    {{ attrs }}
+>
+    <div
+        class="
+        size-full overflow-auto rounded-[inherit]
+        transition-[color,box-shadow] outline-none
+        focus-visible:ring-[3px] focus-visible:ring-ring/50
+        focus-visible:outline-1
+        [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin]
+        [&::-webkit-scrollbar]:size-2.5
+        [&::-webkit-scrollbar-track]:bg-transparent
+        [&::-webkit-scrollbar-thumb]:rounded-full
+        [&::-webkit-scrollbar-thumb]:bg-border
+        [&::-webkit-scrollbar-corner]:bg-transparent
+        "
+        data-slot="scroll-area-viewport"
+        tabindex="0"
+    >
+        {{ slot }}
+    </div>
+</div>

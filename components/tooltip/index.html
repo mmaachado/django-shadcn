@@ -1,0 +1,8 @@
+<div
+    x-data="{ open: false }"
+    class="relative inline-flex {% if class %}{{ class }}{% endif %}"
+    data-slot="tooltip"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

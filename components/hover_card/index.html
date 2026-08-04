@@ -1,0 +1,21 @@
+<c-vars open_delay="300" close_delay="150"></c-vars>
+
+<div
+    x-data="{
+        open: false,
+        timer: null,
+        show() {
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => this.open = true, {{ open_delay }});
+        },
+        hide() {
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => this.open = false, {{ close_delay }});
+        }
+    }"
+    class="relative inline-block {% if class %}{{ class }}{% endif %}"
+    data-slot="hover-card"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

@@ -1,0 +1,11 @@
+<div
+    @mouseenter="show()"
+    @mouseleave="hide()"
+    @focusin="show()"
+    @focusout="hide()"
+    class="inline-flex {% if class %}{{ class }}{% endif %}"
+    data-slot="hover-card-trigger"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

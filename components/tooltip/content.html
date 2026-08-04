@@ -1,0 +1,32 @@
+<c-vars side="top"></c-vars>
+
+<div
+    x-show="open"
+    x-cloak
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+    role="tooltip"
+    class="
+    absolute z-50 w-fit rounded-md bg-foreground px-3 py-1.5 text-xs
+    text-balance text-background
+
+    {% if side == 'top' %}bottom-full left-1/2 mb-1.5 -translate-x-1/2
+    {% elif side == 'bottom' %}top-full left-1/2 mt-1.5 -translate-x-1/2
+    {% elif side == 'left' %}right-full top-1/2 mr-1.5 -translate-y-1/2
+    {% elif side == 'right' %}left-full top-1/2 ml-1.5 -translate-y-1/2
+    {% endif %}
+
+    {% if class %}
+    {{ class }}
+    {% endif %}
+    "
+    data-slot="tooltip-content"
+    data-side="{{ side }}"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

@@ -1,0 +1,33 @@
+<c-vars variant="default" size="default" spacing="0"></c-vars>
+
+{% comment %}
+Radix passes variant and size down through context. Cotton has none, so the
+group styles its own children: two data-* on one element combine, while two
+group-data-* would chain into a descendant selector instead.
+{% endcomment %}
+<div class="
+    group/toggle-group flex w-fit items-center rounded-md
+    data-[spacing=0]:gap-0 data-[spacing=1]:gap-1
+    data-[spacing=0]:data-[variant=outline]:shadow-xs
+
+    data-[variant=outline]:[&>*]:border
+    data-[variant=outline]:[&>*]:border-input
+
+    data-[spacing=0]:[&>*]:rounded-none
+    data-[spacing=0]:[&>*]:shadow-none
+    data-[spacing=0]:[&>*:first-child]:rounded-l-md
+    data-[spacing=0]:[&>*:last-child]:rounded-r-md
+    data-[spacing=0]:data-[variant=outline]:[&>*]:border-l-0
+    data-[spacing=0]:data-[variant=outline]:[&>*:first-child]:border-l
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="toggle-group"
+    data-variant="{{ variant }}"
+    data-size="{{ size }}"
+    data-spacing="{{ spacing }}"
+    role="group"
+    {{ attrs }}>
+    {{ slot }}
+</div>

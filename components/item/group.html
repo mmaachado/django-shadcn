@@ -1,0 +1,8 @@
+<div class="
+    group/item-group flex flex-col
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="list" data-slot="item-group" {{ attrs }}>
+    {{ slot }}
+</div>

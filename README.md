@@ -10,7 +10,7 @@ This is an **unofficial** Django port of [shadcn/ui](https://ui.shadcn.com/). Th
 
 ## Documentation
 
-Visit https://docsdjango-shadcn.vercel.app/ to view the documentation.
+Visit https://django-shadcn.vercel.app/ to view the documentation.
 
 ## Contributing
 
@@ -18,4 +18,4 @@ Please read the [contributing guide](./.github/CONTRIBUTING.md).
 
 ## License
 
-Licensed under the [MIT license](./.github/LICENSE)
+Licensed under the [MIT license](./LICENSE)

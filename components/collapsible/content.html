@@ -1,0 +1,11 @@
+<div
+    x-show="open"
+    x-collapse.duration.200ms
+    x-cloak
+    x-bind:data-state="open ? 'open' : 'closed'"
+    class="overflow-hidden {% if class %}{{ class }}{% endif %}"
+    data-slot="collapsible-content"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>
