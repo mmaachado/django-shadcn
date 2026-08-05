@@ -39,6 +39,7 @@ NAV = [
             ("command", "Command"),
             ("command-dialog", "Command Dialog"),
             ("context-menu", "Context Menu"),
+            ("data-table", "Data Table"),
             ("dialog", "Dialog"),
             ("drawer", "Drawer"),
             ("dropdown-menu", "Dropdown Menu"),

@@ -58,6 +58,8 @@
   `add scroll-area` failed with "Unknown component". Both spellings work now.
 - The install command on four documentation pages named the component the way
   the CLI rejected it.
+- `table.empty` carried a stray `',` left over from the React source and put
+  `text-foreground',` on the cell as a class.
 
 ## 1.0.0 — 2026-08-04
 
