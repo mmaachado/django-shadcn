@@ -24,6 +24,12 @@
   server renders the shape the visitor left. Below `md` the panel slides in
   over a backdrop instead of becoming a `sheet`, so the menu is written once
   and the page holds no duplicate ids.
+- **Data Table** — a guide, not a component. Upstream ships one because React
+  needs TanStack Table to sort a list of rows; here `order_by`, `filter` and
+  `Paginator` already do it, so the page shows the wiring: sortable headers,
+  a filter that survives paging through `{% querystring %}`,
+  `get_elided_page_range` feeding `pagination.ellipsis`, row selection and
+  column visibility.
 
 ### Security
 
