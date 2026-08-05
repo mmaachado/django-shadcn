@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <div x-data="{ open: false }" @click.outside="open = false" @keydown.escape.window="open = false"
     x-bind:data-state="open ? 'open' : 'closed'" class="relative inline-block {% if class %}{{ class }}{% endif %}"
     data-slot="dropdown-menu" {{ attrs }}>

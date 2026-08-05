@@ -5,6 +5,8 @@ cotton parses the component tag. That gap let a {{ attrs }} broken across a
 line ship, because Django substitutes it and cotton does not.
 """
 
+from collections import Counter
+from html.parser import HTMLParser
 from pathlib import Path
 
 import django
@@ -62,7 +64,10 @@ def component_tags() -> list[str]:
     return tags
 
 
-def render(tag: str) -> str:
+PROBE = 'probe-class'
+
+
+def render(tag: str, **extra: str) -> str:
     """Render a component the way a page does.
 
     The compiler is what turns <c-name> into the tag that loads the
@@ -72,11 +77,25 @@ def render(tag: str) -> str:
     from django_cotton.compiler_regex import CottonCompiler
 
     attributes = ' '.join(
-        f'{name}="{value}"' for name, value in CONTEXT.get(tag, {}).items()
+        f'{name}="{value}"'
+        for name, value in (CONTEXT.get(tag, {}) | extra).items()
     )
     source = f'<c-{tag} {attributes}>slot</c-{tag}>'
 
     return Template(CottonCompiler().process(source)).render(Context({}))
+
+
+class Tags(HTMLParser):
+    """Collects every start tag with the attribute names it carries."""
+
+    def __init__(self):
+        super().__init__()
+        self.tags = []
+
+    def handle_starttag(self, tag, attrs):
+        self.tags.append((tag, [name for name, _ in attrs]))
+
+    handle_startendtag = handle_starttag
 
 
 @pytest.mark.parametrize('tag', component_tags())
@@ -87,6 +106,40 @@ def test_component_renders_through_cotton(tag):
     leftovers = [piece for piece in ('{{', '{%') if piece in rendered]
     assert not leftovers, (
         f'<c-{tag}> left template syntax in its output: {rendered.strip()}'
+    )
+
+
+@pytest.mark.parametrize('tag', component_tags())
+def test_no_element_carries_the_same_attribute_twice(tag):
+    """cotton leaves class inside attrs unless the component declares it.
+
+    A component writing both {{ class }} and {{ attrs }} then emits class
+    twice. The parser keeps whichever comes first, so the one the component
+    wrote can be the one thrown away.
+    """
+    parser = Tags()
+    parser.feed(render(tag, **{'class': PROBE}))
+
+    repeated = []
+    for name, attrs in parser.tags:
+        twice = sorted(k for k, n in Counter(attrs).items() if n > 1)
+        if twice:
+            repeated.append(f'<{name}> repeats {twice}')
+
+    assert not repeated, f'<c-{tag}>: ' + '; '.join(repeated)
+
+
+@pytest.mark.parametrize('tag', component_tags())
+def test_the_class_lands_on_one_element(tag):
+    parser = Tags()
+    rendered = render(tag, **{'class': PROBE})
+    parser.feed(rendered)
+
+    if not any('class' in attrs for _, attrs in parser.tags):
+        pytest.skip(f'<c-{tag}> renders no element carrying a class')
+
+    assert rendered.count(PROBE) == 1, (
+        f'<c-{tag}> put the class on {rendered.count(PROBE)} elements'
     )
 
 

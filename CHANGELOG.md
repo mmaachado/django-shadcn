@@ -65,6 +65,24 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   This changes markup, not behaviour. Copies in your project are untouched
   until you run `add <name> --overwrite`.
 
+- **A component's `class` no longer leaks past the element it belongs to.**
+  cotton hands a component both `{{ class }}` and `{{ attrs }}`, and `class`
+  stays inside `attrs`, so a component writing both emitted the attribute
+  twice — 3481 tags across the documentation site. Worse, `{{ class }}` in a
+  component that never declared it fell through to the enclosing context, so
+  `<c-pagination.next class="w-40">` also put `w-40` on the chevron inside it.
+  259 component templates now declare `class` in `<c-vars>`, which gives it a
+  local default and takes it out of `attrs`.
+
+  Two of them were rendering wrong because of it. `menubar.sub-trigger` wrote
+  `{{ attrs }}` before its own `class`, and a parser keeps the first of a
+  repeated attribute — so passing any `class` to it discarded every base class
+  the component had. `accordion.content` and `command_dialog` applied the
+  class to two elements at once.
+
+  The suite now renders every component with a class and fails on any element
+  carrying an attribute twice, or on a class landing in more than one place.
+
 ### Security
 
 - **Values passed to a component no longer reach Alpine as code.** Components

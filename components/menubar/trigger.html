@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <button type="button" @click="active = active === $el.parentElement ? null : $el.parentElement"
     @mouseenter="if (active) active = $el.parentElement"
     x-bind:data-state="active === $el.parentElement ? 'open' : 'closed'"

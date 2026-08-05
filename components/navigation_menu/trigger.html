@@ -1,4 +1,4 @@
-<c-vars index></c-vars>
+<c-vars class="" index></c-vars>
 
 <button x-data="{ own: $el.dataset.index }" data-index="{{ index }}" @click.stop="setActiveIndex(own)" @mouseenter="setActiveIndex(own)"
   x-bind:data-state="activeIndex === own ? 'open' : 'closed'"
