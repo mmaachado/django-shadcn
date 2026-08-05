@@ -1,7 +1,5 @@
-<div
-  x-data="{ open: false }"
-  @close-dropdown.window="if ($event.target.closest('[x-data]') === $el || $el.contains($event.target)) open = false"
-  data-slot="dropdown-menu" {{ attrs }}
->
-  {{ slot }}
+<div x-data="{ open: false }" @click.outside="open = false" @keydown.escape.window="open = false"
+    x-bind:data-state="open ? 'open' : 'closed'" class="relative inline-block {% if class %}{{ class }}{% endif %}"
+    data-slot="dropdown-menu" {{ attrs }}>
+    {{ slot }}
 </div>

@@ -31,6 +31,16 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   server renders the shape the visitor left. Below `md` the panel slides in
   over a backdrop instead of becoming a `sheet`, so the menu is written once
   and the page holds no duplicate ids.
+- **The parts `dropdown_menu` was missing** — `group`, `shortcut`,
+  `checkbox_item`, `radio_group`, `radio_item`, `sub`, `sub_trigger` and
+  `sub_content`, plus `align` on the content and `variant="destructive"` and
+  `inset` on the item. It had six parts against the registry's fifteen and had
+  drifted off the classes the other menus share; it now carries the same ones
+  as `context_menu` and `menubar`.
+
+  An item closes the menu when clicked, as upstream does. Pass
+  `close_on_select="false"` when the item holds a control of its own — it is
+  the cotton reading of Radix's `onSelect` with the default prevented.
 - **Data Table** — a guide, not a component. Upstream ships one because React
   needs TanStack Table to sort a list of rows; here `order_by`, `filter` and
   `Paginator` already do it, so the page shows the wiring: sortable headers,
@@ -105,6 +115,17 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   first, so it was dead markup rather than a broken toast, but it is gone.
 - `toast.trigger`, `toast.content` and `navigation_menu.link_details` dropped
   every attribute passed to them, and the last two took no `class` either.
+- `dropdown_menu` positioned its menu against the page rather than the trigger.
+  The content is `absolute` and nothing above it was positioned, so it anchored
+  to whatever ancestor happened to be, landing under the trigger only because
+  an `absolute` box with no offsets stays where it fell in the flow. Giving it
+  `left-0` — or any alignment at all — sent it to the corner of the page. The
+  menu is now positioned against the component, and `align` works.
+
+  Its markup changed with it: items were `<li>` inside a `<ul>` that also held
+  the labels and separators, which is not valid, and the whole list is now
+  `<div role="menu">` as the registry has it. Copies already in your project
+  are untouched until you run `add dropdown_menu --overwrite`.
 - `separator` ignored `decorative`. Any value made the test pass, including
   `decorative="false"`, so the separator was always `role="none"` and a screen
   reader always skipped it. It now emits `role="separator"` with an

@@ -1,0 +1,5 @@
+<div x-data="{ subOpen: false }" @mouseenter="subOpen = true" @mouseleave="subOpen = false"
+    x-bind:data-state="subOpen ? 'open' : 'closed'" class="relative {% if class %}{{ class }}{% endif %}"
+    data-slot="dropdown-menu-sub" {{ attrs }}>
+    {{ slot }}
+</div>

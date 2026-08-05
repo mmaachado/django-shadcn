@@ -28,7 +28,7 @@ dependencies = {
     'dialog': ['button', 'icon'],
     'checkbox': [],
     'drawer': [],
-    'dropdown_menu': [],
+    'dropdown_menu': ['icon'],
     'empty': [],
     'field': ['label', 'separator'],
     'form': ['label'],
