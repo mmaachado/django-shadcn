@@ -6,11 +6,33 @@ description: Set up Tailwind, Alpine and django-cotton, then start adding compon
 ## Requirements
 
 - Python 3.12 or newer
-- Django 5.1 or newer
-- [django-cotton](https://django-cotton.com), which provides the `<c-...>`
-  template syntax every component is written in
+- Django 4.2 or newer
+- [django-cotton](https://django-cotton.com) 2.7.1 or newer, which provides the
+  `<c-...>` template syntax every component is written in
 - Tailwind CSS v4
 - Alpine.js, for the components that are interactive
+
+### Which django-cotton
+
+Your Django version decides this for you, so it is worth knowing before you
+pick one:
+
+| django-cotton | Works with        |
+| ------------- | ----------------- |
+| 1.x           | Django 4.2 to 5.1 |
+| 2.x           | Django 4.2 to 6.x |
+
+**On Django 5.2 or newer, 2.x is the only line that installs.** And versions
+below 2.7.1 carry a fix worth having: a dynamic attribute holding a quote could
+break out of the attribute and inject arbitrary ones. Pin the floor:
+
+```
+django-cotton>=2.7.1
+```
+
+The components themselves run on both lines — every one of them is rendered
+against 1.6 and against 2.7 on each change — so an older project keeps working.
+The floor is about the injection fix, not about the markup.
 
 ## Set up the project
 

@@ -6,11 +6,33 @@ description: Configure Tailwind, Alpine e django-cotton, e comece a adicionar co
 ## Requisitos
 
 - Python 3.12 ou mais novo
-- Django 5.1 ou mais novo
-- [django-cotton](https://django-cotton.com), que fornece a sintaxe `<c-...>`
-  em que todo componente é escrito
+- Django 4.2 ou mais novo
+- [django-cotton](https://django-cotton.com) 2.7.1 ou mais novo, que fornece a
+  sintaxe `<c-...>` em que todo componente é escrito
 - Tailwind CSS v4
 - Alpine.js, para os componentes interativos
+
+### Qual django-cotton
+
+A sua versão do Django decide isso por você, então vale saber antes de escolher:
+
+| django-cotton | Funciona com      |
+| ------------- | ----------------- |
+| 1.x           | Django 4.2 a 5.1  |
+| 2.x           | Django 4.2 a 6.x  |
+
+**No Django 5.2 ou mais novo, a 2.x é a única linha que instala.** E versões
+abaixo da 2.7.1 carregam uma correção que vale ter: um atributo dinâmico com
+aspas conseguia escapar do atributo e injetar outros arbitrariamente. Trave o
+piso:
+
+```
+django-cotton>=2.7.1
+```
+
+Os componentes rodam nas duas linhas — cada um deles é renderizado contra a 1.6
+e contra a 2.7 a cada mudança — então um projeto antigo continua funcionando. O
+piso é pela correção da injeção, não pelo markup.
 
 ## Preparar o projeto
 

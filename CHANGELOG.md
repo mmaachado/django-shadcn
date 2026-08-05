@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 1.1.0 — 2026-08-05
+
+Six components, bringing the total to 57, a guide for building a data table on
+a queryset, and a security fix.
+
+**The security fix does not reach copies already in your project.** Components
+under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
+`add <name> --overwrite` on the ones listed under Security to take it.
 
 ### Added
 
@@ -55,6 +62,12 @@
   Component APIs are unchanged — `<c-combobox :options="[...]">` still takes a
   Python list. Copies already in your project keep the old markup; run
   `add <name> --overwrite` to take the fix.
+
+- **Pin `django-cotton>=2.7.1`.** Below that, a dynamic attribute holding a
+  quote could break out of the attribute and inject arbitrary ones. It is
+  cotton's fix, not ours, but nothing on our side made the requirement visible;
+  the installation page now carries it, along with which cotton line each
+  Django version can install.
 
 ### Fixed
 
