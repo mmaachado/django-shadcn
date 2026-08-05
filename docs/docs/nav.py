@@ -65,6 +65,7 @@ NAV = [
             ("select", "Select"),
             ("separator", "Separator"),
             ("sheet", "Sheet"),
+            ("sidebar", "Sidebar"),
             ("skeleton", "Skeleton"),
             ("slider", "Slider"),
             ("spinner", "Spinner"),

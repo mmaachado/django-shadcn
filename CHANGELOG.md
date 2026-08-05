@@ -2,6 +2,29 @@
 
 ## Unreleased
 
+### Added
+
+- **`context_menu`** — opens where the pointer is, on right click. Closes on
+  scroll and on resize, since a menu anchored to the viewport would otherwise
+  follow the page down.
+- **`menubar`** — the application menu bar. One open menu at a time, and moving
+  the pointer across the bar switches between them once one is open.
+- **`input_otp`** — one transparent input holding the whole code, laid over the
+  slots that display it. Paste, autofill and `autocomplete="one-time-code"`
+  work because the field is real.
+- **`resizable`** — dragging a handle adjusts the `flex-grow` of the two panels
+  it sits between. Sizes are not persisted between loads.
+- **`drawer`** — a panel from any edge, with a grab handle and drag to dismiss
+  on the bottom one. Upstream builds on `vaul`; its momentum, snap points and
+  background scaling are not reproduced, and `data-vaul-drawer-direction` is
+  named `data-direction` here.
+- **`sidebar`** — the collapsible application sidebar, with the rail, the icon
+  rail, groups, sub-menus, actions and badges. Toggling writes a
+  `sidebar_state` cookie; read it in the view and pass `default_open` so the
+  server renders the shape the visitor left. Below `md` the panel slides in
+  over a backdrop instead of becoming a `sheet`, so the menu is written once
+  and the page holds no duplicate ids.
+
 ### Security
 
 - **Values passed to a component no longer reach Alpine as code.** Components

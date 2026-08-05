@@ -1,0 +1,8 @@
+<ul class="
+    flex w-full min-w-0 flex-col gap-1
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-sidebar="menu" data-slot="sidebar-menu" {{ attrs }}>
+    {{ slot }}
+</ul>

@@ -1,0 +1,45 @@
+<c-vars default_open="true"></c-vars>
+
+{% comment %}
+The open state is written to a cookie so the server can render the sidebar in
+the shape the visitor left it. Read it back in the view and hand it over as
+default_open, otherwise the panel opens expanded and only settles after Alpine
+runs.
+{% endcomment %}
+<div x-data="{
+        open: {% if default_open == 'true' %}true{% else %}false{% endif %},
+        openMobile: false,
+        isMobile: window.matchMedia('(max-width: 767px)').matches,
+        setOpen(value) {
+            this.open = value;
+            document.cookie =
+                'sidebar_state=' + value + '; path=/; max-age=604800';
+        },
+        toggle() {
+            if (this.isMobile) {
+                this.openMobile = !this.openMobile;
+            } else {
+                this.setOpen(!this.open);
+            }
+        }
+    }" x-init="
+        const viewport = window.matchMedia('(max-width: 767px)');
+        viewport.addEventListener('change', event => {
+            isMobile = event.matches;
+            if (!event.matches) openMobile = false;
+        });
+        $watch('openMobile', value => {
+            document.body.classList.toggle('overflow-hidden', value);
+        });
+    " @keydown.window.meta.b.prevent="toggle()" @keydown.window.ctrl.b.prevent="toggle()"
+    @keydown.escape.window="if (openMobile) openMobile = false" class="
+    group/sidebar-wrapper flex min-h-svh w-full
+    has-data-[variant=inset]:bg-sidebar
+    [--sidebar-width:18rem] [--sidebar-width-icon:3rem]
+    md:[--sidebar-width:16rem]
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="sidebar-wrapper" {{ attrs }}>
+    {{ slot }}
+</div>

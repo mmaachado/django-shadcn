@@ -52,6 +52,7 @@ dependencies = {
     'select': ['icon'],
     'sheet': ['button', 'icon'],
     'separator': [],
+    'sidebar': ['icon'],
     'skeleton': [],
     'spinner': ['icon'],
     'slider': [],
