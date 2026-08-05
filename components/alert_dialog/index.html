@@ -30,7 +30,7 @@
     }
   })"
   @keydown.escape.window="if (open) hideDialog()"
-  {{ attrs }}
+  data-slot="alert-dialog" {{ attrs }}
 >
   {{ slot }}
 </div>

@@ -5,7 +5,7 @@
   x-collapse.duration.300ms
   x-cloak
   class="overflow-hidden text-sm"
-  {{ attrs }}
+  data-slot="accordion-content" {{ attrs }}
 >
   <div class="pb-4 pt-0 {% if class %}{{ class }}{% endif %}">
     {{ slot }}

@@ -41,7 +41,7 @@
   }"
   class="relative {% if class %}{{ class }}{% endif %}"
   @keydown.escape="close()"
-  {{ attrs }}
+  data-slot="select" {{ attrs }}
 >
   <!-- Hidden form input for the value -->
   {% if name %}

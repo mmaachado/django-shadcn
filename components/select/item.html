@@ -3,7 +3,7 @@
 <div data-value="{{ value }}" x-data="{ own: $el.dataset.value }" @click="select(own, $el.textContent.trim())"
   class="relative flex w-full cursor-default select-none items-center rounded-xs py-1.5 pl-8 pr-2 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 hover:bg-accent hover:text-accent-foreground {% if class %}{{ class }}{% endif %}"
   x-bind:class="{'bg-accent text-accent-foreground': value === own}" role="option"
-  x-bind:data-state="value === own ? 'checked' : 'unchecked'" {{ attrs }}>
+  x-bind:data-state="value === own ? 'checked' : 'unchecked'" data-slot="select-item" {{ attrs }}>
   <!-- Check mark icon -->
   <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
     x-bind:class="{'opacity-100': value === own, 'opacity-0': value !== own}">

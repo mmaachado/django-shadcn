@@ -2,7 +2,7 @@
   class="max-h-[300px] overflow-y-auto overflow-x-hidden
   {% if class %}{{ class }}{% endif %}"
   x-ref="listbox"
-  {{ attrs }}
+  data-slot="command-list" {{ attrs }}
 >
   {{ slot }}
 </div>

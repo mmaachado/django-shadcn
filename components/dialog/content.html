@@ -12,7 +12,7 @@
     @click.away="hideDialog"
     class="fixed z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full {% if class %}{{ class }}{% endif %}"
     x-init="$nextTick(() => { $el.querySelector('button, [tabindex], input, select, textarea') && $el.querySelector('button, [tabindex], input, select, textarea').focus() })"
-    tabindex="-1" {{ attrs }}>
+    tabindex="-1" data-slot="dialog-content" {{ attrs }}>
     <c-button type="button" variant="ghost"
       class="absolute right-4 top-4 data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
       @click="hideDialog">

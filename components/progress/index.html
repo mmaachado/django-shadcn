@@ -10,11 +10,12 @@
     aria-valuenow="{{ value }}"
     aria-valuemin="{{ min }}"
     aria-valuemax="{{ max }}"
-    {{ attrs }}
+    data-slot="progress" {{ attrs }}
 >
     <div
 		class="h-full w-full flex-1 bg-primary transition-all"
 		style="width: {% widthratio value max 100 %}%"
+		data-slot="progress-indicator"
 	>
 	{{ slot }}
 	</div>

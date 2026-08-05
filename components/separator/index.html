@@ -16,5 +16,5 @@
     role="{% if decorative == 'true' %}none{% else %}separator{% endif %}"
     data-orientation="{{ orientation }}"
     {% if decorative != 'true' %}aria-orientation="{{ orientation }}"{% endif %}
-    {{ attrs }}
+    data-slot="separator" {{ attrs }}
 ></div>

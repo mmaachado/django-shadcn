@@ -25,7 +25,7 @@
   "
   @show-sheet.window="showSheet()"
   @keydown.escape.window="if (open) hideSheet()"
-  {{ attrs }}
+  data-slot="sheet" {{ attrs }}
 >
   {{ slot }}
 </div>

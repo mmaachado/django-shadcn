@@ -38,6 +38,23 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   `get_elided_page_range` feeding `pagination.ellipsis`, row selection and
   column visibility.
 
+### Changed
+
+- **`data-slot` reaches the older components.** shadcn/ui uses it as a selector
+  target, not as decoration — `button_group` sizes a select inside it through
+  `[&>[data-slot=select-trigger]]`, and rules like that were inert here because
+  only the newer components emitted the attribute. 91 files now carry the value
+  the registry defines for them.
+
+  Where upstream defines none, none was invented. `typography` is plain
+  elements with classes; `spinner`, `toast`, `combobox`, `command_dialog`,
+  `table.empty`, `button_group.text`, `input_group.text`,
+  `navigation_menu.link_details` and `form.fieldset` have no counterpart
+  carrying a slot, so they still have none.
+
+  This changes markup, not behaviour. Copies in your project are untouched
+  until you run `add <name> --overwrite`.
+
 ### Security
 
 - **Values passed to a component no longer reach Alpine as code.** Components

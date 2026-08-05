@@ -32,7 +32,7 @@
     {% if class %}{{ class }}{% endif %}
   "
   x-cloak
-  {{ attrs }}
+  data-slot="popover-content" {{ attrs }}
 >
   {{ slot }}
 </div>

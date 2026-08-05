@@ -25,7 +25,7 @@
   "
   @show-dialog.window="showDialog()"
   @keydown.escape.window="if (open) hideDialog()"
-  {{ attrs }}
+  data-slot="dialog" {{ attrs }}
 >
   {{ slot }}
 </div>

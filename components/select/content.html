@@ -10,7 +10,7 @@
   x-bind:data-state="open ? 'open' : 'closed'"
   role="listbox"
   x-cloak
-  {{ attrs }}
+  data-slot="select-content" {{ attrs }}
 >
   <div class="max-h-[200px] overflow-y-auto p-1">
     {{ slot }}

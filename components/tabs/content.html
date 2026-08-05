@@ -7,7 +7,7 @@
   x-transition:enter-end="opacity-100"
   class="mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 {% if class %}{{ class }}{% endif %}"
   x-bind:data-state="activeTab === own ? 'active' : 'inactive'"
-  {{ attrs }}
+  data-slot="tabs-content" {{ attrs }}
 >
   {{ slot }}
 </div>

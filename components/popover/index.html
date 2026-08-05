@@ -8,7 +8,7 @@
     togglePopover() { this.open = !this.open; }
   }"
   class="{% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="popover" {{ attrs }}
 >
   {{ slot }}
 </div>

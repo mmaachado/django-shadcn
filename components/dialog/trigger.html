@@ -4,7 +4,7 @@
   <div
     @click.stop="$dispatch('show-dialog')"
     class="{% if class %}{{ class }}{% endif %}"
-    {{ attrs }}
+    data-slot="dialog-trigger" {{ attrs }}
   >
     {{ slot }}
   </div>
@@ -20,7 +20,7 @@
     [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
     {% if class %}{{ class }}{% endif %}
     "
-    {{ attrs }}
+    data-slot="dialog-trigger" {{ attrs }}
   >
     {{ slot }}
   </button>

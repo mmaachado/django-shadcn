@@ -2,7 +2,7 @@
 
 <div
   class="border-b {% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="accordion-item" {{ attrs }}
 >
   {{ slot }}
 </div>

@@ -4,6 +4,6 @@
   class="block truncate {% if class %}{{ class }}{% endif %}"
   x-text="displayText || $el.dataset.placeholder"
   data-placeholder="{{ placeholder }}"
-  {{ attrs }}
+  data-slot="select-value" {{ attrs }}
 >
 </span>
