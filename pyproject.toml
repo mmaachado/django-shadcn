@@ -41,6 +41,9 @@ Issues = "https://github.com/mmaachado/django-shadcn/issues"
 [dependency-groups]
 dev = [
     "django>=5.1",
+    # The components are rendered against cotton in the suite, so a change in
+    # how it parses a component tag shows up here.
+    "django-cotton>=2.7.2",
     "ignr>=2.3",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
