@@ -41,7 +41,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
       - uses: actions/checkout@v7
@@ -58,3 +58,36 @@ jobs:
 
       - name: Run tests
         run: uv run pytest --cov=src --cov-report=term-missing
+
+  cotton:
+    # The components are copied into projects running anything from the oldest
+    # cotton to the newest, and the two parse a component tag differently.
+    # Rendering against both ends is what catches markup only one of them
+    # accepts.
+    name: cotton ${{ matrix.cotton }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - cotton: "==1.6.0"
+            django: ">=4.2,<5.0"
+          - cotton: ">=2.7.2"
+            django: ">=6.0"
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Render every component
+        run: >
+          uv run --isolated
+          --with "django-cotton${{ matrix.cotton }}"
+          --with "django${{ matrix.django }}"
+          --with pytest
+          python -m pytest tests/test_cotton.py

@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <div
   x-show="open"
   x-transition:enter="transition ease-out duration-200"
@@ -32,7 +34,7 @@
     {% if class %}{{ class }}{% endif %}
   "
   x-cloak
-  {{ attrs }}
+  data-slot="popover-content" {{ attrs }}
 >
   {{ slot }}
 </div>

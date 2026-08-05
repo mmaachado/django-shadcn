@@ -22,31 +22,37 @@ dependencies = {
     'card': [],
     'combobox': ['button', 'popover', 'icon'],
     'collapsible': [],
+    'context_menu': ['icon'],
     'command': ['icon'],
     'command_dialog': ['command'],
     'dialog': ['button', 'icon'],
     'checkbox': [],
-    'dropdown_menu': [],
+    'drawer': [],
+    'dropdown_menu': ['icon'],
     'empty': [],
     'field': ['label', 'separator'],
     'form': ['label'],
     'hover_card': [],
     'icon': [],
     'input': [],
+    'input_otp': ['icon'],
     'input_group': ['button', 'input', 'textarea'],
     'item': ['separator'],
     'kbd': [],
     'label': [],
+    'menubar': ['icon'],
     'native_select': ['icon'],
     'navigation_menu': ['icon'],
     'pagination': ['icon'],
     'popover': [],
     'progress': [],
     'radio_group': [],
+    'resizable': ['icon'],
     'scroll_area': [],
     'select': ['icon'],
     'sheet': ['button', 'icon'],
     'separator': [],
+    'sidebar': ['icon'],
     'skeleton': [],
     'spinner': ['icon'],
     'slider': [],
@@ -60,3 +66,15 @@ dependencies = {
     'tooltip': [],
     'typography': [],
 }
+
+
+def canonical(name: str) -> str:
+    """Accept the cotton tag spelling as well as the directory name.
+
+    The tag is <c-toggle-group> while the directory has to be toggle_group,
+    so both reach the CLI and both should work.
+    """
+    if name in dependencies:
+        return name
+
+    return name.replace('-', '_')

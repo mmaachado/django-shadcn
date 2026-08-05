@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    flex flex-col gap-2 p-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-sidebar="footer" data-slot="sidebar-footer" {{ attrs }}>
+    {{ slot }}
+</div>

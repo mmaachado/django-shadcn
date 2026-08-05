@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <input
     class="
     flex
@@ -27,7 +29,7 @@
         {{ class }}
     {% endif %}
     "
-    {{ attrs }}
+    data-slot="input" {{ attrs }}
 >
     {{ slot }}
 </input>

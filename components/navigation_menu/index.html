@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <nav
   x-data="{
     activeIndex: null,
@@ -11,7 +13,7 @@
   @click.away="closeAll()"
   @keydown.escape.window="closeAll()"
   class="relative z-10 {% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="navigation-menu" {{ attrs }}
 >
   {{ slot }}
 </nav>

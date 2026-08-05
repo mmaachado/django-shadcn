@@ -1,0 +1,29 @@
+<c-vars class="" index="0"></c-vars>
+
+<div
+    x-data="{ position: Number($el.dataset.index) }"
+    x-bind:data-active="isActive(position)"
+    class="
+    relative flex h-9 w-9 items-center justify-center border-y border-r
+    border-input text-sm shadow-xs transition-all outline-none
+    first:rounded-l-md first:border-l last:rounded-r-md
+    aria-invalid:border-destructive
+    data-[active=true]:z-10 data-[active=true]:border-ring
+    data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-index="{{ index }}"
+    data-slot="input-otp-slot"
+    {{ attrs }}
+>
+    <span x-text="chars[position] || ''"></span>
+    <div
+        x-show="isActive(position) && !chars[position]"
+        x-cloak
+        class="pointer-events-none absolute inset-0 flex items-center justify-center"
+    >
+        <div class="h-4 w-px animate-caret-blink bg-foreground duration-1000"></div>
+    </div>
+</div>

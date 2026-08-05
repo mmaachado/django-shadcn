@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    relative flex w-full min-w-0 flex-col p-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-sidebar="group" data-slot="sidebar-group" {{ attrs }}>
+    {{ slot }}
+</div>

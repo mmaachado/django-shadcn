@@ -1,0 +1,18 @@
+<c-vars class="" align="start"></c-vars>
+
+<div x-show="active === $el.parentElement" x-cloak x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" role="menu" class="
+    absolute top-full z-50 mt-1 min-w-[12rem] rounded-md border bg-popover p-1
+    text-popover-foreground shadow-md
+
+    {% if align == 'start' %}left-0
+    {% elif align == 'center' %}left-1/2 -translate-x-1/2
+    {% elif align == 'end' %}right-0
+    {% endif %}
+
+    {% if class %}
+    {{ class }}
+    {% endif %}
+    " data-slot="menubar-content" data-align="{{ align }}" {{ attrs }}>
+    {{ slot }}
+</div>

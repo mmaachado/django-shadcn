@@ -1,3 +1,10 @@
-<div class="px-2 py-1.5 text-sm font-semibold {% if class %}{{ class }}{% endif %}" {{ attrs }}>
-  {{ slot }}
+<c-vars class="" inset=""></c-vars>
+
+<div class="
+    px-2 py-1.5 text-sm font-medium data-[inset=true]:pl-8
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="dropdown-menu-label" data-inset="{{ inset }}" {{ attrs }}>
+    {{ slot }}
 </div>

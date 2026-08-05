@@ -1,7 +1,7 @@
 <c-vars default_open="false"></c-vars>
 
 <div x-data="{
-    open: {{ default_open|lower }},
+    open: {% if default_open == 'true' %}true{% else %}false{% endif %},
     showDialog() {
       this.open = true;
       // Add event listener for Escape key when dialog opens
@@ -30,7 +30,7 @@
     }
   })"
   @keydown.escape.window="if (open) hideDialog()"
-  {{ attrs }}
+  data-slot="alert-dialog" {{ attrs }}
 >
   {{ slot }}
 </div>

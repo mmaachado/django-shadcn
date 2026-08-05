@@ -1,0 +1,6 @@
+<c-vars class="" value=""></c-vars>
+
+<div x-data="{ value: $el.dataset.value }" data-value="{{ value }}" role="group" class="{% if class %}{{ class }}{% endif %}"
+    data-slot="dropdown-menu-radio-group" {{ attrs }}>
+    {{ slot }}
+</div>

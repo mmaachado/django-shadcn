@@ -1,4 +1,4 @@
-<c-vars variant="outline" />
+<c-vars class="" variant="outline" />
 
 <button @click="hideDialog" class="
   mt-2 sm:mt-0
@@ -17,6 +17,6 @@
   {% endif %}
 
   {% if class %}{{ class }}{% endif %}
-  " {{ attrs }}>
+  " data-slot="alert-dialog-cancel" {{ attrs }}>
   {{ slot }}
 </button>

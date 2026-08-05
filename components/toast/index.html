@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <div
     x-data="{
     isVisible: false,
@@ -21,7 +23,7 @@
     }
   }"
     @show-toast.window="
-    if($event.detail === '{{ id }}' || $event.detail.value === '{{ id }}') {
+    if($event.detail === $el.dataset.toastId || $event.detail.value === $el.dataset.toastId) {
         show();
     }"
     x-show="isVisible"
@@ -32,6 +34,7 @@
     x-transition:leave-start="opacity-100 transform translate-x-0"
     x-transition:leave-end="opacity-0 transform translate-x-full"
     class="{% if class %}{{ class }}{% endif %} fixed bottom-5 right-5 z-[100]"
+    data-toast-id="{{ id }}"
     role="alert"
     {{ attrs }}
 >

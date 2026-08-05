@@ -1,10 +1,12 @@
+<c-vars class=""></c-vars>
+
 <h5
   class="mb-1 font-medium leading-none tracking-tight
     {% if class %}
         {{ class }}
     {% endif %}
   "
-  {{ attrs }}
+  data-slot="alert-title" {{ attrs }}
 >
   {{ slot }}
 </h5>

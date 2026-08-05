@@ -1,0 +1,97 @@
+<c-vars class="" variant="default" size="default" is_active="false" href="" tooltip=""></c-vars>
+
+{% if href %}
+<a href="{{ href }}" class="
+    peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md
+    p-2 text-left text-sm ring-sidebar-ring outline-hidden
+    transition-[width,height,padding]
+    group-has-data-[sidebar=menu-action]/menu-item:pr-8
+    group-data-[collapsible=icon]:size-8!
+    group-data-[collapsible=icon]:p-2!
+    hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+    focus-visible:ring-2
+    active:bg-sidebar-accent active:text-sidebar-accent-foreground
+    disabled:pointer-events-none disabled:opacity-50
+    aria-disabled:pointer-events-none aria-disabled:opacity-50
+    data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium
+    data-[active=true]:text-sidebar-accent-foreground
+    data-[state=open]:hover:bg-sidebar-accent
+    data-[state=open]:hover:text-sidebar-accent-foreground
+    [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0
+
+    {% if variant == 'outline' %}bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]
+    {% else %}hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+    {% endif %}
+
+    {% if size == 'sm' %}h-7 text-xs
+    {% elif size == 'lg' %}h-12 text-sm group-data-[collapsible=icon]:p-0!
+    {% else %}h-8 text-sm
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-active="{{ is_active }}" data-size="{{ size }}" data-sidebar="menu-button" data-slot="sidebar-menu-button"
+    {{ attrs }}>
+    {{ slot }}
+</a>
+{% else %}
+<button type="button" class="
+    peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md
+    p-2 text-left text-sm ring-sidebar-ring outline-hidden
+    transition-[width,height,padding]
+    group-has-data-[sidebar=menu-action]/menu-item:pr-8
+    group-data-[collapsible=icon]:size-8!
+    group-data-[collapsible=icon]:p-2!
+    hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+    focus-visible:ring-2
+    active:bg-sidebar-accent active:text-sidebar-accent-foreground
+    disabled:pointer-events-none disabled:opacity-50
+    aria-disabled:pointer-events-none aria-disabled:opacity-50
+    data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium
+    data-[active=true]:text-sidebar-accent-foreground
+    data-[state=open]:hover:bg-sidebar-accent
+    data-[state=open]:hover:text-sidebar-accent-foreground
+    [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0
+
+    {% if variant == 'outline' %}bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]
+    {% else %}hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+    {% endif %}
+
+    {% if size == 'sm' %}h-7 text-xs
+    {% elif size == 'lg' %}h-12 text-sm group-data-[collapsible=icon]:p-0!
+    {% else %}h-8 text-sm
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-active="{{ is_active }}" data-size="{{ size }}" data-sidebar="menu-button" data-slot="sidebar-menu-button"
+    {{ attrs }}>
+    {{ slot }}
+</button>
+{% endif %}
+{% if tooltip %}
+{% comment %}
+The label the collapsed rail needs. It rides on peer/menu-button rather than the
+tooltip component so it stays a sibling of the button, which is what the badge
+and action rules are anchored to. It has to be fixed and placed by hand: the
+scrolling content around it would clip anything positioned inside the flow.
+{% endcomment %}
+<div role="tooltip" x-data x-init="
+        $el.previousElementSibling.addEventListener('mouseenter', () => {
+            const anchor = $el.previousElementSibling.getBoundingClientRect();
+            $el.style.top = anchor.top + anchor.height / 2 + 'px';
+            $el.style.left = anchor.right + 6 + 'px';
+        });
+    " class="
+    pointer-events-none fixed z-50 hidden w-fit -translate-y-1/2 rounded-md
+    bg-foreground px-3 py-1.5 text-xs text-balance text-background opacity-0
+    transition-opacity
+    peer-hover/menu-button:opacity-100
+    peer-focus-visible/menu-button:opacity-100
+    group-data-[collapsible=icon]:block
+    " data-side="right" data-slot="sidebar-menu-button-tooltip">
+    {{ tooltip }}
+</div>
+{% endif %}

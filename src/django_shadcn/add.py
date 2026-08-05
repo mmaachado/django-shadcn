@@ -7,7 +7,7 @@ import copier
 import typer
 from rich.status import Status
 
-from .components import dependencies
+from .components import canonical, dependencies
 from .console import console
 from .constants import (
     COMPONENTS_REPO_REF,
@@ -147,6 +147,8 @@ def add(
             '[bold red]Use either --overwrite or --sync, not both[/]'
         )
         raise typer.Exit(code=1)
+
+    components = [canonical(name) for name in components]
 
     _reject_unknown(components)
 

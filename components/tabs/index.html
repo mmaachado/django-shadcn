@@ -1,12 +1,15 @@
+<c-vars class=""></c-vars>
+
 <div
   x-data="{
-    activeTab: '{{ default_value }}',
+    activeTab: $el.dataset.defaultValue,
     setActiveTab(value) {
       this.activeTab = value;
     }
   }"
+  data-default-value="{{ default_value }}"
   class="{% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="tabs" {{ attrs }}
 >
   {{ slot }}
 </div>

@@ -1,11 +1,11 @@
-<c-vars value></c-vars>
+<c-vars class="" value></c-vars>
 
 <div
-  x-show="isOpen('{{ value }}')"
+  x-data="{ own: $el.dataset.value }" data-value="{{ value }}" x-show="isOpen(own)"
   x-collapse.duration.300ms
   x-cloak
   class="overflow-hidden text-sm"
-  {{ attrs }}
+  data-slot="accordion-content" {{ attrs }}
 >
   <div class="pb-4 pt-0 {% if class %}{{ class }}{% endif %}">
     {{ slot }}

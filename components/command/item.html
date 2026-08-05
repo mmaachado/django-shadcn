@@ -1,4 +1,4 @@
-<c-vars value></c-vars>
+<c-vars class="" value></c-vars>
 
 <div
   x-data="{
@@ -7,22 +7,22 @@
     init() {
       this.isSelected = this.value === $root.value;
       this.$watch('$root.value', val => {
-        this.isSelected = val === '{{ value }}';
+        this.isSelected = val === $el.dataset.value;
       });
     }
   }"
   @mouseenter="isHovered = true; selectedIndex = items.indexOf($el)"
   @mouseleave="isHovered = false"
   @click.stop="
-    $dispatch('item-selected', '{{ value }}');
-    value = '{{ value }}';
+    $dispatch('item-selected', $el.dataset.value);
+    value = $el.dataset.value;
   "
   x-bind:class="{ 'bg-accent text-accent-foreground': isHovered || selectedIndex === items.indexOf($el) }"
   class="relative flex cursor-default gap-2 select-none items-center rounded-xs px-2 py-1.5 text-sm outline-hidden data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0
   {% if class %}{{ class }}{% endif %}"
   data-value="{{ value }}"
   role="option"
-  {{ attrs }}
+  data-slot="command-item" {{ attrs }}
 >
   {{ slot }}
 </div>

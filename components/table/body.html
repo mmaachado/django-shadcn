@@ -1,3 +1,5 @@
-<tbody class="[&_tr:last-child]:border-0 {% if class %}{{ class }}{% endif %}" {{ attrs }}>
+<c-vars class=""></c-vars>
+
+<tbody class="[&_tr:last-child]:border-0 {% if class %}{{ class }}{% endif %}" data-slot="table-body" {{ attrs }}>
     {{ slot }}
 </tbody>

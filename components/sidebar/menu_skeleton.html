@@ -1,0 +1,19 @@
+<c-vars class="" show_icon="false" width="70%"></c-vars>
+
+{% comment %}
+Upstream rolls a random width per row so a stack of them reads as text rather
+than a table. Randomness on the server would fight template caching, so the
+width is a knob instead: vary it across the rows you render.
+{% endcomment %}
+<div class="
+    flex h-8 items-center gap-2 rounded-md px-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-sidebar="menu-skeleton" data-slot="sidebar-menu-skeleton" {{ attrs }}>
+    {% if show_icon == 'true' %}
+    <div class="size-4 animate-pulse rounded-md bg-accent" data-sidebar="menu-skeleton-icon"></div>
+    {% endif %}
+    <div class="h-4 max-w-(--skeleton-width) flex-1 animate-pulse rounded-md
+        bg-accent" style="--skeleton-width: {{ width }}" data-sidebar="menu-skeleton-text"></div>
+</div>

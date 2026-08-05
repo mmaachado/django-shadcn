@@ -1,4 +1,4 @@
-<c-vars variant="default"></c-vars>
+<c-vars class="" variant="default"></c-vars>
 <div
     class="
     inline-flex items-center rounded-full
@@ -16,7 +16,7 @@
         {{ class }}
     {% endif %}
     "
-    {{ attrs }}
+    data-slot="badge" {{ attrs }}
 >
     {{ slot }}
 </div>

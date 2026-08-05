@@ -1,4 +1,4 @@
-<c-vars variant="default" />
+<c-vars class="" variant="default" />
 
 <button @click="hideDialog" class="
   inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md
@@ -16,6 +16,6 @@
   {% endif %}
 
   {% if class %}{{ class }}{% endif %}
-  " {{ attrs }}>
+  " data-slot="alert-dialog-action" {{ attrs }}>
   {{ slot }}
 </button>

@@ -9,7 +9,7 @@ from pathlib import Path
 from typer.testing import CliRunner
 
 from django_shadcn.add import destination_for, mode_for, resolve_components
-from django_shadcn.components import dependencies
+from django_shadcn.components import canonical, dependencies
 from django_shadcn.main import app
 from django_shadcn.merge import WriteMode
 
@@ -58,6 +58,16 @@ def test_add_rejects_unknown_components_before_downloading(
     assert result.exit_code == 1
     assert 'Unknown component' in result.stdout
     assert not list(tmp_path.iterdir()), 'nothing should be written'
+
+
+def test_every_hyphenated_component_resolves(component_names):
+    """<c-toggle-group> is what the user sees, toggle_group is the folder."""
+    for name in component_names:
+        assert canonical(name.replace('_', '-')) == name
+
+
+def test_canonical_leaves_an_unknown_name_to_be_rejected():
+    assert canonical('does-not-exist') not in dependencies
 
 
 def test_add_refuses_overwrite_and_sync_together(tmp_path, monkeypatch):

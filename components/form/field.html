@@ -1,3 +1,5 @@
-<div class="space-y-2 {% if class %}{{ class }}{% endif %}" {{ attrs }}>
+<c-vars class=""></c-vars>
+
+<div class="space-y-2 {% if class %}{{ class }}{% endif %}" data-slot="form-item" {{ attrs }}>
     {{ slot }}
 </div>

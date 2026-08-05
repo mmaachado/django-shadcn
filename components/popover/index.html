@@ -1,14 +1,14 @@
-<c-vars default_open="false"></c-vars>
+<c-vars class="" default_open="false"></c-vars>
 
 <div
   x-data="{
-    open: {{ default_open|lower }},
+    open: {% if default_open == 'true' %}true{% else %}false{% endif %},
     showPopover() { this.open = true; },
     hidePopover() { this.open = false; },
     togglePopover() { this.open = !this.open; }
   }"
   class="{% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="popover" {{ attrs }}
 >
   {{ slot }}
 </div>

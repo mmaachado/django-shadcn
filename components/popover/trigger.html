@@ -1,7 +1,9 @@
+<c-vars class=""></c-vars>
+
 <div
   @click="togglePopover"
   class="{% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="popover-trigger" {{ attrs }}
 >
   {{ slot }}
 </div>

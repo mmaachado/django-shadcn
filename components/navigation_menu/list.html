@@ -1,6 +1,8 @@
+<c-vars class=""></c-vars>
+
 <ul
   class="flex flex-1 list-none items-center justify-center gap-1 {% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="navigation-menu-list" {{ attrs }}
 >
   {{ slot }}
 </ul>

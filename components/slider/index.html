@@ -1,4 +1,4 @@
-<c-vars value="50" min="0" max="100" step="1"></c-vars>
+<c-vars class="" value="50" min="0" max="100" step="1"></c-vars>
 
 {% comment %}
 The range input carries the value, the keyboard and the form submission, and
@@ -7,9 +7,9 @@ the styling stays in utility classes instead of vendor pseudo-elements.
 {% endcomment %}
 <div
     x-data="{
-        value: {{ value }},
-        min: {{ min }},
-        max: {{ max }},
+        value: Number($el.dataset.value),
+        min: Number($el.dataset.min),
+        max: Number($el.dataset.max),
         get percent() {
             return (this.value - this.min) / (this.max - this.min) * 100;
         }
@@ -21,6 +21,9 @@ the styling stays in utility classes instead of vendor pseudo-elements.
         {{ class }}
     {% endif %}
     "
+    data-value="{{ value }}"
+    data-min="{{ min }}"
+    data-max="{{ max }}"
     data-slot="slider"
 >
     <input

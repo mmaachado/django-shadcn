@@ -1,0 +1,56 @@
+<c-vars class="" direction="bottom"></c-vars>
+
+<div
+    x-show="open"
+    x-cloak
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="{% if direction == 'bottom' %}translate-y-full{% elif direction == 'top' %}-translate-y-full{% elif direction == 'right' %}translate-x-full{% else %}-translate-x-full{% endif %}"
+    x-transition:enter-end="{% if direction == 'bottom' or direction == 'top' %}translate-y-0{% else %}translate-x-0{% endif %}"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="{% if direction == 'bottom' or direction == 'top' %}translate-y-0{% else %}translate-x-0{% endif %}"
+    x-transition:leave-end="{% if direction == 'bottom' %}translate-y-full{% elif direction == 'top' %}-translate-y-full{% elif direction == 'right' %}translate-x-full{% else %}-translate-x-full{% endif %}"
+    x-bind:style="offset ? `transform: translateY(${offset}px)` : ''"
+    x-bind:class="dragging ? '' : 'transition-transform duration-200'"
+    @pointerup.window="endDrag($el)"
+    @pointercancel.window="endDrag($el)"
+    role="dialog"
+    aria-modal="true"
+    class="
+    group/drawer-content fixed z-50 flex h-auto flex-col bg-background
+    group-data-[direction=top]/drawer:inset-x-0
+    group-data-[direction=top]/drawer:top-0
+    group-data-[direction=top]/drawer:mb-24
+    group-data-[direction=top]/drawer:max-h-[80vh]
+    group-data-[direction=top]/drawer:rounded-b-lg
+    group-data-[direction=top]/drawer:border-b
+    group-data-[direction=bottom]/drawer:inset-x-0
+    group-data-[direction=bottom]/drawer:bottom-0
+    group-data-[direction=bottom]/drawer:mt-24
+    group-data-[direction=bottom]/drawer:max-h-[80vh]
+    group-data-[direction=bottom]/drawer:rounded-t-lg
+    group-data-[direction=bottom]/drawer:border-t
+    group-data-[direction=right]/drawer:inset-y-0
+    group-data-[direction=right]/drawer:right-0
+    group-data-[direction=right]/drawer:w-3/4
+    group-data-[direction=right]/drawer:border-l
+    group-data-[direction=right]/drawer:sm:max-w-sm
+    group-data-[direction=left]/drawer:inset-y-0
+    group-data-[direction=left]/drawer:left-0
+    group-data-[direction=left]/drawer:w-3/4
+    group-data-[direction=left]/drawer:border-r
+    group-data-[direction=left]/drawer:sm:max-w-sm
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="drawer-content"
+    {{ attrs }}
+>
+    <div
+        @pointerdown.prevent="startDrag($event)"
+        class="mx-auto mt-4 hidden h-2 w-[100px] shrink-0 cursor-grab touch-none
+        rounded-full bg-muted
+        group-data-[direction=bottom]/drawer:block"
+    ></div>
+    {{ slot }}
+</div>

@@ -1,3 +1,13 @@
-<p class="text-sm leading-snug text-muted-foreground">
-  {{ slot }}
+<c-vars class=""></c-vars>
+
+<p
+    class="
+    text-sm leading-snug text-muted-foreground
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    {{ attrs }}
+>
+    {{ slot }}
 </p>

@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <div
   x-show="open"
   x-transition:enter="ease-out duration-300"
@@ -26,7 +28,7 @@
     class="fixed z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full {% if class %}{{ class }}{% endif %}"
     x-init="$nextTick(() => { $el.querySelector('button, [tabindex], input, select, textarea') && $el.querySelector('button, [tabindex], input, select, textarea').focus() })"
     tabindex="-1"
-    {{ attrs }}
+    data-slot="alert-dialog-content" {{ attrs }}
   >
     {{ slot }}
   </div>

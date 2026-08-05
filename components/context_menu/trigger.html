@@ -1,0 +1,6 @@
+<c-vars class=""></c-vars>
+
+<div @contextmenu.prevent="openAt($event)" class="{% if class %}{{ class }}{% endif %}" data-slot="context-menu-trigger"
+    {{ attrs }}>
+    {{ slot }}
+</div>

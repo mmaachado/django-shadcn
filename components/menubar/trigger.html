@@ -1,0 +1,16 @@
+<c-vars class=""></c-vars>
+
+<button type="button" @click="active = active === $el.parentElement ? null : $el.parentElement"
+    @mouseenter="if (active) active = $el.parentElement"
+    x-bind:data-state="active === $el.parentElement ? 'open' : 'closed'"
+    x-bind:aria-expanded="active === $el.parentElement" aria-haspopup="menu" class="
+    flex items-center rounded-sm px-2 py-1 text-sm font-medium
+    outline-hidden select-none
+    focus:bg-accent focus:text-accent-foreground
+    data-[state=open]:bg-accent data-[state=open]:text-accent-foreground
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="menubar-trigger" {{ attrs }}>
+    {{ slot }}
+</button>

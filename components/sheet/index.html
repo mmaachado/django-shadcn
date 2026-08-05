@@ -2,7 +2,7 @@
 
 <div
   x-data="{
-    open: {{ default_open|lower }},
+    open: {% if default_open == 'true' %}true{% else %}false{% endif %},
 
     showSheet() {
       this.open = true;
@@ -25,7 +25,7 @@
   "
   @show-sheet.window="showSheet()"
   @keydown.escape.window="if (open) hideSheet()"
-  {{ attrs }}
+  data-slot="sheet" {{ attrs }}
 >
   {{ slot }}
 </div>

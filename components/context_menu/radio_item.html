@@ -1,0 +1,20 @@
+<c-vars class="" value=""></c-vars>
+
+<div x-data="{ own: $el.dataset.value }" data-value="{{ value }}" role="menuitemradio" @click="value = own" x-bind:aria-checked="value === own"
+    x-bind:data-state="value === own ? 'checked' : 'unchecked'" class="
+    relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8
+    text-sm outline-hidden select-none
+    focus:bg-accent focus:text-accent-foreground
+    hover:bg-accent hover:text-accent-foreground
+    data-[disabled]:pointer-events-none data-[disabled]:opacity-50
+    [&_svg]:pointer-events-none [&_svg]:shrink-0
+    [&_svg:not([class*='size-'])]:size-4
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="context-menu-radio-item" {{ attrs }}>
+    <span class="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
+        <c-icon name="circle" class="size-2 fill-current" x-show="value === own" x-cloak />
+    </span>
+    {{ slot }}
+</div>

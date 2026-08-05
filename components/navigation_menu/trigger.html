@@ -1,10 +1,10 @@
-<c-vars index></c-vars>
+<c-vars class="" index></c-vars>
 
-<button @click.stop="setActiveIndex('{{ index }}')" @mouseenter="setActiveIndex('{{ index }}')"
-  x-bind:data-state="activeIndex === '{{ index }}' ? 'open' : 'closed'"
-  x-bind:aria-expanded="activeIndex === '{{ index }}'"
+<button x-data="{ own: $el.dataset.index }" data-index="{{ index }}" @click.stop="setActiveIndex(own)" @mouseenter="setActiveIndex(own)"
+  x-bind:data-state="activeIndex === own ? 'open' : 'closed'"
+  x-bind:aria-expanded="activeIndex === own"
   class="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50 {% if class %}{{ class }}{% endif %}"
-  {{ attrs }}>
+  data-slot="navigation-menu-trigger" {{ attrs }}>
   {{ slot }}
   <c-icon name="chevron-down"
     class="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"

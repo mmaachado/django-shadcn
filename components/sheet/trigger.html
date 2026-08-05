@@ -1,8 +1,10 @@
+<c-vars class=""></c-vars>
+
 <div>
     <div
     @click="showSheet()"
     class="{% if class %}{{ class }}{% endif %}"
-    {{ attrs }}
+    data-slot="sheet-trigger" {{ attrs }}
     >
     {{ slot }}
     </div>

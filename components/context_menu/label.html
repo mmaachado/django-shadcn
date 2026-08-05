@@ -1,0 +1,10 @@
+<c-vars class="" inset=""></c-vars>
+
+<div class="
+    px-2 py-1.5 text-sm font-medium text-foreground data-[inset=true]:pl-8
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="context-menu-label" data-inset="{{ inset }}" {{ attrs }}>
+    {{ slot }}
+</div>

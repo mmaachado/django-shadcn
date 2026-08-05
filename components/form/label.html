@@ -1,4 +1,4 @@
-<c-vars error></c-vars>
+<c-vars class="" error></c-vars>
 
 <label
     class="
@@ -9,7 +9,7 @@
         {{ class }}
     {% endif %}
     "
-    {{ attrs }}
+    data-slot="form-label" {{ attrs }}
 >
     {{ slot }}
 </label>

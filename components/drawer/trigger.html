@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div
+    @click="show()"
+    class="inline-flex {% if class %}{{ class }}{% endif %}"
+    data-slot="drawer-trigger"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

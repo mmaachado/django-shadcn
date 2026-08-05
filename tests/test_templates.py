@@ -4,6 +4,8 @@ A malformed {% if %} only shows up when a user renders the component in
 their own project, which is the worst place to find out.
 """
 
+import re
+
 import pytest
 from django.template import Engine
 from django.template.exceptions import TemplateSyntaxError
@@ -38,3 +40,51 @@ def test_compilation_catches_unclosed_tags(unbalanced):
     """Guards the check above against silently passing everything."""
     with pytest.raises(TemplateSyntaxError):
         engine.from_string(unbalanced)
+
+
+# x-data="{ v: '{{ value }}' }" looks escaped, but Django escapes for HTML and
+# the browser decodes the entities back before Alpine evaluates the attribute
+# as JavaScript. A value carrying a quote closes the literal and whatever
+# follows runs. Values reach Alpine through data-* instead.
+ALPINE_ATTRIBUTE = re.compile(
+    r'(?:x-[a-z:.\-]+|@[a-z:.\-]+|:[a-z\-]+)\s*=\s*"([^"]*)"'
+)
+
+
+def test_no_template_value_lands_inside_an_alpine_expression(
+    component_templates,
+):
+    offenders = []
+
+    for template in component_templates:
+        source = template.read_text(encoding='utf-8')
+        for expression in ALPINE_ATTRIBUTE.findall(source):
+            if '{{' in expression:
+                offenders.append(f'{template.parent.name}/{template.name}')
+                break
+
+    assert not offenders, (
+        'template values interpolated into Alpine expressions: '
+        f'{sorted(set(offenders))}'
+    )
+
+
+# An editor that reflows a long attribute list can land the newline inside
+# {{ attrs }}. Django still substitutes it; cotton 2.x does not, and the
+# braces reach the page as text.
+INTERPOLATION = re.compile(r'\{\{[^{}]*\}\}', re.DOTALL)
+
+
+def test_interpolations_stay_on_one_line(component_templates):
+    offenders = []
+
+    for template in component_templates:
+        source = template.read_text(encoding='utf-8')
+        for match in INTERPOLATION.finditer(source):
+            if '\n' in match.group(0):
+                name = f'{template.parent.name}/{template.name}'
+                offenders.append(f'{name}: {match.group(0)!r}')
+
+    assert not offenders, 'interpolations split across lines:\n' + '\n'.join(
+        offenders
+    )

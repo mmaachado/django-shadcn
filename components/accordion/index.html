@@ -1,10 +1,10 @@
-<c-vars type="single" collapsible="false" open="{}"></c-vars>
+<c-vars class="" type="single" collapsible="false" open="{}"></c-vars>
 
 <div
   x-data="{
-    open: {{ open }},
-    type: '{{ type }}',
-    collapsible: {{ collapsible|lower }},
+    open: JSON.parse($el.dataset.open),
+    type: $el.dataset.type,
+    collapsible: {% if collapsible == 'true' %}true{% else %}false{% endif %},
 
     toggle(value) {
       if (this.type === 'single') {
@@ -27,7 +27,9 @@
     }
   }"
   class="{% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-type="{{ type }}"
+  data-open="{{ open }}"
+  data-slot="accordion" {{ attrs }}
 >
   {{ slot }}
 </div>

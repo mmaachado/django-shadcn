@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <input
     type="checkbox"
     class="
@@ -18,7 +20,7 @@
         {{ class }}
     {% endif %}
     "
-    {{ attrs }}
+    data-slot="checkbox" {{ attrs }}
 >
     {{ slot }}
 </input>

@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <tr
     class="
     border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted
@@ -5,7 +7,7 @@
         {{ class }}
     {% endif %}
     "
-    {{ attrs }}
+    data-slot="table-row" {{ attrs }}
 >
     {{ slot }}
 </tr>

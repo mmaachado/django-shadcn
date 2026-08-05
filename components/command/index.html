@@ -1,3 +1,5 @@
+<c-vars class=""></c-vars>
+
 <div
   x-data="{
     search: '',
@@ -60,7 +62,7 @@
   @keydown="onKeyDown"
   class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground
   {% if class %}{{ class }}{% endif %}"
-  {{ attrs }}
+  data-slot="command" {{ attrs }}
 >
   {{ slot }}
 </div>

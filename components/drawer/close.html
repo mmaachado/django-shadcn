@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div
+    @click="hide()"
+    class="inline-flex {% if class %}{{ class }}{% endif %}"
+    data-slot="drawer-close"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

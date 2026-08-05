@@ -1,3 +1,7 @@
-<div @click="open = !open" class="outline-hidden {% if class %}{{ class }}{% endif %}" {{ attrs }}>
+<c-vars class=""></c-vars>
+
+<div @click="open = !open" aria-haspopup="menu" x-bind:aria-expanded="open"
+    x-bind:data-state="open ? 'open' : 'closed'" class="outline-hidden {% if class %}{{ class }}{% endif %}"
+    data-slot="dropdown-menu-trigger" {{ attrs }}>
     {{ slot }}
 </div>

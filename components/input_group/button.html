@@ -1,4 +1,4 @@
-<c-vars size="xs" variant="ghost" type="button"></c-vars>
+<c-vars class="" size="xs" variant="ghost" type="button"></c-vars>
 
 <button
     type="{{ type }}"
@@ -28,7 +28,7 @@
     {% endif %}
     "
     data-size="{{ size }}"
-    {{ attrs }}
+    data-slot="button" {{ attrs }}
 >
     {{ slot }}
 </button>

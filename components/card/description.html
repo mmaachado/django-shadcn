@@ -1,3 +1,5 @@
-<p class="text-sm text-muted-foreground {% if class %}{{ class }}{% endif %}" {{ attrs }}>
+<c-vars class=""></c-vars>
+
+<p class="text-sm text-muted-foreground {% if class %}{{ class }}{% endif %}" data-slot="card-description" {{ attrs }}>
     {{ slot }}
 </p>

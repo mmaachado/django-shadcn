@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    w-full text-sm
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-sidebar="group-content" data-slot="sidebar-group-content" {{ attrs }}>
+    {{ slot }}
+</div>
