@@ -101,6 +101,10 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   anyway; `django-cotton` 2.x does not, so on any project running Django 5.2 or
   newer — where cotton 2.x is the only option — the braces reached the page as
   text and every attribute passed to those two components was dropped.
+- `toast.trigger` carried `x-data` twice, the second one empty. HTML keeps the
+  first, so it was dead markup rather than a broken toast, but it is gone.
+- `toast.trigger`, `toast.content` and `navigation_menu.link_details` dropped
+  every attribute passed to them, and the last two took no `class` either.
 - `separator` ignored `decorative`. Any value made the test pass, including
   `decorative="false"`, so the separator was always `role="none"` and a screen
   reader always skipped it. It now emits `role="separator"` with an

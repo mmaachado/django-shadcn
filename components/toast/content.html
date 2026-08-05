@@ -6,7 +6,11 @@
     {% if type == 'default' %}border bg-background text-foreground
     {% elif type == 'destructive' %}destructive group border-destructive bg-destructive text-destructive-foreground
     {% endif %}
-    " role="alert">
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="alert" {{ attrs }}>
   <div class="flex flex-row w-full items-center space-x-6">
     <div class="grid gap-1">
       <p class="text-sm font-semibold [&+div]:text-xs">{{ title }}</p>
