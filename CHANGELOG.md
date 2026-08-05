@@ -66,6 +66,15 @@
   the CLI rejected it.
 - `table.empty` carried a stray `',` left over from the React source and put
   `text-foreground',` on the cell as a class.
+- `accordion.trigger` and `menubar.sub-trigger` had `{{ attrs }}` broken across
+  a line by an editor reflowing the attribute list. Django substitutes it
+  anyway; `django-cotton` 2.x does not, so on any project running Django 5.2 or
+  newer — where cotton 2.x is the only option — the braces reached the page as
+  text and every attribute passed to those two components was dropped.
+- `separator` ignored `decorative`. Any value made the test pass, including
+  `decorative="false"`, so the separator was always `role="none"` and a screen
+  reader always skipped it. It now emits `role="separator"` with an
+  `aria-orientation` when you ask for the semantic one.
 
 ## 1.0.0 — 2026-08-04
 

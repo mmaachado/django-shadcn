@@ -67,3 +67,24 @@ def test_no_template_value_lands_inside_an_alpine_expression(
         'template values interpolated into Alpine expressions: '
         f'{sorted(set(offenders))}'
     )
+
+
+# An editor that reflows a long attribute list can land the newline inside
+# {{ attrs }}. Django still substitutes it; cotton 2.x does not, and the
+# braces reach the page as text.
+INTERPOLATION = re.compile(r'\{\{[^{}]*\}\}', re.DOTALL)
+
+
+def test_interpolations_stay_on_one_line(component_templates):
+    offenders = []
+
+    for template in component_templates:
+        source = template.read_text(encoding='utf-8')
+        for match in INTERPOLATION.finditer(source):
+            if '\n' in match.group(0):
+                name = f'{template.parent.name}/{template.name}'
+                offenders.append(f'{name}: {match.group(0)!r}')
+
+    assert not offenders, 'interpolations split across lines:\n' + '\n'.join(
+        offenders
+    )

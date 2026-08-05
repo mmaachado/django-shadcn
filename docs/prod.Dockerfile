@@ -7,7 +7,7 @@ COPY static/css/input.css static/css/input.css
 RUN npx @tailwindcss/cli -i static/css/input.css -o static/css/output.css --minify
 
 # Stage 2: Build the Python application using uv
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS python-builder
+FROM ghcr.io/astral-sh/uv:python3.14-bookworm-slim AS python-builder
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 WORKDIR /code
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -21,7 +21,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # It is important to use the image that matches the python-builder, as the path to the
 # Python executable must be the same, e.g., using `python:3.11-slim-bookworm`
 # will fail.
-FROM python:3.12-slim-bookworm
+FROM python:3.14-slim-bookworm
 
 # Place executables in the environment at the front of the path
 ENV PATH="/code/.venv/bin:$PATH"
