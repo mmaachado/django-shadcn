@@ -1,5 +1,57 @@
 # Changelog
 
+## 1.2.0 — 2026-08-06
+
+The components now travel inside the package instead of being fetched from
+GitHub. `add` and `init` no longer touch the network, and the version you have
+installed is the version of the components you get.
+
+### Read this before upgrading
+
+**The CLI version now decides which components you install.** Until now every
+`add` cloned this repository at `master`, so an install from six months ago
+still fetched whatever was on `master` that day. The templates are now shipped
+in the wheel and read from disk, which means a given release always writes the
+same files — and that a component added after your version was published is
+reached by upgrading the CLI, not by waiting.
+
+If you pin `django-shadcn` in a lockfile, pin it knowing this. `uvx
+django_shadcn@latest` is unaffected: it resolves the newest release each time.
+
+Nothing changes for components already in your project. They are yours, `add`
+still leaves them alone, and the markup they were written from is unchanged in
+this release.
+
+### Changed
+
+- **`add` and `init` work offline.** Both used to reach GitHub through copier,
+  so a flaky connection, a rate limit or a missing `git` surfaced as a raw
+  traceback under a spinner. Neither command opens a socket now.
+
+  This also removes the partial-install path: `add` could write several
+  components and then fail on one that no longer existed upstream, leaving the
+  project half-updated with nothing to roll it back.
+
+- **`copier` is no longer a dependency.** It never rendered anything here —
+  `copier.yml` set an impossible template suffix precisely so Jinja would leave
+  the Django and cotton syntax alone — so it acted only as a `git clone`
+  wrapper around the merge logic that already lived in the CLI. Dropping it
+  takes 18 packages out of the dependency tree, `jinja2`, `pydantic`,
+  `plumbum` and `questionary` among them.
+
+### Fixed
+
+- **`init` no longer clobbers an existing `input.css`, or hangs asking about
+  it.** It called copier without `overwrite`, which produced a confirmation
+  prompt drawn underneath the progress spinner, and raised
+  `InteractiveSessionError` outright in any non-interactive terminal — CI, a
+  container, anything without a tty. The command took no arguments, so there
+  was no way past it.
+
+  An existing `input.css` is now kept and reported as kept. `init --force`
+  replaces it. If you had worked around this by deleting the file before
+  running `init`, you no longer need to.
+
 ## 1.1.0 — 2026-08-05
 
 Six components, bringing the total to 57, a guide for building a data table on
@@ -41,6 +93,7 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   An item closes the menu when clicked, as upstream does. Pass
   `close_on_select="false"` when the item holds a control of its own — it is
   the cotton reading of Radix's `onSelect` with the default prevented.
+
 - **Data Table** — a guide, not a component. Upstream ships one because React
   needs TanStack Table to sort a list of rows; here `order_by`, `filter` and
   `Paginator` already do it, so the page shows the wiring: sortable headers,
@@ -144,6 +197,7 @@ under `templates/cotton/` are yours and `add` leaves them alone, by design. Run
   the labels and separators, which is not valid, and the whole list is now
   `<div role="menu">` as the registry has it. Copies already in your project
   are untouched until you run `add dropdown_menu --overwrite`.
+
 - `separator` ignored `decorative`. Any value made the test pass, including
   `decorative="false"`, so the separator was always `role="none"` and a screen
   reader always skipped it. It now emits `role="separator"` with an

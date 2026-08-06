@@ -1,8 +1,5 @@
 from pathlib import Path
 
-COMPONENTS_REPO_URL = 'gh:mmaachado/django-shadcn'
-COMPONENTS_REPO_REF = 'master'
-
 TEMPLATES_DIRECTORY = Path('templates')
 DEFAULT_COMPONENTS_DIRECTORY = TEMPLATES_DIRECTORY / 'cotton'
 

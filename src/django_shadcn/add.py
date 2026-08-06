@@ -1,19 +1,13 @@
-import tempfile
 from collections.abc import Iterable
 from pathlib import Path
 from typing import Annotated
 
-import copier
 import typer
-from rich.status import Status
 
+from .bundle import source_for
 from .components import canonical, dependencies
 from .console import console
-from .constants import (
-    COMPONENTS_REPO_REF,
-    COMPONENTS_REPO_URL,
-    destination_for,
-)
+from .constants import destination_for
 from .merge import MergeResult, WriteMode, merge, obsolete_files
 
 app = typer.Typer(no_args_is_help=True)
@@ -66,20 +60,6 @@ def mode_for(
         return WriteMode.safe
 
     return mode
-
-
-def _download(components: set[str], destination: Path) -> None:
-    """Fetch the components into a directory we control."""
-    excludes = ['*'] + [f'!{component}' for component in components]
-
-    copier.run_copy(
-        src_path=COMPONENTS_REPO_URL,
-        dst_path=destination,
-        vcs_ref=COMPONENTS_REPO_REF,
-        exclude=excludes,
-        overwrite=True,
-        quiet=True,
-    )
 
 
 def _confirm_removals(component: str, source: Path, destination: Path) -> None:
@@ -161,28 +141,26 @@ def add(
     requested = set(components)
     to_install = resolve_components(requested)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        with Status(f'Fetching {len(to_install)} component(s)'):
-            _download(to_install, Path(tmpdir))
+    skipped = 0
 
-        skipped = 0
+    for component in sorted(to_install):
+        source = source_for(component)
+        destination = destination_for(component)
 
-        for component in sorted(to_install):
-            source = Path(tmpdir) / component
-            destination = destination_for(component)
+        if not source.is_dir():
+            console.print(
+                f'[bold red]{component} is missing from this installation[/]'
+            )
+            raise typer.Exit(code=1)
 
-            if not source.is_dir():
-                console.print(f'[bold red]{component} was not downloaded[/]')
-                raise typer.Exit(code=1)
+        component_mode = mode_for(component, requested, mode)
 
-            component_mode = mode_for(component, requested, mode)
+        if component_mode is WriteMode.sync and not yes:
+            _confirm_removals(component, source, destination)
 
-            if component_mode is WriteMode.sync and not yes:
-                _confirm_removals(component, source, destination)
-
-            result = merge(source, destination, component_mode)
-            _report(component, result)
-            skipped += len(result.skipped)
+        result = merge(source, destination, component_mode)
+        _report(component, result)
+        skipped += len(result.skipped)
 
     if skipped:
         console.print(
