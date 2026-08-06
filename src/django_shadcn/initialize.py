@@ -1,5 +1,6 @@
 import shutil
 from pathlib import Path
+from typing import Annotated
 
 import typer
 from rich.panel import Panel
@@ -14,21 +15,42 @@ THEME_FILE = 'input.css'
 
 
 @app.command(name='init')
-def init():
+def init(
+    force: Annotated[
+        bool,
+        typer.Option('--force', help=f'Replace an existing {THEME_FILE}'),
+    ] = False,
+):
     """
     Initialize setup for django_shadcn components
+
+    An existing input.css is kept untouched unless --force is given.
     """
     DEFAULT_COMPONENTS_DIRECTORY.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(components_root() / THEME_FILE, Path.cwd() / THEME_FILE)
+
+    destination = Path.cwd() / THEME_FILE
+    written = force or not destination.exists()
+
+    if written:
+        shutil.copy2(components_root() / THEME_FILE, destination)
+        theme = (
+            ':heavy_check_mark: Added TailwindCSS config required for '
+            'shadcn components\n\n'
+        )
+    else:
+        theme = (
+            f':heavy_check_mark: Kept your existing {THEME_FILE} '
+            '(--force replaces it)\n\n'
+        )
+
     console.print(
         Panel(
             '[bold green]'
             ':rocket: Initialized django_shadcn components!\n\n'
             ':heavy_check_mark: Created '
             + f"'{DEFAULT_COMPONENTS_DIRECTORY}'\n"
-            ':heavy_check_mark: Added TailwindCSS config required for '
-            'shadcn components\n\n'
-            '[/bold green]'
+            + theme
+            + '[/bold green]'
             '[bold yellow]'
             ':bookmark_tabs: Next steps:\n'
             '[/bold yellow]'
