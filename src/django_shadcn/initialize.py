@@ -1,18 +1,16 @@
+import shutil
 from pathlib import Path
 
-import copier
 import typer
 from rich.panel import Panel
-from rich.status import Status
 
+from .bundle import components_root
 from .console import console
-from .constants import (
-    COMPONENTS_REPO_REF,
-    COMPONENTS_REPO_URL,
-    DEFAULT_COMPONENTS_DIRECTORY,
-)
+from .constants import DEFAULT_COMPONENTS_DIRECTORY
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
+
+THEME_FILE = 'input.css'
 
 
 @app.command(name='init')
@@ -21,14 +19,7 @@ def init():
     Initialize setup for django_shadcn components
     """
     DEFAULT_COMPONENTS_DIRECTORY.mkdir(parents=True, exist_ok=True)
-    with Status('Adding tailwind config for shadcn components'):
-        copier.run_copy(
-            src_path=COMPONENTS_REPO_URL,
-            dst_path=Path.cwd(),
-            vcs_ref=COMPONENTS_REPO_REF,
-            exclude=['*', '!input.css'],
-            quiet=True,
-        )
+    shutil.copy2(components_root() / THEME_FILE, Path.cwd() / THEME_FILE)
     console.print(
         Panel(
             '[bold green]'

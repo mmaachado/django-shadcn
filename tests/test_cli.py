@@ -1,7 +1,7 @@
 """CLI smoke tests.
 
-Kept free of network access: `init` and `add` fetch the component repository
-through copier, which does not belong in the test suite.
+`init` and `add` read the templates that ship with the package, so nothing
+here reaches the network.
 """
 
 from pathlib import Path
