@@ -5,7 +5,7 @@ from typing import Annotated
 import typer
 
 from .bundle import source_for
-from .components import canonical, dependencies
+from .components import Component, canonical, registry
 from .console import console
 from .constants import destination_for
 from .merge import MergeResult, WriteMode, merge, obsolete_files
@@ -13,9 +13,9 @@ from .merge import MergeResult, WriteMode, merge, obsolete_files
 app = typer.Typer(no_args_is_help=True)
 
 
-def get_component_dependencies(component: str) -> list[str]:
+def get_component_dependencies(component: str) -> tuple[str, ...]:
     """Fetch dependencies for the given component"""
-    return dependencies.get(component, [])
+    return registry.get(component, Component()).depends
 
 
 def resolve_components(components: Iterable[str]) -> set[str]:
@@ -37,13 +37,13 @@ def resolve_components(components: Iterable[str]) -> set[str]:
 
 def _reject_unknown(components: Iterable[str]) -> None:
     """Stop before touching the network or the disk."""
-    unknown = sorted(set(components) - set(dependencies))
+    unknown = sorted(set(components) - set(registry))
 
     if not unknown:
         return
 
     console.print(f'[bold red]Unknown component: {", ".join(unknown)}[/]')
-    console.print(f'Available: {", ".join(sorted(dependencies))}')
+    console.print(f'Available: {", ".join(sorted(registry))}')
 
     raise typer.Exit(code=1)
 
@@ -94,6 +94,25 @@ def _report(component: str, result: MergeResult) -> None:
         console.print(
             f'[dim]:heavy_check_mark: {component} already present[/]'
         )
+
+
+def _report_scripts(components: Iterable[str]) -> None:
+    """Named once for the whole run, however many components asked for it."""
+    scripts = sorted(
+        {
+            script
+            for component in components
+            for script in registry[component].scripts
+        }
+    )
+
+    if not scripts:
+        return
+
+    console.print(
+        f'\n[bold yellow]{", ".join(scripts)}[/] must be loaded before '
+        'Alpine, or these components render without behaving.'
+    )
 
 
 @app.command(name='add')
@@ -167,3 +186,5 @@ def add(
             f'\n[yellow]{skipped} existing file(s) left untouched. '
             'Run with --overwrite to replace them.[/]'
         )
+
+    _report_scripts(to_install)

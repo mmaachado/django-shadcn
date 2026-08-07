@@ -106,6 +106,27 @@ def test_sync_leaves_dependencies_alone(project):
     assert extra.is_file()
 
 
+def test_add_names_the_alpine_plugin_a_component_needs(project):
+    """Without this the component installs, renders, and never animates."""
+    result = runner.invoke(app, ['add', 'accordion'])
+
+    assert result.exit_code == 0
+    assert '@alpinejs/collapse' in result.stdout
+
+
+def test_the_plugin_is_named_once_for_the_whole_run(project):
+    result = runner.invoke(app, ['add', 'accordion', 'collapsible'])
+
+    assert result.exit_code == 0
+    assert result.stdout.count('@alpinejs/collapse') == 1
+
+
+def test_a_component_needing_no_plugin_says_nothing(project):
+    result = runner.invoke(app, ['add', 'button'])
+
+    assert '@alpinejs' not in result.stdout
+
+
 def test_a_component_missing_from_the_install_fails_cleanly(
     project, monkeypatch
 ):

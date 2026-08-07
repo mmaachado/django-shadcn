@@ -9,7 +9,7 @@ from pathlib import Path
 from typer.testing import CliRunner
 
 from django_shadcn.add import destination_for, mode_for, resolve_components
-from django_shadcn.components import canonical, dependencies
+from django_shadcn.components import canonical, registry
 from django_shadcn.main import app
 from django_shadcn.merge import WriteMode
 
@@ -36,7 +36,7 @@ def test_list_prints_every_component():
 
     assert result.exit_code == 0
     # Rich wraps the panel into columns, so check names, not layout.
-    for component in dependencies:
+    for component in registry:
         assert component in result.stdout
 
 
@@ -67,7 +67,7 @@ def test_every_hyphenated_component_resolves(component_names):
 
 
 def test_canonical_leaves_an_unknown_name_to_be_rejected():
-    assert canonical('does-not-exist') not in dependencies
+    assert canonical('does-not-exist') not in registry
 
 
 def test_add_refuses_overwrite_and_sync_together(tmp_path, monkeypatch):

@@ -4,7 +4,7 @@ from rich.columns import Columns
 from rich.panel import Panel
 from rich.text import Text
 
-from .components import dependencies
+from .components import registry
 from .console import console
 from .constants import destination_for
 
@@ -13,7 +13,7 @@ app = typer.Typer(no_args_is_help=True)
 
 def get_all_components() -> list[str]:
     """Fetch all available components"""
-    return list(dependencies.keys())
+    return list(registry.keys())
 
 
 def is_installed(component: str) -> bool:
