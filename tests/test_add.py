@@ -83,6 +83,27 @@ def test_sync_with_yes_removes_what_the_component_no_longer_ships(project):
     assert not extra.exists()
 
 
+def test_declining_the_sync_prompt_deletes_nothing(project):
+    runner.invoke(app, ['add', 'button'])
+    extra = project / 'templates' / 'cotton' / 'button' / 'mine.html'
+    extra.write_text('mine', encoding='utf-8')
+
+    result = runner.invoke(app, ['add', 'button', '--sync'], input='n\n')
+
+    assert result.exit_code != 0
+    assert extra.is_file()
+
+
+def test_sync_with_nothing_to_remove_never_prompts(project):
+    """The prompt exists for deletions; without any it must not appear."""
+    runner.invoke(app, ['add', 'button'])
+
+    result = runner.invoke(app, ['add', 'button', '--sync'], input='')
+
+    assert result.exit_code == 0
+    assert 'Continue?' not in result.stdout
+
+
 def test_sync_without_yes_aborts_when_it_cannot_ask(project):
     runner.invoke(app, ['add', 'button'])
     extra = project / 'templates' / 'cotton' / 'button' / 'mine.html'

@@ -7,6 +7,8 @@ entry without a directory makes `add` copy nothing while reporting success.
 import re
 from pathlib import Path
 
+import pytest
+
 from django_shadcn.components import registry
 
 # Cotton tags that never map to a component of their own. `component` is the
@@ -147,6 +149,9 @@ def test_every_component_has_an_index_template(
 def test_install_commands_in_the_docs_name_real_components():
     """The docs shipped an `add toggle-group` that the CLI rejected."""
     docs = Path(__file__).resolve().parent.parent / 'docs' / 'content'
+
+    if not docs.is_dir():
+        pytest.skip('docs/ is a separate repository and is not checked out')
 
     commands = re.compile(r'django_shadcn@latest add ([a-z0-9_\- ]+)')
     wrong = []

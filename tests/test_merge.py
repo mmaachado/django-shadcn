@@ -112,3 +112,16 @@ def test_obsolete_files_is_empty_for_a_missing_destination(
     source, destination
 ):
     assert obsolete_files(source, destination) == []
+
+
+def test_syncing_a_component_that_ships_nothing_creates_nothing(
+    tmp_path, destination
+):
+    """Sync prunes empty directories, and there may be none to prune."""
+    empty = tmp_path / 'source' / 'empty'
+    empty.mkdir(parents=True)
+
+    result = merge(empty, destination, WriteMode.sync)
+
+    assert not result.changed
+    assert not destination.exists()
