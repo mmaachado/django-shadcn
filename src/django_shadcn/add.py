@@ -8,7 +8,13 @@ from .bundle import source_for
 from .components import Component, canonical, registry
 from .console import console
 from .constants import destination_for
-from .merge import MergeResult, WriteMode, merge, obsolete_files
+from .merge import (
+    MergeResult,
+    WriteMode,
+    conflicting_paths,
+    merge,
+    obsolete_files,
+)
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -46,6 +52,39 @@ def _reject_unknown(components: Iterable[str]) -> None:
     console.print(f'Available: {", ".join(sorted(registry))}')
 
     raise typer.Exit(code=1)
+
+
+def _reject_unwritable(components: Iterable[str]) -> None:
+    """Stop before the first write, not partway through the run.
+
+    Refusing halfway leaves whatever earlier components already wrote, and
+    there is nothing that rolls it back.
+    """
+    blocked = False
+
+    for component in sorted(components):
+        source = source_for(component)
+
+        if not source.is_dir():
+            console.print(
+                f'[bold red]{component} is missing from this installation[/]'
+            )
+            blocked = True
+            continue
+
+        conflicts = conflicting_paths(source, destination_for(component))
+
+        if not conflicts:
+            continue
+
+        console.print(f'[bold red]{component} has paths in the way:[/]')
+        for path in conflicts:
+            console.print(f'  [red]conflict[/]    {path}')
+
+        blocked = True
+
+    if blocked:
+        raise typer.Exit(code=1)
 
 
 def mode_for(
@@ -160,18 +199,13 @@ def add(
     requested = set(components)
     to_install = resolve_components(requested)
 
+    _reject_unwritable(to_install)
+
     skipped = 0
 
     for component in sorted(to_install):
         source = source_for(component)
         destination = destination_for(component)
-
-        if not source.is_dir():
-            console.print(
-                f'[bold red]{component} is missing from this installation[/]'
-            )
-            raise typer.Exit(code=1)
-
         component_mode = mode_for(component, requested, mode)
 
         if component_mode is WriteMode.sync and not yes:

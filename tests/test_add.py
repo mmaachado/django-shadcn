@@ -159,3 +159,49 @@ def test_a_component_missing_from_the_install_fails_cleanly(
     assert result.exit_code == 1
     assert 'missing from this installation' in result.stdout
     assert not (project / 'templates').exists()
+
+
+@pytest.mark.parametrize('flags', [[], ['--overwrite'], ['--sync', '--yes']])
+def test_a_directory_where_a_file_belongs_stops_the_run(project, flags):
+    """copy2 would write index.html/index.html and call it overwritten."""
+    (project / 'templates' / 'cotton' / 'button' / 'index.html').mkdir(
+        parents=True
+    )
+
+    result = runner.invoke(app, ['add', 'button', *flags])
+
+    assert result.exit_code == 1
+    assert 'paths in the way' in result.stdout
+    assert not (
+        project
+        / 'templates'
+        / 'cotton'
+        / 'button'
+        / 'index.html'
+        / 'index.html'
+    ).exists()
+
+
+def test_a_file_where_a_directory_belongs_stops_the_run(project):
+    """This one used to surface as a raw FileExistsError."""
+    icon = project / 'templates' / 'cotton' / 'icon'
+    icon.parent.mkdir(parents=True)
+    icon.write_text('mine', encoding='utf-8')
+
+    result = runner.invoke(app, ['add', 'accordion'])
+
+    assert result.exit_code == 1
+    assert 'paths in the way' in result.stdout
+    assert icon.read_text(encoding='utf-8') == 'mine'
+
+
+def test_a_conflict_in_a_dependency_writes_nothing_at_all(project):
+    """The reason the check runs before the loop and not inside it."""
+    icon = project / 'templates' / 'cotton' / 'icon'
+    icon.parent.mkdir(parents=True)
+    icon.write_text('mine', encoding='utf-8')
+
+    result = runner.invoke(app, ['add', 'accordion'])
+
+    assert result.exit_code == 1
+    assert not (project / 'templates' / 'cotton' / 'accordion').exists()

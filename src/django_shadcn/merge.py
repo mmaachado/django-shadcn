@@ -1,7 +1,7 @@
-"""Merging downloaded component files into a project.
+"""Merging the component files that ship with the package into a project.
 
-Kept apart from the download so the behaviour that decides whether a file is
-created, kept or replaced can be exercised without touching the network.
+Kept apart from the command so the behaviour that decides whether a file is
+created, kept or replaced can be exercised on its own.
 """
 
 import shutil
@@ -39,6 +39,34 @@ def _relative_files(directory: Path) -> set[Path]:
         for path in directory.rglob('*')
         if path.is_file()
     }
+
+
+def conflicting_paths(source: Path, destination: Path) -> list[Path]:
+    """Destination paths whose kind collides with what source ships.
+
+    A directory sitting where a file belongs is the dangerous one: copy2
+    writes *into* it rather than failing, so the merge reports overwriting
+    a file it never touched. A file sitting where a directory belongs is
+    the loud one, raising from mkdir partway through the copy.
+
+    Neither is recoverable once writing has started, so the caller checks
+    first and refuses the component.
+    """
+    conflicts: set[Path] = set()
+
+    for relative in _relative_files(source):
+        target = destination / relative
+
+        if target.is_dir():
+            conflicts.add(target)
+
+        for parent in relative.parents:
+            ancestor = destination / parent
+
+            if ancestor.is_file():
+                conflicts.add(ancestor)
+
+    return sorted(conflicts)
 
 
 def obsolete_files(source: Path, destination: Path) -> list[Path]:

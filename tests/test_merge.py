@@ -1,10 +1,15 @@
-"""The three write modes, exercised without touching the network."""
+"""The three write modes, and the layout conflicts that precede them."""
 
 from pathlib import Path
 
 import pytest
 
-from django_shadcn.merge import WriteMode, merge, obsolete_files
+from django_shadcn.merge import (
+    WriteMode,
+    conflicting_paths,
+    merge,
+    obsolete_files,
+)
 
 
 @pytest.fixture
@@ -112,6 +117,39 @@ def test_obsolete_files_is_empty_for_a_missing_destination(
     source, destination
 ):
     assert obsolete_files(source, destination) == []
+
+
+def test_no_conflicts_in_a_clean_destination(source, destination):
+    assert conflicting_paths(source, destination) == []
+
+
+def test_no_conflicts_when_the_files_are_already_there(source, destination):
+    merge(source, destination, WriteMode.safe)
+
+    assert conflicting_paths(source, destination) == []
+
+
+def test_a_directory_where_a_file_belongs_is_a_conflict(source, destination):
+    """copy2 into a directory succeeds and writes the wrong path."""
+    (destination / 'index.html').mkdir(parents=True)
+
+    assert conflicting_paths(source, destination) == [
+        destination / 'index.html'
+    ]
+
+
+def test_a_file_where_a_directory_belongs_is_a_conflict(source, destination):
+    destination.mkdir(parents=True)
+    (destination / 'nested').write_text('mine', encoding='utf-8')
+
+    assert conflicting_paths(source, destination) == [destination / 'nested']
+
+
+def test_a_file_where_the_component_belongs_is_a_conflict(source, destination):
+    destination.parent.mkdir(parents=True)
+    destination.write_text('mine', encoding='utf-8')
+
+    assert conflicting_paths(source, destination) == [destination]
 
 
 def test_syncing_a_component_that_ships_nothing_creates_nothing(
