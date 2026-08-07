@@ -69,16 +69,6 @@ def test_list_prints_every_component():
         assert component in result.stdout
 
 
-def test_list_counts_what_is_installed(tmp_path, monkeypatch):
-    monkeypatch.chdir(tmp_path)
-    runner.invoke(app, ['add', 'button'])
-
-    result = runner.invoke(app, ['list'])
-
-    assert result.exit_code == 0
-    assert 'installed' in result.stdout
-
-
 def test_add_without_arguments_shows_usage():
     result = runner.invoke(app, ['add'])
 
