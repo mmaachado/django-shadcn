@@ -1,5 +1,78 @@
 # Changelog
 
+## 1.3.0 — 2026-08-10
+
+`add` now tells you what a component needs in order to actually work, shows you
+what it would do before doing it, and refuses to write into a layout it would
+corrupt.
+
+### Read this before upgrading
+
+**If you have `accordion` or `collapsible` in your project, they need
+`@alpinejs/collapse`, and nothing has ever told you.** Both use `x-collapse`,
+which Alpine's core does not provide. Without the plugin they render correctly
+and simply never animate — no error, no warning, nothing in the console. It is
+the only plugin the library requires beyond the Alpine core.
+
+Upgrading the CLI does not fix a project that already has them. Add the plugin
+to your static files the same way the installation guide has you add Alpine
+itself, and load it first:
+
+```html
+<script src="{% static 'js/collapse.min.js' %}" defer></script>
+<script src="{% static 'js/alpine.min.js' %}" defer></script>
+```
+
+From now on `add` names it at the end of the run.
+
+**`list` marks fewer components as installed.** It used to count a component as
+installed whenever its destination directory existed, which was never a reliable
+signal and was plainly wrong for `allauth`. If a component you did install now
+reads as missing, some of the files it ships are gone from your project;
+re-running `add` restores them without touching anything you changed.
+
+### Added
+
+- **`add --dry-run`.** Runs the whole calculation and reports it without
+  writing. It matters most with `--sync`, the one mode that deletes: the
+  preview lists exactly which files would go. The report comes from the code
+  that does the real work rather than a separate planner, so the two cannot
+  drift apart.
+
+- **`add` names the JavaScript a component needs.** The registry now records
+  per-component script requirements, printed once at the end of a run however
+  many components asked for them.
+
+### Changed
+
+- **Component names are read more forgivingly.** `add BUTTON`,
+  `add Toggle-Group` and a name with stray whitespace around it all resolve
+  instead of being rejected as unknown.
+
+- **A typo gets a suggestion instead of a wall of names.** `add buton` now
+  answers `buton -> button?`. It used to print all 57 component names and leave
+  you to find it.
+
+### Fixed
+
+- **`list` no longer reports `allauth` as installed in any django-allauth
+  project.** The seventeen templates it ships are named `login.html`,
+  `signup.html` and so on because they _are_ django-allauth's own template
+  names, so any project that had hand-written one of them matched.
+
+- **`add` no longer corrupts a project whose layout collides with a
+  component.** A directory sitting where a file belongs made the copy land
+  _inside_ it, so `add --overwrite` reported overwriting `index.html` while
+  actually writing `index.html/index.html`, leaving a component that cannot
+  render. A file sitting where a directory belongs raised `FileExistsError`
+  partway through, in every mode. Both are now detected for every component in
+  the run before anything is written, so a conflict in a dependency cannot
+  leave half an install behind.
+
+- **`rich` is declared as a dependency.** The package imports it directly but
+  relied on typer bringing it along. An environment that resolved typer without
+  it failed at import time, on every command.
+
 ## 1.2.0 — 2026-08-06
 
 The components now travel inside the package instead of being fetched from
