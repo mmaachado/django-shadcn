@@ -148,10 +148,13 @@ def test_every_component_has_an_index_template(
 
 def test_install_commands_in_the_docs_name_real_components():
     """The docs shipped an `add toggle-group` that the CLI rejected."""
-    docs = Path(__file__).resolve().parent.parent / 'docs' / 'content'
+    repo_root = Path(__file__).resolve().parent.parent
+    docs = repo_root / 'docs.django-shadcn' / 'content'
 
     if not docs.is_dir():
-        pytest.skip('docs/ is a separate repository and is not checked out')
+        pytest.skip(
+            'the docs are a separate repository and are not checked out'
+        )
 
     commands = re.compile(r'django_shadcn@latest add ([a-z0-9_\- ]+)')
     wrong = []
@@ -159,6 +162,10 @@ def test_install_commands_in_the_docs_name_real_components():
     for page in sorted(docs.glob('*.md')):
         for line in commands.findall(page.read_text(encoding='utf-8')):
             for name in line.split():
+                # The pages show flags after the names they apply to.
+                if name.startswith('-'):
+                    continue
+
                 if name not in registry:
                     wrong.append(f'{page.name}: add {name}')
 
