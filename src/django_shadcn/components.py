@@ -92,9 +92,11 @@ def canonical(name: str) -> str:
     """Accept the cotton tag spelling as well as the directory name.
 
     The tag is <c-toggle-group> while the directory has to be toggle_group,
-    so both reach the CLI and both should work.
+    so both reach the CLI and both should work. Case and surrounding space
+    are what a shell and a copied doc line leave behind, not a different
+    component.
     """
     if name in registry:
         return name
 
-    return name.replace('-', '_')
+    return name.strip().lower().replace('-', '_')

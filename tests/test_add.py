@@ -161,6 +161,83 @@ def test_a_component_missing_from_the_install_fails_cleanly(
     assert not (project / 'templates').exists()
 
 
+def test_a_misspelled_name_gets_a_suggestion(project):
+    result = runner.invoke(app, ['add', 'buton'])
+
+    assert result.exit_code == 1
+    assert 'button' in result.stdout
+
+
+def test_an_unknown_name_no_longer_dumps_the_registry(project):
+    """The old message answered a typo with all 57 names."""
+    result = runner.invoke(app, ['add', 'qqqq'])
+
+    assert result.exit_code == 1
+    assert 'tooltip' not in result.stdout
+    assert 'aspect_ratio' not in result.stdout
+
+
+def test_the_unknown_message_agrees_in_number(project):
+    one = runner.invoke(app, ['add', 'qqqq'])
+    two = runner.invoke(app, ['add', 'qqqq', 'wwww'])
+
+    assert 'Unknown component:' in one.stdout
+    assert 'Unknown components:' in two.stdout
+
+
+def test_a_capitalized_name_installs(project):
+    result = runner.invoke(app, ['add', 'BUTTON'])
+
+    assert result.exit_code == 0
+    assert (project / BUTTON).is_file()
+
+
+def test_dry_run_writes_nothing(project):
+    result = runner.invoke(app, ['add', 'button', '--dry-run'])
+
+    assert result.exit_code == 0
+    assert 'would add button' in result.stdout
+    assert not (project / 'templates').exists()
+
+
+def test_dry_run_lists_what_sync_would_remove(project):
+    runner.invoke(app, ['add', 'allauth'])
+    extra = project / 'templates' / 'account' / 'mine.html'
+    extra.write_text('mine', encoding='utf-8')
+
+    result = runner.invoke(app, ['add', 'allauth', '--sync', '--dry-run'])
+
+    assert result.exit_code == 0
+    assert 'removed' in result.stdout
+    assert extra.is_file(), 'a dry run must delete nothing'
+
+
+def test_dry_run_never_prompts(project):
+    """The preview is the answer the prompt was asking for."""
+    runner.invoke(app, ['add', 'button'])
+    extra = project / 'templates' / 'cotton' / 'button' / 'mine.html'
+    extra.write_text('mine', encoding='utf-8')
+
+    result = runner.invoke(
+        app, ['add', 'button', '--sync', '--dry-run'], input=''
+    )
+
+    assert result.exit_code == 0
+    assert 'Continue?' not in result.stdout
+    assert extra.is_file()
+
+
+def test_the_preview_names_the_same_files_the_real_run_writes(project):
+    preview = runner.invoke(app, ['add', 'combobox', '--dry-run'])
+    real = runner.invoke(app, ['add', 'combobox'])
+
+    def created(output: str) -> list[str]:
+        return [line for line in output.splitlines() if 'created' in line]
+
+    assert created(preview.stdout)
+    assert created(preview.stdout) == created(real.stdout)
+
+
 @pytest.mark.parametrize('flags', [[], ['--overwrite'], ['--sync', '--yes']])
 def test_a_directory_where_a_file_belongs_stops_the_run(project, flags):
     """copy2 would write index.html/index.html and call it overwritten."""

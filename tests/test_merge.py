@@ -152,6 +152,43 @@ def test_a_file_where_the_component_belongs_is_a_conflict(source, destination):
     assert conflicting_paths(source, destination) == [destination]
 
 
+def test_dry_run_reports_creations_without_making_them(source, destination):
+    result = merge(source, destination, WriteMode.safe, dry_run=True)
+
+    assert len(result.created) == 2
+    assert not destination.exists()
+
+
+def test_dry_run_reports_overwrites_without_making_them(source, destination):
+    destination.mkdir(parents=True)
+    (destination / 'index.html').write_text('mine', encoding='utf-8')
+
+    result = merge(source, destination, WriteMode.overwrite, dry_run=True)
+
+    assert destination / 'index.html' in result.overwritten
+    assert (destination / 'index.html').read_text(encoding='utf-8') == 'mine'
+
+
+def test_dry_run_reports_removals_without_making_them(source, destination):
+    destination.mkdir(parents=True)
+    extra = destination / 'mine.html'
+    extra.write_text('mine', encoding='utf-8')
+
+    result = merge(source, destination, WriteMode.sync, dry_run=True)
+
+    assert extra in result.removed
+    assert extra.is_file()
+
+
+def test_the_preview_and_the_real_run_agree(source, destination):
+    """Why dry_run lives inside merge instead of beside it."""
+    preview = merge(source, destination, WriteMode.safe, dry_run=True)
+    real = merge(source, destination, WriteMode.safe)
+
+    assert preview.created == real.created
+    assert preview.skipped == real.skipped
+
+
 def test_syncing_a_component_that_ships_nothing_creates_nothing(
     tmp_path, destination
 ):

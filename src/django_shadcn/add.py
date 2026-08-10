@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from difflib import get_close_matches
 from pathlib import Path
 from typing import Annotated
 
@@ -48,8 +49,16 @@ def _reject_unknown(components: Iterable[str]) -> None:
     if not unknown:
         return
 
-    console.print(f'[bold red]Unknown component: {", ".join(unknown)}[/]')
-    console.print(f'Available: {", ".join(sorted(registry))}')
+    label = 'components' if len(unknown) > 1 else 'component'
+    console.print(f'[bold red]Unknown {label}: {", ".join(unknown)}[/]')
+
+    for name in unknown:
+        close = get_close_matches(name, registry, n=3)
+
+        if close:
+            console.print(f'  [yellow]{name}[/] -> {", ".join(close)}?')
+
+    console.print('[dim]django_shadcn list shows every component[/]')
 
     raise typer.Exit(code=1)
 
@@ -117,7 +126,12 @@ def _confirm_removals(component: str, source: Path, destination: Path) -> None:
         raise typer.Abort()
 
 
-def _report(component: str, result: MergeResult) -> None:
+def _report(component: str, result: MergeResult, dry_run: bool) -> None:
+    """The per-file lines read the same either way, on purpose.
+
+    A preview whose wording differs from the real run is a preview the
+    reader has to translate.
+    """
     for path in result.created:
         console.print(f'  [green]created[/]     {path}')
     for path in result.overwritten:
@@ -127,12 +141,14 @@ def _report(component: str, result: MergeResult) -> None:
     for path in result.skipped:
         console.print(f'  [dim]skipped     {path}[/]')
 
-    if result.changed:
-        console.print(f'[bold green]:heavy_check_mark: Added {component}[/]')
-    else:
+    if not result.changed:
         console.print(
             f'[dim]:heavy_check_mark: {component} already present[/]'
         )
+    elif dry_run:
+        console.print(f'[bold cyan]would add {component}[/]')
+    else:
+        console.print(f'[bold green]:heavy_check_mark: Added {component}[/]')
 
 
 def _report_scripts(components: Iterable[str]) -> None:
@@ -174,11 +190,19 @@ def add(
         bool,
         typer.Option('--yes', '-y', help='Skip the confirmation prompt'),
     ] = False,
+    dry_run: Annotated[
+        bool,
+        typer.Option(
+            '--dry-run',
+            help='Report what would change without writing anything',
+        ),
+    ] = False,
 ):
     """
     Add django_shadcn components to your project
 
     Existing files are kept untouched unless --overwrite or --sync is given.
+    Pair either with --dry-run to see the effect first.
     """
     if overwrite and sync:
         console.print(
@@ -201,6 +225,9 @@ def add(
 
     _reject_unwritable(to_install)
 
+    if dry_run:
+        console.print('[bold cyan]Dry run: nothing will be written[/]\n')
+
     skipped = 0
 
     for component in sorted(to_install):
@@ -208,11 +235,12 @@ def add(
         destination = destination_for(component)
         component_mode = mode_for(component, requested, mode)
 
-        if component_mode is WriteMode.sync and not yes:
+        # A dry run is the answer the prompt asks for, so it never asks.
+        if component_mode is WriteMode.sync and not yes and not dry_run:
             _confirm_removals(component, source, destination)
 
-        result = merge(source, destination, component_mode)
-        _report(component, result)
+        result = merge(source, destination, component_mode, dry_run)
+        _report(component, result, dry_run)
         skipped += len(result.skipped)
 
     if skipped:

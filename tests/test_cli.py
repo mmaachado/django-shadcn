@@ -99,6 +99,18 @@ def test_canonical_leaves_an_unknown_name_to_be_rejected():
     assert canonical('does-not-exist') not in registry
 
 
+@pytest.mark.parametrize(
+    'spelling', ['Button', 'BUTTON', ' button ', '\tbutton\n']
+)
+def test_canonical_tolerates_case_and_surrounding_space(spelling):
+    """A shell and a copied doc line both leave these behind."""
+    assert canonical(spelling) == 'button'
+
+
+def test_canonical_normalizes_a_hyphenated_tag_in_any_case():
+    assert canonical(' Toggle-Group ') == 'toggle_group'
+
+
 def test_add_refuses_overwrite_and_sync_together(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
 
