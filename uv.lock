@@ -128,6 +128,7 @@ wheels = [
 name = "django-shadcn"
 source = { editable = "." }
 dependencies = [
+    { name = "rich" },
     { name = "typer" },
 ]
 
@@ -143,7 +144,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "typer", specifier = ">=0.15.1" }]
+requires-dist = [
+    { name = "rich", specifier = ">=13.0.0" },
+    { name = "typer", specifier = ">=0.15.1" },
+]
 
 [package.metadata.requires-dev]
 dev = [

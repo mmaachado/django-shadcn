@@ -1,7 +1,7 @@
-"""Merging downloaded component files into a project.
+"""Merging the component files that ship with the package into a project.
 
-Kept apart from the download so the behaviour that decides whether a file is
-created, kept or replaced can be exercised without touching the network.
+Kept apart from the command so the behaviour that decides whether a file is
+created, kept or replaced can be exercised on its own.
 """
 
 import shutil
@@ -41,6 +41,34 @@ def _relative_files(directory: Path) -> set[Path]:
     }
 
 
+def conflicting_paths(source: Path, destination: Path) -> list[Path]:
+    """Destination paths whose kind collides with what source ships.
+
+    A directory sitting where a file belongs is the dangerous one: copy2
+    writes *into* it rather than failing, so the merge reports overwriting
+    a file it never touched. A file sitting where a directory belongs is
+    the loud one, raising from mkdir partway through the copy.
+
+    Neither is recoverable once writing has started, so the caller checks
+    first and refuses the component.
+    """
+    conflicts: set[Path] = set()
+
+    for relative in _relative_files(source):
+        target = destination / relative
+
+        if target.is_dir():
+            conflicts.add(target)
+
+        for parent in relative.parents:
+            ancestor = destination / parent
+
+            if ancestor.is_file():
+                conflicts.add(ancestor)
+
+    return sorted(conflicts)
+
+
 def obsolete_files(source: Path, destination: Path) -> list[Path]:
     """Files under destination that source no longer provides.
 
@@ -50,12 +78,21 @@ def obsolete_files(source: Path, destination: Path) -> list[Path]:
     return sorted(destination / path for path in extra)
 
 
-def merge(source: Path, destination: Path, mode: WriteMode) -> MergeResult:
+def merge(
+    source: Path,
+    destination: Path,
+    mode: WriteMode,
+    dry_run: bool = False,
+) -> MergeResult:
     """Copy source into destination according to mode.
 
     `safe` never replaces or deletes anything, which is what makes running
     `add` twice harmless. `sync` mirrors the directory and is the only mode
     that removes files.
+
+    `dry_run` reaches this far down rather than living in a separate
+    planning function so that the preview and the real run cannot disagree:
+    the report comes from the code that would do the work.
     """
     result = MergeResult()
 
@@ -67,20 +104,27 @@ def merge(source: Path, destination: Path, mode: WriteMode) -> MergeResult:
                 result.skipped.append(target)
                 continue
 
-            shutil.copy2(source / relative, target)
+            if not dry_run:
+                shutil.copy2(source / relative, target)
+
             result.overwritten.append(target)
             continue
 
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source / relative, target)
+        if not dry_run:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / relative, target)
+
         result.created.append(target)
 
     if mode is WriteMode.sync:
         for path in obsolete_files(source, destination):
-            path.unlink()
+            if not dry_run:
+                path.unlink()
+
             result.removed.append(path)
 
-        _remove_empty_directories(destination)
+        if not dry_run:
+            _remove_empty_directories(destination)
 
     return result
 

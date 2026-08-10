@@ -75,16 +75,31 @@ caller's `class`. `components/button/index.html` is the reference.
 Directory names use `snake_case`, because the directory name is the tag name:
 `components/alert_dialog/` is `<c-alert_dialog>`.
 
-Five things to touch:
+Icons are always `<c-icon name="...">`, never an inline `<svg>`. The subset in
+`components/icon/` is generated from [Lucide](https://lucide.dev) by
+`scripts/generate_icons.py` — add one by running the script, not by pasting
+markup.
+
+Four things to touch:
 
 1. `components/<name>/index.html`, plus any subcomponents
-2. an entry in `src/django_shadcn/components.py`, listing the components it uses
-3. a page in `docs/templates/<name>.html` showing every variant
-4. a view in `docs/docs/views.py` and a route in `docs/docs/urls.py`
-5. a link in the sidebar of `docs/templates/base.html`
+2. an entry in `src/django_shadcn/components.py`, naming the components it uses
+   and any Alpine plugin its markup needs
+3. a page in `docs/content/<slug>.md`, with front matter and a demo of every
+   variant
+4. a line in `docs/docs/nav.py`
 
-The test suite fails if a component is missing from the registry, or if it uses
-another component without declaring it as a dependency.
+There is no view and no route to write. `nav.py` feeds the sidebar, the
+`llms.txt` and the single generic route that serves every page.
+
+The last two live in `mmaachado/docs.django-shadcn`, checked out at `docs/` and
+versioned separately. They are a commit there, not here — and they belong in
+the same session as the component, so the documentation never describes a
+version that was never released.
+
+The test suite fails if a component is missing from the registry, if it uses
+another component without declaring it as a dependency, or if its markup needs
+an Alpine plugin the registry does not declare.
 
 ## Tests and linting
 
