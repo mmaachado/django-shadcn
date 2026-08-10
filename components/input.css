@@ -121,3 +121,123 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* The scrolled-away edge of a horizontal scroller fades out, and only while
+   there is something in that direction to scroll to. */
+@property --scroll-fade-start {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --scroll-fade-end {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@theme inline {
+  @keyframes scroll-fade-reveal-start {
+    from {
+      --scroll-fade-start: 0px;
+    }
+    to {
+      --scroll-fade-start: min(12%, calc(var(--spacing) * 10));
+    }
+  }
+
+  @keyframes scroll-fade-reveal-end {
+    from {
+      --scroll-fade-end: min(12%, calc(var(--spacing) * 10));
+    }
+    to {
+      --scroll-fade-end: 0px;
+    }
+  }
+
+  @keyframes shimmer-sweep {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+}
+
+@utility scroll-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--scroll-fade-start),
+    #000 calc(100% - var(--scroll-fade-end)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--scroll-fade-start),
+    #000 calc(100% - var(--scroll-fade-end)),
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  @supports (animation-timeline: scroll()) {
+    animation:
+      scroll-fade-reveal-start 1ms ease-in-out,
+      scroll-fade-reveal-end 1ms ease-in-out;
+    animation-timeline: scroll(self inline), scroll(self inline);
+    animation-range:
+      0 calc(var(--spacing) * 24),
+      calc(100% - calc(var(--spacing) * 24)) 100%;
+    animation-fill-mode: both;
+  }
+
+  /* Without scroll-driven animations both edges stay faded rather than
+     tracking the scroll position. */
+  @supports not (animation-timeline: scroll()) {
+    --scroll-fade-start: min(12%, calc(var(--spacing) * 10));
+    --scroll-fade-end: min(12%, calc(var(--spacing) * 10));
+  }
+}
+
+/* A highlight sweeping across text, painted through the glyphs themselves.
+   The highlight is derived from the text colour, so it follows whatever the
+   element is already set to. */
+@utility shimmer {
+  --shimmer-spread: calc(3ch + 40px);
+  --shimmer-highlight: oklch(from currentColor l c h / calc(alpha * 0.2));
+
+  background-image: linear-gradient(
+    110deg,
+    currentColor calc(50% - var(--shimmer-spread)),
+    color-mix(in oklch, var(--shimmer-highlight), currentColor 50%)
+      calc(50% - var(--shimmer-spread) * 0.5),
+    var(--shimmer-highlight) 50%,
+    color-mix(in oklch, var(--shimmer-highlight), currentColor 50%)
+      calc(50% + var(--shimmer-spread) * 0.5),
+    currentColor calc(50% + var(--shimmer-spread))
+  );
+  background-repeat: no-repeat;
+  background-size: calc(200% + var(--shimmer-spread) * 2) 100%;
+  background-position: 0 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 2s linear infinite;
+
+  @variant dark {
+    --shimmer-highlight: oklch(
+      from currentColor max(0.8, calc(l + 0.4)) c h / calc(alpha + 0.4)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation: none;
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

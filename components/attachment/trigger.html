@@ -1,0 +1,10 @@
+<c-vars class="" tag="button" type="button"></c-vars>
+
+<{{ tag }} class="
+    absolute inset-0 z-10 outline-none
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="attachment-trigger" {% if tag == 'button' %}type="{{ type }}"{% endif %} {{ attrs }}>
+    {{ slot }}
+</{{ tag }}>

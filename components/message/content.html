@@ -1,0 +1,11 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    flex w-full min-w-0 flex-col gap-2.5 wrap-break-word
+    group-data-[align=end]/message:*:data-slot:self-end
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="message-content" {{ attrs }}>
+    {{ slot }}
+</div>
