@@ -32,7 +32,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: User Interfaces",
 ]
-dependencies = ["typer>=0.15.1"]
+# rich arrives with typer today, but the package imports it directly, so it
+# is declared directly.
+dependencies = ["rich>=13.0.0", "typer>=0.15.1"]
 
 [project.urls]
 Homepage = "https://github.com/mmaachado/django-shadcn"
