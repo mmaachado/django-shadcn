@@ -1,5 +1,46 @@
 # Changelog
 
+## 1.4.0 — 2026-08-10
+
+Four components for chat interfaces, ported from the set shadcn/ui published in
+June: `message`, `bubble`, `marker` and `attachment`.
+
+### Read this before upgrading
+
+**Tailwind CSS 4.1 is now the floor.** The new components use utilities that
+landed in 4.1, and Tailwind drops a class it does not recognise without an
+error — on 4.0 they render, missing a rule here and there, with nothing in the
+build output to say so. `init` writes an `input.css` that carries two new
+utilities of its own, `shimmer` and `scroll-fade-x`, so a project that copied
+the old one should take the new one as well.
+
+### Added
+
+- **`message`.** The row of a transcript: which side it sits on, where the
+  avatar goes, and the header and footer around whatever fills the middle. Pure
+  layout — the avatar lifts when a footer is present, and the footer follows
+  the message side, and that is the whole of it.
+
+- **`bubble`.** The message surface, with seven variants and both alignments.
+  Its content renders as a `div`, a `button` or an `a` through `tag`, so a
+  suggested reply is a real control rather than a styled box. Long messages
+  collapse by being wrapped in `collapsible`, which is how upstream does it and
+  why `add bubble` installs it.
+
+- **`marker`.** The rows that are not messages: status, system notes, tool
+  activity and date breaks, in three variants. Not stateful; `role="status"`
+  reaches the root through the attributes when a marker reports live work.
+
+- **`attachment`.** A file inside a message: preview, metadata, five upload
+  states, three sizes, both orientations, per-item actions, and a trigger
+  covering the whole card. The trigger sits behind the actions, so the card and
+  each action keep their own click and their own tab stop.
+
+- **`shimmer` and `scroll-fade-x` in `input.css`.** The first paints a highlight
+  through text and stops when the reader has asked for reduced motion; the
+  second fades the edge of a horizontal scroller that has something left to
+  scroll to. Both work on any element, not only the components that use them.
+
 ## 1.3.0 — 2026-08-10
 
 `add` now tells you what a component needs in order to actually work, shows you

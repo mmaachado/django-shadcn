@@ -1,0 +1,12 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    flex min-w-0 gap-3 overflow-x-auto overscroll-x-contain py-1
+    scroll-fade-x snap-x snap-mandatory scroll-px-1 [scrollbar-width:none]
+    *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="attachment-group" {{ attrs }}>
+    {{ slot }}
+</div>

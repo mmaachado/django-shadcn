@@ -1,0 +1,24 @@
+<c-vars class="" variant="ghost" type="button"></c-vars>
+
+<button type="{{ type }}" class="
+    inline-flex size-6 items-center justify-center gap-2 rounded-md
+    whitespace-nowrap text-sm font-medium transition-colors
+    focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+    disabled:pointer-events-none disabled:opacity-50
+    [&_svg]:pointer-events-none [&_svg]:shrink-0
+    [&_svg:not([class*='size-'])]:size-3
+
+    {% if variant == 'default' %}bg-primary text-primary-foreground shadow-sm hover:bg-primary/90
+    {% elif variant == 'destructive' %}bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90
+    {% elif variant == 'outline' %}border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'secondary' %}bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80
+    {% elif variant == 'ghost' %}hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'link' %}text-primary underline-offset-4 hover:underline
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="attachment-action" {{ attrs }}>
+    {{ slot }}
+</button>

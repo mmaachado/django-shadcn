@@ -1,0 +1,11 @@
+<c-vars class="" align="start"></c-vars>
+
+<div class="
+    group/message relative flex w-full min-w-0 gap-2 text-sm
+    data-[align=end]:flex-row-reverse
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="message" data-align="{{ align }}" {{ attrs }}>
+    {{ slot }}
+</div>
