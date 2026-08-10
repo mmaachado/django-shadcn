@@ -12,7 +12,7 @@ import pytest
 
 from django_shadcn import bundle
 from django_shadcn.bundle import components_root, source_for
-from django_shadcn.components import dependencies
+from django_shadcn.components import registry
 from django_shadcn.initialize import THEME_FILE
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -20,7 +20,7 @@ WHEEL_DESTINATION = 'django_shadcn/_components'
 
 
 def test_every_registered_component_ships_with_the_package():
-    missing = [name for name in dependencies if not source_for(name).is_dir()]
+    missing = [name for name in registry if not source_for(name).is_dir()]
 
     assert not missing, f'registered but not shipped: {missing}'
 

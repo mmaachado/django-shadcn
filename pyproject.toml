@@ -32,7 +32,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: User Interfaces",
 ]
-dependencies = ["typer>=0.15.1"]
+# rich arrives with typer today, but the package imports it directly, so it
+# is declared directly.
+dependencies = ["rich>=13.0.0", "typer>=0.15.1"]
 
 [project.urls]
 Homepage = "https://github.com/mmaachado/django-shadcn"
@@ -91,8 +93,18 @@ select = ["B", "E", "F", "I", "UP"]
 addopts = "-ra"
 testpaths = ["tests"]
 
+[tool.coverage.run]
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+# The package is small enough that anything less means a path nobody has
+# ever run. Reach it with a test or delete it.
+fail_under = 100
+
 [tool.taskipy.tasks]
-lint = "ruff check ."
+# Both checks, in the order CI runs them, so a local pass means a CI pass.
+lint = "ruff check . && ruff format --check ."
 format = "ruff format ."
 pre_test = "task lint"
 test = "pytest -s -x --cov=src -vv"

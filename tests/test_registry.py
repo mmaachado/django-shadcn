@@ -7,13 +7,19 @@ entry without a directory makes `add` copy nothing while reporting success.
 import re
 from pathlib import Path
 
-from django_shadcn.components import dependencies
+import pytest
+
+from django_shadcn.components import registry
 
 # Cotton tags that never map to a component of their own. `component` is the
 # dynamic tag: <c-component :is="..."> resolves at render time.
 RESERVED_TAGS = frozenset({'vars', 'slot', 'component'})
 
 COTTON_TAG = re.compile(r'<c-([a-zA-Z0-9_]+)')
+
+# Alpine directives that a plugin registers, mapped to the package shipping
+# it. Anything Alpine's core provides has no entry here.
+PLUGIN_DIRECTIVES = {'x-collapse': '@alpinejs/collapse'}
 
 
 def components_used_by(directory: Path) -> set[str]:
@@ -25,18 +31,18 @@ def components_used_by(directory: Path) -> set[str]:
 
 
 def test_every_directory_has_a_registry_entry(component_names):
-    missing = set(component_names) - set(dependencies)
+    missing = set(component_names) - set(registry)
     assert not missing, f'components without a registry entry: {missing}'
 
 
 def test_every_registry_entry_has_a_directory(component_names):
-    missing = set(dependencies) - set(component_names)
+    missing = set(registry) - set(component_names)
     assert not missing, f'registry entries without a directory: {missing}'
 
 
 def test_declared_dependencies_are_known_components(component_names):
-    for component, declared in dependencies.items():
-        unknown = set(declared) - set(component_names)
+    for component, entry in registry.items():
+        unknown = set(entry.depends) - set(component_names)
         assert not unknown, f'{component} depends on unknown: {unknown}'
 
 
@@ -50,16 +56,53 @@ def test_used_components_are_declared_as_dependencies(
     """
     for component in component_names:
         used = components_used_by(components_root / component)
-        undeclared = used - set(dependencies[component])
+        undeclared = used - set(registry[component].depends)
         assert not undeclared, (
             f'{component} uses undeclared components: {sorted(undeclared)}'
         )
 
 
 def test_no_duplicate_dependencies():
-    for component, declared in dependencies.items():
-        assert len(declared) == len(set(declared)), (
+    for component, entry in registry.items():
+        assert len(entry.depends) == len(set(entry.depends)), (
             f'{component} declares a duplicate dependency'
+        )
+
+
+def plugins_used_by(directory: Path) -> set[str]:
+    """Packages the markup in a component needs Alpine to have loaded."""
+    markup = '\n'.join(
+        template.read_text(encoding='utf-8')
+        for template in directory.rglob('*.html')
+    )
+    return {
+        package
+        for directive, package in PLUGIN_DIRECTIVES.items()
+        if directive in markup
+    }
+
+
+def test_plugin_directives_match_the_declared_scripts(
+    component_names, components_root
+):
+    """Nothing else catches this one.
+
+    An undeclared component dependency leaves a visible hole in the page.
+    A missing Alpine plugin renders perfectly and silently does nothing, so
+    the registry is the only place the requirement can live.
+    """
+    known = set(PLUGIN_DIRECTIVES.values())
+
+    for component in component_names:
+        used = plugins_used_by(components_root / component)
+        declared = set(registry[component].scripts)
+
+        assert used <= declared, (
+            f'{component} uses {sorted(used - declared)} without declaring it'
+        )
+        assert (declared & known) <= used, (
+            f'{component} declares {sorted(declared - used)}, unused by its '
+            'markup'
         )
 
 
@@ -107,13 +150,16 @@ def test_install_commands_in_the_docs_name_real_components():
     """The docs shipped an `add toggle-group` that the CLI rejected."""
     docs = Path(__file__).resolve().parent.parent / 'docs' / 'content'
 
+    if not docs.is_dir():
+        pytest.skip('docs/ is a separate repository and is not checked out')
+
     commands = re.compile(r'django_shadcn@latest add ([a-z0-9_\- ]+)')
     wrong = []
 
     for page in sorted(docs.glob('*.md')):
         for line in commands.findall(page.read_text(encoding='utf-8')):
             for name in line.split():
-                if name not in dependencies:
+                if name not in registry:
                     wrong.append(f'{page.name}: add {name}')
 
     assert not wrong, f'install commands that fail: {wrong}'
