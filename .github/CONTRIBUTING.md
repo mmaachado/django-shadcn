@@ -63,10 +63,18 @@ the CLI installs — there is no second copy to keep in sync.
 
 ## Adding a component
 
-Components are written with Tailwind CSS v4 and Alpine.js. Markup, utility
-classes and variant names follow the upstream shadcn/ui component, adapted to
-cotton syntax. `components/input.css` is the source of the palette and fonts —
-do not introduce new design tokens.
+Components are written with Tailwind CSS 4.1 or newer and Alpine.js. Markup,
+utility classes and variant names follow the upstream shadcn/ui component,
+adapted to cotton syntax. `components/input.css` is the source of the palette
+and fonts — do not introduce new design tokens.
+
+A class Tailwind does not recognise is dropped from the build without an error,
+so a new one is worth checking against the CLI rather than by eye:
+
+```
+cd docs.django-shadcn
+npx @tailwindcss/cli -i assets/input.css -o static/css/output.css
+```
 
 Every component takes variants through `<c-vars>` with defaults, applies them
 with `{% if %}` inside the class list, and forwards both `{{ attrs }}` and the

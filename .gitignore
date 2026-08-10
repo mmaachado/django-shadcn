@@ -296,4 +296,4 @@ $RECYCLE.BIN/
 
 # The playground sits here so a component and its page are written side by
 # side, but it is its own repository and ships from there.
-docs/
+docs.django-shadcn/
