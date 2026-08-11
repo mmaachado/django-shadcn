@@ -1,0 +1,23 @@
+<c-vars class="" label="Transcript"></c-vars>
+
+{% comment %}
+The state reaches the page as data-* on this element, the way upstream mirrors
+it, so a caller can style against the scroll position without reading any of
+the Alpine scope.
+{% endcomment %}
+<div class="
+    size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain
+    [scrollbar-gutter:stable] [scrollbar-width:thin]
+    data-[autoscrolling=true]:[scrollbar-width:none]
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="region" aria-label="{{ label }}" tabindex="0"
+    data-slot="message-scroller-viewport"
+    x-bind:data-autoscrolling="autoscrolling ? 'true' : 'false'"
+    x-bind:data-stick="stick ? 'true' : 'false'"
+    x-bind:data-at-start="atStart ? 'true' : 'false'"
+    x-bind:data-at-end="atEnd ? 'true' : 'false'"
+    {{ attrs }}>
+    {{ slot }}
+</div>

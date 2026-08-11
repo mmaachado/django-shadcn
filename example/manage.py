@@ -26,7 +26,16 @@ settings.configure(
     # session, so there is nothing for a key to protect.
     SECRET_KEY='django-shadcn-example',
     ROOT_URLCONF=__name__,
-    INSTALLED_APPS=['django.contrib.staticfiles', 'django_cotton'],
+    # SimpleAppConfig rather than 'django_cotton': the default one wraps every
+    # loader in Django's cached.Loader, which keys compiled templates by name
+    # and never looks at the file again. In a server that stays up, that means
+    # editing a component changes nothing until the process restarts — which
+    # is the opposite of what this project is for. The loaders below are the
+    # same ones, without that wrapper.
+    INSTALLED_APPS=[
+        'django.contrib.staticfiles',
+        'django_cotton.apps.SimpleAppConfig',
+    ],
     # <c-button> resolves to <a template dir>/components/button/index.html,
     # which is the library itself.
     COTTON_DIR='components',
@@ -38,6 +47,11 @@ settings.configure(
             'DIRS': [REPO_ROOT, HERE / 'templates'],
             'OPTIONS': {
                 'builtins': ['django_cotton.templatetags.cotton'],
+                'loaders': [
+                    'django_cotton.cotton_loader.Loader',
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ],
             },
         }
     ],

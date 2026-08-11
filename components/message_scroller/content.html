@@ -1,0 +1,17 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+The element the provider watches, and the live region a screen reader hears.
+`additions` rather than `all`, so a streamed reply is announced as it arrives
+without the whole transcript being read back on every change.
+{% endcomment %}
+<div class="
+    flex h-max min-h-full flex-col gap-8
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="log" aria-live="polite" aria-relevant="additions"
+    x-bind:aria-busy="stick && !atEnd"
+    data-slot="message-scroller-content" {{ attrs }}>
+    {{ slot }}
+</div>

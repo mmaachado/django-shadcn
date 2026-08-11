@@ -65,6 +65,7 @@ registry: dict[str, Component] = {
     'marker': Component(depends=('icon',)),
     'menubar': Component(depends=('icon',)),
     'message': Component(depends=('avatar',)),
+    'message_scroller': Component(depends=('icon',)),
     'native_select': Component(depends=('icon',)),
     'navigation_menu': Component(depends=('icon',)),
     'pagination': Component(depends=('icon',)),

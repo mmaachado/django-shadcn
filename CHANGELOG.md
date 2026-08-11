@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.6.0 — 2026-08-11
+
+The scroll container for a chat transcript, and the largest piece of JavaScript
+in the library.
+
+### Added
+
+- **`message_scroller`.** Opening position, follow-the-stream, history loading
+  in above without moving the reader, jump-to-message and visibility tracking.
+
+  The transcript grows in the DOM here rather than through a re-render, so the
+  provider watches its content element: anything that inserts a row is enough,
+  whether that is `hx-swap="beforeend"`, an `EventSource` handler or a channels
+  consumer. **The page writes no JavaScript.** `scrollToMessage`, `scrollToEnd`
+  and `scrollToStart` are on the Alpine scope for controls that want them.
+
+  `message_id` on each row is required, and should be the id the server already
+  knows: it is what anchoring, jumping and visibility all key on, and an index
+  stops matching the moment older messages load in above.
+
+  The reader's place is held by restoring a fixed point rather than by adding up
+  how much the content grew. A delta applied twice is a scroll jump; a fixed
+  point applied twice is the same place. It also covers the case no delta could:
+  a row above the reader growing taller as a reply streams into it.
+
 ## 1.5.0 — 2026-08-11
 
 A multi-step question flow, and a one-line stylesheet fix that has been

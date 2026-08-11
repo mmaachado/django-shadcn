@@ -1,0 +1,183 @@
+<c-vars
+    class=""
+    auto_scroll="true"
+    default_scroll_position="end"
+    previous_item_peek="48"
+    preserve_on_prepend="true"
+></c-vars>
+
+{% comment %}
+Upstream drives this from React state: the parent re-renders with new messages
+and the provider reacts. A Django transcript grows in the DOM instead, from
+htmx, from an event stream, or from a socket handler, so the provider watches
+the content element and reacts to whatever put a row there. That is the whole
+contract, and it is why none of this asks the page for JavaScript.
+
+The settings arrive as data-* rather than inside the expression: Django escapes
+for HTML, the browser decodes the entities back, and Alpine then evaluates the
+result as JavaScript — so a value carrying a quote would run.
+{% endcomment %}
+<div class="{% if class %}{{ class }}{% endif %}"
+    data-slot="message-scroller-provider"
+    data-auto-scroll="{{ auto_scroll }}"
+    data-default-scroll-position="{{ default_scroll_position }}"
+    data-previous-item-peek="{{ previous_item_peek }}"
+    data-preserve-on-prepend="{{ preserve_on_prepend }}"
+    x-data="{
+        stick: false,
+        atStart: true,
+        atEnd: true,
+        autoscrolling: false,
+        opened: false,
+        anchorId: '',
+        visibleIds: [],
+        viewport: null,
+        content: null,
+        reading: null,
+        autoScroll: true,
+        preserve: true,
+        peek: 0,
+        opening: 'end',
+
+        init() {
+            const options = this.$el.dataset;
+            this.autoScroll = options.autoScroll !== 'false';
+            this.preserve = options.preserveOnPrepend !== 'false';
+            this.peek = Number(options.previousItemPeek) || 0;
+            this.opening = options.defaultScrollPosition || 'end';
+
+            this.$nextTick(() => {
+                this.viewport = this.$el.querySelector('[data-slot=message-scroller-viewport]');
+                this.content = this.$el.querySelector('[data-slot=message-scroller-content]');
+                if (!this.viewport || !this.content) { return; }
+                this.watch();
+                // A frame later than $nextTick: the rows have to be laid out
+                // before an offset measured against them means anything.
+                requestAnimationFrame(() => this.open());
+            });
+        },
+
+        items() {
+            return [...this.content.querySelectorAll('[data-slot=message-scroller-item]')];
+        },
+
+        topOf(item) {
+            return item.getBoundingClientRect().top
+                - this.viewport.getBoundingClientRect().top;
+        },
+
+        remember() {
+            // The row the reader is on, and where it sits. Everything that
+            // moves content keeps this fixed instead of adding up deltas: a
+            // delta applied twice is a scroll jump, and a fixed point applied
+            // twice is the same place.
+            const item = this.items().find(row => this.topOf(row) + row.offsetHeight > 0);
+            this.reading = item ? { item, top: this.topOf(item) } : null;
+        },
+
+        restore() {
+            if (!this.reading || !this.reading.item.isConnected) { return; }
+            this.viewport.scrollTop += this.topOf(this.reading.item) - this.reading.top;
+        },
+
+        measure() {
+            const view = this.viewport;
+            this.atStart = view.scrollTop <= 1;
+            this.atEnd = view.scrollHeight - view.scrollTop - view.clientHeight <= 1;
+        },
+
+        open() {
+            if (this.opening === 'start') { this.viewport.scrollTop = 0; }
+            else if (this.opening === 'last-anchor') { this.toAnchor(); }
+            else { this.viewport.scrollTop = this.viewport.scrollHeight; }
+            // Only the live edge follows the stream. Opening part-way up is a
+            // reading position, and following would throw the reader out of it.
+            this.stick = this.autoScroll && this.opening === 'end';
+            this.opened = true;
+            this.measure();
+            this.remember();
+        },
+
+        toAnchor() {
+            const anchors = this.items().filter(i => i.dataset.scrollAnchor === 'true');
+            const target = anchors[anchors.length - 1];
+            if (!target) { this.viewport.scrollTop = this.viewport.scrollHeight; return; }
+            this.viewport.scrollTop += this.topOf(target) - this.peek;
+        },
+
+        watch() {
+            this.viewport.addEventListener('scroll', () => {
+                if (this.autoscrolling || !this.opened) { return; }
+                this.measure();
+                this.stick = this.autoScroll && this.atEnd;
+                this.remember();
+            }, { passive: true });
+
+            new MutationObserver(() => {
+                if (!this.opened) { return; }
+                if (this.stick) { this.toEnd(); }
+                else if (this.preserve) { this.restore(); }
+                this.measure();
+                this.track();
+                this.remember();
+            }).observe(this.content, { childList: true, subtree: true, characterData: true });
+
+            // Fires once on observe, before the opening position is applied;
+            // acting then is what would scroll the reader off the anchor.
+            new ResizeObserver(() => {
+                if (!this.opened) { return; }
+                if (this.stick) { this.toEnd(); }
+                this.measure();
+            }).observe(this.content);
+
+            this.seen = new IntersectionObserver(entries => {
+                for (const entry of entries) {
+                    const id = entry.target.dataset.messageId;
+                    const showing = this.visibleIds.includes(id);
+                    if (entry.isIntersecting && !showing) { this.visibleIds.push(id); }
+                    if (!entry.isIntersecting && showing) {
+                        this.visibleIds = this.visibleIds.filter(other => other !== id);
+                    }
+                }
+                this.anchor();
+            }, { root: this.viewport });
+            this.track();
+        },
+
+        track() {
+            for (const item of this.items()) { this.seen.observe(item); }
+        },
+
+        anchor() {
+            const above = this.items().filter(item =>
+                this.visibleIds.includes(item.dataset.messageId)
+                && item.dataset.scrollAnchor === 'true'
+            );
+            this.anchorId = above.length ? above[0].dataset.messageId : '';
+        },
+
+        scrollTo(top, smooth) {
+            this.autoscrolling = true;
+            this.viewport.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+            setTimeout(() => { this.autoscrolling = false; this.measure(); }, smooth ? 400 : 0);
+        },
+
+        toEnd(smooth) { this.scrollTo(this.viewport.scrollHeight, smooth); },
+
+        scrollToEnd() { this.stick = this.autoScroll; this.toEnd(true); },
+
+        scrollToStart() { this.stick = false; this.scrollTo(0, true); },
+
+        scrollToMessage(id) {
+            const target = this.items().find(item => item.dataset.messageId === id);
+            if (!target) { return false; }
+            this.stick = false;
+            const top = this.viewport.scrollTop + this.topOf(target) - this.peek;
+            this.scrollTo(Math.max(0, top), true);
+            return true;
+        },
+    }"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>
