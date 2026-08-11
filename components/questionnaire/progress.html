@@ -1,0 +1,18 @@
+<c-vars class="" label="Progress"></c-vars>
+
+<div class="
+    min-h-[1lh] w-fit min-w-[14ch] text-xs font-medium text-muted-foreground
+    tabular-nums
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " role="progressbar" aria-label="{{ label }}" aria-valuemin="1"
+    x-bind:aria-valuemax="total" x-bind:aria-valuenow="position"
+    x-bind:aria-valuetext="'Question ' + position + ' of ' + total"
+    data-slot="questionnaire-progress" {{ attrs }}>
+    {% if slot %}
+        {{ slot }}
+    {% else %}
+        <span x-text="'Question ' + position + ' of ' + total"></span>
+    {% endif %}
+</div>

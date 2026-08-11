@@ -19,7 +19,7 @@ Closes #
 - [ ] `uv run task test` passes
 - [ ] New or changed behaviour is covered by a test
 - [ ] For a component: it is registered in `components.py` with its dependencies
-- [ ] For a component: it renders in the playground (`cd docs && uv run manage.py runserver`)
+- [ ] For a component: it renders in `example/` (`uv run python example/manage.py runserver`)
 
 ## Screenshots
 

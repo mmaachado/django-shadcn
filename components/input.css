@@ -122,6 +122,15 @@
   }
 }
 
+/* Alpine removes the attribute once it has taken over an element, so this is
+   what keeps a dialog, a menu or a panel from being painted open in the
+   moment between the HTML arriving and Alpine running. Without it `x-cloak`
+   is an attribute that does nothing. Outside a layer, and `!important`, so it
+   beats the display utility the element is already carrying. */
+[x-cloak] {
+  display: none !important;
+}
+
 /* The scrolled-away edge of a horizontal scroller fades out, and only while
    there is something in that direction to scroll to. */
 @property --scroll-fade-start {

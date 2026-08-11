@@ -1,5 +1,46 @@
 # Changelog
 
+## 1.5.0 — 2026-08-11
+
+A multi-step question flow, and a one-line stylesheet fix that has been
+missing since the first interactive component shipped.
+
+### Read this before upgrading
+
+**`x-cloak` has never done anything in this library, and now it does.**
+Seventeen components mark their hidden parts with it — every dialog, drawer,
+menu, popover, tooltip, accordion and select among them — but the CSS rule that
+gives the attribute meaning was in no stylesheet the project ships. Until
+Alpine finished starting, those parts were painted on the page.
+
+The rule now lives in `components/input.css`:
+
+```css
+[x-cloak] {
+  display: none !important;
+}
+```
+
+If your project copied `input.css` before this release, add those three lines
+to it. Nothing else changes, and nothing breaks if you do not — the page just
+keeps flashing its menus open on load.
+
+### Added
+
+- **`questionnaire`.** Onboarding, surveys, intake forms: a set of questions
+  walked one at a time, with progress, back, skip and submit.
+
+  Every question is rendered inside a single `<form>` and the inactive ones are
+  `hidden` and `inert`. So the last POST carries every answer with nothing
+  stashed anywhere, radio and checkbox groups keep their native behaviour, and
+  an ordinary view reads the lot with `request.POST`. A page with no JavaScript
+  degrades to one long form that still submits.
+
+  The form carries `novalidate` on purpose. Left to itself the browser refuses
+  to submit and tries to focus a control inside a hidden question, fails, and
+  reports nothing at all; the component drives the checking instead and still
+  shows the browser's own messages.
+
 ## 1.4.0 — 2026-08-10
 
 Four components for chat interfaces, ported from the set shadcn/ui published in

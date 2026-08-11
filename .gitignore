@@ -294,6 +294,15 @@ $RECYCLE.BIN/
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+## Node
+
+node_modules/
+
+## The example project
+
+# Built by the Tailwind CLI, and by the two curl commands in CONTRIBUTING.
+example/static/
+
 # The playground sits here so a component and its page are written side by
 # side, but it is its own repository and ships from there.
 docs.django-shadcn/

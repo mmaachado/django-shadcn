@@ -1,0 +1,20 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+`hidden` keeps the fieldset out of the page, `inert` keeps it out of the tab
+order and the accessibility tree. A control inside it still posts its value:
+only `disabled` would drop it.
+{% endcomment %}
+<fieldset class="
+    flex min-w-0 flex-col gap-4 border-0 p-0 outline-none
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="questionnaire-item"
+    x-data="{ index: -1 }"
+    x-init="index = items.indexOf($el)"
+    x-bind:hidden="index !== step"
+    x-bind:inert="index !== step"
+    {{ attrs }}>
+    {{ slot }}
+</fieldset>

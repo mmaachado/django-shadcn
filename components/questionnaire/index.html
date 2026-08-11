@@ -1,0 +1,71 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+Every question is rendered, and Alpine hides all but the active one. That is
+what makes the final POST carry every answer and what keeps a radio group's
+native `required` meaningful.
+
+`novalidate` is the price. Left to itself the browser would refuse to submit,
+try to focus a control inside a hidden fieldset, fail, and report nothing —
+the form would simply do nothing. So the checking is driven from here, while
+the messages still come from the browser.
+{% endcomment %}
+<form
+    novalidate
+    class="flex w-full min-w-0 flex-col gap-4 {% if class %}{{ class }}{% endif %}"
+    data-slot="questionnaire"
+    x-data="{
+        step: 0,
+        items: [],
+        message: '',
+        init() {
+            this.items = [...this.$el.querySelectorAll('[data-slot=questionnaire-item]')];
+        },
+        active() {
+            return this.items[this.step] || null;
+        },
+        controls(item) {
+            return item ? [...item.querySelectorAll('input, select, textarea')] : [];
+        },
+        firstInvalid(item) {
+            return this.controls(item).find(control => !control.checkValidity()) || null;
+        },
+        get optional() {
+            const item = this.active();
+            return item ? !item.querySelector('[required]') : true;
+        },
+        get first() { return this.step === 0; },
+        get last() { return this.step >= this.items.length - 1; },
+        get position() { return this.step + 1; },
+        get total() { return this.items.length; },
+        go(index) {
+            this.step = index;
+            this.message = '';
+            this.$nextTick(() => this.controls(this.active()).at(0)?.focus());
+        },
+        reject(control) {
+            this.message = control.validationMessage;
+            this.$nextTick(() => { control.focus(); control.reportValidity(); });
+        },
+        previous() { if (!this.first) this.go(this.step - 1); },
+        skip() { if (!this.last) this.go(this.step + 1); },
+        next() {
+            const control = this.firstInvalid(this.active());
+            if (control) { this.reject(control); return; }
+            this.skip();
+        },
+        submit(event) {
+            const index = this.items.findIndex(item => this.firstInvalid(item));
+            if (index < 0) { return; }
+            event.preventDefault();
+            const item = this.items[index];
+            this.step = index;
+            this.message = '';
+            this.$nextTick(() => this.reject(this.firstInvalid(item)));
+        },
+    }"
+    x-on:submit="submit($event)"
+    {{ attrs }}
+>
+    {{ slot }}
+</form>
