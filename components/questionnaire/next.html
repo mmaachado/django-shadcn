@@ -1,0 +1,24 @@
+<c-vars class="" variant="default"></c-vars>
+
+<button type="button" x-show="!last" x-cloak x-on:click="next()" class="
+    col-start-3 row-start-1 inline-flex h-9 min-h-11 items-center
+    justify-center justify-self-end gap-2 rounded-md px-4 py-2 text-sm
+    font-medium whitespace-nowrap transition-colors sm:min-h-0
+    focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+    disabled:pointer-events-none disabled:opacity-50
+    [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+
+    {% if variant == 'default' %}bg-primary text-primary-foreground shadow-sm hover:bg-primary/90
+    {% elif variant == 'destructive' %}bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90
+    {% elif variant == 'outline' %}border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'secondary' %}bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80
+    {% elif variant == 'ghost' %}hover:bg-accent hover:text-accent-foreground
+    {% elif variant == 'link' %}text-primary underline-offset-4 hover:underline
+    {% endif %}
+
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="questionnaire-next" {{ attrs }}>
+    {% if slot %}{{ slot }}{% else %}Next{% endif %}
+</button>

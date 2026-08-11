@@ -12,16 +12,13 @@ django-shadcn is an unofficial Django port of [shadcn/ui](https://ui.shadcn.com)
 It ships a CLI that copies [django-cotton](https://django-cotton.com) templates
 into your project, so you own the components and can change them freely.
 
-The repository holds two separate [uv](https://docs.astral.sh/uv/) projects: the
-library at the root and the playground under `docs/`.
-
 ## Structure
 
 ```
 .
 ├── components/          the cotton components, one directory per component
 │   └── input.css        Tailwind theme: palette, tokens and fonts
-├── docs/                Django playground used to render components locally
+├── example/             a Django project that renders them, for your own eyes
 ├── src/django_shadcn/   the Typer CLI
 └── tests/
 ```
@@ -47,19 +44,30 @@ uv sync
 
 Run the CLI from the checkout with `uv run django_shadcn list`.
 
-## The playground
+## Seeing your work
 
-`docs/` is a small Django site that renders every component. Use it to check
-your work:
+`example/` is a Django project small enough to read in one sitting. It renders
+`example/templates/index.html` against the components in your checkout rather
+than a copy of them, so editing one and reloading is the whole loop. Put the
+component you are working on in that template.
+
+It needs a stylesheet, and the interactive components need Alpine. Both are
+built once and ignored by git:
 
 ```bash
-cd docs
-uv sync
-uv run python manage.py runserver
+npm install
+npx @tailwindcss/cli -i example/input.css -o example/static/css/output.css --watch
+
+mkdir -p example/static/js
+curl -Lo example/static/js/alpine.min.js https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js
+curl -Lo example/static/js/collapse.min.js https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3/dist/cdn.min.js
 ```
 
-It renders the components straight out of `components/`, so what you see is what
-the CLI installs — there is no second copy to keep in sync.
+Then, in another terminal:
+
+```bash
+uv run python example/manage.py runserver
+```
 
 ## Adding a component
 
@@ -69,12 +77,8 @@ adapted to cotton syntax. `components/input.css` is the source of the palette
 and fonts — do not introduce new design tokens.
 
 A class Tailwind does not recognise is dropped from the build without an error,
-so a new one is worth checking against the CLI rather than by eye:
-
-```
-cd docs.django-shadcn
-npx @tailwindcss/cli -i assets/input.css -o static/css/output.css
-```
+so a new one is worth checking against the CLI rather than by eye — run the
+build above and look for the class in the output it writes.
 
 Every component takes variants through `<c-vars>` with defaults, applies them
 with `{% if %}` inside the class list, and forwards both `{{ attrs }}` and the
@@ -88,26 +92,19 @@ Icons are always `<c-icon name="...">`, never an inline `<svg>`. The subset in
 `scripts/generate_icons.py` — add one by running the script, not by pasting
 markup.
 
-Four things to touch:
+Two things to touch:
 
 1. `components/<name>/index.html`, plus any subcomponents
 2. an entry in `src/django_shadcn/components.py`, naming the components it uses
    and any Alpine plugin its markup needs
-3. a page in `docs/content/<slug>.md`, with front matter and a demo of every
-   variant
-4. a line in `docs/docs/nav.py`
-
-There is no view and no route to write. `nav.py` feeds the sidebar, the
-`llms.txt` and the single generic route that serves every page.
-
-The last two live in `mmaachado/docs.django-shadcn`, checked out at `docs/` and
-versioned separately. They are a commit there, not here — and they belong in
-the same session as the component, so the documentation never describes a
-version that was never released.
 
 The test suite fails if a component is missing from the registry, if it uses
 another component without declaring it as a dependency, or if its markup needs
 an Alpine plugin the registry does not declare.
+
+The documentation site is maintained separately by the maintainers, and a new
+component is published there in the same release. Say in your pull request what
+the component is for and which variants it takes, and that turns into its page.
 
 ## Tests and linting
 

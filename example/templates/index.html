@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>django-shadcn</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <script src="{% static 'js/collapse.min.js' %}" defer></script>
+    <script src="{% static 'js/alpine.min.js' %}" defer></script>
+  </head>
+  <body class="min-h-screen bg-background p-10">
+    <!-- Put the component you are working on here. -->
+    <div class="mx-auto flex max-w-lg flex-col gap-4">
+      <c-questionnaire action="/submitted/" method="post">
+        <c-questionnaire.progress />
+
+        <c-questionnaire.item>
+          <c-questionnaire.title>What should we prototype next?</c-questionnaire.title>
+          <c-questionnaire.description>Choose one direction, or write another.</c-questionnaire.description>
+          <c-questionnaire.choices>
+            <c-questionnaire.choice name="direction" value="delegation" required>
+              <span class="font-medium">Sub-agent delegation</span>
+              <c-questionnaire.choice_description>Show when work is delegated.</c-questionnaire.choice_description>
+            </c-questionnaire.choice>
+            <c-questionnaire.choice name="direction" value="questions" required>
+              <span class="font-medium">Question prompts</span>
+              <c-questionnaire.choice_description>Show choices while the agent waits.</c-questionnaire.choice_description>
+            </c-questionnaire.choice>
+            <c-questionnaire.input name="direction_other" aria-label="Another direction" placeholder="Type another direction" />
+          </c-questionnaire.choices>
+          <c-questionnaire.error />
+        </c-questionnaire.item>
+
+        <c-questionnaire.item>
+          <c-questionnaire.title>What should every update include?</c-questionnaire.title>
+          <c-questionnaire.description>Select all that apply, or skip.</c-questionnaire.description>
+          <c-questionnaire.choices>
+            <c-questionnaire.choice type="checkbox" name="signals" value="progress">Progress</c-questionnaire.choice>
+            <c-questionnaire.choice type="checkbox" name="signals" value="risks">Risks</c-questionnaire.choice>
+          </c-questionnaire.choices>
+          <c-questionnaire.error />
+        </c-questionnaire.item>
+
+        <c-questionnaire.item>
+          <c-questionnaire.title>When should this be revisited?</c-questionnaire.title>
+          <c-questionnaire.choices>
+            <c-questionnaire.choice name="timing" value="week" required>This week</c-questionnaire.choice>
+            <c-questionnaire.choice name="timing" value="later" required>Revisit later</c-questionnaire.choice>
+          </c-questionnaire.choices>
+          <c-questionnaire.error />
+        </c-questionnaire.item>
+
+        <c-questionnaire.actions>
+          <c-questionnaire.previous />
+          <c-questionnaire.skip />
+          <c-questionnaire.next />
+          <c-questionnaire.submit>Save answers</c-questionnaire.submit>
+        </c-questionnaire.actions>
+      </c-questionnaire>
+    </div>
+  </body>
+</html>

@@ -70,6 +70,7 @@ registry: dict[str, Component] = {
     'pagination': Component(depends=('icon',)),
     'popover': Component(),
     'progress': Component(),
+    'questionnaire': Component(depends=('icon',)),
     'radio_group': Component(),
     'resizable': Component(depends=('icon',)),
     'scroll_area': Component(),

@@ -1,0 +1,45 @@
+<c-vars class="" type="radio"></c-vars>
+
+{% comment %}
+The control is a real radio or checkbox, laid over the whole card at zero
+opacity: the browser keeps arrow-key navigation, the group's `required` and
+the focus ring, and the indicator beside it is drawn from `:checked` in CSS
+rather than from any state we hold.
+{% endcomment %}
+<label class="
+    group/questionnaire-choice relative flex min-h-11 cursor-pointer
+    items-start gap-2.5 rounded-lg border border-input bg-transparent px-3
+    py-2.5 text-start text-sm transition-colors outline-none select-none
+    dark:bg-input/20 hover:bg-muted/50
+    has-[>input:checked]:border-primary/40 has-[>input:checked]:bg-muted
+    dark:has-[>input:checked]:bg-muted
+    has-[>input:user-invalid]:border-destructive
+    has-[>input:focus-visible]:border-ring
+    has-[>input:focus-visible]:ring-3 has-[>input:focus-visible]:ring-ring/50
+    has-[>input:disabled]:pointer-events-none
+    has-[>input:disabled]:cursor-not-allowed has-[>input:disabled]:opacity-50
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="questionnaire-choice" data-type="{{ type }}">
+    <input type="{{ type }}" class="absolute inset-0 z-10 size-full cursor-pointer opacity-0" data-slot="questionnaire-choice-input" {{ attrs }}>
+    <span aria-hidden="true" class="
+        pointer-events-none relative flex size-4 shrink-0 items-center
+        justify-center border border-input
+        translate-y-[--spacing(0.45)] dark:bg-input/30
+        group-has-[>input:checked]/questionnaire-choice:border-primary
+        group-has-[>input:checked]/questionnaire-choice:bg-primary
+        group-has-[>input:checked]/questionnaire-choice:text-primary-foreground
+        group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5
+        {% if type == 'radio' %}rounded-full{% else %}rounded-[4px]{% endif %}
+        " data-slot="questionnaire-choice-indicator">
+        {% if type == 'radio' %}
+            <span class="hidden size-2 rounded-full bg-primary-foreground group-has-[>input:checked]/questionnaire-choice:block" data-slot="questionnaire-choice-indicator-dot"></span>
+        {% else %}
+            <c-icon name="check" class="hidden size-3.5 group-has-[>input:checked]/questionnaire-choice:block" />
+        {% endif %}
+    </span>
+    <span class="flex min-w-0 flex-1 flex-col gap-0.5 leading-snug" data-slot="questionnaire-choice-label">
+        {{ slot }}
+    </span>
+</label>
