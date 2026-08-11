@@ -1,0 +1,20 @@
+<c-vars class="" message_id="" scroll_anchor="false"></c-vars>
+
+{% comment %}
+`message_id` is what the provider anchors, jumps and reports visibility by, so
+it has to be the id the server already knows — an index would stop matching the
+moment older messages load in above.
+
+`content-visibility` is deliberately absent: upstream uses it to skip painting
+off-screen rows, and it changes what the provider measures. It belongs after
+the scrolling is right, not before.
+{% endcomment %}
+<div class="
+    min-w-0 shrink-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="message-scroller-item" data-message-id="{{ message_id }}"
+    data-scroll-anchor="{{ scroll_anchor }}" {{ attrs }}>
+    {{ slot }}
+</div>
