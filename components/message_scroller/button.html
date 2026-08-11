@@ -1,0 +1,44 @@
+<c-vars class="" direction="end" label=""></c-vars>
+
+{% comment %}
+Inactive rather than absent: it keeps its place in the tab order and animates
+out, which is what upstream does. `pointer-events-none` is what stops it being
+clicked while it is invisible.
+{% endcomment %}
+<button type="button" class="
+    absolute left-1/2 z-10 inline-flex size-8 -translate-x-1/2 items-center
+    justify-center rounded-md border border-border bg-background text-foreground
+    shadow-xs transition-[translate,scale,opacity] duration-200
+    hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1
+    focus-visible:ring-ring
+    [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+    data-[active=false]:pointer-events-none data-[active=false]:scale-95
+    data-[active=false]:opacity-0
+    data-[active=true]:scale-100 data-[active=true]:opacity-100
+    {% if direction == 'start' %}top-4 data-[active=false]:-translate-y-full [&_svg]:rotate-180
+    {% else %}bottom-4 data-[active=false]:translate-y-full
+    {% endif %}
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="message-scroller-button" data-direction="{{ direction }}"
+    {% comment %}
+    A bound false makes Alpine drop the attribute, and `data-[active=false]`
+    then matches nothing — the button would stay solid with nowhere to scroll.
+    So the value is a string, and the attribute is always there to style.
+    {% endcomment %}
+    {% if direction == 'start' %}
+        x-bind:data-active="atStart ? 'false' : 'true'" x-on:click="scrollToStart()"
+    {% else %}
+        x-bind:data-active="atEnd ? 'false' : 'true'" x-on:click="scrollToEnd()"
+    {% endif %}
+    {{ attrs }}>
+    {% if slot %}
+        {{ slot }}
+    {% else %}
+        <c-icon name="chevron-down" />
+        <span class="sr-only">
+            {% if label %}{{ label }}{% elif direction == 'start' %}Scroll to start{% else %}Scroll to end{% endif %}
+        </span>
+    {% endif %}
+</button>
