@@ -1,0 +1,10 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    grid min-w-0 gap-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="questionnaire-choices" {{ attrs }}>
+    {{ slot }}
+</div>
