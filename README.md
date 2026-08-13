@@ -22,7 +22,7 @@ A set of beautifully designed components that you can customize, extend, and bui
 
 ## Documentation
 
-Visit https://django-shadcn.vercel.app/ to view the documentation.
+Visit our [portal](https://django-shadcn.vercel.app/) to view the documentation.
 
 ## Contributing
 
