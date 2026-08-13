@@ -41,12 +41,17 @@ registry: dict[str, Component] = {
     'bubble': Component(depends=('collapsible',)),
     'button': Component(),
     'button_group': Component(depends=('button', 'separator')),
+    'calendar': Component(depends=('button', 'icon')),
     'card': Component(),
+    'carousel': Component(depends=('icon',)),
     'combobox': Component(depends=('button', 'popover', 'icon')),
     'collapsible': Component(scripts=(COLLAPSE,)),
     'context_menu': Component(depends=('icon',)),
     'command': Component(depends=('icon',)),
     'command_dialog': Component(depends=('command',)),
+    'date_picker': Component(
+        depends=('button', 'calendar', 'icon', 'popover')
+    ),
     'dialog': Component(depends=('button', 'icon')),
     'checkbox': Component(),
     'drawer': Component(),
