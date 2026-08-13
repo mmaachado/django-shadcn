@@ -14,7 +14,8 @@
 <!-- <img src="https://img.shields.io/github/v/release/mmaachado/django-shadcn?logo=github&color=white" alt="GitHub release"> -->
 </p>
 
-> [!IMPORTANT] This is an **unofficial** port of [shadcn/ui](https://ui.shadcn.com/) to Django, and **is not** affiliated with [@shadcn](https://twitter.com/shadcn).
+> [!IMPORTANT]
+> This is an **unofficial** port of [shadcn/ui](https://ui.shadcn.com/) to Django, and **is not** affiliated with [@shadcn](https://twitter.com/shadcn).
 
 A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code. **Use this to build your own component library**.
 
