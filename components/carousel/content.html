@@ -1,0 +1,25 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+This is the scroll container as well as the layout, so scroll-snap has an
+element to snap inside. The negative margin is upstream's: the gap between
+slides is padding on each slide, and this pulls the first one back flush.
+{% endcomment %}
+<div class="
+    flex snap-mandatory
+    [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+    group-data-[orientation=horizontal]/carousel:-ml-4
+    group-data-[orientation=horizontal]/carousel:snap-x
+    group-data-[orientation=horizontal]/carousel:overflow-x-auto
+    group-data-[orientation=horizontal]/carousel:overflow-y-hidden
+    group-data-[orientation=vertical]/carousel:-mt-4
+    group-data-[orientation=vertical]/carousel:flex-col
+    group-data-[orientation=vertical]/carousel:snap-y
+    group-data-[orientation=vertical]/carousel:overflow-y-auto
+    group-data-[orientation=vertical]/carousel:overflow-x-hidden
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="carousel-content" {{ attrs }}>
+    {{ slot }}
+</div>

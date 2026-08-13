@@ -1,5 +1,46 @@
 # Changelog
 
+## 1.7.0 — 2026-08-13
+
+The last three components of the registry, and none of them brings a
+dependency. Parity with shadcn/ui is closed except for `chart`.
+
+### Added
+
+- **`calendar`.** A month grid, single-date selection, `min`/`max`, and a hidden
+  input so it is a form field on its own.
+
+  Upstream hands the grid to `react-day-picker`, which does not port. The grid
+  is built from the calendar the browser already has — but the language is
+  Django's, taken from the active translation, so month and weekday names follow
+  the site rather than the visitor's browser. The first day of the week follows
+  the same language, with `first_day` to override it.
+
+- **`date_picker`.** A calendar in a popover, writing an ISO date into a hidden
+  input.
+
+  Upstream ships this as a recipe rather than a component. Here it is one
+  component, because keeping two representations of the same date in step — the
+  string the server parses and the sentence the button shows — is exactly the
+  part a Django form needs to get right. `forms.DateField` receives it with
+  nothing added on the view side.
+
+- **`carousel`.** Slides, arrows, dots and keyboard, horizontal or vertical.
+
+  Embla is not ported. The track is an ordinary scroll container and CSS
+  `scroll-snap` does the moving, which is why dragging, the trackpad and touch
+  work without a line of code — and why the slides are still a scrollable list
+  when JavaScript is disabled. Alpine only reads where the track came to rest.
+
+### Known limitation
+
+A class handed to a component as `class` is HTML-escaped on the way through, so
+one containing `&`, `<` or `>` arrives as `[&amp;&gt;span]:text-xs` and matches
+no rule Tailwind generated. Nothing warns. This has always been true and is not
+new here; a test now catches it between the library's own components, and the
+components in this release avoid such classes on their outer element. A class
+you pass yourself still has to stay clear of them.
+
 ## 1.6.0 — 2026-08-11
 
 The scroll container for a chat transcript, and the largest piece of JavaScript

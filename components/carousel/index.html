@@ -1,0 +1,100 @@
+<c-vars class="" orientation="horizontal" label="Carousel"></c-vars>
+
+{% comment %}
+Upstream drives this with Embla. Here the track is an ordinary scroll container
+and CSS scroll-snap does the moving, so with JavaScript off the slides are still
+a list you can scroll. Alpine only reads where the track stopped, which is what
+the arrows and the dots need to know.
+
+The orientation reaches the subcomponents as a data attribute rather than
+through the Alpine scope: they have to be laid out before Alpine starts, or the
+first paint is a column of slides that then jumps into a row.
+{% endcomment %}
+<div class="
+    group/carousel relative
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="{{ label }}"
+    data-slot="carousel"
+    data-orientation="{{ orientation }}"
+    x-data="{
+        track: null,
+        count: 0,
+        index: 0,
+        canPrevious: false,
+        canNext: false,
+        vertical: false,
+
+        init() {
+            this.vertical = this.$el.dataset.orientation === 'vertical';
+
+            this.$nextTick(() => {
+                this.track = this.$el.querySelector('[data-slot=carousel-content]');
+                if (!this.track) { return; }
+
+                this.track.addEventListener('scroll', () => this.measure(), { passive: true });
+                new ResizeObserver(() => this.measure()).observe(this.track);
+                new MutationObserver(() => this.measure())
+                    .observe(this.track, { childList: true, subtree: true });
+                this.measure();
+            });
+        },
+
+        slides() {
+            return [...this.track.querySelectorAll('[data-slot=carousel-item]')];
+        },
+
+        offsetOf(slide) {
+            return this.vertical
+                ? slide.offsetTop - this.track.offsetTop
+                : slide.offsetLeft - this.track.offsetLeft;
+        },
+
+        measure() {
+            const track = this.track;
+            const position = this.vertical ? track.scrollTop : track.scrollLeft;
+            const visible = this.vertical ? track.clientHeight : track.clientWidth;
+            const total = this.vertical ? track.scrollHeight : track.scrollWidth;
+            const slides = this.slides();
+            const furthest = total - visible;
+
+            // Positions the track can actually stop at, which is not the number
+            // of slides: with three in view, the last two can never reach the
+            // left edge, and a dot for them is a dot that does nothing.
+            this.count = slides.filter(slide => this.offsetOf(slide) <= furthest + 1).length;
+            this.canPrevious = position > 1;
+            this.canNext = furthest - position > 1;
+
+            // The slide the track came to rest on is the one whose edge is
+            // nearest it, which is also the one scroll-snap settled against.
+            let nearest = 0;
+            slides.forEach((slide, at) => {
+                const distance = Math.abs(this.offsetOf(slide) - position);
+                if (distance < Math.abs(this.offsetOf(slides[nearest]) - position)) { nearest = at; }
+            });
+            this.index = nearest;
+        },
+
+        to(at) {
+            const slide = this.slides()[at];
+            if (!slide) { return; }
+            const offset = this.offsetOf(slide);
+            this.track.scrollTo({
+                top: this.vertical ? offset : 0,
+                left: this.vertical ? 0 : offset,
+                behavior: 'smooth',
+            });
+        },
+
+        previous() { this.to(this.index - 1); },
+        next() { this.to(this.index + 1); },
+    }"
+    x-on:keydown.left.prevent="previous()"
+    x-on:keydown.right.prevent="next()"
+    {{ attrs }}>
+    {{ slot }}
+</div>
