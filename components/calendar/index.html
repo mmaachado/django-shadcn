@@ -1,0 +1,201 @@
+<c-vars class="" name="" value="" first_day="" min="" max=""></c-vars>
+{% load i18n %}
+{% get_current_language as calendar_language %}
+
+{% comment %}
+Upstream hands the month grid to react-day-picker. A copied template has no
+library to hand it to and no Python of its own, so the grid is built here from
+the calendar the browser already carries. The language is the one Django has
+active for the request, which is what keeps the month and weekday names
+following the site rather than the visitor's browser settings.
+
+`first_day` overrides the day the locale starts the week on, for a project whose
+FIRST_DAY_OF_WEEK disagrees with it. Left empty, the locale decides.
+
+With `name` set the component is a form field on its own: the hidden input
+carries the selection, and it carries `value` before Alpine has started.
+{% endcomment %}
+<div class="
+    w-fit bg-background p-3
+    [--cell-size:--spacing(8)]
+    [[data-slot=card-content]_&]:bg-transparent
+    [[data-slot=popover-content]_&]:bg-transparent
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="calendar" data-locale="{{ calendar_language }}" data-value="{{ value }}"
+    data-first-day="{{ first_day }}" data-min="{{ min }}" data-max="{{ max }}" x-data="{
+        view: null,
+        selected: '',
+        locale: 'en',
+        firstDay: 0,
+        min: '',
+        max: '',
+
+        init() {
+            const options = this.$el.dataset;
+            this.locale = options.locale || 'en';
+            this.min = options.min || '';
+            this.max = options.max || '';
+            this.selected = options.value || '';
+            this.firstDay = options.firstDay === ''
+                ? this.localeFirstDay()
+                : Number(options.firstDay);
+            const opened = this.selected ? this.parse(this.selected) : new Date();
+            this.view = new Date(opened.getFullYear(), opened.getMonth(), 1);
+        },
+
+        localeFirstDay() {
+            // getWeekInfo counts Monday as 1 and Sunday as 7; getDay() counts
+            // Sunday as 0, and the grid is built against getDay().
+            try { return new Intl.Locale(this.locale).getWeekInfo().firstDay % 7; }
+            catch { return 0; }
+        },
+
+        parse(iso) {
+            const [year, month, day] = iso.split('-').map(Number);
+            return new Date(year, month - 1, day);
+        },
+
+        iso(date) {
+            const pad = number => String(number).padStart(2, '0');
+            return [date.getFullYear(), pad(date.getMonth() + 1), pad(date.getDate())].join('-');
+        },
+
+        get today() { return this.iso(new Date()); },
+
+        get caption() {
+            return new Intl.DateTimeFormat(this.locale, { month: 'long', year: 'numeric' }).format(this.view);
+        },
+
+        get weekdays() {
+            const format = new Intl.DateTimeFormat(this.locale, { weekday: 'short' });
+            // The 7th of January 2024 was a Sunday, so the offset is the weekday.
+            return [0, 1, 2, 3, 4, 5, 6].map(index =>
+                format.format(new Date(2024, 0, 7 + ((this.firstDay + index) % 7))));
+        },
+
+        get weeks() {
+            const first = this.view;
+            const lead = (first.getDay() - this.firstDay + 7) % 7;
+            const length = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+            const rows = Math.ceil((lead + length) / 7);
+            const grid = [];
+
+            for (let row = 0; row < rows; row++) {
+                const week = [];
+                for (let column = 0; column < 7; column++) {
+                    const date = new Date(first.getFullYear(), first.getMonth(), 1 - lead + row * 7 + column);
+                    week.push({
+                        iso: this.iso(date),
+                        number: date.getDate(),
+                        label: date.toLocaleDateString(this.locale, { dateStyle: 'long' }),
+                        outside: date.getMonth() !== first.getMonth(),
+                    });
+                }
+                grid.push(week);
+            }
+
+            return grid;
+        },
+
+        blocked(day) {
+            return (this.min !== '' && day.iso < this.min)
+                || (this.max !== '' && day.iso > this.max);
+        },
+
+        move(months) {
+            this.view = new Date(this.view.getFullYear(), this.view.getMonth() + months, 1);
+        },
+
+        pick(day) {
+            if (this.blocked(day)) { return; }
+            this.selected = day.iso;
+            // Clicking a day from the next month should land there, the way
+            // paging to it and clicking would have.
+            if (day.outside) {
+                const date = this.parse(day.iso);
+                this.view = new Date(date.getFullYear(), date.getMonth(), 1);
+            }
+            this.$dispatch('calendar-change', { value: day.iso });
+        },
+    }" {{ attrs }}>
+    <div class="relative flex flex-col gap-4 md:flex-row" data-slot="calendar-months">
+        <div class="flex w-full flex-col gap-4" data-slot="calendar-month">
+            <div class="absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1"
+                data-slot="calendar-nav">
+                {% comment %}
+                size="" so the button contributes its variant and nothing else:
+                the cell is sized by --cell-size, and a height from the button
+                would fight it with no way to say which one wins.
+                {% endcomment %}
+                <c-button variant="ghost" size="" type="button"
+                    class="size-(--cell-size) p-0 select-none aria-disabled:opacity-50" aria-label="Previous month"
+                    x-on:click="move(-1)">
+                    <c-icon name="chevron-left" class="size-4" />
+                </c-button>
+                <c-button variant="ghost" size="" type="button"
+                    class="size-(--cell-size) p-0 select-none aria-disabled:opacity-50" aria-label="Next month"
+                    x-on:click="move(1)">
+                    <c-icon name="chevron-right" class="size-4" />
+                </c-button>
+            </div>
+
+            <div class="flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)"
+                data-slot="calendar-month-caption">
+                <span class="text-sm font-medium select-none" aria-live="polite" x-text="caption"></span>
+            </div>
+
+            <table class="w-full border-collapse" role="grid" data-slot="calendar-month-grid">
+                <thead>
+                    <tr class="flex" data-slot="calendar-weekdays">
+                        <template x-for="weekday in weekdays" :key="weekday">
+                            <th scope="col"
+                                class="flex-1 rounded-md text-[0.8rem] font-normal text-muted-foreground select-none"
+                                x-text="weekday"></th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template x-for="week in weeks" :key="week[0].iso">
+                        <tr class="mt-2 flex w-full" data-slot="calendar-week">
+                            <template x-for="day in week" :key="day.iso">
+                                <td class="
+                                    relative aspect-square h-full w-full p-0 text-center select-none
+                                    [&:first-child[data-selected=true]_button]:rounded-l-md
+                                    [&:last-child[data-selected=true]_button]:rounded-r-md
+                                    " data-slot="calendar-day"
+                                    x-bind:data-selected="day.iso === selected ? 'true' : 'false'" x-bind:class="{
+                                        'rounded-md bg-accent text-accent-foreground data-[selected=true]:rounded-none': day.iso === today,
+                                        'text-muted-foreground aria-selected:text-muted-foreground': day.outside,
+                                        'text-muted-foreground opacity-50': blocked(day),
+                                    }">
+                                    {% comment %}
+                                    Upstream rings the cell from a data-focused
+                                    the day picker sets. Nothing sets it here,
+                                    and the button already rings on
+                                    focus-visible, which is the same keyboard.
+                                    {% endcomment %}
+                                    <c-button variant="ghost" size="" type="button" class="
+                                        flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal
+                                        data-[selected-single=true]:bg-primary
+                                        data-[selected-single=true]:text-primary-foreground
+                                        dark:hover:text-accent-foreground
+                                        " x-text="day.number" x-bind:aria-label="day.label"
+                                        x-bind:aria-selected="day.iso === selected ? 'true' : 'false'"
+                                        x-bind:data-day="day.label" x-bind:data-iso="day.iso"
+                                        x-bind:data-selected-single="day.iso === selected ? 'true' : 'false'"
+                                        x-bind:disabled="blocked(day)" x-on:click="pick(day)"></c-button>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% if name %}
+    <input type="hidden" name="{{ name }}" value="{{ value }}" x-bind:value="selected">
+    {% endif %}
+</div>

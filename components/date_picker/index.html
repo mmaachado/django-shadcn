@@ -1,0 +1,75 @@
+<c-vars
+    class=""
+    name=""
+    value=""
+    placeholder="Pick a date"
+    first_day=""
+    min=""
+    max=""
+></c-vars>
+{% load i18n %}
+{% get_current_language as date_picker_language %}
+
+{% comment %}
+Upstream ships this as a recipe rather than a component: a popover, a button and
+a calendar, wired together in the page. Here it is one component, because the
+wiring is the part a Django form needs to get right — the hidden input carries
+the ISO value the server parses, while the button shows the date the way the
+active locale writes it.
+
+Without JavaScript the input still submits whatever `value` arrived with.
+{% endcomment %}
+{% comment %}
+Upstream puts the width on the trigger. It sits here instead so a caller can
+change it: a class handed to a component cannot reach an element the component
+renders further in, and `w-full` on this element wins over the default.
+{% endcomment %}
+<div class="
+    w-[240px]
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="date-picker"
+    data-locale="{{ date_picker_language }}"
+    data-value="{{ value }}"
+    data-placeholder="{{ placeholder }}"
+    x-data="{
+        value: '',
+        locale: 'en',
+        placeholder: '',
+
+        init() {
+            const options = this.$el.dataset;
+            this.locale = options.locale || 'en';
+            this.placeholder = options.placeholder || '';
+            this.value = options.value || '';
+        },
+
+        get label() {
+            if (!this.value) { return this.placeholder; }
+            const [year, month, day] = this.value.split('-').map(Number);
+            return new Date(year, month - 1, day).toLocaleDateString(this.locale, { dateStyle: 'long' });
+        },
+    }"
+    {{ attrs }}>
+    <c-popover x-on:calendar-change="value = $event.detail.value; open = false">
+        <c-popover.trigger>
+            <c-button variant="outline"
+                type="button"
+                class="w-full justify-start text-left font-normal"
+                x-bind:class="value ? '' : 'text-muted-foreground'">
+                <c-icon name="calendar" class="size-4" />
+                <span x-text="label">{{ placeholder }}</span>
+            </c-button>
+        </c-popover.trigger>
+        <c-popover.content class="w-auto p-0">
+            <c-calendar value="{{ value }}" first_day="{{ first_day }}" min="{{ min }}" max="{{ max }}" />
+        </c-popover.content>
+    </c-popover>
+
+    {% if name %}
+        <input type="hidden" name="{{ name }}" value="{{ value }}" x-bind:value="value">
+    {% endif %}
+    {{ slot }}
+</div>

@@ -1,0 +1,27 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+Upstream has no dots; its demo reads the slide list off the Embla API and draws
+them in the page. The count is already here, so the component carries them.
+{% endcomment %}
+<div class="
+    mt-4 flex items-center justify-center gap-2
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="carousel-dots" {{ attrs }}>
+    <template x-for="number in count" :key="number">
+        <button type="button"
+            class="
+            size-2 rounded-full bg-muted-foreground/40 transition-colors
+            focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+            data-[active=true]:bg-primary
+            "
+            x-bind:data-active="number - 1 === index ? 'true' : 'false'"
+            x-bind:aria-current="number - 1 === index ? 'true' : 'false'"
+            x-on:click="to(number - 1)">
+            <span class="sr-only" x-text="'Slide ' + number"></span>
+        </button>
+    </template>
+    {{ slot }}
+</div>

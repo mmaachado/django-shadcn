@@ -5,6 +5,7 @@ cotton parses the component tag. That gap let a {{ attrs }} broken across a
 line ship, because Django substitutes it and cotton does not.
 """
 
+import re
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
@@ -141,6 +142,21 @@ def test_the_class_lands_on_one_element(tag):
     assert rendered.count(PROBE) == 1, (
         f'<c-{tag}> put the class on {rendered.count(PROBE)} elements'
     )
+
+
+# A class list is HTML text, so Django escapes it on the way through a
+# variable. Nothing warns, and [&>span]:text-xs arrives as
+# [&amp;&gt;span]:text-xs, which matches no rule Tailwind generated from the
+# unescaped source. Only components handing a class to another component can
+# hit it: a class the component writes itself is never a variable.
+ENTITY_IN_CLASS = re.compile(r'class="[^"]*&[a-zA-Z]+;')
+
+
+@pytest.mark.parametrize('tag', component_tags())
+def test_no_class_reaches_the_page_html_escaped(tag):
+    escaped = ENTITY_IN_CLASS.findall(render(tag))
+
+    assert not escaped, f'<c-{tag}> escapes a class it passes on: {escaped}'
 
 
 def test_the_component_tag_is_really_being_processed():
