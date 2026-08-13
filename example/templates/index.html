@@ -11,14 +11,112 @@
   </head>
   <body class="min-h-screen bg-background p-10">
     <!-- Put the component you are working on here. -->
-    <div class="mx-auto flex max-w-lg flex-col gap-4">
-      <c-button>Button</c-button>
-      <c-alert>
-        <c-alert.title>Alert</c-alert.title>
-        <c-alert.description>
-          Replace this with whatever you are building.
-        </c-alert.description>
-      </c-alert>
+        <div class="mx-auto flex max-w-3xl flex-col gap-10">
+
+      <div id="areas" class="rounded-xl border p-4">
+        <c-chart data="{{ series }}" config="{{ config }}">
+          <c-chart.plot>
+            <c-chart.grid />
+            <c-chart.axis-y />
+            <c-chart.axis-x key="month" />
+            <c-chart.area data_key="revenue" />
+            <c-chart.area data_key="profit" />
+          </c-chart.plot>
+          <c-chart.tooltip />
+          <c-chart.legend />
+        </c-chart>
+      </div>
+
+      <div id="stacked" class="rounded-xl border p-4">
+        <c-chart data="{{ series }}" config="{{ config }}">
+          <c-chart.plot>
+            <c-chart.grid />
+            <c-chart.axis-y />
+            <c-chart.axis-x key="month" />
+            <c-chart.area data_key="revenue" stack="true" />
+            <c-chart.area data_key="profit" stack="true" />
+          </c-chart.plot>
+          <c-chart.tooltip />
+        </c-chart>
+      </div>
+
+      <div id="bars" class="rounded-xl border p-4">
+        <c-chart data="{{ series }}" config="{{ config }}">
+          <c-chart.plot>
+            <c-chart.grid />
+            <c-chart.axis-y />
+            <c-chart.axis-x key="month" />
+            <c-chart.bar data_key="revenue" />
+            <c-chart.bar data_key="profit" />
+          </c-chart.plot>
+          <c-chart.tooltip />
+          <c-chart.legend />
+        </c-chart>
+      </div>
+
+      <div id="stackedbars" class="rounded-xl border p-4">
+        <c-chart data="{{ series }}" config="{{ config }}">
+          <c-chart.plot>
+            <c-chart.grid />
+            <c-chart.axis-y />
+            <c-chart.axis-x key="month" />
+            <c-chart.bar data_key="revenue" stack="true" />
+            <c-chart.bar data_key="profit" stack="true" />
+          </c-chart.plot>
+          <c-chart.tooltip />
+        </c-chart>
+      </div>
+
+      <div id="lines" class="rounded-xl border p-4">
+        <c-chart data="{{ series }}" config="{{ config }}">
+          <c-chart.plot>
+            <c-chart.grid />
+            <c-chart.axis-y />
+            <c-chart.axis-x key="month" />
+            <c-chart.line data_key="revenue" />
+            <c-chart.line data_key="profit" dots="false" />
+          </c-chart.plot>
+          <c-chart.tooltip />
+        </c-chart>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div id="pie" class="rounded-xl border p-4">
+          <c-chart data="{{ shares }}" config="{{ palette }}">
+            <c-chart.pie data_key="visitors" name_key="browser" />
+            <c-chart.legend name_key="browser" />
+          </c-chart>
+        </div>
+        <div id="donut" class="rounded-xl border p-4">
+          <c-chart data="{{ shares }}" config="{{ palette }}">
+            <c-chart.pie data_key="visitors" name_key="browser" donut="true" thickness="40" />
+          </c-chart>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6">
+        <c-metric id="up">
+          <c-metric.label>Revenue</c-metric.label>
+          <c-metric.value>$45,231.89</c-metric.value>
+          <c-metric.delta value="+20.1%" label="vs. last month" />
+          <c-chart data="{{ series }}" config="{{ config }}" class="aspect-auto h-12">
+            <c-chart.plot>
+              <c-chart.line data_key="revenue" dots="false" />
+            </c-chart.plot>
+          </c-chart>
+        </c-metric>
+        <c-metric id="down">
+          <c-metric.label>Churn</c-metric.label>
+          <c-metric.value>2.4%</c-metric.value>
+          <c-metric.delta value="-1.2%" label="vs. last month" />
+        </c-metric>
+        <c-metric id="flat">
+          <c-metric.label>Open tickets</c-metric.label>
+          <c-metric.value>18</c-metric.value>
+          <c-metric.delta value="0" label="no change" />
+        </c-metric>
+      </div>
+
     </div>
   </body>
 </html>

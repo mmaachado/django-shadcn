@@ -1,0 +1,29 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    pointer-events-none absolute z-50 grid min-w-[8rem] items-start gap-1.5
+    rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-tooltip"
+    x-show="hovered >= 0"
+    x-cloak
+    x-bind:style="tip">
+    <div class="font-medium" x-text="reading ? reading[nameKey] : ''"></div>
+    <div class="grid gap-1.5">
+        <template x-for="entry in series" :key="entry.at">
+            <div class="flex w-full items-center gap-2">
+                <div class="size-2.5 shrink-0 rounded-[2px]"
+                    x-bind:style="'background: ' + colourOf(entry.key)"></div>
+                <div class="flex flex-1 items-center justify-between gap-3 leading-none">
+                    <span class="text-muted-foreground" x-text="labelOf(entry.key)"></span>
+                    <span class="font-mono font-medium text-foreground tabular-nums"
+                        x-text="format(valueAt(hovered, entry.key))"></span>
+                </div>
+            </div>
+        </template>
+    </div>
+    {{ slot }}
+</div>

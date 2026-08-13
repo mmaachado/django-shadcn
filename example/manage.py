@@ -6,6 +6,7 @@ rather than a copy of them, so editing one and reloading is the whole loop.
     uv run python example/manage.py runserver
 """
 
+import json
 import sys
 from pathlib import Path
 
@@ -68,8 +69,61 @@ def submitted(request):
     return JsonResponse(dict(request.POST.lists()))
 
 
+def index(request):
+    """Whatever the component being worked on needs.
+
+    A chart takes its data as JSON, so it is serialised here rather than
+    written into the template: a string literal in a template is already safe
+    as far as Django is concerned, and the quotes would reach the attribute
+    unescaped and cut it short.
+    """
+    return render(
+        request,
+        'index.html',
+        {
+            'series': json.dumps(
+                [
+                    {'month': 'Jan', 'revenue': 1200, 'profit': 300},
+                    {'month': 'Feb', 'revenue': 1800, 'profit': 500},
+                    {'month': 'Mar', 'revenue': 1500, 'profit': 400},
+                    {'month': 'Apr', 'revenue': 2400, 'profit': 900},
+                    {'month': 'May', 'revenue': 2100, 'profit': 700},
+                    {'month': 'Jun', 'revenue': 3000, 'profit': 1100},
+                ]
+            ),
+            'config': json.dumps(
+                {
+                    'revenue': {'label': 'Revenue'},
+                    'profit': {'label': 'Profit'},
+                }
+            ),
+            'shares': json.dumps(
+                [
+                    {'browser': 'Chrome', 'visitors': 275},
+                    {'browser': 'Safari', 'visitors': 200},
+                    {'browser': 'Firefox', 'visitors': 187},
+                    {'browser': 'Edge', 'visitors': 173},
+                    {'browser': 'Other', 'visitors': 90},
+                ]
+            ),
+            'palette': json.dumps(
+                {
+                    name: {}
+                    for name in (
+                        'Chrome',
+                        'Safari',
+                        'Firefox',
+                        'Edge',
+                        'Other',
+                    )
+                }
+            ),
+        },
+    )
+
+
 urlpatterns = [
-    path('', lambda request: render(request, 'index.html'), name='index'),
+    path('', index, name='index'),
     path('submitted/', submitted, name='submitted'),
 ]
 

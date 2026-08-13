@@ -1,4 +1,4 @@
-# django-shadcn/ui
+# django-shadcn
 
 <p align="center">
 <img src="https://img.shields.io/github/stars/mmaachado/django-shadcn" alt="GitHub stars count">
@@ -11,12 +11,10 @@
 <a href="https://pypi.org/project/django-shadcn"><img src="https://img.shields.io/pypi/v/django-shadcn?logo=pypi" alt="PyPI package version"></a>
 <!-- <img src="https://img.shields.io/badge/PyPI-{{package.slug}}-tags-8c3c26.svg&link=https://djangopackages.org/packages/p/django-shadcn/" alt="Django Packages version"> -->
 
-<!-- <img src="https://img.shields.io/github/v/release/mmaachado/django-shadcn?logo=github&color=white" alt="GitHub release"> -->:
+<!-- <img src="https://img.shields.io/github/v/release/mmaachado/django-shadcn?logo=github&color=white" alt="GitHub release"> -->
 </p>
 
-> [!IMPORTANT]  
-> This is an **unofficial** port of [shadcn/ui](https://ui.shadcn.com/) to Django, and **is not** affiliated with [@shadcn](https://twitter.com/shadcn).
-
+> [!IMPORTANT] This is an **unofficial** port of [shadcn/ui](https://ui.shadcn.com/) to Django, and **is not** affiliated with [@shadcn](https://twitter.com/shadcn).
 
 A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code. **Use this to build your own component library**.
 
