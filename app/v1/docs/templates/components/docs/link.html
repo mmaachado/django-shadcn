@@ -1,0 +1,12 @@
+<c-vars class=""></c-vars>
+
+<a
+    class="group flex h-8 w-full items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    {{ attrs }}
+>
+    {{ slot }}
+</a>

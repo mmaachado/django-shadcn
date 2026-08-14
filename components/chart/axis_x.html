@@ -1,0 +1,23 @@
+<c-vars class="" key="" height="24"></c-vars>
+
+{% comment %}
+The axis is categorical: whatever the view put under `key` is drawn as it
+arrived. It claims its own room at the bottom of the plot, and it tells the
+container which field names a row, so the tooltip has a heading without being
+told the same thing twice.
+{% endcomment %}
+<div class="
+    pointer-events-none absolute inset-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="chart-axis-x" data-key="{{ key }}" data-height="{{ height }}"
+    x-init="nameKey = $el.dataset.key; padding.bottom = Number($el.dataset.height) || 0" {{ attrs }}>
+    <template x-for="(row, at) in rows" :key="at">
+        <div class="absolute -translate-x-1/2 whitespace-nowrap text-muted-foreground"
+            x-show="at % skip === 0"
+            x-bind:style="'left: ' + centreX(at) + 'px; top: ' + (inner.top + inner.height + 6) + 'px'"
+            x-text="row[nameKey]"></div>
+    </template>
+    {{ slot }}
+</div>

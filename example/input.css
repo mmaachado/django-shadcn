@@ -1,6 +1,0 @@
-/* The library's own theme, plus the two places Tailwind has to look for
-   classes: the components it ships and the page that uses them. */
-@import "../components/input.css";
-
-@source "../components";
-@source "./templates";

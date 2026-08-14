@@ -81,7 +81,10 @@ packages = ["src/django_shadcn"]
 
 [tool.ruff]
 line-length = 79
-extend-exclude = ["docs"]
+# The portal is a Django project, not part of the package: it keeps Django's
+# own layout and quoting rather than these rules. The pattern is anchored,
+# because a bare `docs` matches every directory of that name anywhere.
+extend-exclude = ["app/v1/docs"]
 
 [tool.ruff.format]
 quote-style = "single"

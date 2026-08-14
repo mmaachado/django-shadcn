@@ -1,0 +1,29 @@
+<c-vars class="" data_key="" dots="true"></c-vars>
+
+{% comment %}
+The stroke is one path with nothing to repeat, so it stays SVG. The dots do
+repeat, so they are positioned elements — a template inside SVG would render
+exactly one of them.
+{% endcomment %}
+<div class="
+    pointer-events-none absolute inset-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-line"
+    data-key="{{ data_key }}"
+    data-dots="{{ dots }}"
+    x-data="{ entry: { key: '', stack: false, type: 'line', at: 0 }, dots: true }"
+    x-init="entry = { key: $el.dataset.key, stack: false, type: 'line', at: 0 }; dots = $el.dataset.dots !== 'false'; register(entry)"
+    {{ attrs }}>
+    <svg class="absolute inset-0 h-full w-full">
+        <path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            x-bind:d="linePath(entry)" x-bind:stroke="colourOf(entry.key)" />
+    </svg>
+    <template x-for="(point, at) in (dots ? pointsOf(entry) : [])" :key="at">
+        <div class="absolute size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-background"
+            x-bind:style="'left: ' + point.x + 'px; top: ' + point.y + 'px; background: ' + colourOf(entry.key)"></div>
+    </template>
+    {{ slot }}
+</div>

@@ -1,0 +1,16 @@
+<c-vars class=""></c-vars>
+
+{% comment %}
+Not from the shadcn registry. The big number with a delta and a sparkline is
+what a KPI dashboard is made of, and building it out of a card every time meant
+retyping the same four elements — including the only part with a rule in it,
+which is the delta deciding its own arrow and colour from the sign.
+{% endcomment %}
+<div class="
+    flex flex-col gap-2 rounded-xl border bg-card p-6 text-card-foreground shadow-sm
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="metric" {{ attrs }}>
+    {{ slot }}
+</div>

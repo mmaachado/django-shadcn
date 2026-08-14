@@ -298,11 +298,13 @@ $RECYCLE.BIN/
 
 node_modules/
 
-## The example project
+## The documentation portal
 
-# Built by the Tailwind CLI, and by the two curl commands in CONTRIBUTING.
-example/static/
+# Written by collectstatic. static/ itself is committed and is the input.
+app/v1/docs/staticfiles/
+app/v1/docs/media/
 
-# The playground sits here so a component and its page are written side by
-# side, but it is its own repository and ships from there.
-docs.django-shadcn/
+# The interface catalogues are compiled here and committed, because the
+# deploy has no gettext to compile them at build time. Without this the
+# *.mo rule above drops them and every page falls back to English.
+!app/v1/docs/locale/**/*.mo

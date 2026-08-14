@@ -54,11 +54,19 @@ def test_no_unused_icon_partials(components_root):
 
 
 def test_no_inline_svg_outside_the_icon_component(components_root):
-    """Icons come from lucide through <c-icon>, never pasted by hand."""
+    """Icons come from lucide through <c-icon>, never pasted by hand.
+
+    `chart` draws with SVG rather than decorating with it: its elements are
+    empty surfaces that Alpine fills with computed geometry, and there is no
+    lucide shape in them to drift out of date.
+    """
+    drawn = {'chart'}
+
     offenders = [
         path.relative_to(components_root)
         for path in components_root.rglob('*.html')
         if path.parent.name != 'icon'
+        and path.parent.name not in drawn
         and '<svg' in path.read_text(encoding='utf-8')
     ]
 

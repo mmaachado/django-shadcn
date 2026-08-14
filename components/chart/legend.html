@@ -1,0 +1,25 @@
+<c-vars class="" name_key=""></c-vars>
+
+{% comment %}
+Two shapes of legend, because a pie has no series: one entry per drawn series,
+or one per row when name_key says which field names them.
+{% endcomment %}
+<div class="
+    flex shrink-0 flex-wrap items-center justify-center gap-4 pt-3
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-legend"
+    data-name-key="{{ name_key }}"
+    x-data="{ field: '' }"
+    x-init="field = $el.dataset.nameKey"
+    {{ attrs }}>
+    <template x-for="item in (field ? rows.map(row => ({ key: row[field], label: row[field] })) : series.map(entry => ({ key: entry.key, label: labelOf(entry.key) })))" :key="item.key">
+        <div class="flex items-center gap-1.5">
+            <div class="size-2 shrink-0 rounded-[2px]" x-bind:style="'background: ' + colourOf(item.key)"></div>
+            <span class="text-muted-foreground" x-text="item.label"></span>
+        </div>
+    </template>
+    {{ slot }}
+</div>

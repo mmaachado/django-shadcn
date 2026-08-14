@@ -1,0 +1,21 @@
+<c-vars class="" data_key="" stack="false"></c-vars>
+
+<div class="
+    pointer-events-none absolute inset-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-bar"
+    data-key="{{ data_key }}"
+    data-stack="{{ stack }}"
+    x-data="{ entry: { key: '', stack: false, type: 'bar', at: 0 } }"
+    x-init="entry = { key: $el.dataset.key, stack: $el.dataset.stack === 'true', type: 'bar', at: 0 }; register(entry)"
+    {{ attrs }}>
+    <template x-for="box in boxesOf(entry)" :key="box.at">
+        <div class="absolute rounded-t-[4px] transition-opacity"
+            x-bind:class="hovered < 0 || hovered === box.at ? 'opacity-100' : 'opacity-60'"
+            x-bind:style="'left: ' + box.x + 'px; top: ' + box.y + 'px; width: ' + box.width + 'px; height: ' + box.height + 'px; background: ' + colourOf(entry.key)"></div>
+    </template>
+    {{ slot }}
+</div>

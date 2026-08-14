@@ -1,0 +1,19 @@
+<c-vars class="" data_key="" stack="false"></c-vars>
+
+<svg class="
+    pointer-events-none absolute inset-0 h-full w-full
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-area"
+    data-key="{{ data_key }}"
+    data-stack="{{ stack }}"
+    x-data="{ entry: { key: '', stack: false, type: 'area', at: 0 } }"
+    x-init="entry = { key: $el.dataset.key, stack: $el.dataset.stack === 'true', type: 'area', at: 0 }; register(entry)"
+    {{ attrs }}>
+    <path fill-opacity="0.2" stroke="none" x-bind:d="areaPath(entry)" x-bind:fill="colourOf(entry.key)" />
+    <path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        x-bind:d="linePath(entry)" x-bind:stroke="colourOf(entry.key)" />
+    {{ slot }}
+</svg>

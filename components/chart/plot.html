@@ -1,0 +1,30 @@
+<c-vars class="" label="Chart"></c-vars>
+
+{% comment %}
+The drawing surface, and the only element that knows how big it is. Coordinates
+are real pixels rather than a viewBox: a viewBox stretched to the container
+would stretch the stroke with it.
+
+Everything that repeats is positioned HTML rather than SVG. A template element
+parsed inside SVG lands in the SVG namespace, where it is an ordinary unknown
+element with no content property, and x-for over it silently renders exactly
+one item. Only the continuous strokes are SVG, and each of those is a single
+path with nothing to repeat.
+{% endcomment %}
+<div class="
+    relative w-full min-h-0 flex-1
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-plot"
+    role="img"
+    aria-label="{{ label }}"
+    x-init="measure($el); new ResizeObserver(() => measure($el)).observe($el)"
+    x-on:pointermove="track($event)"
+    x-on:pointerleave="release()"
+    {{ attrs }}>
+    {{ slot }}
+    <div class="pointer-events-none absolute w-px bg-border" x-show="hovered >= 0" x-cloak
+        x-bind:style="'left: ' + centreX(hovered) + 'px; top: ' + inner.top + 'px; height: ' + inner.height + 'px'"></div>
+</div>

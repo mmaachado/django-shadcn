@@ -1,5 +1,65 @@
 # Changelog
 
+## 1.8.0 — 2026-08-14
+
+Charts, and the last component the registry was missing. Parity with shadcn/ui
+is closed.
+
+### Added
+
+- **`chart`.** Area, line, bar and pie, with a grid, both axes, a tooltip and a
+  legend. Grouped and stacked. Doughnuts.
+
+  **No charting library.** Recharts does not port, and nothing was brought in to
+  replace it: the scales are worked out in the component and drawn with SVG
+  paths and positioned elements. `scripts` is empty, so installing it is
+  `add chart` and nothing else — no npm package, no script tag.
+
+  Colours come from the `--chart-1` through `--chart-5` tokens that have been in
+  `input.css` since the beginning, so a series changes with the theme without
+  any JavaScript running again, and a project that themes those tokens themes
+  its charts along with everything else. Upstream writes a `<style>` block per
+  chart to do this; a template cannot inject CSS, so the properties are set on
+  the chart element instead.
+
+  Data reaches it as JSON in an attribute, the way `combobox` has always taken
+  its options: the view serialises, Django escapes, the browser decodes.
+  **Do not mark it safe** — the first quote would end the attribute.
+
+  Ticks and readings are formatted with the language Django has active for the
+  request rather than the visitor's browser, so a page that writes `3.000` in
+  its prose does not write `3,000` on its axis.
+
+- **`metric`.** A label, a value in tabular figures, and a change
+  that reads its own sign to pick its arrow and colour — on the server, before
+  any JavaScript runs. Not from the upstream registry; a dashboard is mostly
+  this card repeated, and the delta is the only part with a rule in it.
+
+  A sparkline is not a separate component. It is `chart` with no grid and no
+  axes: each axis claims its own room in the plot, so leaving them out gives
+  the line the whole width of the card.
+
+### Known limitation
+
+Nothing is drawn before Alpine starts. The paths come from the measured width,
+and there is no width before the page is laid out. Every charting library works
+this way, but the rest of this library renders on the server, so it is worth
+saying out loud.
+
+### Changed
+
+Nothing here changes the package. It changes what a contributor checks out.
+
+- **The documentation site is in this repository**, at `app/v1/docs/`, and it
+  is where you look at a component now. It renders `components/` out of your
+  checkout, so editing one and reloading the page is the whole loop, and a
+  component and its page are written in the same commit. The test suite fails
+  on a component with no page and no sidebar entry.
+
+- **`example/` is gone.** It existed because the documentation lived somewhere
+  a contributor could not open. It no longer does, and two playgrounds to keep
+  in step was one too many. `CONTRIBUTING.md` has the new commands.
+
 ## 1.7.0 — 2026-08-13
 
 The last three components of the registry, and none of them brings a
