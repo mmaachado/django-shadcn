@@ -27,7 +27,10 @@ the combobox has been taking all along.
         height: 0,
         hovered: -1,
         pointer: { x: 0, y: 0 },
-        padding: { top: 8, right: 8, bottom: 24, left: 44 },
+        // Each axis reserves its own room on the way in. Nothing is set aside
+        // for an axis that is not there, which is what lets the same component
+        // be a sparkline in a card.
+        padding: { top: 8, right: 8, bottom: 8, left: 8 },
 
         init() {
             const options = this.$el.dataset;
@@ -156,12 +159,15 @@ the combobox has been taking all along.
         barBox(at, entry) {
             const gap = this.band * 0.2;
             const slots = entry.stack ? 1 : Math.max(1, this.columns.length);
-            const width = (this.band - gap) / slots;
+            // Space between the bars of one category, so a group reads as
+            // several bars rather than one striped block.
+            const between = slots > 1 ? 4 : 0;
+            const width = (this.band - gap - between * (slots - 1)) / slots;
             const slot = entry.stack ? 0 : Math.max(0, this.columns.findIndex(other => other.at === entry.at));
             const base = this.baseAt(at, entry);
             const over = this.y(base + this.valueAt(at, entry.key));
             return {
-                x: this.inner.left + this.band * at + gap / 2 + width * slot,
+                x: this.inner.left + this.band * at + gap / 2 + (width + between) * slot,
                 y: over,
                 width: Math.max(0, width),
                 height: Math.max(0, this.y(base) - over),

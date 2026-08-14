@@ -1,11 +1,16 @@
-<c-vars class=""></c-vars>
+<c-vars class="" width="44"></c-vars>
 
+{% comment %}
+The axis claims its own room in the plot rather than the container reserving it
+in advance. Widen it when the numbers are long enough to collide with the grid.
+{% endcomment %}
 <div class="
     pointer-events-none absolute inset-0
     {% if class %}
         {{ class }}
     {% endif %}
-    " data-slot="chart-axis-y" {{ attrs }}>
+    " data-slot="chart-axis-y" data-width="{{ width }}"
+    x-init="padding.left = Number($el.dataset.width) || 0" {{ attrs }}>
     <template x-for="value in ticks" :key="value">
         <div class="absolute left-0 -translate-y-1/2 pr-2 text-right text-muted-foreground tabular-nums"
             x-bind:style="'top: ' + y(value) + 'px; width: ' + inner.left + 'px'"

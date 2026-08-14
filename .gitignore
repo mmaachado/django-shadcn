@@ -297,3 +297,14 @@ $RECYCLE.BIN/
 ## Node
 
 node_modules/
+
+## The documentation portal
+
+# Written by collectstatic. static/ itself is committed and is the input.
+app/v1/docs/staticfiles/
+app/v1/docs/media/
+
+# The interface catalogues are compiled here and committed, because the
+# deploy has no gettext to compile them at build time. Without this the
+# *.mo rule above drops them and every page falls back to English.
+!app/v1/docs/locale/**/*.mo

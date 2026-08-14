@@ -4,10 +4,9 @@ A component missing from the registry cannot be installed, and a registry
 entry without a directory makes `add` copy nothing while reporting success.
 """
 
+import importlib.util
 import re
 from pathlib import Path
-
-import pytest
 
 from django_shadcn.components import registry
 
@@ -20,6 +19,10 @@ COTTON_TAG = re.compile(r'<c-([a-zA-Z0-9_]+)')
 # Alpine directives that a plugin registers, mapped to the package shipping
 # it. Anything Alpine's core provides has no entry here.
 PLUGIN_DIRECTIVES = {'x-collapse': '@alpinejs/collapse'}
+
+# The portal ships from this repository, so what it documents is checkable
+# here rather than in someone else's checkout.
+DOCS = Path(__file__).resolve().parent.parent / 'app' / 'v1' / 'docs'
 
 
 def components_used_by(directory: Path) -> set[str]:
@@ -146,15 +149,34 @@ def test_every_component_has_an_index_template(
         assert index.is_file(), f'{component} has no index.html'
 
 
+def documented_slugs() -> set[str]:
+    """The slugs the sidebar lists, with the page names they resolve to."""
+    spec = importlib.util.spec_from_file_location(
+        'docs_nav', DOCS / 'docs' / 'nav.py'
+    )
+    nav = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(nav)
+    return {slug.replace('-', '_') for slug in nav.SLUGS}
+
+
+def test_every_component_has_a_page(component_names):
+    """A component nobody can find is a component nobody installs."""
+    pages = {page.stem.replace('-', '_') for page in DOCS.glob('content/*.md')}
+    missing = sorted(set(component_names) - pages)
+
+    assert not missing, f'components with no page in content/: {missing}'
+
+
+def test_every_component_is_in_the_sidebar(component_names):
+    """content/ holds the page; nav.py is the only thing that routes to it."""
+    missing = sorted(set(component_names) - documented_slugs())
+
+    assert not missing, f'components missing from nav.py: {missing}'
+
+
 def test_install_commands_in_the_docs_name_real_components():
     """The docs shipped an `add toggle-group` that the CLI rejected."""
-    repo_root = Path(__file__).resolve().parent.parent
-    docs = repo_root / 'docs.django-shadcn' / 'content'
-
-    if not docs.is_dir():
-        pytest.skip(
-            'the docs are a separate repository and are not checked out'
-        )
+    docs = DOCS / 'content'
 
     commands = re.compile(r'django_shadcn@latest add ([a-z0-9_\- ]+)')
     wrong = []

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ meta.title }} — shadcn/ui for Django{% endblock %}
+
+{% block body %}
+<div class="mx-auto w-full min-w-0 max-w-3xl">
+    <div class="space-y-2 pb-8 pt-4 md:pb-10">
+        <h1 class="scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl">{{ meta.title }}</h1>
+        <p class="text-lg text-muted-foreground text-balance">{{ meta.description }}</p>
+    </div>
+
+    <div class="docs-content">
+        {{ content }}
+    </div>
+</div>
+{% endblock %}
