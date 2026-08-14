@@ -304,6 +304,11 @@ node_modules/
 app/v1/docs/staticfiles/
 app/v1/docs/media/
 
+# Written by scripts/sync_components.py during the deploy build, because a
+# deploy has no library above it. Committing it is how the pages once spent a
+# release rendering components nobody had touched.
+app/v1/docs/components/
+
 # The interface catalogues are compiled here and committed, because the
 # deploy has no gettext to compile them at build time. Without this the
 # *.mo rule above drops them and every page falls back to English.

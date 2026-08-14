@@ -78,22 +78,32 @@ ROOT_URLCONF = "docs.urls"
 # they can never drift from what the CLI installs. The library is looked for
 # rather than counted up to: a fixed number of parents was right while this
 # sat directly in the repository root and stopped being right the moment it
-# moved. Nothing is silent here on purpose — a copy to fall back on is how
-# the pages once spent a release rendering components nobody had touched in
-# weeks.
-def _library_components():
+# moved.
+#
+# A deploy has no library above it — the host builds from this directory and
+# bundles only what is inside it — so scripts/sync_components.py copies the
+# components in during the build and the copy answers instead. The library is
+# checked first and the copy is gitignored, so a checkout cannot end up
+# rendering it: that is how the pages once spent a release showing components
+# nobody had touched in weeks.
+def _components():
     for candidate in BASE_DIR.parents:
         components = candidate / "components"
         if components.is_dir() and (candidate / "pyproject.toml").is_file():
             return components
 
+    built = BASE_DIR / "components"
+
+    if built.is_dir():
+        return built
+
     raise ImproperlyConfigured(
-        f"no library components above {BASE_DIR}: this project runs from "
-        "inside the django-shadcn checkout and renders its components/"
+        f"no components for {BASE_DIR}: run this from inside the "
+        "django-shadcn checkout, or run scripts/sync_components.py first"
     )
 
 
-COMPONENTS_DIR = _library_components()
+COMPONENTS_DIR = _components()
 
 COTTON_DIR = "components"
 
