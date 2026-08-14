@@ -1,0 +1,102 @@
+<c-vars class="" data_key="value" name_key="name" donut="false" thickness="60"></c-vars>
+
+{% comment %}
+Polar, so it carries its own measurement rather than going inside the plot, and
+the arc maths lives here because nothing cartesian needs it.
+
+Each slice is its own overlaid drawing surface holding a single path. One
+surface with a path per slice would need a repeat inside SVG, which renders
+exactly one slice; this way the repeat stays in HTML, and each slice keeps a
+hit area of its own for the tooltip.
+{% endcomment %}
+<div class="
+    relative w-full min-h-0 flex-1
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="chart-pie"
+    data-key="{{ data_key }}"
+    data-name-key="{{ name_key }}"
+    data-donut="{{ donut }}"
+    data-thickness="{{ thickness }}"
+    x-data="{
+        key: 'value',
+        donut: false,
+        thickness: 60,
+        size: 0,
+
+        init() {
+            const options = this.$el.dataset;
+            this.key = options.key;
+            this.nameKey = options.nameKey;
+            this.donut = options.donut === 'true';
+            this.thickness = Number(options.thickness) || 0;
+            this.gauge();
+            new ResizeObserver(() => this.gauge()).observe(this.$el);
+        },
+
+        gauge() {
+            const box = this.$el.getBoundingClientRect();
+            this.width = box.width;
+            this.height = box.height;
+            this.size = Math.min(box.width, box.height);
+        },
+
+        get total() {
+            return this.rows.reduce((sum, row) => sum + (Number(row[this.key]) || 0), 0);
+        },
+
+        get radius() { return Math.max(0, this.size / 2 - 4); },
+        get hole() { return this.donut ? Math.max(0, this.radius - this.thickness) : 0; },
+
+        // Where each slice starts, so a slice never has to add up the ones
+        // before it while it is being drawn.
+        get slices() {
+            let turned = -Math.PI / 2;
+            return this.rows.map((row, at) => {
+                const value = Number(row[this.key]) || 0;
+                const sweep = this.total ? (value / this.total) * Math.PI * 2 : 0;
+                const slice = { at, name: row[this.nameKey], value, from: turned, to: turned + sweep };
+                turned += sweep;
+                return slice;
+            });
+        },
+
+        wedge(slice) {
+            const cx = this.width / 2;
+            const cy = this.height / 2;
+            const outer = this.radius;
+            const inner = this.hole;
+            // A whole circle has no arc: both ends land on the same point and
+            // the path collapses to nothing.
+            const sweep = Math.min(slice.to - slice.from, Math.PI * 2 - 0.0001);
+            const to = slice.from + sweep;
+            const long = sweep > Math.PI ? 1 : 0;
+            const point = (angle, at) => (cx + Math.cos(angle) * at) + ' ' + (cy + Math.sin(angle) * at);
+
+            if (!inner) {
+                return 'M ' + cx + ' ' + cy
+                    + ' L ' + point(slice.from, outer)
+                    + ' A ' + outer + ' ' + outer + ' 0 ' + long + ' 1 ' + point(to, outer) + ' Z';
+            }
+
+            return 'M ' + point(slice.from, outer)
+                + ' A ' + outer + ' ' + outer + ' 0 ' + long + ' 1 ' + point(to, outer)
+                + ' L ' + point(to, inner)
+                + ' A ' + inner + ' ' + inner + ' 0 ' + long + ' 0 ' + point(slice.from, inner) + ' Z';
+        },
+    }"
+    {{ attrs }}>
+    <template x-for="slice in slices" :key="slice.name">
+        <svg class="absolute inset-0 h-full w-full">
+            <path class="stroke-background transition-opacity" stroke-width="2"
+                x-bind:d="wedge(slice)"
+                x-bind:fill="colourOf(slice.name)"
+                x-bind:class="hovered < 0 || hovered === slice.at ? 'opacity-100' : 'opacity-60'"
+                x-on:pointerenter="hovered = slice.at"
+                x-on:pointerleave="hovered = -1"></path>
+        </svg>
+    </template>
+    {{ slot }}
+</div>

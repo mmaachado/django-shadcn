@@ -1,0 +1,31 @@
+<c-vars class="" value="" label=""></c-vars>
+
+{% comment %}
+The sign in the value picks the arrow, on the server, so the card reads
+correctly before any JavaScript runs. There is no green in the palette and this
+is not the place to invent one: down is destructive, up is plain foreground,
+and a dashboard that wants green passes it in as a class.
+{% endcomment %}
+<div class="
+    flex items-center gap-1 text-xs font-medium
+    {% if '-' in value %}text-destructive
+    {% elif value == '0' %}text-muted-foreground
+    {% else %}text-foreground
+    {% endif %}
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="metric-delta" {{ attrs }}>
+    {% if '-' in value %}
+        <c-icon name="trending-down" class="size-4" />
+    {% elif value == '0' %}
+        <c-icon name="minus" class="size-4" />
+    {% else %}
+        <c-icon name="trending-up" class="size-4" />
+    {% endif %}
+    <span class="tabular-nums">{{ value }}</span>
+    {% if label %}
+        <span class="font-normal text-muted-foreground">{{ label }}</span>
+    {% endif %}
+    {{ slot }}
+</div>

@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "description": "Tailwind for the example project. The library itself ships no JavaScript.",
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.1.0",
-    "tailwindcss": "^4.1.0",
-    "tw-animate-css": "^1.2.5"
-  }
-}

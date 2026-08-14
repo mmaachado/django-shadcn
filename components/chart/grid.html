@@ -1,0 +1,14 @@
+<c-vars class=""></c-vars>
+
+<div class="
+    pointer-events-none absolute inset-0
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="chart-grid" {{ attrs }}>
+    <template x-for="value in ticks" :key="value">
+        <div class="absolute border-t border-dashed border-border/50"
+            x-bind:style="'left: ' + inner.left + 'px; width: ' + inner.width + 'px; top: ' + y(value) + 'px'"></div>
+    </template>
+    {{ slot }}
+</div>

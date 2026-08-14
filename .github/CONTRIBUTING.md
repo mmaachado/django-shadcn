@@ -16,9 +16,9 @@ into your project, so you own the components and can change them freely.
 
 ```
 .
+├── app/v1/docs/         the documentation site, published from this repository
 ├── components/          the cotton components, one directory per component
 │   └── input.css        Tailwind theme: palette, tokens and fonts
-├── example/             a Django project that renders them, for your own eyes
 ├── src/django_shadcn/   the Typer CLI
 └── tests/
 ```
@@ -30,6 +30,8 @@ into your project, so you own the components and can change them freely.
 | `src/django_shadcn/list.py`       | `list` command                                     |
 | `src/django_shadcn/components.py` | the registry: every component and its dependencies |
 | `components/<name>/index.html`    | what `<c-name>` renders                            |
+| `app/v1/docs/content/<name>.md`   | the page documenting it                            |
+| `app/v1/docs/docs/nav.py`         | the sidebar, and the only route the site has       |
 
 ## Getting started
 
@@ -46,28 +48,29 @@ Run the CLI from the checkout with `uv run django_shadcn list`.
 
 ## Seeing your work
 
-`example/` is a Django project small enough to read in one sitting. It renders
-`example/templates/index.html` against the components in your checkout rather
-than a copy of them, so editing one and reloading is the whole loop. Put the
-component you are working on in that template.
-
-It needs a stylesheet, and the interactive components need Alpine. Both are
-built once and ignored by git:
+The documentation site in `app/v1/docs/` renders the components in your
+checkout, not a copy of them, so editing one and reloading the page is the
+whole loop. It is a Django project of its own, and it runs on Python 3.14:
 
 ```bash
+cd app/v1/docs
+uv sync
+uv run python manage.py runserver
+```
+
+Alpine and htmx are committed under `static/js/`, so nothing has to be
+downloaded. The stylesheet is built by the Tailwind CLI, and a class Tailwind
+does not recognise is dropped from the build without an error — which is why a
+new one is worth watching appear in the output rather than trusting by eye:
+
+```bash
+cd app/v1/docs
 npm install
-npx @tailwindcss/cli -i example/input.css -o example/static/css/output.css --watch
-
-mkdir -p example/static/js
-curl -Lo example/static/js/alpine.min.js https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js
-curl -Lo example/static/js/collapse.min.js https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3/dist/cdn.min.js
+npx @tailwindcss/cli -i assets/input.css -o static/css/output.css --watch
 ```
 
-Then, in another terminal:
-
-```bash
-uv run python example/manage.py runserver
-```
+Commit the rebuilt `static/css/output.css` along with your component. The site
+is served from the file, not compiled on deploy.
 
 ## Adding a component
 
@@ -75,10 +78,6 @@ Components are written with Tailwind CSS 4.1 or newer and Alpine.js. Markup,
 utility classes and variant names follow the upstream shadcn/ui component,
 adapted to cotton syntax. `components/input.css` is the source of the palette
 and fonts — do not introduce new design tokens.
-
-A class Tailwind does not recognise is dropped from the build without an error,
-so a new one is worth checking against the CLI rather than by eye — run the
-build above and look for the class in the output it writes.
 
 Every component takes variants through `<c-vars>` with defaults, applies them
 with `{% if %}` inside the class list, and forwards both `{{ attrs }}` and the
@@ -92,19 +91,22 @@ Icons are always `<c-icon name="...">`, never an inline `<svg>`. The subset in
 `scripts/generate_icons.py` — add one by running the script, not by pasting
 markup.
 
-Two things to touch:
+Four things to touch:
 
 1. `components/<name>/index.html`, plus any subcomponents
 2. an entry in `src/django_shadcn/components.py`, naming the components it uses
    and any Alpine plugin its markup needs
+3. a page in `app/v1/docs/content/<name>.md`
+4. an entry in `app/v1/docs/docs/nav.py`
 
 The test suite fails if a component is missing from the registry, if it uses
-another component without declaring it as a dependency, or if its markup needs
-an Alpine plugin the registry does not declare.
+another component without declaring it as a dependency, if its markup needs an
+Alpine plugin the registry does not declare, or if it has no page and no
+sidebar entry.
 
-The documentation site is maintained separately by the maintainers, and a new
-component is published there in the same release. Say in your pull request what
-the component is for and which variants it takes, and that turns into its page.
+The last two are what makes the component findable, and they are written in the
+same pull request as the component itself — documentation written later is
+documentation that describes an earlier version.
 
 ## Tests and linting
 
