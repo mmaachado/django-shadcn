@@ -101,7 +101,8 @@ Directory names use `snake_case`, because the directory name is the tag name:
 Icons are always `<c-icon name="...">`, never an inline `<svg>`. The subset in
 `components/icon/` is generated from [Lucide](https://lucide.dev) by
 `scripts/generate_icons.py` — add one by running the script, not by pasting
-markup.
+markup. A weekly workflow regenerates the subset against the latest Lucide
+release and opens an issue when a shape changes.
 
 Four things to touch:
 
