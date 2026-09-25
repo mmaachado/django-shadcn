@@ -93,13 +93,13 @@
     <c-popover.trigger>
       <c-button variant="outline" role="combobox" x-bind:aria-expanded="open" class="{{ width }} justify-between">
         <span x-text="buttonText"></span>
-        <c-icon name="chevrons-up-down" class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        <c-icon name="chevrons-up-down" class="ms-2 h-4 w-4 shrink-0 opacity-50" />
       </c-button>
     </c-popover.trigger>
     <c-popover.content class="{{ width }} p-0">
       <!-- Search input -->
       <div class="flex items-center border-b px-3">
-        <c-icon name="search" class="mr-2 h-4 w-4 shrink-0 opacity-50" />
+        <c-icon name="search" class="me-2 h-4 w-4 shrink-0 opacity-50" />
         <input x-model="search" x-ref="searchInput" type="text" placeholder="{{ placeholder }}"
           class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground"
           @keydown.down.prevent="highlightedIndex = (highlightedIndex + 1) % filteredOptions.length; scrollToHighlighted()"
@@ -122,7 +122,7 @@
               'bg-accent text-accent-foreground': value === option.value,
               'bg-muted text-accent-foreground': highlightedIndex === index && value !== option.value
             }">
-            <c-icon name="check" class="mr-2 h-4 w-4"
+            <c-icon name="check" class="me-2 h-4 w-4"
               x-bind:class="value === option.value ? 'opacity-100' : 'opacity-0'" />
             <span x-text="option.label"></span>
           </div>

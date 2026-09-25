@@ -5,7 +5,7 @@
     text-sm text-muted-foreground [&_svg:not([class*='size-'])]:size-4
     [a]:underline [a]:underline-offset-3 [a]:hover:text-foreground
 
-    {% if variant == 'separator' %}before:mr-1 before:h-px before:min-w-0 before:flex-1 before:bg-border after:ml-1 after:h-px after:min-w-0 after:flex-1 after:bg-border
+    {% if variant == 'separator' %}before:me-1 before:h-px before:min-w-0 before:flex-1 before:bg-border after:ms-1 after:h-px after:min-w-0 after:flex-1 after:bg-border
     {% elif variant == 'border' %}border-b border-border pb-2
     {% endif %}
 
