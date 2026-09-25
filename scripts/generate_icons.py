@@ -8,16 +8,21 @@ Run it after adding an icon to a component:
 
     python scripts/generate_icons.py
 
+Set LUCIDE_VERSION to try another release without editing the file:
+
+    LUCIDE_VERSION=1.48.0 python scripts/generate_icons.py
+
 Needs network access, so it stays out of pull request CI.
 """
 
+import os
 import re
 import sys
 import urllib.error
 import urllib.request
 from pathlib import Path
 
-LUCIDE_VERSION = '1.28.0'
+LUCIDE_VERSION = os.environ.get('LUCIDE_VERSION', '1.28.0')
 ICON_URL = 'https://unpkg.com/lucide-static@{version}/icons/{name}.svg'
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
