@@ -1,9 +1,10 @@
-@import "tailwindcss";
+/* Automatic detection is off: it scans whatever directory the CLI runs from,
+   so a class name written as test data would end up in the stylesheet. Every
+   directory a class can come from is named below instead, relative to this
+   file, four levels below the repository root. */
+@import "tailwindcss" source(none);
 @import "tw-animate-css";
 
-/* Automatic detection stops at the repository root and skips anything
-   gitignored, so every directory a class can come from is named here.
-   These paths are relative to this file, four levels below the root. */
 @source "../templates";
 @source "../content/**/*.md";
 @source "../../../../components";

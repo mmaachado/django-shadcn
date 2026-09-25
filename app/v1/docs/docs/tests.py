@@ -10,6 +10,8 @@ from django.test import SimpleTestCase
 from django.urls import reverse
 from django.utils import translation
 
+from scripts.check_stylesheet import classes
+
 from .nav import NAV
 
 
@@ -32,3 +34,25 @@ class PageRenderTests(SimpleTestCase):
                     with self.subTest(url=url):
                         response = self.client.get(url)
                         self.assertEqual(response.status_code, 200)
+
+
+class StylesheetClassTests(SimpleTestCase):
+    def test_reads_escaped_class_names(self):
+        css = (
+            ".hover\\:bg-accent:hover { margin: 0.5rem; }\n"
+            ".w-1\\/2 { width: 50%; }\n"
+            ".\\[\\&\\>svg\\]\\:size-4>svg { width: 1rem; }\n"
+            ".\\32 xl\\:flex { display: flex; }\n"
+            ".\\32 xl\\:grid { display: grid; }\n"
+        )
+
+        self.assertEqual(
+            classes(css),
+            {
+                "hover\\:bg-accent",
+                "w-1\\/2",
+                "\\[\\&\\>svg\\]\\:size-4",
+                "\\32 xl\\:flex",
+                "\\32 xl\\:grid",
+            },
+        )
