@@ -127,3 +127,35 @@ jobs:
       - name: Render every page
         working-directory: ${{ runner.temp }}/portal
         run: uv run python manage.py test
+
+  # A Tailwind patch reformats the output without changing what it emits, so
+  # this compares class names, not bytes.
+  stylesheet:
+    name: Stylesheet
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/v1/docs
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: app/v1/docs/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the stylesheet
+        run: >
+          npx @tailwindcss/cli -i assets/input.css
+          -o "$RUNNER_TEMP/output.css"
+
+      - name: Compare class names
+        run: >
+          python3 scripts/check_stylesheet.py static/css/output.css
+          "$RUNNER_TEMP/output.css"
