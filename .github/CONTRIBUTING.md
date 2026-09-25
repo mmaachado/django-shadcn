@@ -80,7 +80,9 @@ npx @tailwindcss/cli -i assets/input.css -o static/css/output.css --watch
 ```
 
 Commit the rebuilt `static/css/output.css` along with your component. The site
-is served from the file, not compiled on deploy.
+is served from the file, not compiled on deploy. CI rebuilds it too, and fails
+if the committed file is missing a class the build has, or still has one
+nothing uses anymore.
 
 ## Adding a component
 
