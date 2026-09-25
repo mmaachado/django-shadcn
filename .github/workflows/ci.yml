@@ -22,7 +22,7 @@ jobs:
 
       - name: Install uv
         # No floating major tag past v7; pin the exact release.
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.12"
           enable-cache: true
@@ -48,7 +48,7 @@ jobs:
 
       - name: Install uv
         # No floating major tag past v7; pin the exact release.
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
@@ -79,7 +79,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.12"
           enable-cache: true
@@ -91,3 +91,71 @@ jobs:
           --with "django${{ matrix.django }}"
           --with pytest
           python -m pytest tests/test_cotton.py
+
+  # The deploy bundles only app/v1/docs, with no library above it, so the
+  # pages there render from the copy the sync script makes. Inside the
+  # checkout settings.py finds the library first and never reads that copy,
+  # so the portal is tested from outside the repository.
+  portal:
+    name: Documentation portal
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.14"
+          enable-cache: true
+          cache-dependency-glob: app/v1/docs/uv.lock
+
+      - name: Sync components and copy the portal out
+        working-directory: app/v1/docs
+        run: |
+          python3 scripts/sync_components.py
+          cp -r . "$RUNNER_TEMP/portal"
+
+      - name: Install dependencies
+        working-directory: ${{ runner.temp }}/portal
+        run: uv sync --locked
+
+      - name: Collect static files
+        working-directory: ${{ runner.temp }}/portal
+        run: uv run python manage.py collectstatic --noinput
+
+      - name: Render every page
+        working-directory: ${{ runner.temp }}/portal
+        run: uv run python manage.py test
+
+  # A Tailwind patch reformats the output without changing what it emits, so
+  # this compares class names, not bytes.
+  stylesheet:
+    name: Stylesheet
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/v1/docs
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: app/v1/docs/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the stylesheet
+        run: >
+          npx @tailwindcss/cli -i assets/input.css
+          -o "$RUNNER_TEMP/output.css"
+
+      - name: Compare class names
+        run: >
+          python3 scripts/check_stylesheet.py static/css/output.css
+          "$RUNNER_TEMP/output.css"

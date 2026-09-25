@@ -58,6 +58,16 @@ uv sync
 uv run python manage.py runserver
 ```
 
+The portal's test requests every page listed in `nav.py`, in every language,
+and fails on any response other than a 200. Collect the static files first.
+CI runs these too:
+
+```bash
+cd app/v1/docs
+uv run python manage.py collectstatic --noinput
+uv run python manage.py test
+```
+
 Alpine and htmx are committed under `static/js/`, so nothing has to be
 downloaded. The stylesheet is built by the Tailwind CLI, and a class Tailwind
 does not recognise is dropped from the build without an error — which is why a
@@ -70,7 +80,9 @@ npx @tailwindcss/cli -i assets/input.css -o static/css/output.css --watch
 ```
 
 Commit the rebuilt `static/css/output.css` along with your component. The site
-is served from the file, not compiled on deploy.
+is served from the file, not compiled on deploy. CI rebuilds it too, and fails
+if the committed file is missing a class the build has, or still has one
+nothing uses anymore.
 
 ## Adding a component
 
@@ -89,7 +101,8 @@ Directory names use `snake_case`, because the directory name is the tag name:
 Icons are always `<c-icon name="...">`, never an inline `<svg>`. The subset in
 `components/icon/` is generated from [Lucide](https://lucide.dev) by
 `scripts/generate_icons.py` — add one by running the script, not by pasting
-markup.
+markup. A weekly workflow regenerates the subset against the latest Lucide
+release and opens an issue when a shape changes.
 
 Four things to touch:
 
