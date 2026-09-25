@@ -128,8 +128,9 @@ jobs:
         working-directory: ${{ runner.temp }}/portal
         run: uv run python manage.py test
 
-  # A Tailwind patch reformats the output without changing what it emits, so
-  # this compares class names, not bytes.
+  # The lock pins Tailwind, so a fresh build matches the committed file. Class
+  # names are compared first because they make the readable report; the CSS
+  # itself is compared after, to catch a changed declaration.
   stylesheet:
     name: Stylesheet
     runs-on: ubuntu-latest
@@ -155,7 +156,7 @@ jobs:
           npx @tailwindcss/cli -i assets/input.css
           -o "$RUNNER_TEMP/output.css"
 
-      - name: Compare class names
+      - name: Compare with the committed stylesheet
         run: >
           python3 scripts/check_stylesheet.py static/css/output.css
           "$RUNNER_TEMP/output.css"
