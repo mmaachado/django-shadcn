@@ -58,6 +58,16 @@ uv sync
 uv run python manage.py runserver
 ```
 
+The portal's test requests every page listed in `nav.py`, in every language,
+and fails on any response other than a 200. Collect the static files first.
+CI runs these too:
+
+```bash
+cd app/v1/docs
+uv run python manage.py collectstatic --noinput
+uv run python manage.py test
+```
+
 Alpine and htmx are committed under `static/js/`, so nothing has to be
 downloaded. The stylesheet is built by the Tailwind CLI, and a class Tailwind
 does not recognise is dropped from the build without an error — which is why a
