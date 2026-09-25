@@ -91,3 +91,39 @@ jobs:
           --with "django${{ matrix.django }}"
           --with pytest
           python -m pytest tests/test_cotton.py
+
+  # The deploy bundles only app/v1/docs, with no library above it, so the
+  # pages there render from the copy the sync script makes. Inside the
+  # checkout settings.py finds the library first and never reads that copy,
+  # so the portal is tested from outside the repository.
+  portal:
+    name: Documentation portal
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.14"
+          enable-cache: true
+          cache-dependency-glob: app/v1/docs/uv.lock
+
+      - name: Sync components and copy the portal out
+        working-directory: app/v1/docs
+        run: |
+          python3 scripts/sync_components.py
+          cp -r . "$RUNNER_TEMP/portal"
+
+      - name: Install dependencies
+        working-directory: ${{ runner.temp }}/portal
+        run: uv sync --locked
+
+      - name: Collect static files
+        working-directory: ${{ runner.temp }}/portal
+        run: uv run python manage.py collectstatic --noinput
+
+      - name: Render every page
+        working-directory: ${{ runner.temp }}/portal
+        run: uv run python manage.py test
