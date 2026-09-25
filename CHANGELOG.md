@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.9.0 — Unreleased
+
+### Changed
+
+- **Logical margins and padding.** The components use `ms-`/`me-`/`ps-`/`pe-`
+  where they used `ml-`/`mr-`/`pl-`/`pr-`, so under `dir="rtl"` the spacing
+  moves to the mirrored side. Under `dir="ltr"` both compute to the same side,
+  and nothing changes.
+
+  Two cases keep the physical utility. The value axis of `chart` keeps its
+  `pr-2`, because the plot does not mirror. The gap in `tooltip` and
+  `hover_card` stays on the side the `side` prop names, `left` or `right`.
+
 ## 1.8.0 — 2026-08-14
 
 Charts, and the last component the registry was missing. Parity with shadcn/ui

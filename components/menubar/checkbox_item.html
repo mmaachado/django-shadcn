@@ -2,7 +2,7 @@
 
 <div role="menuitemcheckbox" x-data="{ checked: {% if checked == 'true' %}true{% else %}false{% endif %} }" @click="checked = !checked"
     x-bind:aria-checked="checked" x-bind:data-state="checked ? 'checked' : 'unchecked'" class="
-    relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8
+    relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pe-2 ps-8
     text-sm outline-hidden select-none
     focus:bg-accent focus:text-accent-foreground
     hover:bg-accent hover:text-accent-foreground
