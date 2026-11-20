@@ -111,6 +111,32 @@ def test_the_message_scroller_stays_hidden_until_it_opens(components_root):
     )
 
 
+def test_tabs_report_the_selected_tab_and_take_the_arrow_keys(
+    components_root,
+):
+    """A screen reader could not tell which tab was open, nor which panel
+    belonged to which tab, and only Tab moved between them."""
+
+    def read(name):
+        return (components_root / 'tabs' / name).read_text(encoding='utf-8')
+
+    root, trigger, panel = (
+        read('index.html'),
+        read('trigger.html'),
+        read('content.html'),
+    )
+
+    assert "x-id=\"['tab', 'tabpanel']\"" in root
+    assert 'x-bind:aria-selected="(activeTab === own).toString()"' in trigger
+    assert 'x-bind:id="$id(\'tab\', own)"' in trigger
+    assert 'x-bind:aria-controls="$id(\'tabpanel\', own)"' in trigger
+    assert 'x-bind:tabindex="reachable($el) ? 0 : -1"' in trigger
+    assert 'x-bind:id="$id(\'tabpanel\', own)"' in panel
+    assert 'x-bind:aria-labelledby="$id(\'tab\', own)"' in panel
+    assert '@keydown="move($event)"' in read('list.html')
+    assert "direction === 'rtl'" in root
+
+
 # A name declared in <c-vars> and never read does nothing, yet the docs'
 # generated reference lists it as an attribute. The ones below are declared on
 # purpose: declaring a name keeps cotton from writing it onto the element.
