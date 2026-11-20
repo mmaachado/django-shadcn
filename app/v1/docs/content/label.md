@@ -7,7 +7,7 @@ description.es: Una etiqueta accesible asociada a un control.
 
 <c-docs.demo-section class="min-h-[350px]">
 
-<div class="grid w-full max-w-sm gap-2 text-left">
+<div class="grid w-full max-w-sm gap-2 text-start">
             <c-label for="email">Email</c-label>
             <c-input id="email" type="email" placeholder="you@example.com" />
         </div>

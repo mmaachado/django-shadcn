@@ -6,7 +6,7 @@ description.es: El número grande del que está hecho un dashboard de KPI — un
 ---
 
 <c-docs.demo-section>
-<div class="grid w-full gap-6 text-left md:grid-cols-3">
+<div class="grid w-full gap-6 text-start md:grid-cols-3">
 <c-metric>
 <c-metric.label>Revenue</c-metric.label>
 <c-metric.value>$45,231.89</c-metric.value>

@@ -6,7 +6,7 @@ description.es: Un panel que se expande y se contrae.
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<c-collapsible class="w-[350px] text-left">
+<c-collapsible class="w-[350px] text-start">
 <div class="flex items-center justify-between gap-4 px-1">
 <h4 class="text-sm font-semibold">@mmaachado starred 3 repositories</h4>
 <c-collapsible.trigger class="inline-flex size-8 items-center justify-center rounded-md hover:bg-accent">
@@ -35,7 +35,7 @@ uvx django_shadcn@latest add collapsible
 ## Usage
 
 <c-docs.demo-section>
-<c-collapsible class="w-[350px] text-left">
+<c-collapsible class="w-[350px] text-start">
 <c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
 Show details
 </c-collapsible.trigger>
@@ -65,7 +65,7 @@ without being told about each other. Start it expanded with
 ### Open by default
 
 <c-docs.demo-section>
-<c-collapsible default_open="true" class="w-[350px] text-left">
+<c-collapsible default_open="true" class="w-[350px] text-start">
 <c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
 Already open
 </c-collapsible.trigger>

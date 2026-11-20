@@ -6,7 +6,7 @@ description.es: El contenedor de scroll de una conversación — la parte que de
 ---
 
 <c-docs.demo-section class="min-h-[460px]">
-<c-message-scroller.provider default_scroll_position="last-anchor" class="block h-[380px] w-full max-w-md text-left">
+<c-message-scroller.provider default_scroll_position="last-anchor" class="block h-[380px] w-full max-w-md text-start">
 <c-message-scroller class="rounded-lg border bg-background">
 <c-message-scroller.viewport class="p-4">
 <c-message-scroller.content class="gap-4">
@@ -112,7 +112,7 @@ row, or a channels consumer doing it — none of them has to tell the component
 anything.
 
 <c-docs.demo-section class="min-h-[460px]">
-<c-message-scroller.provider class="block h-[380px] w-full max-w-md text-left">
+<c-message-scroller.provider class="block h-[380px] w-full max-w-md text-start">
 <div class="flex h-full flex-col gap-3">
 <c-message-scroller class="rounded-lg border bg-background">
 <c-message-scroller.viewport class="p-4">
@@ -254,7 +254,7 @@ The same transcript, opened three ways:
 <c-docs.demo-section class="min-h-[380px]">
 <div class="grid w-full gap-4 md:grid-cols-3">
 
-<div class="flex flex-col gap-2 text-left">
+<div class="flex flex-col gap-2 text-start">
 <p class="font-mono text-xs text-muted-foreground">start</p>
 <c-message-scroller.provider default_scroll_position="start" class="block h-[240px]">
 <c-message-scroller class="rounded-lg border bg-background">
@@ -272,7 +272,7 @@ The same transcript, opened three ways:
 </c-message-scroller.provider>
 </div>
 
-<div class="flex flex-col gap-2 text-left">
+<div class="flex flex-col gap-2 text-start">
 <p class="font-mono text-xs text-muted-foreground">end</p>
 <c-message-scroller.provider default_scroll_position="end" class="block h-[240px]">
 <c-message-scroller class="rounded-lg border bg-background">
@@ -290,7 +290,7 @@ The same transcript, opened three ways:
 </c-message-scroller.provider>
 </div>
 
-<div class="flex flex-col gap-2 text-left">
+<div class="flex flex-col gap-2 text-start">
 <p class="font-mono text-xs text-muted-foreground">last-anchor</p>
 <c-message-scroller.provider default_scroll_position="last-anchor" class="block h-[240px]">
 <c-message-scroller class="rounded-lg border bg-background">

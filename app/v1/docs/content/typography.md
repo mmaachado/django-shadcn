@@ -7,7 +7,7 @@ description.es: Estilos para títulos, párrafos, listas y texto en línea.
 
 <c-docs.demo-section class="min-h-[350px]">
 
-<div class="text-left">
+<div class="text-start">
             <c-typography.h2 class="mt-0">The Joke Tax</c-typography.h2>
             <c-typography.p>
                 The king's subjects were not amused. They grumbled and complained,

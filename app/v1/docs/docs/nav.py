@@ -47,6 +47,7 @@ NAV = [
             ("data-table", "Data Table"),
             ("date-picker", "Date Picker"),
             ("dialog", "Dialog"),
+            ("direction", "Direction"),
             ("drawer", "Drawer"),
             ("dropdown-menu", "Dropdown Menu"),
             ("empty", "Empty"),

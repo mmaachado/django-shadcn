@@ -11,7 +11,7 @@ description.es: Una tarjeta de vista previa que abre al pasar el ratón por un e
 <a href="#" class="text-sm font-medium underline underline-offset-4">@mmaachado</a>
 </c-hover-card.trigger>
 <c-hover-card.content>
-<div class="flex gap-4 text-left">
+<div class="flex gap-4 text-start">
 <c-avatar>
 <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
 <c-avatar.fallback>MM</c-avatar.fallback>
@@ -39,7 +39,7 @@ uvx django_shadcn@latest add hover_card
 <a href="#" class="text-sm font-medium underline underline-offset-4">Hover this link</a>
 </c-hover-card.trigger>
 <c-hover-card.content>
-<p class="text-sm text-muted-foreground text-left">Enough room for a sentence or two of context.</p>
+<p class="text-sm text-muted-foreground text-start">Enough room for a sentence or two of context.</p>
 </c-hover-card.content>
 </c-hover-card>
 </c-docs.demo-section>

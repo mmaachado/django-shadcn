@@ -6,7 +6,7 @@ description.es: Un conjunto de opciones donde solo se puede elegir una.
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<c-radio-group class="text-left">
+<c-radio-group class="text-start">
 <label class="flex items-center gap-3">
 <c-radio-group.item name="plan" value="free" checked />
 <span class="text-sm font-medium">Free</span>
@@ -31,7 +31,7 @@ uvx django_shadcn@latest add radio_group
 ## Usage
 
 <c-docs.demo-section>
-<c-radio-group class="text-left">
+<c-radio-group class="text-start">
 <label class="flex items-center gap-3">
 <c-radio-group.item name="delivery" value="standard" checked />
 <span class="text-sm font-medium">Standard</span>
@@ -77,7 +77,7 @@ exclusivity, the keyboard and the form submission.
 ### Disabled
 
 <c-docs.demo-section>
-<c-radio-group class="text-left">
+<c-radio-group class="text-start">
 <label class="flex items-center gap-3">
 <c-radio-group.item name="tier" value="one" checked disabled />
 <span class="text-sm font-medium text-muted-foreground">Locked in</span>
