@@ -82,6 +82,37 @@ vontade.
 </c-docs.example>
 
 :::en
+## RTL
+
+A vertical area scrolls the same in either direction, and a horizontal one
+starts at the right under `dir="rtl"`, as the browser does for any scrolling
+box.
+
+## Accessibility
+
+It is a native scrolling box, so the wheel, the trackpad and touch work. A
+keyboard can scroll it only when it, or something inside, has focus: give it
+`tabindex="0"` and an `aria-label` when nothing inside is focusable.
+
+## API reference
+:::pt-br
+## RTL
+
+Uma área vertical rola igual nas duas direções, e uma horizontal começa à
+direita sob `dir="rtl"`, como o navegador faz com qualquer caixa rolável.
+
+## Acessibilidade
+
+É uma caixa de rolagem nativa, então a roda, o trackpad e o toque funcionam. O
+teclado só consegue rolá-la quando ela, ou algo dentro dela, tem foco: dê a
+ela `tabindex="0"` e um `aria-label` quando nada dentro for focável.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="scroll-area" />
+
+:::en
 ## Notes
 
 Radix hides the native scrollbar and draws its own with JavaScript, which is
@@ -98,11 +129,3 @@ estilizada: a rolagem com embalo e o comportamento da plataforma continuam
 intactos, e a troca é que o Firefox só respeita a largura e a cor, não o
 puxador arredondado.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="scroll-area" />

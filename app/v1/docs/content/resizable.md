@@ -160,6 +160,58 @@ deixe o grupo preenchê-lo.
 </c-docs.example>
 
 :::en
+### Handle
+
+`with_handle="true"` draws a grip on the divider, so it reads as something to drag.
+:::pt-br
+### Alça
+
+`with_handle="true"` desenha um puxador no divisor, para ele parecer algo que se arrasta.
+:::
+
+<c-docs.example>
+<div class="h-[180px] w-[420px] rounded-lg border">
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">One</div>
+    </c-resizable.panel>
+    <c-resizable.handle with_handle="true" />
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Two</div>
+    </c-resizable.panel>
+  </c-resizable>
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+Panels run with the text, so under `dir="rtl"` the first panel is on the
+right. Dragging still moves the divider under the pointer.
+
+## Accessibility
+
+The handle is a `role="separator"` with `aria-orientation` and takes focus,
+but it does not move with the keyboard yet: resizing needs a pointer.
+
+## API reference
+:::pt-br
+## RTL
+
+Os painéis correm com o texto, então sob `dir="rtl"` o primeiro painel fica à
+direita. Arrastar continua movendo o divisor que está sob o ponteiro.
+
+## Acessibilidade
+
+A alça é um `role="separator"` com `aria-orientation` e recebe foco, mas
+ainda não se move pelo teclado: redimensionar precisa de um ponteiro.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="resizable" />
+
+:::en
 ## Notes
 
 The handle takes the pointer, not the keyboard: upstream lets you nudge a
@@ -185,11 +237,3 @@ guardar um layout por id; aqui um recarregamento começa de novo do
 Nada impõe um mínimo: um painel pode ser arrastado até fechar. Dê ao conteúdo
 dentro dele um `min-w-*` se isso importar.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="resizable" />

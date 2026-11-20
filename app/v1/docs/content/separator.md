@@ -95,8 +95,50 @@ e ele vira um `separator` de verdade, com um `aria-orientation`.
 </c-docs.example>
 
 :::en
+### List
+
+Separators between list items keep the rows apart without a border on each.
+:::pt-br
+### Lista
+
+Separadores entre os itens de uma lista afastam as linhas sem uma borda em cada uma.
+:::
+
+<c-docs.example>
+<div class="w-full max-w-xs text-sm">
+  <div class="py-2">Profile</div>
+  <c-separator />
+  <div class="py-2">Billing</div>
+  <c-separator />
+  <div class="py-2">Notifications</div>
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+A line has no direction. A vertical separator sits between whatever it
+separates, which changes sides with the text.
+
+## Accessibility
+
+By default it is decorative, `role="none"`, and a screen reader skips it.
+With `decorative="false"` it becomes a `separator` with an
+`aria-orientation`, for a line that is the only thing telling two groups apart.
+
 ## API reference
 :::pt-br
+## RTL
+
+Uma linha não tem direção. Um separador vertical fica entre o que ele separa,
+o que troca de lado com o texto.
+
+## Acessibilidade
+
+Por padrão ele é decorativo, `role="none"`, e um leitor de tela o pula. Com
+`decorative="false"` ele vira um `separator` com `aria-orientation`, para um
+traço que é a única coisa que distingue dois grupos.
+
 ## Referência da API
 :::
 

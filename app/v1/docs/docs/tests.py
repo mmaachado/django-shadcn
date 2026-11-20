@@ -423,6 +423,19 @@ REBUILT = {
     "message",
     "message-scroller",
     "metric",
+    "native-select",
+    "navigation-menu",
+    "pagination",
+    "popover",
+    "progress",
+    "questionnaire",
+    "radio-group",
+    "resizable",
+    "scroll-area",
+    "select",
+    "separator",
+    "sheet",
+    "sidebar",
 }
 
 

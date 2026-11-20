@@ -335,26 +335,6 @@ mesmo canto.
 </div>
 </c-docs.example>
 
-:::en
-## Notes
-
-Below `md` the panel slides in over a backdrop rather than becoming a
-[Sheet]({% url 'page' slug='sheet' %}) as upstream does. One tree serves both
-widths, so the menu is written once and there are no duplicate ids in the page.
-
-The width comes from `--sidebar-width` and `--sidebar-width-icon`, set on the
-provider. Override them with an inline style, which beats the defaults:
-:::pt-br
-## Observações
-
-Abaixo de `md` o painel desliza por cima de um fundo escurecido em vez de virar
-um [Sheet]({% url 'page' slug='sheet' %}) como faz o upstream. Uma árvore só
-atende às duas larguras, então o menu é escrito uma vez e não há ids duplicados
-na página.
-
-A largura vem de `--sidebar-width` e `--sidebar-width-icon`, definidos no
-provider. Sobrescreva-os com um estilo inline, que vence os padrões:
-:::
 
 ```html
 <c-sidebar.provider style="--sidebar-width: 20rem">
@@ -381,9 +361,57 @@ não com classes utilitárias em cada parte.
 :::
 
 :::en
+## RTL
+
+`side` names a side of the screen, so a sidebar on the left stays there under
+`dir="rtl"`; pass `side="right"` for one at the start of an RTL page. The
+menus inside follow the text.
+
+## Accessibility
+
+The menu is a list of links and buttons, so it is tabbed through like any
+navigation, and `is_active="true"` marks the current page. <c-kbd>⌘</c-kbd> or
+<c-kbd>Ctrl</c-kbd> with <c-kbd>B</c-kbd> toggles the panel, and Escape closes
+it on a phone. In the icon rail, each button's `tooltip` names it.
+
 ## API reference
 :::pt-br
+## RTL
+
+O `side` nomeia um lado da tela, então uma sidebar à esquerda fica ali sob
+`dir="rtl"`; passe `side="right"` para uma no início de uma página RTL. Os
+menus dentro acompanham o texto.
+
+## Acessibilidade
+
+O menu é uma lista de links e botões, então é percorrido pelo Tab como
+qualquer navegação, e `is_active="true"` marca a página atual.
+<c-kbd>⌘</c-kbd> ou <c-kbd>Ctrl</c-kbd> com <c-kbd>B</c-kbd> alterna o painel,
+e o Escape o fecha num celular. Na faixa de ícones, o `tooltip` de cada botão
+dá nome a ele.
+
 ## Referência da API
 :::
 
 <c-docs.api-reference name="sidebar" />
+
+:::en
+## Notes
+
+Below `md` the panel slides in over a backdrop rather than becoming a
+[Sheet]({% url 'page' slug='sheet' %}) as upstream does. One tree serves both
+widths, so the menu is written once and there are no duplicate ids in the page.
+
+The width comes from `--sidebar-width` and `--sidebar-width-icon`, set on the
+provider. Override them with an inline style, which beats the defaults:
+:::pt-br
+## Observações
+
+Abaixo de `md` o painel desliza por cima de um fundo escurecido em vez de virar
+um [Sheet]({% url 'page' slug='sheet' %}) como faz o upstream. Uma árvore só
+atende às duas larguras, então o menu é escrito uma vez e não há ids duplicados
+na página.
+
+A largura vem de `--sidebar-width` e `--sidebar-width-icon`, definidos no
+provider. Sobrescreva-os com um estilo inline, que vence os padrões:
+:::

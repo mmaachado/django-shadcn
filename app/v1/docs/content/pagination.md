@@ -115,6 +115,38 @@ outline e define `aria-current="page"`.
 </c-docs.example>
 
 :::en
+## RTL
+
+The links run with the text, and the previous and next arrows sit at the start
+and the end, so under `dir="rtl"` the row reverses.
+
+## Accessibility
+
+It is a `<nav>` labelled "pagination" around a list of links. The current page
+carries `aria-current="page"`, and the arrows are labelled "Go to previous
+page" and "Go to next page". The ellipsis is hidden from assistive
+technology.
+
+## API reference
+:::pt-br
+## RTL
+
+Os links correm com o texto, e as setas de anterior e próximo ficam no início
+e no fim, então sob `dir="rtl"` a fileira se inverte.
+
+## Acessibilidade
+
+É um `<nav>` com o rótulo "pagination" em volta de uma lista de links. A
+página atual leva `aria-current="page"`, e as setas têm os rótulos "Go to
+previous page" e "Go to next page". A reticência fica escondida das
+tecnologias assistivas.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="pagination" />
+
+:::en
 ## Notes
 
 The labels beside the arrows are hidden below the `sm` breakpoint, so on a
@@ -125,11 +157,3 @@ phone the controls stay as two arrows.
 Os rótulos ao lado das setas ficam escondidos abaixo do breakpoint `sm`, então
 num celular os controles continuam sendo duas setas.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="pagination" />

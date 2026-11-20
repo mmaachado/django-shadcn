@@ -371,8 +371,34 @@ que já funciona.
 :::
 
 :::en
+## RTL
+
+The questions, the choices and the buttons follow the text, so under
+`dir="rtl"` the form mirrors, with next and back changing sides.
+
+## Accessibility
+
+Each question is a `<fieldset>` whose `<legend>` is the title, so a group of
+radios is announced by its question. Inactive questions are `hidden` and
+`inert`, out of the tab order and the reading order. The progress is a
+`role="progressbar"` with the step in `aria-valuetext`, and moving between
+steps moves focus to the new question.
+
 ## API reference
 :::pt-br
+## RTL
+
+As perguntas, as opções e os botões acompanham o texto, então sob
+`dir="rtl"` o formulário espelha, com avançar e voltar trocando de lado.
+
+## Acessibilidade
+
+Cada pergunta é um `<fieldset>` cuja `<legend>` é o título, então um grupo de
+radios é anunciado pela pergunta. As perguntas inativas são `hidden` e `inert`,
+fora da ordem de tab e da leitura. O progresso é um `role="progressbar"` com a
+etapa em `aria-valuetext`, e passar de uma etapa para outra leva o foco à nova
+pergunta.
+
 ## Referência da API
 :::
 
