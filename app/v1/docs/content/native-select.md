@@ -13,13 +13,21 @@ description.es: El select nativo del navegador, estilizado como el resto de la b
 </c-native-select>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add native_select
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-native-select name="theme">
@@ -28,6 +36,7 @@ uvx django_shadcn@latest add native_select
 </c-native-select>
 ```
 
+:::en
 A real `&lt;select&gt;`, so it submits with the form, works without
 JavaScript and opens the platform picker on mobile. Reach for <a
 href="{% url 'page' slug='select' %}" class="font-medium underline underline-offset-4">Select</a>
@@ -36,6 +45,16 @@ when you need custom option markup.
 ## Examples
 
 ### Small
+:::pt-br
+Um `&lt;select&gt;` de verdade, então ele é enviado com o formulário, funciona
+sem JavaScript e abre o seletor da plataforma no celular. Recorra ao <a
+href="{% url 'page' slug='select' %}" class="font-medium underline underline-offset-4">Select</a>
+quando precisar de markup próprio nas opções.
+
+## Exemplos
+
+### Pequeno
+:::
 
 <c-docs.demo-section>
 <c-native-select size="sm">
@@ -49,7 +68,11 @@ when you need custom option markup.
 <c-native-select size="sm">...</c-native-select>
 ```
 
+:::en
 ### Grouped options
+:::pt-br
+### Opções agrupadas
+:::
 
 <c-docs.demo-section>
 <c-native-select>
@@ -71,7 +94,11 @@ when you need custom option markup.
 </c-native-select>
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-native-select disabled>
@@ -83,7 +110,11 @@ when you need custom option markup.
 <c-native-select disabled>...</c-native-select>
 ```
 
+:::en
 ### Invalid
+:::pt-br
+### Inválido
+:::
 
 <c-docs.demo-section>
 <c-native-select aria-invalid="true">
@@ -96,7 +127,11 @@ when you need custom option markup.
 <c-native-select aria-invalid="true">...</c-native-select>
 ```
 
+:::en
 ### From a Django form
+:::pt-br
+### A partir de um formulário Django
+:::
 
 <c-docs.demo-section>
 <c-native-select name="country">

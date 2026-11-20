@@ -18,13 +18,21 @@ description.es: Navegación entre páginas de un listado.
 </c-pagination>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add pagination
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-pagination>
@@ -50,12 +58,21 @@ uvx django_shadcn@latest add pagination
 </c-pagination>
 ```
 
+:::en
 The current page is marked with `is_active="true"`, which switches the link to
 the outline look and sets `aria-current="page"`.
 
 ## Examples
 
 ### With a Django paginator
+:::pt-br
+A página atual é marcada com `is_active="true"`, que troca o link para o visual
+outline e define `aria-current="page"`.
+
+## Exemplos
+
+### Com um paginator do Django
+:::
 
 ```html
 <c-pagination>
@@ -84,7 +101,11 @@ the outline look and sets `aria-current="page"`.
 </c-pagination>
 ```
 
+:::en
 ### Custom labels
+:::pt-br
+### Rótulos personalizados
+:::
 
 <c-docs.demo-section>
 <c-pagination>
@@ -100,7 +121,14 @@ the outline look and sets `aria-current="page"`.
 <c-pagination.next href="#">Older</c-pagination.next>
 ```
 
+:::en
 ## Notes
 
 The labels beside the arrows are hidden below the `sm` breakpoint, so on a
 phone the controls stay as two arrows.
+:::pt-br
+## Observações
+
+Os rótulos ao lado das setas ficam escondidos abaixo do breakpoint `sm`, então
+num celular os controles continuam sendo duas setas.
+:::

@@ -19,13 +19,21 @@ description.es: Paneles que se redimensionan arrastrando el divisor.
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add resizable
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <div class="h-[180px] w-[420px] rounded-lg border">
@@ -55,6 +63,7 @@ uvx django_shadcn@latest add resizable
 </div>
 ```
 
+:::en
 `default_size` is a share, not a percentage: two panels at `1` and `2` split
 the space one third to two thirds. Dragging the handle moves that share between
 the two panels either side of it and leaves the rest alone.
@@ -67,6 +76,20 @@ fill it.
 ## Examples
 
 ### Vertical
+:::pt-br
+`default_size` é uma proporção, não uma porcentagem: dois painéis com `1` e `2`
+dividem o espaço em um terço e dois terços. Arrastar a alça move essa proporção
+entre os dois painéis de cada lado dela e deixa o resto como está.
+
+O grupo leva `h-full w-full` do registry, então um `h-*` ou `w-*` seu passado
+como `class` perde para ele — dois utilitários para a mesma propriedade são
+decididos pela folha de estilo compilada. Dimensione o elemento em volta e
+deixe o grupo preenchê-lo.
+
+## Exemplos
+
+### Vertical
+:::
 
 <c-docs.demo-section>
 <div class="h-[260px] w-[420px] rounded-lg border">
@@ -92,7 +115,11 @@ fill it.
 </div>
 ```
 
+:::en
 ### Three panels
+:::pt-br
+### Três painéis
+:::
 
 <c-docs.demo-section>
 <div class="h-[200px] w-[520px] rounded-lg border">
@@ -123,7 +150,11 @@ fill it.
 </div>
 ```
 
+:::en
 ### Nested
+:::pt-br
+### Aninhados
+:::
 
 <c-docs.demo-section>
 <div class="h-[240px] w-[480px] rounded-lg border">
@@ -165,6 +196,7 @@ fill it.
 </div>
 ```
 
+:::en
 ## Notes
 
 The handle takes the pointer, not the keyboard: upstream lets you nudge a
@@ -176,3 +208,17 @@ layout by id; here a reload starts from `default_size` again.
 
 Nothing enforces a minimum: a panel can be dragged shut. Give the content
 inside it a `min-w-*` if that matters.
+:::pt-br
+## Observações
+
+A alça responde ao ponteiro, não ao teclado: o upstream deixa você empurrar um
+divisor com as setas, e isso ainda não está aqui. Ela recebe foco e mostra um
+anel de foco, então a lacuna fica visível em vez de escondida.
+
+Os tamanhos não são lembrados entre visitas. O `react-resizable-panels` pode
+guardar um layout por id; aqui um recarregamento começa de novo do
+`default_size`.
+
+Nada impõe um mínimo: um painel pode ser arrastado até fechar. Dê ao conteúdo
+dentro dele um `min-w-*` se isso importar.
+:::

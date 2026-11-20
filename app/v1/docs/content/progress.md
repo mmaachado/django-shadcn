@@ -9,13 +9,21 @@ description.es: Un indicador de cuánto de una tarea se ha completado.
 <c-progress value="65" max="100" class="w-[60%]"/>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add progress
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-progress value="65" max="100" class="w-[60%]" />
