@@ -1472,6 +1472,18 @@
     border-block-style: var(--tw-border-style);
     border-block-width: 1px;
   }
+  .border-s {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 1px;
+  }
+  .border-s-2 {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 2px;
+  }
+  .border-e {
+    border-inline-end-style: var(--tw-border-style);
+    border-inline-end-width: 1px;
+  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
@@ -1487,10 +1499,6 @@
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
-  }
-  .border-l-2 {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 2px;
   }
   .border-dashed {
     --tw-border-style: dashed;
@@ -2807,20 +2815,20 @@
   .first\:mt-0:first-child {
     margin-top: 0px;
   }
-  .first\:rounded-l-md:first-child {
-    border-top-left-radius: calc(var(--radius) - 2px);
-    border-bottom-left-radius: calc(var(--radius) - 2px);
+  .first\:rounded-s-md:first-child {
+    border-start-start-radius: calc(var(--radius) - 2px);
+    border-end-start-radius: calc(var(--radius) - 2px);
   }
-  .first\:border-l:first-child {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 1px;
+  .first\:border-s:first-child {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 1px;
   }
   .last\:mt-0:last-child {
     margin-top: 0px;
   }
-  .last\:rounded-r-md:last-child {
-    border-top-right-radius: calc(var(--radius) - 2px);
-    border-bottom-right-radius: calc(var(--radius) - 2px);
+  .last\:rounded-e-md:last-child {
+    border-start-end-radius: calc(var(--radius) - 2px);
+    border-end-end-radius: calc(var(--radius) - 2px);
   }
   .checked\:border-primary:checked {
     border-color: var(--primary);
@@ -4102,9 +4110,9 @@
   .\[\&\:\:-webkit-scrollbar-track\]\:bg-transparent::-webkit-scrollbar-track {
     background-color: transparent;
   }
-  .\[\&\:first-child\[data-selected\=true\]_button\]\:rounded-l-md:first-child[data-selected=true] button {
-    border-top-left-radius: calc(var(--radius) - 2px);
-    border-bottom-left-radius: calc(var(--radius) - 2px);
+  .\[\&\:first-child\[data-selected\=true\]_button\]\:rounded-s-md:first-child[data-selected=true] button {
+    border-start-start-radius: calc(var(--radius) - 2px);
+    border-end-start-radius: calc(var(--radius) - 2px);
   }
   .\[\&\:has\(\[role\=checkbox\]\)\]\:pe-0:has([role=checkbox]) {
     padding-inline-end: 0px;
@@ -4185,9 +4193,9 @@
   :is(.data-\[variant\=destructive\]\:\*\:\[svg\]\:text-destructive\![data-variant="destructive"] > *):is(svg) {
     color: var(--destructive) !important;
   }
-  .\[\&\:last-child\[data-selected\=true\]_button\]\:rounded-r-md:last-child[data-selected=true] button {
-    border-top-right-radius: calc(var(--radius) - 2px);
-    border-bottom-right-radius: calc(var(--radius) - 2px);
+  .\[\&\:last-child\[data-selected\=true\]_button\]\:rounded-e-md:last-child[data-selected=true] button {
+    border-start-end-radius: calc(var(--radius) - 2px);
+    border-end-end-radius: calc(var(--radius) - 2px);
   }
   .\[\&\:not\(\:first-child\)\]\:mt-6:not(:first-child) {
     margin-top: calc(var(--spacing) * 6);
@@ -4221,46 +4229,46 @@
   .data-\[variant\=outline\]\:\[\&\>\*\]\:border-input[data-variant="outline"] > * {
     border-color: var(--input);
   }
-  .data-\[spacing\=0\]\:data-\[variant\=outline\]\:\[\&\>\*\]\:border-l-0[data-spacing="0"][data-variant="outline"] > * {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 0px;
+  .data-\[spacing\=0\]\:data-\[variant\=outline\]\:\[\&\>\*\]\:border-s-0[data-spacing="0"][data-variant="outline"] > * {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 0px;
   }
   @container field-group (width >= 28rem) {
     .\@md\/field-group\:\[\&\>\*\]\:w-auto > * {
       width: auto;
     }
   }
-  .data-\[spacing\=0\]\:\[\&\>\*\:first-child\]\:rounded-l-md[data-spacing="0"] > :first-child {
-    border-top-left-radius: calc(var(--radius) - 2px);
-    border-bottom-left-radius: calc(var(--radius) - 2px);
+  .data-\[spacing\=0\]\:\[\&\>\*\:first-child\]\:rounded-s-md[data-spacing="0"] > :first-child {
+    border-start-start-radius: calc(var(--radius) - 2px);
+    border-end-start-radius: calc(var(--radius) - 2px);
   }
-  .data-\[spacing\=0\]\:data-\[variant\=outline\]\:\[\&\>\*\:first-child\]\:border-l[data-spacing="0"][data-variant="outline"] > :first-child {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 1px;
+  .data-\[spacing\=0\]\:data-\[variant\=outline\]\:\[\&\>\*\:first-child\]\:border-s[data-spacing="0"][data-variant="outline"] > :first-child {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 1px;
   }
-  .data-\[spacing\=0\]\:\[\&\>\*\:last-child\]\:rounded-r-md[data-spacing="0"] > :last-child {
-    border-top-right-radius: calc(var(--radius) - 2px);
-    border-bottom-right-radius: calc(var(--radius) - 2px);
+  .data-\[spacing\=0\]\:\[\&\>\*\:last-child\]\:rounded-e-md[data-spacing="0"] > :last-child {
+    border-start-end-radius: calc(var(--radius) - 2px);
+    border-end-end-radius: calc(var(--radius) - 2px);
+  }
+  .\[\&\>\*\:not\(\:first-child\)\]\:rounded-s-none > :not(:first-child) {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
   }
   .\[\&\>\*\:not\(\:first-child\)\]\:rounded-t-none > :not(:first-child) {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  .\[\&\>\*\:not\(\:first-child\)\]\:rounded-l-none > :not(:first-child) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+  .\[\&\>\*\:not\(\:first-child\)\]\:border-s-0 > :not(:first-child) {
+    border-inline-start-style: var(--tw-border-style);
+    border-inline-start-width: 0px;
   }
   .\[\&\>\*\:not\(\:first-child\)\]\:border-t-0 > :not(:first-child) {
     border-top-style: var(--tw-border-style);
     border-top-width: 0px;
   }
-  .\[\&\>\*\:not\(\:first-child\)\]\:border-l-0 > :not(:first-child) {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 0px;
-  }
-  .\[\&\>\*\:not\(\:last-child\)\]\:rounded-r-none > :not(:last-child) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  .\[\&\>\*\:not\(\:last-child\)\]\:rounded-e-none > :not(:last-child) {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
   }
   .\[\&\>\*\:not\(\:last-child\)\]\:rounded-b-none > :not(:last-child) {
     border-bottom-right-radius: 0;
@@ -4334,9 +4342,9 @@
       flex: auto;
     }
   }
-  .has-\[select\[aria-hidden\=true\]\:last-child\]\:\[\&\>\[data-slot\=select-trigger\]\:last-of-type\]\:rounded-r-md:has(:is(select[aria-hidden=true]:last-child)) > [data-slot=select-trigger]:last-of-type {
-    border-top-right-radius: calc(var(--radius) - 2px);
-    border-bottom-right-radius: calc(var(--radius) - 2px);
+  .has-\[select\[aria-hidden\=true\]\:last-child\]\:\[\&\>\[data-slot\=select-trigger\]\:last-of-type\]\:rounded-e-md:has(:is(select[aria-hidden=true]:last-child)) > [data-slot=select-trigger]:last-of-type {
+    border-start-end-radius: calc(var(--radius) - 2px);
+    border-end-end-radius: calc(var(--radius) - 2px);
   }
   .\[\&\>\[data-slot\=select-trigger\]\:not\(\[class\*\=\'w-\'\]\)\]\:w-fit > [data-slot=select-trigger]:not([class*='w-']) {
     width: fit-content;

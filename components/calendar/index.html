@@ -162,8 +162,8 @@ carries the selection, and it carries `value` before Alpine has started.
                             <template x-for="day in week" :key="day.iso">
                                 <td class="
                                     relative aspect-square h-full w-full p-0 text-center select-none
-                                    [&:first-child[data-selected=true]_button]:rounded-l-md
-                                    [&:last-child[data-selected=true]_button]:rounded-r-md
+                                    [&:first-child[data-selected=true]_button]:rounded-s-md
+                                    [&:last-child[data-selected=true]_button]:rounded-e-md
                                     " data-slot="calendar-day"
                                     x-bind:data-selected="day.iso === selected ? 'true' : 'false'" x-bind:class="{
                                         'rounded-md bg-accent text-accent-foreground data-[selected=true]:rounded-none': day.iso === today,

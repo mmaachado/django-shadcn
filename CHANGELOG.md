@@ -26,6 +26,16 @@
   direction. `carousel` scrolls with `scrollLeft` and the arrow keys, so its
   buttons keep their sides. The value axis of `chart` does not mirror.
 
+- **Logical borders and radii.** `border-l`/`border-r` became
+  `border-s`/`border-e` and `rounded-l-*`/`rounded-r-*` became
+  `rounded-s-*`/`rounded-e-*`. Under `dir="rtl"`, `button_group`,
+  `toggle_group`, `input_otp` and a selected range in `calendar` keep their
+  rounded ends on the outside of the row, and the rule beside `blockquote` and
+  `sidebar` submenus moves to the start of the line.
+
+  The edge of `drawer` and `sidebar` stays physical, for the same reason as
+  their position: `direction` and `side` name a side of the screen.
+
 ## 1.8.0 — 2026-08-14
 
 Charts, and the last component the registry was missing. Parity with shadcn/ui
