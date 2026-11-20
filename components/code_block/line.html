@@ -1,0 +1,28 @@
+<c-vars class="" variant="default"></c-vars>
+
+{% comment %}
+Nothing may sit between the tags and the slot: this is inside a <pre>, where
+every space shows. An empty line holds a newline, so copying a selection
+keeps the blank lines.
+{% endcomment %}
+<span class="
+    relative -mx-4 block min-h-lh px-4
+    after:absolute after:top-0 after:start-1 after:select-none
+    after:text-muted-foreground
+    before:min-w-6 before:text-end before:text-muted-foreground
+    in-data-numbered:col-span-2 in-data-numbered:grid
+    in-data-numbered:grid-cols-subgrid in-data-numbered:gap-x-3
+    in-data-numbered:[counter-increment:line]
+    in-data-numbered:before:content-[counter(line)]
+    in-data-numbered:before:select-none
+    in-data-numbered:supports-[content:counter(line)_/_'']:before:content-[counter(line)_/_'']
+    group-data-[size=sm]/code-block:-mx-3 group-data-[size=sm]/code-block:px-3
+    {% if variant == 'highlighted' %}bg-muted
+    {% elif variant == 'added' %}bg-muted after:content-['+']
+    {% elif variant == 'removed' %}bg-destructive/10 after:text-destructive after:content-['−']
+    {% endif %}
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="code-block-line" data-variant="{{ variant }}" {{ attrs }}><span data-slot="code-block-line-content" class="min-w-0">{% if slot %}{{ slot }}{% else %}
+{% endif %}</span></span>

@@ -49,7 +49,7 @@ result as JavaScript — so a value carrying a quote would run.
             this.$nextTick(() => {
                 this.viewport = this.$el.querySelector('[data-slot=message-scroller-viewport]');
                 this.content = this.$el.querySelector('[data-slot=message-scroller-content]');
-                if (!this.viewport || !this.content) { return; }
+                if (!this.viewport || !this.content) { this.opened = true; return; }
                 this.watch();
                 // A frame later than $nextTick: the rows have to be laid out
                 // before an offset measured against them means anything.

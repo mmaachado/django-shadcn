@@ -1,0 +1,16 @@
+<c-vars class="" default_open="false"></c-vars>
+
+{% comment %}
+The same state and markup as collapsible, written out rather than composed:
+attrs spread onto another component are dropped by cotton, and these parts
+have to forward whatever is put on them.
+{% endcomment %}
+<div
+    x-data="{ open: {% if default_open == 'true' %}true{% else %}false{% endif %} }"
+    x-bind:data-state="open ? 'open' : 'closed'"
+    class="flex w-full min-w-0 flex-col {% if class %}{{ class }}{% endif %}"
+    data-slot="trace-collapsible"
+    {{ attrs }}
+>
+    {{ slot }}
+</div>

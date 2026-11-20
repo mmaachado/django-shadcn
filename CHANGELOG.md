@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.11.0 — Unreleased
+
+### Added
+
+- **`code_block`.** Code, terminal output and diffs, in a bordered block with
+  an optional header and footer, line numbers from `start_line`, line variants
+  for `added`, `removed` and `highlighted`, and a copy button. The button
+  copies `value`, or the block's own text when there is none, and announces
+  "Copied" for two seconds. The content is always left to right. No syntax
+  highlighting, as upstream.
+- **`trace`.** The steps behind an answer in a chat: lines with an icon, a
+  title and a description, a `status` of `running`, `error` or `pending`, and
+  a collapsible step whose chevron turns as it opens. A line inside a link or
+  a button becomes one, with a focus ring.
+
+### Fixed
+
+- **`message_scroller` no longer flashes its oldest rows.** A transcript opened
+  at the end painted at the top and then jumped down. The viewport now stays
+  invisible until the opening position applies, as upstream does since
+  shadcn-ui/ui#11720, and `data-pending-scroll` reports it. Without
+  JavaScript, nothing is hidden.
+
 ## 1.10.0 — 2026-11-19
 
 Blocks. Four whole pages, a dashboard, a log-in and sign-up pair, an
