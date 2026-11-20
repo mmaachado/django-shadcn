@@ -22,17 +22,29 @@ description.es: Un panel que se expande y se contrae.
 </c-collapsible>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add collapsible
 ```
 
+:::en
 <p class="mt-4 text-sm text-muted-foreground">
     <strong>Note:</strong> This component requires the <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">Alpine.js Collapse plugin</a> for animations. Without it the panel still opens and closes, without the transition.
 </p>
 
 ## Usage
+:::pt-br
+<p class="mt-4 text-sm text-muted-foreground">
+    <strong>Observação:</strong> este componente precisa do <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">plugin Collapse do Alpine.js</a> para as animações. Sem ele o painel continua abrindo e fechando, só que sem a transição.
+</p>
+
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-collapsible class="w-[350px] text-start">
@@ -56,6 +68,7 @@ Everything you were not looking at a moment ago.
 </c-collapsible>
 ```
 
+:::en
 `open` is Alpine state on the root, so the trigger and the content both see it
 without being told about each other. Start it expanded with
 `default_open="true"`.
@@ -63,6 +76,15 @@ without being told about each other. Start it expanded with
 ## Examples
 
 ### Open by default
+:::pt-br
+`open` é estado do Alpine na raiz, então o trigger e o conteúdo enxergam o
+estado sem precisarem saber um do outro. Comece aberto com
+`default_open="true"`.
+
+## Exemplos
+
+### Aberto por padrão
+:::
 
 <c-docs.demo-section>
 <c-collapsible default_open="true" class="w-[350px] text-start">
@@ -84,7 +106,14 @@ Visible from the first paint.
 </c-collapsible>
 ```
 
+:::en
 ## Notes
 
 The height animation comes from Alpine's `collapse` plugin, the same one the
 accordion uses. Without it the panel still opens and closes, just instantly.
+:::pt-br
+## Observações
+
+A animação de altura vem do plugin `collapse` do Alpine, o mesmo que o accordion
+usa. Sem ele o painel continua abrindo e fechando, só que na hora.
+:::

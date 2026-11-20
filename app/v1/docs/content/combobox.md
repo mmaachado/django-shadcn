@@ -19,13 +19,21 @@ description.es: Campo con autocompletado y paleta de comandos, con lista de suge
         />
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add combobox
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-combobox
