@@ -4,12 +4,16 @@ from django.shortcuts import redirect
 from django.shortcuts import render as render_page
 from django.urls import reverse
 from django.utils.translation import get_language_from_path, override
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 from .content import PageNotFound
 from .content import render as render_content
 from .nav import NAV
 
 ICONS_DIRECTORY = settings.COMPONENTS_DIR / "icon"
+
+# What a block's page opens with, so it can extend another base when asked.
+BLOCK_EXTENDS = '{% extends base_template|default:"base.html" %}'
 
 
 def icon_names():
@@ -90,4 +94,28 @@ def page(request, slug):
             "slug": slug,
             "languages": language_links(slug),
         },
+    )
+
+
+# The portal frames it, and only the portal: same origin, never DENY.
+@xframe_options_sameorigin
+def block_preview(request, name, page):
+    """A block's page as the CLI installs it, inside a bare frame.
+
+    The page extends `base_template` when it is given, so the preview passes
+    a frame with the stylesheet and Alpine in place of a project's base.html.
+    Only files that open that way are served: anything else is not a block.
+    """
+    directory = name.replace("-", "_")
+    path = settings.COMPONENTS_DIR / directory / f"{page}.html"
+
+    if not path.is_file() or not path.read_text(encoding="utf-8").startswith(
+        BLOCK_EXTENDS
+    ):
+        raise Http404(name)
+
+    return render_page(
+        request,
+        f"{settings.COMPONENTS_DIR.name}/{directory}/{page}.html",
+        {"base_template": "block_frame.html"},
     )

@@ -15,16 +15,27 @@ description.es: Iconos de lucide como componente cotton. Todo icono de la biblio
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add icon
 ```
 
+:::en
 Components that use icons pull this one in on their own, so most of the time
 it is already installed.
 
 ## Usage
+:::pt-br
+Os componentes que usam ícones trazem este junto por conta própria, então na
+maior parte das vezes ele já está instalado.
+
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-icon name="search" />
@@ -34,6 +45,7 @@ it is already installed.
 <c-icon name="search" />
 ```
 
+:::en
 The `name` is the icon name as it appears on <a
 href="https://lucide.dev/icons" target="_blank" rel="noopener noreferrer"
 class="font-medium underline underline-offset-4">lucide.dev</a>, in kebab-
@@ -43,6 +55,17 @@ below.
 ## Examples
 
 ### Sizing
+:::pt-br
+O `name` é o nome do ícone como aparece em <a
+href="https://lucide.dev/icons" target="_blank" rel="noopener noreferrer"
+class="font-medium underline underline-offset-4">lucide.dev</a>, em kebab-
+case. Só os ícones distribuídos com a biblioteca estão disponíveis — veja a
+lista abaixo.
+
+## Exemplos
+
+### Tamanho
+:::
 
 <c-docs.demo-section>
 
@@ -59,7 +82,11 @@ below.
 <c-icon name="search" class="size-8" />
 ```
 
+:::en
 ### Color
+:::pt-br
+### Cor
+:::
 
 <c-docs.demo-section>
 
@@ -74,7 +101,11 @@ below.
 <c-icon name="check" class="size-5 text-muted-foreground" />
 ```
 
+:::en
 ### Inside a button
+:::pt-br
+### Dentro de um botão
+:::
 
 <c-docs.demo-section>
 <c-button variant="outline">
@@ -90,7 +121,11 @@ Search
 </c-button>
 ```
 
+:::en
 ### Reacting to state
+:::pt-br
+### Reagindo ao estado
+:::
 
 <c-docs.demo-section>
 
@@ -112,7 +147,11 @@ Search
 />
 ```
 
+:::en
 ### Accessibility
+:::pt-br
+### Acessibilidade
+:::
 
 <c-docs.demo-section>
 
@@ -130,10 +169,17 @@ Search
 <c-icon name="search" class="size-5" role="img" aria-label="Search" />
 ```
 
+:::en
 ## Available icons
 
 The library ships only the icons its components use. Each one lives in its
 own file under `icon/` and is generated from lucide, never written by hand.
+:::pt-br
+## Ícones disponíveis
+
+A biblioteca traz só os ícones que os componentes dela usam. Cada um mora no
+próprio arquivo em `icon/` e é gerado a partir do lucide, nunca escrito à mão.
+:::
 
 <c-docs.demo-section>
 <div class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -146,19 +192,35 @@ own file under `icon/` and is generated from lucide, never written by hand.
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Adding an icon
 
 Reference it in your markup with `&lt;c-icon name="..."&gt;` and run the
 generator. It reads the icon names straight out of the templates, downloads
 what is missing from lucide and drops whatever nothing references anymore.
+:::pt-br
+## Adicionando um ícone
+
+Referencie o ícone no seu markup com `&lt;c-icon name="..."&gt;` e rode o
+gerador. Ele lê os nomes dos ícones direto dos templates, baixa do lucide o que
+falta e remove o que nada mais referencia.
+:::
 
 ```bash
 uv run python scripts/generate_icons.py
 ```
 
+:::en
 ## License
 
 Icons come from <a href="https://lucide.dev" target="_blank" rel="noopener
 noreferrer" class="font-medium underline underline-offset-4">Lucide</a>,
 under the ISC license. The full notice ships with the component, in
 `icon/LICENSE`.
+:::pt-br
+## Licença
+
+Os ícones vêm do <a href="https://lucide.dev" target="_blank" rel="noopener
+noreferrer" class="font-medium underline underline-offset-4">Lucide</a>,
+sob a licença ISC. O aviso completo vem com o componente, em `icon/LICENSE`.
+:::

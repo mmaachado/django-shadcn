@@ -34,13 +34,21 @@ Settings
 </c-command>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add command
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-command class="rounded-lg border shadow-md md:min-w-[450px]">

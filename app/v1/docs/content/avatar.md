@@ -17,13 +17,21 @@ description.es: Una imagen con alternativa para representar al usuario.
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add avatar
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-avatar>
@@ -39,6 +47,7 @@ uvx django_shadcn@latest add avatar
 </c-avatar>
 ```
 
+:::en
 Radix hides the fallback once the image loads. Here the image is stacked on top
 of the fallback instead, and removes itself on `error` so the initials show
 through. Both are always in the markup.
@@ -50,6 +59,19 @@ broken-image glyph over the fallback.
 ## Examples
 
 ### Sizes
+:::pt-br
+O Radix esconde o fallback quando a imagem carrega. Aqui a imagem fica empilhada
+sobre o fallback, e se remove no `error` para que as iniciais apareçam por
+baixo. Os dois estão sempre no markup.
+
+Essa última parte é um atributo do Alpine na imagem, com o próprio `x-data`.
+Sem o Alpine o avatar continua funcionando, mas uma origem quebrada deixa o
+ícone de imagem quebrada do navegador por cima do fallback.
+
+## Exemplos
+
+### Tamanhos
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-4">
@@ -74,7 +96,11 @@ broken-image glyph over the fallback.
 <c-avatar size="lg">...</c-avatar>
 ```
 
+:::en
 ### Fallback
+:::pt-br
+### Fallback
+:::
 
 <c-docs.demo-section>
 <c-avatar>
@@ -89,7 +115,11 @@ broken-image glyph over the fallback.
 </c-avatar>
 ```
 
+:::en
 ### Badge
+:::pt-br
+### Badge
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-4">
@@ -114,7 +144,11 @@ broken-image glyph over the fallback.
 </c-avatar>
 ```
 
+:::en
 ### Group
+:::pt-br
+### Grupo
+:::
 
 <c-docs.demo-section>
 <c-avatar.group>
@@ -146,6 +180,7 @@ broken-image glyph over the fallback.
 </c-avatar.group>
 ```
 
+:::en
 ## Notes
 
 The badge defaults to `bg-primary`. Colouring it takes the `!` suffix —
@@ -156,3 +191,15 @@ them. Tailwind sorts them by name, so `bg-primary` lands after
 
 The rule holds for any class of yours that collides with one the component
 already sets. It applies to every component here, not just this one.
+:::pt-br
+## Observações
+
+O badge usa `bg-primary` por padrão. Colori-lo pede o sufixo `!` —
+`bg-emerald-500!` — porque dois utilitários de fundo no mesmo elemento são
+decididos pela ordem na folha de estilo compilada, não pela ordem em que você os
+escreveu. O Tailwind os ordena pelo nome, então `bg-primary` fica depois de
+`bg-emerald-500` e vence.
+
+A regra vale para qualquer classe sua que colida com uma que o componente já
+define. Ela se aplica a todos os componentes daqui, não só a este.
+:::

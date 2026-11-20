@@ -23,13 +23,21 @@ description.es: Muestra la ruta hasta la página actual como una jerarquía de e
 </c-breadcrumb>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add breadcrumb
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-breadcrumb>
@@ -45,12 +53,21 @@ uvx django_shadcn@latest add breadcrumb
 </c-breadcrumb>
 ```
 
+:::en
 The last crumb is a `page`, not a link: it carries `aria-current="page"` and
 is not focusable.
 
 ## Examples
 
 ### Custom separator
+:::pt-br
+O último item é uma `page`, não um link: ele leva `aria-current="page"` e não
+recebe foco.
+
+## Exemplos
+
+### Separador personalizado
+:::
 
 <c-docs.demo-section>
 <c-breadcrumb>
@@ -70,7 +87,11 @@ is not focusable.
 <c-breadcrumb.separator>/</c-breadcrumb.separator>
 ```
 
+:::en
 ### Collapsed
+:::pt-br
+### Recolhido
+:::
 
 <c-docs.demo-section>
 <c-breadcrumb>

@@ -5,19 +5,29 @@ manifest would otherwise only show up after the deploy. Run collectstatic
 first: the storage backend raises when the manifest is missing.
 """
 
+import io
 import sys
 import tempfile
 from pathlib import Path
 from unittest import mock
 
 from django.conf import settings
+from django.core.management import call_command
 from django.test import SimpleTestCase
 from django.urls import reverse
 from django.utils import translation
 
 from scripts.check_stylesheet import classes, main
 
-from .nav import NAV
+from .content import (
+    PassageError,
+    _translate,
+    coverage,
+    missing_prose,
+    untranslated,
+)
+from .nav import NAV, SLUGS
+from .views import BLOCK_EXTENDS
 
 
 class PageRenderTests(SimpleTestCase):
@@ -34,11 +44,50 @@ class PageRenderTests(SimpleTestCase):
                         urls.append(
                             reverse("page", kwargs={"slug": slug})
                         )
+                for name, page in block_pages():
+                    urls.append(
+                        reverse(
+                            "block-preview", kwargs={"name": name, "page": page}
+                        )
+                    )
 
                 for url in urls:
                     with self.subTest(url=url):
                         response = self.client.get(url)
                         self.assertEqual(response.status_code, 200)
+
+
+def block_pages():
+    """(block, page) for every page a block ships, found on disk."""
+    return sorted(
+        (path.parent.name, path.stem)
+        for path in settings.COMPONENTS_DIR.glob("*/*.html")
+        if path.read_text(encoding="utf-8").startswith(BLOCK_EXTENDS)
+    )
+
+
+class BlockPreviewTests(SimpleTestCase):
+    def test_a_block_renders_inside_the_bare_frame(self):
+        for name, page in block_pages():
+            with self.subTest(block=name, page=page):
+                response = self.client.get(
+                    reverse("block-preview", kwargs={"name": name, "page": page})
+                )
+                self.assertTemplateUsed(response, "block_frame.html")
+                self.assertTemplateNotUsed(response, "base.html")
+                self.assertEqual(response["X-Frame-Options"], "SAMEORIGIN")
+
+    def test_only_a_block_is_served(self):
+        for name, page in [
+            ("button", "index"),
+            ("allauth", "login"),
+            ("nothing", "page"),
+        ]:
+            with self.subTest(name=name):
+                response = self.client.get(
+                    reverse("block-preview", kwargs={"name": name, "page": page})
+                )
+                self.assertEqual(response.status_code, 404)
 
 
 class StylesheetClassTests(SimpleTestCase):
@@ -101,3 +150,127 @@ class StylesheetDiffTests(SimpleTestCase):
                 sys, "argv", ["check_stylesheet.py", committed, build]
             ):
                 main()
+
+
+DEMO = '<c-docs.demo-section>\n<c-button>Save</c-button>\n</c-docs.demo-section>\n'
+
+PAGE = (
+    DEMO
+    + "\n:::en\n## Usage\n\nPress it.\n:::pt-br\n## Uso\n\nAperte.\n:::\n\n"
+    + "```html\n<c-button>Save</c-button>\n```\n\n"
+    + "Not translated yet.\n"
+)
+
+
+class PassageTests(SimpleTestCase):
+    def test_the_active_language_picks_its_passage(self):
+        body = _translate(PAGE, "pt-br")
+
+        self.assertIn("## Uso\n\nAperte.", body)
+        self.assertNotIn("Press it.", body)
+
+    def test_a_missing_language_falls_back_to_english(self):
+        body = _translate(PAGE, "es")
+
+        self.assertIn("## Usage\n\nPress it.", body)
+        self.assertIn("Not translated yet.", body)
+
+    def test_the_demo_and_the_code_are_shared(self):
+        for language in ("en", "pt-br", "es"):
+            with self.subTest(language=language):
+                body = _translate(PAGE, language)
+                self.assertEqual(body.count("<c-button>Save</c-button>"), 2)
+                self.assertNotIn(":::", body)
+
+    def test_markers_inside_fenced_code_are_left_alone(self):
+        body = "```text\n:::pt-br\n```\n"
+
+        self.assertEqual(_translate(body, "pt-br"), body)
+
+    def test_a_malformed_passage_is_refused(self):
+        cases = {
+            "fenced code": ":::en\n```html\n<p></p>\n```\n:::\n",
+            "a demo": ":::en\n" + DEMO + ":::\n",
+            "no English": ":::pt-br\nOlá.\n:::\n",
+            "unknown language": ":::en\nHi.\n:::xx\nHi.\n:::\n",
+            "a language twice": ":::en\nHi.\n:::en\nHi.\n:::\n",
+            "never closed": ":::en\nHi.\n",
+            "nothing to close": "Hi.\n:::\n",
+        }
+
+        for case, body in cases.items():
+            with self.subTest(case=case):
+                with self.assertRaises(PassageError):
+                    _translate(body, "en")
+
+    def test_untranslated_prose_is_reported_once_per_paragraph(self):
+        self.assertEqual(missing_prose(PAGE, "pt-br"), ["Not translated yet."])
+        self.assertEqual(
+            missing_prose(PAGE, "es"), ["## Usage", "Not translated yet."]
+        )
+
+    def test_a_whole_file_override_counts_as_translated(self):
+        self.assertEqual(untranslated("introduction", "pt-br"), [])
+        self.assertEqual(untranslated("introduction", "en"), [])
+
+
+class LlmsTxtTests(SimpleTestCase):
+    def test_each_language_gets_its_own_summary_and_headings(self):
+        expected = {
+            "en": ("unofficial Django port", "## Optional"),
+            "pt-br": ("port não oficial", "## Opcional"),
+            "es": ("port no oficial", "## Opcional"),
+        }
+
+        for code, (summary, heading) in expected.items():
+            with self.subTest(language=code), translation.override(code):
+                index = self.client.get(reverse("llms")).content.decode()
+                full = self.client.get(reverse("llms-full")).content.decode()
+
+                self.assertIn(summary, index)
+                self.assertIn(heading, index)
+                self.assertIn(summary, full)
+
+
+class TranslationCoverageTests(SimpleTestCase):
+    def test_portuguese_is_complete(self):
+        """M17 finished Portuguese; a page added without it fails here."""
+        missing = coverage("pt-br")
+
+        self.assertEqual(
+            missing,
+            {},
+            "pages showing English in pt-br; add a :::pt-br passage and a "
+            "description.pt-br:\n"
+            + "\n".join(f"{slug}: {lines[0]}" for slug, lines in missing.items()),
+        )
+
+    def test_a_new_page_without_portuguese_is_reported(self):
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, "widget.md").write_text(
+                "---\ntitle: Widget\ndescription: A widget.\n---\n\n"
+                + DEMO
+                + "\n## Usage\n\nPress it.\n",
+                encoding="utf-8",
+            )
+            with mock.patch("docs.content.CONTENT_ROOT", Path(root)):
+                missing = untranslated("widget", "pt-br")
+
+        self.assertEqual(
+            missing, ["description: A widget.", "## Usage", "Press it."]
+        )
+
+    def test_a_language_with_nothing_translated_reports(self):
+        """A new language starts empty; the report lists every page and
+        nothing fails."""
+        missing = coverage("it")
+
+        self.assertEqual(set(missing), set(SLUGS))
+
+    def test_the_command_reports_every_language_but_english(self):
+        output = io.StringIO()
+        call_command("translation_coverage", stdout=output)
+
+        self.assertIn("pt-br: ", output.getvalue())
+        self.assertIn("es: ", output.getvalue())
+        self.assertNotIn("en: ", output.getvalue())

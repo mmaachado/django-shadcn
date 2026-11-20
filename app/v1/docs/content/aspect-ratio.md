@@ -15,13 +15,21 @@ description.es: Mantiene el contenido dentro de la proporción que elijas.
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add aspect_ratio
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
     <div class="w-[300px]">
@@ -39,6 +47,7 @@ uvx django_shadcn@latest add aspect_ratio
 </c-aspect-ratio>
 ```
 
+:::en
 Radix reserves the space with a padding hack. Here it is the native `aspect-
 ratio` CSS property, so `ratio` takes anything the property accepts: `16/9`,
 `4/3`, `1.85`. The default is `1/1`.
@@ -46,6 +55,15 @@ ratio` CSS property, so `ratio` takes anything the property accepts: `16/9`,
 ## Examples
 
 ### Square
+:::pt-br
+O Radix reserva o espaço com um truque de padding. Aqui é a propriedade CSS
+nativa `aspect-ratio`, então `ratio` aceita qualquer valor que a propriedade
+aceita: `16/9`, `4/3`, `1.85`. O padrão é `1/1`.
+
+## Exemplos
+
+### Quadrado
+:::
 
 <c-docs.demo-section>
 <div class="w-[200px]">
@@ -61,7 +79,11 @@ ratio` CSS property, so `ratio` takes anything the property accepts: `16/9`,
 <c-aspect-ratio class='overflow-hidden rounded-lg bg-muted'>...</c-aspect-ratio>
 ```
 
+:::en
 ### Portrait
+:::pt-br
+### Retrato
+:::
 
 <c-docs.demo-section>
 <div class="w-[200px]">

@@ -65,6 +65,7 @@ description.es: Ordenación, filtrado y paginación sobre el queryset, no en el 
 </div>
 </c-docs.demo-section>
 
+:::en
 There is nothing to install called `data-table`. Upstream ships one because React has no
 idea how to sort a list of rows — TanStack Table does the sorting, filtering and
 paging in the browser, and the component wires it to the markup.
@@ -74,14 +75,31 @@ the answer arrives already sorted and already sliced, and the page is a table
 plus a few links. What follows is that wiring.
 
 ## Installation
+:::pt-br
+Não há nada chamado `data-table` para instalar. O upstream tem um porque o React
+não faz ideia de como ordenar uma lista de linhas — o TanStack Table faz a
+ordenação, o filtro e a paginação no navegador, e o componente o liga ao markup.
+
+O Django já tem esse motor. `order_by`, `filter` e `Paginator` fazem o trabalho,
+a resposta chega já ordenada e já fatiada, e a página é uma tabela mais alguns
+links. O que vem a seguir é essa ligação.
+
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add table pagination input checkbox button badge dropdown_menu
 ```
 
+:::en
 ## The view
 
 One view reads three query parameters and hands back a page of rows.
+:::pt-br
+## A view
+
+Uma view lê três parâmetros da query string e devolve uma página de linhas.
+:::
 
 ```python
 from django.core.paginator import Paginator
@@ -124,12 +142,21 @@ def invoices(request):
     })
 ```
 
+:::en
 `SORTABLE` is not decoration. `order_by` takes whatever string you give it,
 including one that walks a relation — `?sort=author__user__password` is a
 `FieldError` at best and a disclosure at worst. Sort only by names you wrote
 down yourself.
 
 ## The template
+:::pt-br
+`SORTABLE` não é enfeite. O `order_by` aceita qualquer string que você der,
+inclusive uma que atravessa uma relação — `?sort=author__user__password` é um
+`FieldError` na melhor das hipóteses e um vazamento na pior. Ordene só por nomes
+que você mesmo escreveu.
+
+## O template
+:::
 
 ```html
 <form method="get" class="flex items-center gap-2 pb-4">
@@ -172,6 +199,7 @@ down yourself.
 </div>
 ```
 
+:::en
 The filter form has no submit button because Enter submits it. Everything the
 table needs travels in the query string, so a page is a URL you can bookmark
 and send to someone.
@@ -182,6 +210,19 @@ and send to someone.
 keeps the rest, which is what makes the filter survive a page change. It landed
 in Django 5.1, and it reads the request off the context — if you have trimmed
 `django.template.context_processors.request` out of your settings, put it back.
+:::pt-br
+O formulário de filtro não tem botão de enviar porque o Enter envia. Tudo de
+que a tabela precisa viaja na query string, então uma página é uma URL que você
+pode salvar nos favoritos e mandar para alguém.
+
+## Paginação
+
+`{% verbatim %}{% querystring %}{% endverbatim %}` reescreve um parâmetro e
+mantém o resto, que é o que faz o filtro sobreviver a uma troca de página. Ele
+chegou no Django 5.1, e lê a requisição do contexto — se você tirou
+`django.template.context_processors.request` das suas configurações, ponha de
+volta.
+:::
 
 ```html
 <c-pagination class="mx-0 w-auto justify-end">
@@ -213,6 +254,7 @@ in Django 5.1, and it reads the request off the context — if you have trimmed
 </c-pagination>
 ```
 
+:::en
 `get_elided_page_range` yields page numbers with `Paginator.ELLIPSIS` standing
 in for the gaps, which is exactly the shape
 [Pagination]({% url 'page' slug='pagination' %}) draws. Ten thousand pages
@@ -225,6 +267,20 @@ inline comparison — so the current page is a separate branch.
 
 Wrap the table in a form and give the checkboxes one name. The selection is a
 list of ids in `request.POST`, which is all a bulk action needs.
+:::pt-br
+`get_elided_page_range` devolve os números das páginas com `Paginator.ELLIPSIS`
+no lugar das lacunas, que é exatamente o formato que o
+[Pagination]({% url 'page' slug='pagination' %}) desenha. Dez mil páginas
+viram sete links.
+
+`is_active` não pode ser calculado dentro da tag — os templates do Django não
+têm comparação inline — então a página atual é um ramo separado.
+
+## Seleção de linhas
+
+Envolva a tabela num formulário e dê um nome só aos checkboxes. A seleção é uma
+lista de ids no `request.POST`, que é tudo de que uma ação em massa precisa.
+:::
 
 ```html
 <form method="post">
@@ -247,12 +303,22 @@ list of ids in `request.POST`, which is all a bulk action needs.
 </form>
 ```
 
+:::en
 `<c-table.row>` already paints `data-[state=selected]:bg-muted`; the two lines
 of Alpine only exist so the row highlights before the round trip.
 
 ## Column visibility
 
 Nothing server-side to do here — the rows are already in the page.
+:::pt-br
+O `<c-table.row>` já pinta `data-[state=selected]:bg-muted`; as duas linhas de
+Alpine só existem para que a linha fique destacada antes da ida e volta ao
+servidor.
+
+## Visibilidade das colunas
+
+Nada a fazer no servidor aqui — as linhas já estão na página.
+:::
 
 ```html
 <div x-data="{ shown: { status: true, email: true, amount: true } }">
@@ -283,6 +349,7 @@ Nothing server-side to do here — the rows are already in the page.
 </div>
 ```
 
+:::en
 Every `<th>` and its `<td>` need the same `x-show`. Two places per column, and
 no way around it without a column loop in the body as well.
 
@@ -302,3 +369,23 @@ For a filter that reacts as you type, keep the form and let
 [htmx](https://htmx.org) swap the table body on `keyup changed delay:300ms`.
 The view does not change: it is the same query parameters, and the response is
 the same markup.
+:::pt-br
+Cada `<th>` e o `<td>` dele precisam do mesmo `x-show`. Dois lugares por coluna,
+e não há como fugir disso sem um laço de colunas no corpo também.
+
+## Observações
+
+A ordenação acontece no banco de dados, então ela ordena a tabela inteira e não
+as dez linhas que você vê. É a diferença que as pessoas costumam não perceber
+quando levam uma tabela do cliente para o servidor: com o TanStack, clicar num
+cabeçalho reordena a página atual; aqui reordena tudo e entrega a primeira
+página da nova ordem.
+
+Nada nesta página precisa de JavaScript, a não ser as duas partes opcionais — o
+destaque da seleção e a visibilidade das colunas. A tabela funciona com ele
+desligado.
+
+Para um filtro que reage enquanto você digita, mantenha o formulário e deixe o
+[htmx](https://htmx.org) trocar o corpo da tabela em `keyup changed delay:300ms`.
+A view não muda: são os mesmos parâmetros, e a resposta é o mesmo markup.
+:::

@@ -25,13 +25,21 @@ description.es: Las filas de una conversación que no son mensajes: estado, avis
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add marker
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-marker>
@@ -42,10 +50,18 @@ uvx django_shadcn@latest add marker
 </c-marker>
 ```
 
+:::en
 The icon slot is decorative and hidden from assistive technology, so the content
 has to carry the whole meaning on its own. Nothing here is stateful.
 
 ## Variants
+:::pt-br
+O espaço do ícone é decorativo e fica escondido das tecnologias assistivas,
+então o conteúdo tem de carregar sozinho todo o significado. Nada aqui tem
+estado.
+
+## Variantes
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-6 text-start">
@@ -74,6 +90,7 @@ has to carry the whole meaning on its own. Nothing here is stateful.
 </c-marker>
 ```
 
+:::en
 `separator` draws its rules with `before` and `after`, so an icon inside it
 lands between the label and the left rule rather than at the start of the row.
 Date breaks usually read better without one.
@@ -85,6 +102,19 @@ Date breaks usually read better without one.
 A marker that reports work in progress should be announced, not just drawn.
 `role="status"` reaches the root through the attributes, and the shimmer marks
 the text as live.
+:::pt-br
+`separator` desenha os traços com `before` e `after`, então um ícone dentro dele
+cai entre o rótulo e o traço da esquerda, e não no início da linha. Quebras de
+data costumam ficar melhores sem ícone.
+
+## Exemplos
+
+### Anunciando uma mudança
+
+Um marker que informa um trabalho em andamento deve ser anunciado, não só
+desenhado. `role="status"` chega à raiz pelos atributos, e o brilho marca o
+texto como vivo.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
@@ -106,6 +136,7 @@ the text as live.
 </c-marker>
 ```
 
+:::en
 `shimmer` is a utility in `input.css`, not part of the component. It works on
 any text element and turns itself off when the reader has asked for reduced
 motion.
@@ -114,6 +145,16 @@ motion.
 
 A marker can point somewhere. Put the link in the content rather than on the
 root, so only the words are clickable and the row keeps its layout.
+:::pt-br
+`shimmer` é um utilitário do `input.css`, não faz parte do componente. Ele
+funciona em qualquer elemento de texto e se desliga sozinho quando o leitor
+pediu menos movimento.
+
+### Apontando para fora
+
+Um marker pode apontar para algum lugar. Ponha o link no conteúdo e não na raiz,
+para que só as palavras sejam clicáveis e a linha mantenha o layout.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
@@ -139,9 +180,15 @@ root, so only the words are clickable and the row keeps its layout.
 </c-marker>
 ```
 
+:::en
 ### In a transcript
 
 Between messages, a marker is the line that explains a gap.
+:::pt-br
+### Numa transcrição
+
+Entre mensagens, um marker é a linha que explica uma lacuna.
+:::
 
 <c-docs.demo-section>
 <c-message.group class="w-full max-w-md text-start">

@@ -20,13 +20,21 @@ Right click here
 </c-context-menu>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add context_menu
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-context-menu>
@@ -52,6 +60,7 @@ Right click here
 </c-context-menu>
 ```
 
+:::en
 The trigger swallows the browser's own menu and records where you clicked; the
 content is positioned there with `fixed`, so it opens under the cursor rather
 than under the element.
@@ -59,6 +68,15 @@ than under the element.
 ## Examples
 
 ### Labels, checkboxes and radios
+:::pt-br
+O trigger engole o menu do próprio navegador e registra onde você clicou; o
+conteúdo é posicionado ali com `fixed`, então ele abre embaixo do cursor e não
+embaixo do elemento.
+
+## Exemplos
+
+### Rótulos, checkboxes e radios
+:::
 
 <c-docs.demo-section>
 <c-context-menu>
@@ -90,7 +108,11 @@ Right click here
 </c-context-menu.radio-group>
 ```
 
+:::en
 ### Submenu
+:::pt-br
+### Submenu
+:::
 
 <c-docs.demo-section>
 <c-context-menu>
@@ -122,7 +144,11 @@ Right click here
 </c-context-menu.sub>
 ```
 
+:::en
 ### Inset items
+:::pt-br
+### Itens recuados
+:::
 
 <c-docs.demo-section>
 <c-context-menu>
@@ -141,6 +167,7 @@ Right click here
 <c-context-menu.item inset="true">Rename</c-context-menu.item>
 ```
 
+:::en
 `inset` lines an item up with the ones that carry a checkbox or radio mark.
 
 ## Notes
@@ -161,3 +188,25 @@ There is no roving focus: the menu answers to the pointer and to `Escape`, not
 to the arrow keys. Same limitation as the tooltip on positioning — the content
 is placed at the cursor without measuring whether it fits, so a right-click
 near the bottom edge opens a menu that runs past it.
+:::pt-br
+`inset` alinha um item com os que levam uma marca de checkbox ou de radio.
+
+## Observações
+
+O Radix abre o submenu no hover com um triângulo de segurança, então ir na
+diagonal em direção a ele não o fecha. Aqui o submenu abre no `mouseenter` e
+fecha no `mouseleave` — cortar caminho demais o fecha.
+
+**O menu fecha quando a página rola.** Ele é posicionado em coordenadas da
+viewport, então deixá-lo aberto durante uma rolagem o arrastaria para longe do
+que você clicou com o botão direito. O Radix faz o mesmo, pelo mesmo motivo.
+
+O upstream limita a altura do menu e faz a rolagem dentro dele. Isso foi
+deixado de fora aqui: o overflow cortaria o submenu, coisa de que o Radix escapa
+renderizando-o num portal. Um menu muito longo cresce em vez de rolar.
+
+Não há foco itinerante: o menu responde ao ponteiro e ao `Escape`, não às setas
+do teclado. A mesma limitação do tooltip no posicionamento — o conteúdo é
+colocado no cursor sem medir se cabe, então um clique com o botão direito perto
+da borda de baixo abre um menu que passa dela.
+:::

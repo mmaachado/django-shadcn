@@ -121,6 +121,58 @@ The last two are what makes the component findable, and they are written in the
 same pull request as the component itself — documentation written later is
 documentation that describes an earlier version.
 
+## Adding a block
+
+A block is a page assembled from components, such as a dashboard or a
+settings screen. It is a registry entry like any component, marked
+`block=True`, so `add` installs it with everything it depends on and `list`
+shows it apart.
+
+Its files live in `components/<name>/` and install to
+`templates/blocks/<name>/`, one directory per block. The page is `page.html`,
+and it opens with
+
+```django
+{% extends base_template|default:"base.html" %}
+```
+
+so a project renders it from a view inside its own layout, and the portal
+previews it by passing a bare frame instead. The content goes in
+`{% block content %}`, and the sample data is written into the markup, to be
+replaced.
+
+A block uses components and never adds one. If it needs a component that does
+not exist, the component is its own pull request, and the block waits for it.
+
+The page in `app/v1/docs/content/` shows the block with
+`<c-docs.block-preview name="<name>" />`, which frames the installed file.
+
+## Translating a page
+
+A page is one file, whatever the language. Prose that has a translation is
+written as a passage, one block per language, closed by a bare `:::`:
+
+```markdown
+:::en
+## Usage
+
+Press the button.
+:::pt-br
+## Uso
+
+Aperte o botão.
+:::
+```
+
+The active language picks its block, and a language with no block falls back
+to English, as does prose outside any passage. Demos and fenced code stay
+outside the passages, written once for every language: a passage that holds
+either fails to render. The `description` in the front matter takes a suffix
+instead, as in `description.pt-br:`.
+
+`introduction` and `installation` are nearly all prose, so they are translated
+as whole files in `content/<language>/`.
+
 ## Tests and linting
 
 ```bash

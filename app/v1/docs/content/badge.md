@@ -9,13 +9,21 @@ description.es: Muestra una insignia, o un componente con aspecto de insignia.
 <c-badge variant="default">Default</c-badge>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add badge
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-badge variant="default">Default</c-badge>
@@ -25,9 +33,15 @@ uvx django_shadcn@latest add badge
 <c-badge variant="default">Default</c-badge>
 ```
 
+:::en
 ## Examples
 
 ### Primary
+:::pt-br
+## Exemplos
+
+### Primary
+:::
 
 <c-docs.demo-section>
 <c-badge>Default</c-badge>
@@ -37,7 +51,11 @@ uvx django_shadcn@latest add badge
 <c-badge>Default</c-badge>
 ```
 
+:::en
 ### Secondary
+:::pt-br
+### Secondary
+:::
 
 <c-docs.demo-section>
 <c-badge variant="secondary">Secondary</c-badge>
@@ -47,7 +65,11 @@ uvx django_shadcn@latest add badge
 <c-badge variant="secondary">Secondary</c-badge>
 ```
 
+:::en
 ### Destructive
+:::pt-br
+### Destructive
+:::
 
 <c-docs.demo-section>
 <c-badge variant="destructive">Destructive</c-badge>
@@ -57,7 +79,11 @@ uvx django_shadcn@latest add badge
 <c-badge variant="destructive">Destructive</c-badge>
 ```
 
+:::en
 ### Outline
+:::pt-br
+### Outline
+:::
 
 <c-docs.demo-section>
 <c-badge variant="outline">Outline</c-badge>

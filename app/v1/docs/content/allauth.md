@@ -54,12 +54,17 @@ description.es: Pantallas de autenticación listas y estilizadas para django-all
             </c-card>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add allauth
 ```
 
+:::en
 <p class="text-sm text-muted-foreground mt-4">
     This will install 17 templates to <c-docs.code class="text-sm">templates/account/</c-docs.code>
     along with the required UI components.
@@ -133,6 +138,81 @@ uvx django_shadcn@latest add allauth
 <!-- Login -->
 
 ### Login
+:::pt-br
+<p class="text-sm text-muted-foreground mt-4">
+    Isto instala 17 templates em <c-docs.code class="text-sm">templates/account/</c-docs.code>
+    junto com os componentes de interface de que eles precisam.
+</p>
+<p class="text-sm text-muted-foreground mt-4">
+    Você também pode usar estes templates sem o django-allauth.
+</p>
+
+## Todos os templates
+
+<div class="grid gap-2 text-sm">
+    <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-2">
+            <h4 class="font-medium">Autenticação</h4>
+            <ul class="space-y-1 text-muted-foreground">
+                <li><c-docs.code class="text-xs">login.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">signup.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">logout.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">reauthenticate.html</c-docs.code></li>
+            </ul>
+        </div>
+        <div class="space-y-2">
+            <h4 class="font-medium">Senha</h4>
+            <ul class="space-y-1 text-muted-foreground">
+                <li><c-docs.code class="text-xs">password_change.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">password_set.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">password_reset.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">password_reset_done.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">password_reset_from_key.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">password_reset_from_key_done.html</c-docs.code></li>
+            </ul>
+        </div>
+        <div class="space-y-2">
+            <h4 class="font-medium">E-mail</h4>
+            <ul class="space-y-1 text-muted-foreground">
+                <li><c-docs.code class="text-xs">email.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">email_change.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">email_confirm.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">verification_sent.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">verified_email_required.html</c-docs.code></li>
+            </ul>
+        </div>
+        <div class="space-y-2">
+            <h4 class="font-medium">Status</h4>
+            <ul class="space-y-1 text-muted-foreground">
+                <li><c-docs.code class="text-xs">account_inactive.html</c-docs.code></li>
+                <li><c-docs.code class="text-xs">signup_closed.html</c-docs.code></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+## Componentes usados
+
+<p class="text-muted-foreground mb-4">
+    Os componentes a seguir são instalados automaticamente:
+</p>
+<div class="flex flex-wrap gap-2">
+    <a href="{% url 'page' slug='card' %}"><c-badge variant="outline">Card</c-badge></a>
+    <a href="{% url 'page' slug='button' %}"><c-badge variant="outline">Button</c-badge></a>
+    <a href="{% url 'page' slug='input' %}"><c-badge variant="outline">Input</c-badge></a>
+    <a href="{% url 'page' slug='label' %}"><c-badge variant="outline">Label</c-badge></a>
+    <a href="{% url 'page' slug='checkbox' %}"><c-badge variant="outline">Checkbox</c-badge></a>
+    <a href="{% url 'page' slug='alert' %}"><c-badge variant="outline">Alert</c-badge></a>
+    <a href="{% url 'page' slug='badge' %}"><c-badge variant="outline">Badge</c-badge></a>
+    <a href="{% url 'page' slug='separator' %}"><c-badge variant="outline">Separator</c-badge></a>
+</div>
+
+## Exemplos
+
+<!-- Login -->
+
+### Login
+:::
 
 <c-docs.demo-section>
 <c-card class='w-[400px]'>
@@ -183,9 +263,15 @@ uvx django_shadcn@latest add allauth
 </c-card>
 </c-docs.demo-section>
 
+:::en
 <!-- Signup -->
 
 ### Signup
+:::pt-br
+<!-- Signup -->
+
+### Cadastro
+:::
 
 <c-docs.demo-section>
 <c-card class='w-[400px]'>
@@ -236,9 +322,15 @@ uvx django_shadcn@latest add allauth
 </c-card>
 </c-docs.demo-section>
 
+:::en
 <!-- Logout -->
 
 ### Logout
+:::pt-br
+<!-- Logout -->
+
+### Logout
+:::
 
 <c-docs.demo-section>
 <c-card class='w-[400px]'>
@@ -256,9 +348,15 @@ uvx django_shadcn@latest add allauth
 </c-card>
 </c-docs.demo-section>
 
+:::en
 <!-- Password Reset -->
 
 ### Password Reset
+:::pt-br
+<!-- Password Reset -->
+
+### Redefinição de senha
+:::
 
 <c-docs.demo-section>
 <c-card class='w-[400px]'>

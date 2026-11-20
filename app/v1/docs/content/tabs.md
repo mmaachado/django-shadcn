@@ -60,13 +60,21 @@ Change your password here. After saving, you'll be logged out.
 </c-tabs>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add tabs
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-tabs default_value="account">

@@ -1,0 +1,124 @@
+{% extends base_template|default:"base.html" %}
+
+{% block title %}Overview{% endblock %}
+
+{% block content %}
+{% comment %}
+The shell an application page sits in. Make it your layout: copy it to
+layouts/app.html, and let each page extend that and fill {% block main %}.
+The navigation, the breadcrumb and the account are sample data.
+{% endcomment %}
+<c-sidebar.provider>
+    <c-sidebar>
+        <c-sidebar.header>
+            <c-sidebar.menu>
+                <c-sidebar.menu-item>
+                    <c-sidebar.menu-button href="#" tooltip="Acme Inc.">
+                        <c-icon name="gallery-vertical-end" />
+                        <span class="font-semibold">Acme Inc.</span>
+                    </c-sidebar.menu-button>
+                </c-sidebar.menu-item>
+            </c-sidebar.menu>
+            <c-sidebar.input placeholder="Search" />
+        </c-sidebar.header>
+        <c-sidebar.content>
+            <c-sidebar.group>
+                <c-sidebar.group-label>Workspace</c-sidebar.group-label>
+                <c-sidebar.group-content>
+                    <c-sidebar.menu>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" is_active="true" tooltip="Overview">
+                                <c-icon name="layout-dashboard" />
+                                <span>Overview</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" tooltip="Projects">
+                                <c-icon name="folder" />
+                                <span>Projects</span>
+                            </c-sidebar.menu-button>
+                            <c-sidebar.menu-sub>
+                                <c-sidebar.menu-sub-item>
+                                    <c-sidebar.menu-sub-button href="#">Website</c-sidebar.menu-sub-button>
+                                </c-sidebar.menu-sub-item>
+                                <c-sidebar.menu-sub-item>
+                                    <c-sidebar.menu-sub-button href="#">Mobile app</c-sidebar.menu-sub-button>
+                                </c-sidebar.menu-sub-item>
+                            </c-sidebar.menu-sub>
+                        </c-sidebar.menu-item>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" tooltip="Team">
+                                <c-icon name="users" />
+                                <span>Team</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                    </c-sidebar.menu>
+                </c-sidebar.group-content>
+            </c-sidebar.group>
+        </c-sidebar.content>
+        <c-sidebar.footer>
+            <c-sidebar.menu>
+                <c-sidebar.menu-item>
+                    <c-sidebar.menu-button href="#" tooltip="Settings">
+                        <c-icon name="settings" />
+                        <span>Settings</span>
+                    </c-sidebar.menu-button>
+                </c-sidebar.menu-item>
+            </c-sidebar.menu>
+        </c-sidebar.footer>
+        <c-sidebar.rail />
+    </c-sidebar>
+
+    <c-sidebar.inset>
+        <header class="flex h-14 shrink-0 items-center gap-2 border-b px-4">
+            <c-sidebar.trigger class="-ms-1" />
+            <c-separator orientation="vertical" class="me-2 h-4" />
+            <c-breadcrumb>
+                <c-breadcrumb.list>
+                    <c-breadcrumb.item>
+                        <c-breadcrumb.link href="#">Workspace</c-breadcrumb.link>
+                    </c-breadcrumb.item>
+                    <c-breadcrumb.separator />
+                    <c-breadcrumb.item>
+                        <c-breadcrumb.page>Overview</c-breadcrumb.page>
+                    </c-breadcrumb.item>
+                </c-breadcrumb.list>
+            </c-breadcrumb>
+
+            <div class="ms-auto">
+                <c-dropdown-menu>
+                    <c-dropdown-menu.trigger>
+                        <c-button variant="ghost" size="icon" class="rounded-full" aria-label="Account">
+                            <c-avatar size="sm">
+                                <c-avatar.fallback>AC</c-avatar.fallback>
+                            </c-avatar>
+                        </c-button>
+                    </c-dropdown-menu.trigger>
+                    <c-dropdown-menu.content align="end" class="w-56">
+                        <c-dropdown-menu.label>
+                            <span class="block">Ada Carter</span>
+                            <span class="block text-xs font-normal text-muted-foreground">ada@example.com</span>
+                        </c-dropdown-menu.label>
+                        <c-dropdown-menu.separator />
+                        <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+                        <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+                        <c-dropdown-menu.separator />
+                        <c-dropdown-menu.item variant="destructive">Log out</c-dropdown-menu.item>
+                    </c-dropdown-menu.content>
+                </c-dropdown-menu>
+            </div>
+        </header>
+
+        <main class="flex flex-1 flex-col gap-4 p-4 md:p-6">
+            {% block main %}
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="aspect-video rounded-xl bg-muted/50"></div>
+                <div class="aspect-video rounded-xl bg-muted/50"></div>
+                <div class="aspect-video rounded-xl bg-muted/50"></div>
+            </div>
+            <div class="min-h-96 flex-1 rounded-xl bg-muted/50"></div>
+            {% endblock %}
+        </main>
+    </c-sidebar.inset>
+</c-sidebar.provider>
+{% endblock %}

@@ -38,6 +38,7 @@ description.es: Diseños de derecha a izquierda, definidos con un atributo en el
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Not a component
 
 There is nothing to install. shadcn/ui ships a `Direction` provider, a React
@@ -48,11 +49,24 @@ and the browser needs a single attribute to know it too.
 ## Usage
 
 Set `dir` on the `<html>` element of your base template:
+:::pt-br
+## Não é um componente
+
+Não há nada para instalar. O shadcn/ui traz um provider `Direction`, um contexto
+do React que diz ao Radix em que sentido o texto corre. Ele não tem port, e nada
+aqui o substitui: o Django já sabe a direção do idioma ativo, e o navegador
+precisa de um único atributo para saber também.
+
+## Uso
+
+Defina `dir` no elemento `<html>` do seu template base:
+:::
 
 ```html
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 ```
 
+:::en
 `LANGUAGE_BIDI` is `True` when the active language is written right to left,
 such as Arabic, Hebrew or Persian. It comes from the
 `django.template.context_processors.i18n` context processor, which
@@ -86,6 +100,42 @@ Icons. Lucide has no RTL variants, so an arrow or a chevron points the same way
 in both directions. Whether one should flip depends on what it means: a "next"
 chevron usually should, a play button or a download arrow should not. That is
 your call, and Tailwind's `rtl:` variant makes it one class:
+:::pt-br
+`LANGUAGE_BIDI` é `True` quando o idioma ativo é escrito da direita para a
+esquerda, como o árabe, o hebraico ou o persa. Ele vem do context processor
+`django.template.context_processors.i18n`, que o `startproject` já liga. Com o
+`LocaleMiddleware`, cada resposta recebe a direção do idioma em que foi
+renderizada.
+
+Para uma parte da página, ponha `dir` naquele elemento. A demo acima faz isso,
+com o mesmo markup dos dois lados.
+
+## O que espelha
+
+Os componentes usam utilitários lógicos: `ms-` e `me-` para margens, `ps-` e
+`pe-` para padding, `start-` e `end-` para posição, `text-start`, `border-s` e
+`rounded-s`. Sob `dir="rtl"` cada um deles passa para o outro lado, então
+espaçamento, bordas e pontas arredondadas acompanham o texto. Um grupo de
+botões mantém as pontas arredondadas do lado de fora, um submenu abre à
+esquerda, e `align="start"` num menu se alinha com o início da linha.
+
+Algumas coisas mantêm o lado de propósito:
+
+- Um lado que você nomeia. `side="left"` em `sheet`, `sidebar`, `tooltip` e
+  `hover_card`, e `direction="left"` em `drawer`, significam a esquerda da
+  tela. Para uma sidebar no início de uma página RTL, passe `side="right"`.
+- `carousel`, que rola em coordenadas físicas, então o botão de voltar continua
+  à esquerda.
+- O eixo de valores do `chart`. Um gráfico não espelha porque o idioma espelha.
+
+## O que não espelha
+
+Os ícones. O Lucide não tem variantes RTL, então uma seta ou um chevron aponta
+para o mesmo lado nas duas direções. Se um deles deve virar depende do que ele
+significa: um chevron de "próximo" normalmente deve, um botão de play ou uma
+seta de download não. A decisão é sua, e a variante `rtl:` do Tailwind resolve
+com uma classe:
+:::
 
 ```html
 <c-icon name="chevron-right" class="rtl:rotate-180" />

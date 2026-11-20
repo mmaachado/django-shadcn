@@ -66,13 +66,21 @@ Toggle with the button, the rail on the panel's edge, or <c-kbd>⌘</c-kbd> <c-k
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add sidebar
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-sidebar.provider>
@@ -103,6 +111,7 @@ uvx django_shadcn@latest add sidebar
 </c-sidebar.provider>
 ```
 
+:::en
 `<c-sidebar.provider>` holds the open state and has to wrap both the panel and
 the page. Put it in your base template, around everything.
 
@@ -117,6 +126,22 @@ renders a `<button>`. Mark the current page with `is_active="true"`.
 Toggling writes a `sidebar_state` cookie. Read it back in the view so the
 server renders the panel in the shape the visitor left it, instead of drawing
 it expanded and letting it snap shut once Alpine boots:
+:::pt-br
+O `<c-sidebar.provider>` guarda o estado de aberto e precisa envolver tanto o
+painel quanto a página. Ponha-o no seu template base, em volta de tudo.
+
+O `<c-sidebar.inset>` é onde a página vai. Ele precisa ser um irmão que vem
+depois do `<c-sidebar>` — a variante `inset` o estiliza a partir dali.
+
+Um `<c-sidebar.menu-button>` com `href` renderiza um `<a>`; sem ele, renderiza
+um `<button>`. Marque a página atual com `is_active="true"`.
+
+## Lembrando o estado
+
+Abrir e fechar grava um cookie `sidebar_state`. Leia-o de volta na view para que
+o servidor renderize o painel do jeito que o visitante o deixou, em vez de
+desenhá-lo aberto e deixá-lo fechar de repente quando o Alpine iniciar:
+:::
 
 ```python
 def dashboard(request):
@@ -129,6 +154,7 @@ def dashboard(request):
 <c-sidebar.provider default_open="{{ sidebar_open }}">
 ```
 
+:::en
 ## Examples
 
 ### Collapse to icons
@@ -136,6 +162,15 @@ def dashboard(request):
 `collapsible="icon"` keeps a rail of icons instead of sliding the whole panel
 away. Labels, badges and sub-menus hide themselves; the `tooltip` on each
 button takes over as the label.
+:::pt-br
+## Exemplos
+
+### Recolher para ícones
+
+`collapsible="icon"` mantém uma faixa de ícones em vez de deslizar o painel
+inteiro para fora. Rótulos, badges e submenus se escondem sozinhos; o `tooltip`
+de cada botão assume o papel de rótulo.
+:::
 
 <c-docs.demo-section>
 <div class="relative h-[300px] w-full transform-gpu overflow-hidden rounded-lg border">
@@ -184,7 +219,11 @@ button takes over as the label.
 <c-sidebar collapsible="icon">...</c-sidebar>
 ```
 
+:::en
 ### Variants and side
+:::pt-br
+### Variantes e lado
+:::
 
 ```html
 <c-sidebar variant="floating">...</c-sidebar>
@@ -193,12 +232,21 @@ button takes over as the label.
 <c-sidebar collapsible="none">...</c-sidebar>
 ```
 
+:::en
 `floating` detaches the panel with a border and a radius. `inset` does the same
 to the page instead, and needs the provider to sit on the sidebar background —
 `has-data-[variant=inset]:bg-sidebar` already handles that. `none` drops the
 toggle entirely and leaves a panel that is always there.
 
 ### Nested items
+:::pt-br
+`floating` destaca o painel com uma borda e um raio. `inset` faz o mesmo com a
+página, e precisa que o provider fique sobre o fundo da sidebar —
+`has-data-[variant=inset]:bg-sidebar` já cuida disso. `none` tira o botão de
+alternar por completo e deixa um painel que está sempre ali.
+
+### Itens aninhados
+:::
 
 ```html
 <c-sidebar.menu-item>
@@ -215,10 +263,17 @@ toggle entirely and leaves a panel that is always there.
 </c-sidebar.menu-item>
 ```
 
+:::en
 Wrap the sub-menu in a [Collapsible]({% url 'page' slug='collapsible' %}) if
 you want it to fold.
 
 ### Actions and badges
+:::pt-br
+Envolva o submenu num [Collapsible]({% url 'page' slug='collapsible' %}) se
+quiser que ele se recolha.
+
+### Ações e badges
+:::
 
 ```html
 <c-sidebar.menu-item>
@@ -231,11 +286,19 @@ you want it to fold.
 </c-sidebar.menu-item>
 ```
 
+:::en
 Both the action and the badge sit on top of the button, so they go after it,
 inside the same `<c-sidebar.menu-item>`. Only one of the two per item — they
 claim the same corner.
 
 ### Loading placeholder
+:::pt-br
+Tanto a ação quanto o badge ficam sobre o botão, então vão depois dele, dentro
+do mesmo `<c-sidebar.menu-item>`. Só um dos dois por item — eles disputam o
+mesmo canto.
+
+### Placeholder de carregamento
+:::
 
 <c-docs.demo-section>
 <div class="w-[240px] rounded-lg bg-sidebar p-2">
@@ -251,6 +314,7 @@ claim the same corner.
 <c-sidebar.menu-skeleton show_icon="true" width="60%" />
 ```
 
+:::en
 ## Notes
 
 Below `md` the panel slides in over a backdrop rather than becoming a
@@ -259,11 +323,23 @@ widths, so the menu is written once and there are no duplicate ids in the page.
 
 The width comes from `--sidebar-width` and `--sidebar-width-icon`, set on the
 provider. Override them with an inline style, which beats the defaults:
+:::pt-br
+## Observações
+
+Abaixo de `md` o painel desliza por cima de um fundo escurecido em vez de virar
+um [Sheet]({% url 'page' slug='sheet' %}) como faz o upstream. Uma árvore só
+atende às duas larguras, então o menu é escrito uma vez e não há ids duplicados
+na página.
+
+A largura vem de `--sidebar-width` e `--sidebar-width-icon`, definidos no
+provider. Sobrescreva-os com um estilo inline, que vence os padrões:
+:::
 
 ```html
 <c-sidebar.provider style="--sidebar-width: 20rem">
 ```
 
+:::en
 `<c-sidebar.menu-button>` renders its `tooltip` as a plain sibling label
 instead of composing [Tooltip]({% url 'page' slug='tooltip' %}), because the
 badge and action rules position themselves against the button as a sibling and
@@ -272,3 +348,13 @@ a wrapper would break them.
 The sidebar's own colour tokens — `--sidebar`, `--sidebar-accent`,
 `--sidebar-border` and the rest — live in `input.css`. Restyle the panel there,
 not with utility classes on each part.
+:::pt-br
+O `<c-sidebar.menu-button>` renderiza o `tooltip` como um rótulo irmão simples
+em vez de compor o [Tooltip]({% url 'page' slug='tooltip' %}), porque as regras
+do badge e da ação se posicionam em relação ao botão como irmão, e um elemento
+em volta as quebraria.
+
+Os tokens de cor da própria sidebar — `--sidebar`, `--sidebar-accent`,
+`--sidebar-border` e o resto — moram no `input.css`. Mude o estilo do painel lá,
+não com classes utilitárias em cada parte.
+:::

@@ -27,13 +27,21 @@ description.es: Un diálogo modal que interrumpe al usuario con algo importante 
         </c-alert-dialog>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add alert_dialog
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-alert-dialog>

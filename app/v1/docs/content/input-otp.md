@@ -21,13 +21,21 @@ description.es: Un campo de código de un solo uso, con una casilla por carácte
 </c-input-otp>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add input_otp
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-input-otp maxlength="4" name="pin">
@@ -51,6 +59,7 @@ uvx django_shadcn@latest add input_otp
 </c-input-otp>
 ```
 
+:::en
 One real input sits transparent over the boxes and holds the whole code, so
 pasting works, the browser can autofill it from an SMS, and phones show the
 number pad. The boxes below only draw what that input contains. `name` reaches
@@ -61,6 +70,19 @@ Each slot carries its own `index`, the same way it does upstream.
 ## Examples
 
 ### Split into groups
+:::pt-br
+Um input de verdade fica transparente sobre as caixas e guarda o código
+inteiro, então colar funciona, o navegador pode preenchê-lo a partir de um SMS e
+os celulares mostram o teclado numérico. As caixas de baixo só desenham o que
+esse input contém. O `name` chega ao input, então o campo é enviado como
+qualquer outro.
+
+Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
+
+## Exemplos
+
+### Dividido em grupos
+:::
 
 <c-docs.demo-section>
 <c-input-otp maxlength="6" name="split">
@@ -94,7 +116,11 @@ Each slot carries its own `index`, the same way it does upstream.
 </c-input-otp>
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-input-otp maxlength="4" disabled>
@@ -113,7 +139,11 @@ Each slot carries its own `index`, the same way it does upstream.
 </c-input-otp>
 ```
 
+:::en
 ### In a Django form
+:::pt-br
+### Num formulário Django
+:::
 
 ```html
 <c-field>
@@ -132,6 +162,7 @@ Each slot carries its own `index`, the same way it does upstream.
 </c-field>
 ```
 
+:::en
 ## Notes
 
 The blinking caret sits on the box the next character will land in, which is
@@ -142,3 +173,15 @@ Upstream restricts the accepted characters through a pattern prop. Here the
 field takes whatever the input takes; `inputmode="numeric"` asks phones for the
 number pad but does not enforce digits, so validate on the server as you would
 with any other field.
+:::pt-br
+## Observações
+
+O cursor piscando fica na caixa em que o próximo caractere vai cair, que é o
+slot no comprimento atual. Ele é desenhado, não é de verdade — o cursor real
+pertence ao input transparente e fica escondido.
+
+O upstream restringe os caracteres aceitos com uma prop de padrão. Aqui o campo
+aceita o que o input aceitar; `inputmode="numeric"` pede aos celulares o teclado
+numérico mas não obriga a digitar só números, então valide no servidor como
+faria com qualquer outro campo.
+:::

@@ -29,13 +29,21 @@ Drag the handle down to dismiss, or press Escape.
 </c-drawer>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add drawer
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-drawer>
@@ -58,6 +66,7 @@ uvx django_shadcn@latest add drawer
 </c-drawer>
 ```
 
+:::en
 The grab handle at the top follows your pointer. Let go past about four tenths
 of the panel's height and it closes; let go short of that and it springs back.
 Escape and a click on the overlay close it too.
@@ -68,6 +77,18 @@ does not dim the page.
 ## Examples
 
 ### Direction
+:::pt-br
+A alça no topo acompanha o seu ponteiro. Solte depois de uns quatro décimos da
+altura do painel e ele fecha; solte antes disso e ele volta. O Escape e um
+clique no overlay também o fecham.
+
+O overlay é um elemento à parte, então você pode deixá-lo de fora para um
+drawer que não escurece a página.
+
+## Exemplos
+
+### Direção
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-3">
@@ -100,7 +121,11 @@ does not dim the page.
 <c-drawer direction="left">...</c-drawer>
 ```
 
+:::en
 ### Without the overlay
+:::pt-br
+### Sem o overlay
+:::
 
 <c-docs.demo-section>
 <c-drawer>
@@ -124,6 +149,7 @@ does not dim the page.
 </c-drawer>
 ```
 
+:::en
 ## Notes
 
 Upstream builds on `vaul`, which adds momentum, snap points that let the panel
@@ -141,3 +167,24 @@ covers that with less machinery. Reach for the drawer when the drag matters.
 The directional classes come from the registry, with `data-vaul-drawer-direction`
 renamed to `data-direction` — carrying a library name for a library we do not
 ship would be misleading.
+:::pt-br
+## Observações
+
+O upstream se apoia no `vaul`, que acrescenta embalo, pontos de parada que
+deixam o painel descansar em alturas intermediárias e um efeito de escala na
+página de trás. Nada disso é reproduzido. O que está aqui é a parte que as
+pessoas realmente usam: um painel vindo da borda, uma alça e arrastar para
+fechar.
+
+**Arrastar só funciona no drawer de baixo** — a alça aparece ali e em nenhum
+outro lugar, que é o arranjo do próprio upstream. As outras direções abrem e
+fecham com clique, Escape e o overlay.
+
+Se você só precisa de um painel vindo de uma borda, o
+[Sheet]({% url 'page' slug='sheet' %}) resolve isso com menos maquinário. Use o
+drawer quando o arrastar importar.
+
+As classes de direção vêm do registry, com `data-vaul-drawer-direction`
+renomeado para `data-direction` — levar o nome de uma biblioteca que não
+distribuímos seria enganoso.
+:::

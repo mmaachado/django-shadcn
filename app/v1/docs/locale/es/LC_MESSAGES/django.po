@@ -42,3 +42,23 @@ msgstr "Introducción"
 
 msgid "Installation"
 msgstr "Instalación"
+
+msgid ""
+"django-shadcn is an unofficial Django port of shadcn/ui. It ships as a CLI "
+"that copies django-cotton templates into your project, so the components "
+"become your code rather than a dependency. Components are written with "
+"Tailwind CSS v4 and Alpine.js."
+msgstr ""
+"django-shadcn es un port no oficial de shadcn/ui para Django. Se distribuye "
+"como una CLI que copia plantillas de django-cotton a tu proyecto, de modo que "
+"los componentes pasan a ser tu código en lugar de una dependencia. Los "
+"componentes están escritos con Tailwind CSS v4 y Alpine.js."
+
+msgid "Optional"
+msgstr "Opcional"
+
+msgid "Full documentation"
+msgstr "Documentación completa"
+
+msgid "every page above, inlined as Markdown"
+msgstr "todas las páginas anteriores, completas, en Markdown"

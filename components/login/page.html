@@ -1,0 +1,67 @@
+{% extends base_template|default:"base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+{% comment %}
+Markup only: the form posts email and password to its own URL, and the two
+provider buttons lead nowhere. Point the form at your login view, or at
+django-allauth's account_login, and the buttons at your providers.
+{% endcomment %}
+<div class="grid min-h-svh lg:grid-cols-2">
+    <div class="flex flex-col gap-4 p-6 md:p-10">
+        <a href="#" class="flex items-center gap-2 self-center font-medium lg:self-start">
+            <span class="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                <c-icon name="gallery-vertical-end" class="size-4" />
+            </span>
+            Acme Inc.
+        </a>
+
+        <div class="flex flex-1 items-center justify-center">
+            <c-card class="w-full max-w-sm">
+                <c-card.header class="text-center">
+                    <c-card.title class="text-xl">Welcome back</c-card.title>
+                    <c-card.description>Log in with your email, or with an account you already have.</c-card.description>
+                </c-card.header>
+                <c-card.content>
+                    <form method="post">
+                        {% csrf_token %}
+                        <c-field.group>
+                            <c-field>
+                                <c-field.label for="login-email">Email</c-field.label>
+                                <c-input id="login-email" name="email" type="email" placeholder="m@example.com" autocomplete="email" required />
+                            </c-field>
+                            <c-field>
+                                <div class="flex items-center">
+                                    <c-field.label for="login-password">Password</c-field.label>
+                                    <a href="#" class="ms-auto text-sm underline-offset-4 hover:underline">Forgot your password?</a>
+                                </div>
+                                <c-input id="login-password" name="password" type="password" autocomplete="current-password" required />
+                            </c-field>
+                            <c-button type="submit" class="w-full">Log in</c-button>
+
+                            <c-field.separator class="*:data-[slot=field-separator-content]:bg-card">Or continue with</c-field.separator>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <c-button variant="outline" type="button">GitHub</c-button>
+                                <c-button variant="outline" type="button">Google</c-button>
+                            </div>
+
+                            <p class="text-center text-sm text-muted-foreground">
+                                No account yet? <a href="#" class="text-foreground underline underline-offset-4">Sign up</a>
+                            </p>
+                        </c-field.group>
+                    </form>
+                </c-card.content>
+            </c-card>
+        </div>
+    </div>
+
+    <div class="relative hidden flex-col justify-end bg-muted p-10 lg:flex">
+        <blockquote class="space-y-2">
+            <p class="text-lg">One sentence on what signing in gets the reader. It replaces this one.</p>
+            <footer class="text-sm text-muted-foreground">Acme Inc.</footer>
+        </blockquote>
+    </div>
+</div>
+{% endblock %}

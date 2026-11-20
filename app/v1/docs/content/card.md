@@ -24,13 +24,21 @@ description.es: Una tarjeta con encabezado, contenido y pie.
 </c-card>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add card
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-card class="w-[380px]">
@@ -43,9 +51,15 @@ uvx django_shadcn@latest add card
 </c-card>
 ```
 
+:::en
 ## Examples
 
 ###
+:::pt-br
+## Exemplos
+
+###
+:::
 
 <c-docs.demo-section>
 <c-card class="w-[380px]">

@@ -13,24 +13,41 @@ description.es: Una etiqueta accesible asociada a un control.
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add label
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-label for="email">Email</c-label> <c-input id="email" type="email" />
 ```
 
+:::en
 The `for` attribute has to match the control's `id`. That is what lets a
 click on the text focus the field, and what a screen reader announces.
 
 ## Examples
 
 ### With an input
+:::pt-br
+O atributo `for` precisa bater com o `id` do controle. É isso que faz um clique
+no texto dar foco ao campo, e é o que um leitor de tela anuncia.
+
+## Exemplos
+
+### Com um input
+:::
 
 <c-docs.demo-section>
 
@@ -45,7 +62,11 @@ click on the text focus the field, and what a screen reader announces.
 <c-input id="project" placeholder="django-shadcn" />
 ```
 
+:::en
 ### With a checkbox
+:::pt-br
+### Com um checkbox
+:::
 
 <c-docs.demo-section>
 
@@ -60,7 +81,11 @@ click on the text focus the field, and what a screen reader announces.
 <c-label for="newsletter">Subscribe to the newsletter</c-label>
 ```
 
+:::en
 ### Required
+:::pt-br
+### Obrigatório
+:::
 
 <c-docs.demo-section>
 
@@ -80,7 +105,11 @@ click on the text focus the field, and what a screen reader announces.
 </c-label>
 ```
 
+:::en
 ### Disabled control
+:::pt-br
+### Controle desabilitado
+:::
 
 <c-docs.demo-section>
 
@@ -95,8 +124,15 @@ click on the text focus the field, and what a screen reader announces.
 <c-label for="locked">Locked field</c-label>
 ```
 
+:::en
 ## Notes
 
 The dimmed style for a disabled control comes from `peer-disabled:`, so the
 control needs the `peer` class and has to come before the label in the
 markup.
+:::pt-br
+## Observações
+
+O estilo esmaecido de um controle desabilitado vem de `peer-disabled:`, então o
+controle precisa da classe `peer` e tem de vir antes do rótulo no markup.
+:::

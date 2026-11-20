@@ -21,13 +21,21 @@ This sheet appears from the right of the screen.
 </c-sheet>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add sheet
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-sheet>
@@ -45,9 +53,15 @@ uvx django_shadcn@latest add sheet
 </c-sheet>
 ```
 
+:::en
 ## Examples
 
 ###
+:::pt-br
+## Exemplos
+
+###
+:::
 
 <c-docs.demo-section>
 
@@ -88,7 +102,11 @@ uvx django_shadcn@latest add sheet
 </div>
 ```
 
+:::en
 ### Adjust Size
+:::pt-br
+### Ajustar o tamanho
+:::
 
 <c-docs.demo-section>
 <c-sheet>

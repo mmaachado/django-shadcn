@@ -1,0 +1,77 @@
+{% extends base_template|default:"base.html" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+{% comment %}
+Markup only: both forms post to their own URL, and every value is sample
+data. Bind the fields to your forms and the switches to the user's
+preferences.
+{% endcomment %}
+<div class="mx-auto flex w-full max-w-3xl flex-col gap-6 p-6 md:p-10">
+    <div class="space-y-1">
+        <h1 class="text-2xl font-semibold tracking-tight">Settings</h1>
+        <p class="text-sm text-muted-foreground">Manage your profile and how we keep in touch.</p>
+    </div>
+
+    <c-separator />
+
+    <c-tabs default_value="profile">
+        <c-tabs.list>
+            <c-tabs.trigger value="profile">Profile</c-tabs.trigger>
+            <c-tabs.trigger value="notifications">Notifications</c-tabs.trigger>
+        </c-tabs.list>
+
+        <c-tabs.content value="profile">
+            <form method="post" class="mt-6 space-y-6">
+                {% csrf_token %}
+                <c-form.field>
+                    <c-form.label for="settings-name">Name</c-form.label>
+                    <c-input id="settings-name" name="name" value="Ada Carter" autocomplete="name" />
+                    <c-form.description>Shown on your profile and in emails we send.</c-form.description>
+                </c-form.field>
+                <c-form.field>
+                    <c-form.label for="settings-email">Email</c-form.label>
+                    <c-input id="settings-email" name="email" type="email" value="ada@example.com" autocomplete="email" />
+                    <c-form.description>Where receipts and security alerts go.</c-form.description>
+                </c-form.field>
+                <c-form.field>
+                    <c-form.label for="settings-website">Website</c-form.label>
+                    <c-input id="settings-website" name="website" type="url" placeholder="https://" />
+                </c-form.field>
+                <c-button type="submit">Save profile</c-button>
+            </form>
+        </c-tabs.content>
+
+        <c-tabs.content value="notifications">
+            <form method="post" class="mt-6">
+                {% csrf_token %}
+                <div class="divide-y rounded-lg border">
+                    <div class="flex items-center justify-between gap-6 p-4">
+                        <div class="space-y-1">
+                            <c-label for="settings-security">Security alerts</c-label>
+                            <p class="text-sm text-muted-foreground">A new sign-in, a changed password or email.</p>
+                        </div>
+                        <c-switch id="settings-security" name="security" checked />
+                    </div>
+                    <div class="flex items-center justify-between gap-6 p-4">
+                        <div class="space-y-1">
+                            <c-label for="settings-activity">Activity</c-label>
+                            <p class="text-sm text-muted-foreground">Comments and mentions on your projects.</p>
+                        </div>
+                        <c-switch id="settings-activity" name="activity" checked />
+                    </div>
+                    <div class="flex items-center justify-between gap-6 p-4">
+                        <div class="space-y-1">
+                            <c-label for="settings-product">Product news</c-label>
+                            <p class="text-sm text-muted-foreground">A monthly email about what changed.</p>
+                        </div>
+                        <c-switch id="settings-product" name="product" />
+                    </div>
+                </div>
+                <c-button type="submit" class="mt-6">Save preferences</c-button>
+            </form>
+        </c-tabs.content>
+    </c-tabs>
+</div>
+{% endblock %}

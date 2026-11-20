@@ -8,10 +8,16 @@ class Component:
     `scripts` names JavaScript the markup needs and Alpine's core does not
     provide. A component that declares one renders without erroring and
     without behaving, so `add` has to say so.
+
+    `block` marks a page assembled from components rather than a component.
+    It installs the same way, through `add` and its dependencies, but lands
+    in templates/blocks/<name>/ and is listed apart. Its page extends the
+    project's base.html, or `base_template` when the view passes one.
     """
 
     depends: tuple[str, ...] = ()
     scripts: tuple[str, ...] = ()
+    block: bool = False
 
 
 COLLAPSE = '@alpinejs/collapse'
@@ -31,7 +37,8 @@ registry: dict[str, Component] = {
             'alert',
             'badge',
             'separator',
-        )
+        ),
+        block=True,
     ),
     'aspect_ratio': Component(),
     'attachment': Component(depends=('button', 'icon')),
@@ -50,6 +57,20 @@ registry: dict[str, Component] = {
     'context_menu': Component(depends=('icon',)),
     'command': Component(depends=('icon',)),
     'command_dialog': Component(depends=('command',)),
+    'dashboard': Component(
+        depends=(
+            'badge',
+            'breadcrumb',
+            'card',
+            'chart',
+            'icon',
+            'metric',
+            'separator',
+            'sidebar',
+            'table',
+        ),
+        block=True,
+    ),
     'date_picker': Component(
         depends=('button', 'calendar', 'icon', 'popover')
     ),
@@ -68,6 +89,10 @@ registry: dict[str, Component] = {
     'item': Component(depends=('separator',)),
     'kbd': Component(),
     'label': Component(),
+    'login': Component(
+        depends=('button', 'card', 'field', 'icon', 'input'),
+        block=True,
+    ),
     'marker': Component(depends=('icon',)),
     'menubar': Component(depends=('icon',)),
     'message': Component(depends=('avatar',)),
@@ -83,9 +108,33 @@ registry: dict[str, Component] = {
     'resizable': Component(depends=('icon',)),
     'scroll_area': Component(),
     'select': Component(depends=('icon',)),
+    'settings': Component(
+        depends=(
+            'button',
+            'form',
+            'input',
+            'label',
+            'separator',
+            'switch',
+            'tabs',
+        ),
+        block=True,
+    ),
     'sheet': Component(depends=('button', 'icon')),
     'separator': Component(),
     'sidebar': Component(depends=('icon',)),
+    'sidebar_layout': Component(
+        depends=(
+            'avatar',
+            'breadcrumb',
+            'button',
+            'dropdown_menu',
+            'icon',
+            'separator',
+            'sidebar',
+        ),
+        block=True,
+    ),
     'skeleton': Component(),
     'spinner': Component(depends=('icon',)),
     'slider': Component(),

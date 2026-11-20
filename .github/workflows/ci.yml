@@ -128,6 +128,12 @@ jobs:
         working-directory: ${{ runner.temp }}/portal
         run: uv run python manage.py test
 
+      # Portuguese is held complete by a test above. The other languages are
+      # partial on purpose, and this keeps how partial in the log.
+      - name: Report translation coverage
+        working-directory: ${{ runner.temp }}/portal
+        run: uv run python manage.py translation_coverage
+
   # The lock pins Tailwind, so a fresh build matches the committed file. Class
   # names are compared first because they make the readable report; the CSS
   # itself is compared after, to catch a changed declaration.

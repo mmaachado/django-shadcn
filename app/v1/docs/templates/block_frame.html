@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
+
+        {% comment %}
+        The frame a block preview renders into, in place of a project's
+        base.html: the stylesheet, Alpine and the theme, and nothing of the
+        portal around them. The theme follows the one the portal stored.
+        {% endcomment %}
+        <script>
+            (function () {
+                var stored = localStorage.getItem('theme');
+                var dark = stored
+                    ? stored === 'dark'
+                    : matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', dark);
+            })();
+        </script>
+
+        <script src="{% static 'js/alpine-collapse.min.js' %}" defer></script>
+        <script src="{% static 'js/alpine.min.js' %}" defer></script>
+        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+        <title>{% block title %}Block preview{% endblock %}</title>
+    </head>
+    <body class="min-h-svh bg-background font-sans antialiased">
+        {% block content %}{% endblock %}
+    </body>
+</html>

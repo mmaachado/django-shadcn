@@ -22,18 +22,32 @@ description.es: Un conjunto de diapositivas que se desplaza en horizontal o en v
 </div>
 </c-docs.demo-section>
 
+:::en
 <p class="mt-4 text-sm text-muted-foreground">
     The arrows, the dots and the arrow keys all move it. So does dragging it,
     or a trackpad, or a touchscreen — the track is an ordinary scroll container.
 </p>
 
 ## Installation
+:::pt-br
+<p class="mt-4 text-sm text-muted-foreground">
+    As setas, os pontos e as teclas de seta movem o carrossel. Arrastar também,
+    ou um trackpad, ou uma tela de toque — a trilha é um contêiner de rolagem
+    comum.
+</p>
+
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add carousel
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-carousel>
@@ -50,6 +64,7 @@ uvx django_shadcn@latest add carousel
 </c-carousel>
 ```
 
+:::en
 The arrows sit at `-left-12` and `-right-12`, outside the track, so the carousel
 needs room around it — `px-12` on a wrapper, or `class="mx-12"` on the carousel
 itself.
@@ -70,11 +85,34 @@ the dots need in order to know what to show.
 
 Each slide is `basis-full` by default — one at a time. Give it a different
 basis at a breakpoint:
+:::pt-br
+As setas ficam em `-left-12` e `-right-12`, fora da trilha, então o carrossel
+precisa de espaço em volta — `px-12` num elemento em volta, ou `class="mx-12"`
+no próprio carrossel.
+
+## O Embla não foi portado
+
+O upstream move tudo com o Embla. Aqui a trilha é um contêiner de rolagem comum
+e quem faz o movimento é o `scroll-snap` do CSS.
+
+Isso não é um atalho. É o motivo de arrastar, o trackpad, o embalo e o toque
+funcionarem sem uma linha de código, e o motivo de os slides continuarem sendo
+uma lista rolável quando o JavaScript está desligado ou ainda não carregou.
+
+O Alpine só lê onde a trilha parou, que é a parte de que as setas e os pontos
+precisam para saber o que mostrar.
+
+## Quantos slides cabem
+
+Cada slide é `basis-full` por padrão — um de cada vez. Dê a ele outro basis em
+um breakpoint:
+:::
 
 ```html
 <c-carousel.item class="md:basis-1/2 lg:basis-1/3">
 ```
 
+:::en
 Use a breakpoint even for a size that never changes (`md:basis-1/3` rather than
 `basis-1/3`). Without one, the two `flex-basis` utilities land in the same place
 in the stylesheet and the component's own default is the one that applies.
@@ -83,6 +121,16 @@ in the stylesheet and the component's own default is the one that applies.
 
 `orientation="vertical"` turns the track and rotates the arrows. The content
 needs a height, since a column of slides has nothing else to scroll inside:
+:::pt-br
+Use um breakpoint mesmo para um tamanho que nunca muda (`md:basis-1/3` em vez de
+`basis-1/3`). Sem ele, os dois utilitários de `flex-basis` caem no mesmo lugar
+da folha de estilo e quem vale é o padrão do próprio componente.
+
+## Vertical
+
+`orientation="vertical"` vira a trilha e gira as setas. O conteúdo precisa de
+uma altura, já que uma coluna de slides não tem mais nada dentro do que rolar:
+:::
 
 ```html
 <c-carousel orientation="vertical">
@@ -106,6 +154,7 @@ needs a height, since a column of slides has nothing else to scroll inside:
 </div>
 </c-docs.demo-section>
 
+:::en
 The orientation reaches the slides as a data attribute on the carousel rather
 than through the Alpine scope, so they are laid out on the first paint instead
 of jumping into place once Alpine starts.
@@ -137,6 +186,39 @@ both orientations — the same keys upstream uses.
 ## Driving it yourself
 
 The carousel's scope is available to anything inside it:
+:::pt-br
+A orientação chega aos slides como um atributo data no carrossel, e não pelo
+escopo do Alpine, então eles já aparecem no lugar na primeira pintura em vez de
+pularem para o lugar quando o Alpine começa.
+
+## Teclado
+
+<kbd>←</kbd> e <kbd>→</kbd> movem o carrossel sempre que o foco está dentro
+dele, nas duas orientações — as mesmas teclas que o upstream usa.
+
+## Anatomia
+
+| Tag | O que é |
+| --- | --- |
+| `<c-carousel>` | a região, o estado e o teclado |
+| `<c-carousel.content>` | a trilha: o contêiner de rolagem e o layout |
+| `<c-carousel.item>` | um slide |
+| `<c-carousel.previous>` | a seta para trás |
+| `<c-carousel.next>` | a seta para a frente |
+| `<c-carousel.dots>` | um ponto por posição em que a trilha pode parar |
+
+## Props
+
+| Prop | Onde | Padrão | Significado |
+| --- | --- | --- | --- |
+| `orientation` | `<c-carousel>` | `horizontal` | `horizontal` ou `vertical` |
+| `label` | `<c-carousel>` | `Carousel` | dá nome à região para um leitor de tela |
+| `variant` | as setas | `outline` | qualquer variante de botão |
+
+## Controlando você mesmo
+
+O escopo do carrossel está disponível para qualquer coisa dentro dele:
+:::
 
 ```html
 <c-carousel>
@@ -146,6 +228,7 @@ The carousel's scope is available to anything inside it:
 </c-carousel>
 ```
 
+:::en
 `count` is how many positions the track can stop at, not how many slides there
 are. With three slides in view, the last two can never reach the left edge, so
 five slides are three positions. It follows the DOM, so slides swapped in by
@@ -156,3 +239,15 @@ htmx are counted without telling the component anything.
 Upstream has no dots component; its demo reads the snap list off the Embla API
 and draws them in the page. That list is what `count` is here, so
 `<c-carousel.dots>` carries them.
+:::pt-br
+`count` é quantas posições a trilha pode ocupar, não quantos slides existem.
+Com três slides à vista, os dois últimos nunca alcançam a borda esquerda, então
+cinco slides são três posições. Ele segue o DOM, então slides trocados pelo htmx
+são contados sem avisar nada ao componente.
+
+## Sobre os pontos
+
+O upstream não tem um componente de pontos; a demo dele lê a lista de encaixes
+da API do Embla e os desenha na página. Essa lista é o que `count` é aqui, então
+o `<c-carousel.dots>` os traz.
+:::
