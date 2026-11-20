@@ -49,41 +49,23 @@ uvx django_shadcn@latest add menubar
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-menubar>
-<c-menubar.menu>
-<c-menubar.trigger>File</c-menubar.trigger>
-<c-menubar.content>
-<c-menubar.item>New tab</c-menubar.item>
-<c-menubar.item>Open</c-menubar.item>
-</c-menubar.content>
-</c-menubar.menu>
-<c-menubar.menu>
-<c-menubar.trigger>Help</c-menubar.trigger>
-<c-menubar.content>
-<c-menubar.item>Documentation</c-menubar.item>
-</c-menubar.content>
-</c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>File</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item>New tab</c-menubar.item>
+      <c-menubar.item>Open</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>Help</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item>Documentation</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
 </c-menubar>
-</c-docs.demo-section>
-
-```html
-<c-menubar>
-    <c-menubar.menu>
-        <c-menubar.trigger>File</c-menubar.trigger>
-        <c-menubar.content>
-            <c-menubar.item>New tab</c-menubar.item>
-            <c-menubar.item>Open</c-menubar.item>
-        </c-menubar.content>
-    </c-menubar.menu>
-    <c-menubar.menu>
-        <c-menubar.trigger>Help</c-menubar.trigger>
-        <c-menubar.content>
-            <c-menubar.item>Documentation</c-menubar.item>
-        </c-menubar.content>
-    </c-menubar.menu>
-</c-menubar>
-```
+</c-docs.example>
 
 :::en
 Open one menu and the others answer to hover — moving along the bar switches
@@ -105,33 +87,24 @@ fecha o menu.
 ### Checkboxes e radios
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-menubar>
-<c-menubar.menu>
-<c-menubar.trigger>View</c-menubar.trigger>
-<c-menubar.content>
-<c-menubar.label>Appearance</c-menubar.label>
-<c-menubar.checkbox-item checked="true">Status bar</c-menubar.checkbox-item>
-<c-menubar.checkbox-item>Activity bar</c-menubar.checkbox-item>
-<c-menubar.separator />
-<c-menubar.label>Sidebar</c-menubar.label>
-<c-menubar.radio-group value="left">
-<c-menubar.radio-item value="left">Left</c-menubar.radio-item>
-<c-menubar.radio-item value="right">Right</c-menubar.radio-item>
-</c-menubar.radio-group>
-</c-menubar.content>
-</c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>View</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.label>Appearance</c-menubar.label>
+      <c-menubar.checkbox-item checked="true">Status bar</c-menubar.checkbox-item>
+      <c-menubar.checkbox-item>Activity bar</c-menubar.checkbox-item>
+      <c-menubar.separator />
+      <c-menubar.label>Sidebar</c-menubar.label>
+      <c-menubar.radio-group value="left">
+        <c-menubar.radio-item value="left">Left</c-menubar.radio-item>
+        <c-menubar.radio-item value="right">Right</c-menubar.radio-item>
+      </c-menubar.radio-group>
+    </c-menubar.content>
+  </c-menubar.menu>
 </c-menubar>
-</c-docs.demo-section>
-
-```html
-<c-menubar.checkbox-item checked="true">Status bar</c-menubar.checkbox-item>
-
-<c-menubar.radio-group value="left">
-    <c-menubar.radio-item value="left">Left</c-menubar.radio-item>
-    <c-menubar.radio-item value="right">Right</c-menubar.radio-item>
-</c-menubar.radio-group>
-```
+</c-docs.example>
 
 :::en
 ### Submenu
@@ -139,35 +112,25 @@ fecha o menu.
 ### Submenu
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-menubar>
-<c-menubar.menu>
-<c-menubar.trigger>File</c-menubar.trigger>
-<c-menubar.content>
-<c-menubar.item>New file</c-menubar.item>
-<c-menubar.sub>
-<c-menubar.sub-trigger>Share</c-menubar.sub-trigger>
-<c-menubar.sub-content class="w-40">
-<c-menubar.item>Copy link</c-menubar.item>
-<c-menubar.item>Email</c-menubar.item>
-</c-menubar.sub-content>
-</c-menubar.sub>
-<c-menubar.separator />
-<c-menubar.item variant="destructive">Delete</c-menubar.item>
-</c-menubar.content>
-</c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>File</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item>New file</c-menubar.item>
+      <c-menubar.sub>
+        <c-menubar.sub-trigger>Share</c-menubar.sub-trigger>
+        <c-menubar.sub-content class="w-40">
+          <c-menubar.item>Copy link</c-menubar.item>
+          <c-menubar.item>Email</c-menubar.item>
+        </c-menubar.sub-content>
+      </c-menubar.sub>
+      <c-menubar.separator />
+      <c-menubar.item variant="destructive">Delete</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
 </c-menubar>
-</c-docs.demo-section>
-
-```html
-<c-menubar.sub>
-    <c-menubar.sub-trigger>Share</c-menubar.sub-trigger>
-    <c-menubar.sub-content class="w-40">
-        <c-menubar.item>Copy link</c-menubar.item>
-        <c-menubar.item>Email</c-menubar.item>
-    </c-menubar.sub-content>
-</c-menubar.sub>
-```
+</c-docs.example>
 
 :::en
 ### Alignment
@@ -175,23 +138,18 @@ fecha o menu.
 ### Alinhamento
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-menubar>
-<c-menubar.menu>
-<c-menubar.trigger>Start</c-menubar.trigger>
-<c-menubar.content align="start"><c-menubar.item>Aligned left</c-menubar.item></c-menubar.content>
-</c-menubar.menu>
-<c-menubar.menu>
-<c-menubar.trigger>End</c-menubar.trigger>
-<c-menubar.content align="end"><c-menubar.item>Aligned right</c-menubar.item></c-menubar.content>
-</c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>Start</c-menubar.trigger>
+    <c-menubar.content align="start"><c-menubar.item>Aligned left</c-menubar.item></c-menubar.content>
+  </c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>End</c-menubar.trigger>
+    <c-menubar.content align="end"><c-menubar.item>Aligned right</c-menubar.item></c-menubar.content>
+  </c-menubar.menu>
 </c-menubar>
-</c-docs.demo-section>
-
-```html
-<c-menubar.content align="start">...</c-menubar.content>
-<c-menubar.content align="end">...</c-menubar.content>
-```
+</c-docs.example>
 
 :::en
 ## Notes

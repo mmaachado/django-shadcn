@@ -37,13 +37,9 @@ maior parte das vezes ele já está instalado.
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-icon name="search" />
-</c-docs.demo-section>
-
-```html
-<c-icon name="search" />
-```
+</c-docs.example>
 
 :::en
 The `name` is the icon name as it appears on <a
@@ -67,20 +63,13 @@ lista abaixo.
 ### Tamanho
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-end gap-4">
-    <c-icon name="search" class="size-4" />
-    <c-icon name="search" class="size-6" />
-    <c-icon name="search" class="size-8" />
+  <c-icon name="search" class="size-4" />
+  <c-icon name="search" class="size-6" />
+  <c-icon name="search" class="size-8" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon name="search" class="size-4" />
-<c-icon name="search" class="size-6" />
-<c-icon name="search" class="size-8" />
-```
+</c-docs.example>
 
 :::en
 ### Color
@@ -88,18 +77,13 @@ lista abaixo.
 ### Cor
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-icon name="check" class="size-5 text-muted-foreground" />
-    <c-icon name="check" class="size-5 text-primary" />
-    <c-icon name="check" class="size-5 text-destructive" />
+  <c-icon name="check" class="size-5 text-muted-foreground" />
+  <c-icon name="check" class="size-5 text-primary" />
+  <c-icon name="check" class="size-5 text-destructive" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon name="check" class="size-5 text-muted-foreground" />
-```
+</c-docs.example>
 
 :::en
 ### Inside a button
@@ -107,19 +91,12 @@ lista abaixo.
 ### Dentro de um botão
 :::
 
-<c-docs.demo-section>
-<c-button variant="outline">
-<c-icon name="search" class="size-4" />
-Search
-</c-button>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-button variant="outline">
   <c-icon name="search" class="size-4" />
   Search
 </c-button>
-```
+</c-docs.example>
 
 :::en
 ### Reacting to state
@@ -127,25 +104,16 @@ Search
 ### Reagindo ao estado
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div x-data="{ open: false }" class="flex items-center gap-3">
-    <c-button variant="outline" x-on:click="open = !open">Toggle</c-button>
-    <c-icon
-        name="chevron-down"
-        class="size-5 transition-transform"
-        x-bind:class="{ 'rotate-180': open }"
+  <c-button variant="outline" x-on:click="open = !open">Toggle</c-button>
+  <c-icon
+    name="chevron-down"
+    class="size-5 transition-transform"
+    x-bind:class="{ 'rotate-180': open }"
     />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon
-    name='chevron-down'
-    class='size-5 transition-transform'
-    x-bind:class=\"{ 'rotate-180': open }\"
-/>
-```
+</c-docs.example>
 
 :::en
 ### Accessibility
@@ -153,21 +121,12 @@ Search
 ### Acessibilidade
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-icon name="x" class="size-5" aria-hidden="true" />
-    <c-icon name="search" class="size-5" role="img" aria-label="Search" />
+  <c-icon name="x" class="size-5" aria-hidden="true" />
+  <c-icon name="search" class="size-5" role="img" aria-label="Search" />
 </div>
-</c-docs.demo-section>
-
-```html
-<!-- decorative, next to a visible label -->
-<c-icon name="x" class="size-5" aria-hidden="true" />
-
-<!-- carries the meaning on its own -->
-<c-icon name="search" class="size-5" role="img" aria-label="Search" />
-```
+</c-docs.example>
 
 :::en
 ## Available icons

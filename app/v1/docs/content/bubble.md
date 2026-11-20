@@ -71,37 +71,31 @@ da conversa em que o leitor está; `muted` e `secondary` são as superfícies
 neutras para o outro lado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble>
-<c-bubble.content>Default</c-bubble.content>
-</c-bubble>
-<c-bubble variant="secondary">
-<c-bubble.content>Secondary</c-bubble.content>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Muted</c-bubble.content>
-</c-bubble>
-<c-bubble variant="tinted">
-<c-bubble.content>Tinted</c-bubble.content>
-</c-bubble>
-<c-bubble variant="outline">
-<c-bubble.content>Outline</c-bubble.content>
-</c-bubble>
-<c-bubble variant="ghost">
-<c-bubble.content>Ghost, with no surface at all</c-bubble.content>
-</c-bubble>
-<c-bubble variant="destructive">
-<c-bubble.content>Destructive</c-bubble.content>
-</c-bubble>
+  <c-bubble>
+    <c-bubble.content>Default</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="secondary">
+    <c-bubble.content>Secondary</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Muted</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="tinted">
+    <c-bubble.content>Tinted</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="outline">
+    <c-bubble.content>Outline</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="ghost">
+    <c-bubble.content>Ghost, with no surface at all</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="destructive">
+    <c-bubble.content>Destructive</c-bubble.content>
+  </c-bubble>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="secondary">...</c-bubble>
-<c-bubble variant="tinted">...</c-bubble>
-<c-bubble variant="ghost">...</c-bubble>
-```
+</c-docs.example>
 
 :::en
 ## Alignment
@@ -117,22 +111,16 @@ the bubble follows it without being told.
 o acompanha sem precisar ser avisado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble variant="muted">
-<c-bubble.content>Aligned to the start.</c-bubble.content>
-</c-bubble>
-<c-bubble align="end">
-<c-bubble.content>Aligned to the end.</c-bubble.content>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble align="end">
+  <c-bubble variant="muted">
+    <c-bubble.content>Aligned to the start.</c-bubble.content>
+  </c-bubble>
+  <c-bubble align="end">
     <c-bubble.content>Aligned to the end.</c-bubble.content>
-</c-bubble>
-```
+  </c-bubble>
+</div>
+</c-docs.example>
 
 :::en
 ## Examples
@@ -150,35 +138,23 @@ As reações sobrepõem a borda da superfície. `side` escolhe a borda de cima o
 de baixo, `align` escolhe o canto.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-10 text-start">
-<c-bubble variant="muted">
-<c-bubble.content>Bottom and end, the default.</c-bubble.content>
-<c-bubble.reactions>
-<span>🔥</span>
-<span>+8</span>
-</c-bubble.reactions>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Top and start.</c-bubble.content>
-<c-bubble.reactions side="top" align="start">
-<span>👍</span>
-</c-bubble.reactions>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="muted">
+  <c-bubble variant="muted">
     <c-bubble.content>Bottom and end, the default.</c-bubble.content>
     <c-bubble.reactions>
-        <span>🔥</span>
-        <span>+8</span>
+      <span>🔥</span>
+      <span>+8</span>
     </c-bubble.reactions>
-</c-bubble>
-
-<c-bubble.reactions side="top" align="start">...</c-bubble.reactions>
-```
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Top and start.</c-bubble.content>
+    <c-bubble.reactions side="top" align="start">
+      <span>👍</span>
+    </c-bubble.reactions>
+  </c-bubble>
+</div>
+</c-docs.example>
 
 :::en
 A row of emoji says nothing to a screen reader on its own. Name it:
@@ -209,26 +185,16 @@ possa ser aberto. O tratamento de hover e de foco já está na variante,
 esperando por um elemento que o aceite.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble variant="outline">
-<c-bubble.content tag="button">I forgot my password</c-bubble.content>
-</c-bubble>
-<c-bubble variant="outline">
-<c-bubble.content tag="a" href="{% url 'page' slug='installation' %}">Read the installation guide</c-bubble.content>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="outline">
+  <c-bubble variant="outline">
     <c-bubble.content tag="button">I forgot my password</c-bubble.content>
-</c-bubble>
-
-<c-bubble variant="outline">
-    <c-bubble.content tag="a" href="/help/">Read the guide</c-bubble.content>
-</c-bubble>
-```
+  </c-bubble>
+  <c-bubble variant="outline">
+    <c-bubble.content tag="a" href="{% url 'page' slug='installation' %}">Read the installation guide</c-bubble.content>
+  </c-bubble>
+</div>
+</c-docs.example>
 
 :::en
 A `button` gets `type="button"` unless you pass your own, so a bubble inside a
@@ -252,37 +218,21 @@ conteúdo, exatamente como faz o exemplo do upstream — o bubble continua só d
 apresentação e o estado de aberto mora um nível acima.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-collapsible class="w-full max-w-md text-start">
-<c-bubble variant="muted">
-<c-bubble.content>
-<p>The focus ring was being drawn by the primitive and by the style file at the same time, which is why it doubled up on the outline variant.</p>
-<c-collapsible.content>
-<p class="mt-2">Moving it to the style file keeps the primitive neutral, so the other themes can pick their own treatment later instead of overriding this one.</p>
-</c-collapsible.content>
-<c-collapsible.trigger class="mt-2 text-xs underline underline-offset-4 opacity-80">
-<span x-text="open ? 'Show less' : 'Show more'">Show more</span>
-</c-collapsible.trigger>
-</c-bubble.content>
-</c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>
+      <p>The focus ring was being drawn by the primitive and by the style file at the same time, which is why it doubled up on the outline variant.</p>
+      <c-collapsible.content>
+        <p class="mt-2">Moving it to the style file keeps the primitive neutral, so the other themes can pick their own treatment later instead of overriding this one.</p>
+      </c-collapsible.content>
+      <c-collapsible.trigger class="mt-2 text-xs underline underline-offset-4 opacity-80">
+        <span x-text="open ? 'Show less' : 'Show more'">Show more</span>
+      </c-collapsible.trigger>
+    </c-bubble.content>
+  </c-bubble>
 </c-collapsible>
-</c-docs.demo-section>
-
-```html
-<c-collapsible>
-    <c-bubble variant="muted">
-        <c-bubble.content>
-            <p>The first paragraph, always visible.</p>
-            <c-collapsible.content>
-                <p>The rest, hidden until asked for.</p>
-            </c-collapsible.content>
-            <c-collapsible.trigger>
-                <span x-text="open ? 'Show less' : 'Show more'">Show more</span>
-            </c-collapsible.trigger>
-        </c-bubble.content>
-    </c-bubble>
-</c-collapsible>
-```
+</c-docs.example>
 
 :::en
 ### Grouped
@@ -296,24 +246,13 @@ O `group` empilha bubbles seguidos do mesmo remetente num ritmo mais apertado
 do que mensagens separadas.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-bubble.group class="w-full max-w-md text-start">
-<c-bubble variant="muted">
-<c-bubble.content>One thought.</c-bubble.content>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Then another, a second later.</c-bubble.content>
-</c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>One thought.</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Then another, a second later.</c-bubble.content>
+  </c-bubble>
 </c-bubble.group>
-</c-docs.demo-section>
-
-```html
-<c-bubble.group>
-    <c-bubble variant="muted">
-        <c-bubble.content>One thought.</c-bubble.content>
-    </c-bubble>
-    <c-bubble variant="muted">
-        <c-bubble.content>Then another.</c-bubble.content>
-    </c-bubble>
-</c-bubble.group>
-```
+</c-docs.example>

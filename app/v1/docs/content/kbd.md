@@ -28,13 +28,9 @@ uvx django_shadcn@latest add kbd
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-kbd>K</c-kbd>
-</c-docs.demo-section>
-
-```html
-<c-kbd>K</c-kbd>
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -46,27 +42,19 @@ uvx django_shadcn@latest add kbd
 ### Grupo
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-kbd.group>
-        <c-kbd>Ctrl</c-kbd>
-        <c-kbd>K</c-kbd>
-    </c-kbd.group>
-    <c-kbd.group>
-        <c-kbd>⌘</c-kbd>
-        <c-kbd>⇧</c-kbd>
-        <c-kbd>P</c-kbd>
-    </c-kbd.group>
+  <c-kbd.group>
+    <c-kbd>Ctrl</c-kbd>
+    <c-kbd>K</c-kbd>
+  </c-kbd.group>
+  <c-kbd.group>
+    <c-kbd>⌘</c-kbd>
+    <c-kbd>⇧</c-kbd>
+    <c-kbd>P</c-kbd>
+  </c-kbd.group>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-kbd.group>
-  <c-kbd>Ctrl</c-kbd>
-  <c-kbd>K</c-kbd>
-</c-kbd.group>
-```
+</c-docs.example>
 
 :::en
 ### Inside a button
@@ -74,17 +62,7 @@ uvx django_shadcn@latest add kbd
 ### Dentro de um botão
 :::
 
-<c-docs.demo-section>
-<c-button variant="outline" size="sm">
-Search
-<c-kbd.group>
-<c-kbd>⌘</c-kbd>
-<c-kbd>K</c-kbd>
-</c-kbd.group>
-</c-button>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-button variant="outline" size="sm">
   Search
   <c-kbd.group>
@@ -92,7 +70,7 @@ Search
     <c-kbd>K</c-kbd>
   </c-kbd.group>
 </c-button>
-```
+</c-docs.example>
 
 :::en
 ### In a sentence
@@ -100,13 +78,8 @@ Search
 ### Numa frase
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <p class="text-sm text-muted-foreground">
-    Press <c-kbd>Esc</c-kbd> to close this dialog.
+  Press <c-kbd>Esc</c-kbd> to close this dialog.
 </p>
-</c-docs.demo-section>
-
-```html
-Press <c-kbd>Esc</c-kbd> to close this dialog.
-```
+</c-docs.example>

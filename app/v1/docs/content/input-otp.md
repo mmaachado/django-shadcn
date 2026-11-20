@@ -37,27 +37,16 @@ uvx django_shadcn@latest add input_otp
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="4" name="pin">
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-<c-input-otp.slot index="3" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="4" name="pin">
-    <c-input-otp.group>
-        <c-input-otp.slot index="0" />
-        <c-input-otp.slot index="1" />
-        <c-input-otp.slot index="2" />
-        <c-input-otp.slot index="3" />
-    </c-input-otp.group>
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 One real input sits transparent over the boxes and holds the whole code, so
@@ -84,37 +73,21 @@ Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
 ### Dividido em grupos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="6" name="split">
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-</c-input-otp.group>
-<c-input-otp.separator />
-<c-input-otp.group>
-<c-input-otp.slot index="3" />
-<c-input-otp.slot index="4" />
-<c-input-otp.slot index="5" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+  </c-input-otp.group>
+  <c-input-otp.separator />
+  <c-input-otp.group>
+    <c-input-otp.slot index="3" />
+    <c-input-otp.slot index="4" />
+    <c-input-otp.slot index="5" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="6" name="code">
-    <c-input-otp.group>
-        <c-input-otp.slot index="0" />
-        <c-input-otp.slot index="1" />
-        <c-input-otp.slot index="2" />
-    </c-input-otp.group>
-    <c-input-otp.separator />
-    <c-input-otp.group>
-        <c-input-otp.slot index="3" />
-        <c-input-otp.slot index="4" />
-        <c-input-otp.slot index="5" />
-    </c-input-otp.group>
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -122,22 +95,16 @@ Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="4" disabled>
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-<c-input-otp.slot index="3" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="4" disabled>
-    ...
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 ### In a Django form

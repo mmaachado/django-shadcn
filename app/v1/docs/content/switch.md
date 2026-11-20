@@ -28,13 +28,9 @@ uvx django_shadcn@latest add switch
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-switch name="notifications" checked />
-</c-docs.demo-section>
-
-```html
-<c-switch name="notifications" checked />
-```
+</c-docs.example>
 
 :::en
 The switch is a real `<input type="checkbox">` wrapped in the label that draws
@@ -54,17 +50,12 @@ ao teclado sem nenhum JavaScript.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-6">
-<c-switch size="sm" checked />
-<c-switch checked />
+  <c-switch size="sm" checked />
+  <c-switch checked />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-switch size="sm" />
-<c-switch />
-```
+</c-docs.example>
 
 :::en
 ### With a label
@@ -72,19 +63,12 @@ ao teclado sem nenhum JavaScript.
 ### Com um rótulo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <label class="flex items-center gap-3">
-<c-switch name="marketing" />
-<span class="text-sm font-medium">Send me product updates</span>
+  <c-switch name="marketing" />
+  <span class="text-sm font-medium">Send me product updates</span>
 </label>
-</c-docs.demo-section>
-
-```html
-<label class="flex items-center gap-3">
-    <c-switch name="marketing" />
-    <span class="text-sm font-medium">Send me product updates</span>
-</label>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -92,17 +76,12 @@ ao teclado sem nenhum JavaScript.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-6">
-<c-switch disabled />
-<c-switch checked disabled />
+  <c-switch disabled />
+  <c-switch checked disabled />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-switch disabled />
-<c-switch checked disabled />
-```
+</c-docs.example>
 
 :::en
 ## Notes

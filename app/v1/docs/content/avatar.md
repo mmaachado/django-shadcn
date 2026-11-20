@@ -33,19 +33,12 @@ uvx django_shadcn@latest add avatar
 ## Uso
 :::
 
-<c-docs.demo-section>
-<c-avatar>
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-</c-avatar>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-avatar>
   <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
   <c-avatar.fallback>MM</c-avatar.fallback>
 </c-avatar>
-```
+</c-docs.example>
 
 :::en
 Radix hides the fallback once the image loads. Here the image is stacked on top
@@ -73,28 +66,22 @@ Sem o Alpine o avatar continua funcionando, mas uma origem quebrada deixa o
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-4">
-<c-avatar size="sm">
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-</c-avatar>
-<c-avatar>
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-</c-avatar>
-<c-avatar size="lg">
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-</c-avatar>
+  <c-avatar size="sm">
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+    <c-avatar.fallback>MM</c-avatar.fallback>
+  </c-avatar>
+  <c-avatar>
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+    <c-avatar.fallback>MM</c-avatar.fallback>
+  </c-avatar>
+  <c-avatar size="lg">
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+    <c-avatar.fallback>MM</c-avatar.fallback>
+  </c-avatar>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-avatar size="sm">...</c-avatar>
-<c-avatar>...</c-avatar>
-<c-avatar size="lg">...</c-avatar>
-```
+</c-docs.example>
 
 :::en
 ### Fallback
@@ -102,18 +89,12 @@ Sem o Alpine o avatar continua funcionando, mas uma origem quebrada deixa o
 ### Fallback
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-avatar>
-<c-avatar.image src="/does-not-exist.png" alt="" />
-<c-avatar.fallback>CN</c-avatar.fallback>
-</c-avatar>
-</c-docs.demo-section>
-
-```html
-<c-avatar>
+  <c-avatar.image src="/does-not-exist.png" alt="" />
   <c-avatar.fallback>CN</c-avatar.fallback>
 </c-avatar>
-```
+</c-docs.example>
 
 :::en
 ### Badge
@@ -121,28 +102,20 @@ Sem o Alpine o avatar continua funcionando, mas uma origem quebrada deixa o
 ### Badge
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-4">
-<c-avatar>
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-<c-avatar.badge class="bg-emerald-500!" />
-</c-avatar>
-<c-avatar size="lg">
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-<c-avatar.badge class="bg-emerald-500!" />
-</c-avatar>
+  <c-avatar>
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+    <c-avatar.fallback>MM</c-avatar.fallback>
+    <c-avatar.badge class="bg-emerald-500!" />
+  </c-avatar>
+  <c-avatar size="lg">
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+    <c-avatar.fallback>MM</c-avatar.fallback>
+    <c-avatar.badge class="bg-emerald-500!" />
+  </c-avatar>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-avatar>
-  <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-  <c-avatar.fallback>MM</c-avatar.fallback>
-  <c-avatar.badge class="bg-emerald-500!" />
-</c-avatar>
-```
+</c-docs.example>
 
 :::en
 ### Group
@@ -150,35 +123,23 @@ Sem o Alpine o avatar continua funcionando, mas uma origem quebrada deixa o
 ### Grupo
 :::
 
-<c-docs.demo-section>
-<c-avatar.group>
-<c-avatar>
-<c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
-<c-avatar.fallback>MM</c-avatar.fallback>
-</c-avatar>
-<c-avatar>
-<c-avatar.image src="https://github.com/SarthakJariwala.png" alt="@SarthakJariwala" />
-<c-avatar.fallback>SJ</c-avatar.fallback>
-</c-avatar>
-<c-avatar>
-<c-avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-<c-avatar.fallback>SH</c-avatar.fallback>
-</c-avatar>
-<c-avatar.group-count>+3</c-avatar.group-count>
-</c-avatar.group>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-avatar.group>
   <c-avatar>
+    <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
     <c-avatar.fallback>MM</c-avatar.fallback>
   </c-avatar>
   <c-avatar>
+    <c-avatar.image src="https://github.com/SarthakJariwala.png" alt="@SarthakJariwala" />
     <c-avatar.fallback>SJ</c-avatar.fallback>
+  </c-avatar>
+  <c-avatar>
+    <c-avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
+    <c-avatar.fallback>SH</c-avatar.fallback>
   </c-avatar>
   <c-avatar.group-count>+3</c-avatar.group-count>
 </c-avatar.group>
-```
+</c-docs.example>
 
 :::en
 ## Notes

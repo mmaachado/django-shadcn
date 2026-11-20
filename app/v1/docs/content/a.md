@@ -25,13 +25,9 @@ uvx django_shadcn@latest add a
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-a href="#">Link</c-a>
-</c-docs.demo-section>
-
-```html
-<c-a href='/docs'>Link</c-a>
-```
+</c-docs.example>
 
 :::en
 The tag is `<c-a>`, after the element it renders. It takes the button sizes and
@@ -60,21 +56,14 @@ outro template.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex flex-wrap items-center gap-4">
-    <c-a href="#" size="xs">Extra small</c-a>
-    <c-a href="#" size="sm">Small</c-a>
-    <c-a href="#">Default</c-a>
-    <c-a href="#" size="lg">Large</c-a>
+  <c-a href="#" size="xs">Extra small</c-a>
+  <c-a href="#" size="sm">Small</c-a>
+  <c-a href="#">Default</c-a>
+  <c-a href="#" size="lg">Large</c-a>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-a href='#' size='xs'>Extra small</c-a>
-<c-a href='#' size='sm'>Small</c-a>
-<c-a href='#'>Default</c-a>
-<c-a href='#' size='lg'>Large</c-a>
-```
+</c-docs.example>
 
 :::en
 ### With an icon
@@ -82,19 +71,12 @@ outro template.
 ### Com ícone
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-a href="#">
-    Documentation
-    <c-icon name="chevron-right" />
+  Documentation
+  <c-icon name="chevron-right" />
 </c-a>
-</c-docs.demo-section>
-
-```html
-<c-a href='#'>
-    Documentation
-    <c-icon name='chevron-right' />
-</c-a>
-```
+</c-docs.example>
 
 :::en
 ### External
@@ -102,14 +84,8 @@ outro template.
 ### Externo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">
-    shadcn/ui
+  shadcn/ui
 </c-a>
-</c-docs.demo-section>
-
-```html
-<c-a href='https://ui.shadcn.com' target='_blank' rel='noopener noreferrer'>
-    shadcn/ui
-</c-a>
-```
+</c-docs.example>

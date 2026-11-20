@@ -6,6 +6,7 @@ first: the storage backend raises when the manifest is missing.
 """
 
 import io
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -21,6 +22,7 @@ from scripts.check_stylesheet import classes, main
 
 from .content import (
     PassageError,
+    _expand_examples,
     _translate,
     coverage,
     missing_prose,
@@ -274,3 +276,50 @@ class TranslationCoverageTests(SimpleTestCase):
         self.assertIn("pt-br: ", output.getvalue())
         self.assertIn("es: ", output.getvalue())
         self.assertNotIn("en: ", output.getvalue())
+
+
+class ExampleTests(SimpleTestCase):
+    EXAMPLE = (
+        '<c-docs.example class="min-h-[200px]">\n'
+        "<div>\n"
+        '  <a href="{% url \'page\' slug=\'button\' %}">Button</a>\n'
+        "\n"
+        "</div>\n"
+        "</c-docs.example>\n"
+    )
+
+    def test_an_example_is_the_demo_and_its_own_source(self):
+        body = _expand_examples(self.EXAMPLE)
+
+        self.assertIn('<c-docs.demo-section class="min-h-[200px]">', body)
+        self.assertIn(
+            "```html\n<div>\n  <a href=\"{% url 'page' slug='button' %}\">"
+            "Button</a>\n\n</div>\n```",
+            body,
+        )
+
+    def test_the_demo_half_has_no_blank_line(self):
+        demo = _expand_examples(self.EXAMPLE).split("```html")[0]
+
+        self.assertNotIn("\n\n<", demo.strip())
+
+    def test_the_code_shows_django_tags_unrendered(self):
+        response = self.client.get(reverse("page", kwargs={"slug": "bubble"}))
+        html = response.content.decode()
+
+        # Rendered in the demo, written out in the code below it.
+        self.assertRegex(html, r"\{% url (&#x27;|')page(&#x27;|') slug=")
+
+    def test_no_demo_is_written_twice(self):
+        """A demo followed by its own fenced copy is two sources of truth;
+        <c-docs.example> makes it one."""
+        pair = re.compile(
+            r"</c-docs\.demo-section>\n\n+```html", re.MULTILINE
+        )
+        twice = [
+            path.name
+            for path in sorted((settings.BASE_DIR / "content").rglob("*.md"))
+            if pair.search(path.read_text(encoding="utf-8"))
+        ]
+
+        self.assertEqual(twice, [], "write these demos with <c-docs.example>")

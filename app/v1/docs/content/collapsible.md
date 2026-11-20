@@ -46,27 +46,18 @@ uvx django_shadcn@latest add collapsible
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-collapsible class="w-[350px] text-start">
-<c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
-Show details
-</c-collapsible.trigger>
-<c-collapsible.content>
-<p class="mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground">
-Everything you were not looking at a moment ago.
-</p>
-</c-collapsible.content>
+  <c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
+    Show details
+  </c-collapsible.trigger>
+  <c-collapsible.content>
+    <p class="mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground">
+      Everything you were not looking at a moment ago.
+    </p>
+  </c-collapsible.content>
 </c-collapsible>
-</c-docs.demo-section>
-
-```html
-<c-collapsible>
-    <c-collapsible.trigger>Show details</c-collapsible.trigger>
-    <c-collapsible.content>
-        <p>Everything you were not looking at a moment ago.</p>
-    </c-collapsible.content>
-</c-collapsible>
-```
+</c-docs.example>
 
 :::en
 `open` is Alpine state on the root, so the trigger and the content both see it
@@ -86,25 +77,18 @@ estado sem precisarem saber um do outro. Comece aberto com
 ### Aberto por padrão
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-collapsible default_open="true" class="w-[350px] text-start">
-<c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
-Already open
-</c-collapsible.trigger>
-<c-collapsible.content>
-<p class="mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground">
-Visible from the first paint.
-</p>
-</c-collapsible.content>
+  <c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
+    Already open
+  </c-collapsible.trigger>
+  <c-collapsible.content>
+    <p class="mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground">
+      Visible from the first paint.
+    </p>
+  </c-collapsible.content>
 </c-collapsible>
-</c-docs.demo-section>
-
-```html
-<c-collapsible default_open="true">
-    <c-collapsible.trigger>Already open</c-collapsible.trigger>
-    <c-collapsible.content>...</c-collapsible.content>
-</c-collapsible>
-```
+</c-docs.example>
 
 :::en
 ## Notes

@@ -86,44 +86,34 @@ tabela ou um parágrafo simples também funcionam.
 o lado oposto, o rodapé se alinha com ele e o avatar troca de lado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-message.group class="w-full max-w-md text-start">
-<c-message>
-<c-message.avatar>
-<c-avatar>
-<c-avatar.fallback>AI</c-avatar.fallback>
-</c-avatar>
-</c-message.avatar>
-<c-message.content>
-<c-bubble variant="muted">
-<c-bubble.content>Starts on the left.</c-bubble.content>
-</c-bubble>
-</c-message.content>
-</c-message>
-<c-message align="end">
-<c-message.avatar>
-<c-avatar>
-<c-avatar.fallback>ME</c-avatar.fallback>
-</c-avatar>
-</c-message.avatar>
-<c-message.content>
-<c-bubble align="end">
-<c-bubble.content>Ends on the right.</c-bubble.content>
-</c-bubble>
-</c-message.content>
-</c-message>
-</c-message.group>
-</c-docs.demo-section>
-
-```html
-<c-message align="end">
+  <c-message>
+    <c-message.avatar>
+      <c-avatar>
+        <c-avatar.fallback>AI</c-avatar.fallback>
+      </c-avatar>
+    </c-message.avatar>
     <c-message.content>
-        <c-bubble align="end">
-            <c-bubble.content>Ends on the right.</c-bubble.content>
-        </c-bubble>
+      <c-bubble variant="muted">
+        <c-bubble.content>Starts on the left.</c-bubble.content>
+      </c-bubble>
     </c-message.content>
-</c-message>
-```
+  </c-message>
+  <c-message align="end">
+    <c-message.avatar>
+      <c-avatar>
+        <c-avatar.fallback>ME</c-avatar.fallback>
+      </c-avatar>
+    </c-message.avatar>
+    <c-message.content>
+      <c-bubble align="end">
+        <c-bubble.content>Ends on the right.</c-bubble.content>
+      </c-bubble>
+    </c-message.content>
+  </c-message>
+</c-message.group>
+</c-docs.example>
 
 :::en
 ## Examples
@@ -142,47 +132,36 @@ mensagem da sequência e deixe-o de fora das outras, para que a sequência seja
 lida como uma vez só de falar.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-message.group class="w-full max-w-md text-start">
-<c-message align="end">
-<c-message.content>
-<c-bubble align="end">
-<c-bubble.content>Three questions, sorry.</c-bubble.content>
-</c-bubble>
-</c-message.content>
-</c-message>
-<c-message align="end">
-<c-message.content>
-<c-bubble align="end">
-<c-bubble.content>Where does the registry live?</c-bubble.content>
-</c-bubble>
-</c-message.content>
-</c-message>
-<c-message align="end">
-<c-message.avatar>
-<c-avatar>
-<c-avatar.fallback>ME</c-avatar.fallback>
-</c-avatar>
-</c-message.avatar>
-<c-message.content>
-<c-bubble align="end">
-<c-bubble.content>And does <code>add</code> read it?</c-bubble.content>
-</c-bubble>
-</c-message.content>
-</c-message>
+  <c-message align="end">
+    <c-message.content>
+      <c-bubble align="end">
+        <c-bubble.content>Three questions, sorry.</c-bubble.content>
+      </c-bubble>
+    </c-message.content>
+  </c-message>
+  <c-message align="end">
+    <c-message.content>
+      <c-bubble align="end">
+        <c-bubble.content>Where does the registry live?</c-bubble.content>
+      </c-bubble>
+    </c-message.content>
+  </c-message>
+  <c-message align="end">
+    <c-message.avatar>
+      <c-avatar>
+        <c-avatar.fallback>ME</c-avatar.fallback>
+      </c-avatar>
+    </c-message.avatar>
+    <c-message.content>
+      <c-bubble align="end">
+        <c-bubble.content>And does <code>add</code> read it?</c-bubble.content>
+      </c-bubble>
+    </c-message.content>
+  </c-message>
 </c-message.group>
-</c-docs.demo-section>
-
-```html
-<c-message.group>
-    <c-message align="end">...</c-message>
-    <c-message align="end">...</c-message>
-    <c-message align="end">
-        <c-message.avatar>...</c-message.avatar>
-        ...
-    </c-message>
-</c-message.group>
-```
+</c-docs.example>
 
 :::en
 ### Header and footer
@@ -200,31 +179,21 @@ mensagem. Quando há rodapé, o avatar sobe para ficar no nível da mensagem e n
 no do horário.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-message.group class="w-full max-w-md text-start">
-<c-message>
-<c-message.avatar>
-<c-avatar>
-<c-avatar.fallback>AI</c-avatar.fallback>
-</c-avatar>
-</c-message.avatar>
-<c-message.content>
-<c-message.header>Assistant</c-message.header>
-<c-bubble variant="muted">
-<c-bubble.content>Both edges of a message are yours to fill.</c-bubble.content>
-</c-bubble>
-<c-message.footer>Delivered · 09:41</c-message.footer>
-</c-message.content>
-</c-message>
+  <c-message>
+    <c-message.avatar>
+      <c-avatar>
+        <c-avatar.fallback>AI</c-avatar.fallback>
+      </c-avatar>
+    </c-message.avatar>
+    <c-message.content>
+      <c-message.header>Assistant</c-message.header>
+      <c-bubble variant="muted">
+        <c-bubble.content>Both edges of a message are yours to fill.</c-bubble.content>
+      </c-bubble>
+      <c-message.footer>Delivered · 09:41</c-message.footer>
+    </c-message.content>
+  </c-message>
 </c-message.group>
-</c-docs.demo-section>
-
-```html
-<c-message.content>
-    <c-message.header>Assistant</c-message.header>
-    <c-bubble variant="muted">
-        <c-bubble.content>...</c-bubble.content>
-    </c-bubble>
-    <c-message.footer>Delivered · 09:41</c-message.footer>
-</c-message.content>
-```
+</c-docs.example>

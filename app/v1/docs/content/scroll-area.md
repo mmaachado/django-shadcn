@@ -35,21 +35,15 @@ uvx django_shadcn@latest add scroll_area
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-scroll-area class="h-32 w-[320px] rounded-md border">
-<p class="p-4 text-start text-sm text-muted-foreground">
-Give the scroll area a height and let the content run past it. The scrollbar
-picks up the border colour from the palette, so it stops looking like a piece
-of the operating system that wandered in.
-</p>
+  <p class="p-4 text-start text-sm text-muted-foreground">
+    Give the scroll area a height and let the content run past it. The scrollbar
+    picks up the border colour from the palette, so it stops looking like a piece
+    of the operating system that wandered in.
+  </p>
 </c-scroll-area>
-</c-docs.demo-section>
-
-```html
-<c-scroll-area class="h-32 w-[320px] rounded-md border">
-    <p class="p-4">...</p>
-</c-scroll-area>
-```
+</c-docs.example>
 
 :::en
 The size goes on the component; the content inside is free to be taller.
@@ -66,24 +60,16 @@ vontade.
 ### Horizontal
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-scroll-area class="w-[320px] rounded-md border">
-<div class="flex w-max gap-4 p-4">
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">One</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Two</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Three</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Four</div>
-</div>
+  <div class="flex w-max gap-4 p-4">
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">One</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Two</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Three</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Four</div>
+  </div>
 </c-scroll-area>
-</c-docs.demo-section>
-
-```html
-<c-scroll-area class="w-[320px] rounded-md border">
-    <div class="flex w-max gap-4 p-4">
-        <div class="size-24 shrink-0 rounded-md bg-muted"></div>
-    </div>
-</c-scroll-area>
-```
+</c-docs.example>
 
 :::en
 ## Notes

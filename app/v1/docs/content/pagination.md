@@ -34,29 +34,16 @@ uvx django_shadcn@latest add pagination
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-pagination>
-<c-pagination.content>
-<c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
-<c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
-<c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
-<c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
-</c-pagination.content>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
+  </c-pagination.content>
 </c-pagination>
-</c-docs.demo-section>
-
-```html
-<c-pagination>
-    <c-pagination.content>
-        <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
-        <c-pagination.item>
-            <c-pagination.link href="#" is_active="true">1</c-pagination.link>
-        </c-pagination.item>
-        <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
-        <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
-    </c-pagination.content>
-</c-pagination>
-```
+</c-docs.example>
 
 :::en
 The current page is marked with `is_active="true"`, which switches the link to
@@ -107,19 +94,14 @@ outline e define `aria-current="page"`.
 ### Rótulos personalizados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-pagination>
-<c-pagination.content>
-<c-pagination.item><c-pagination.previous href="#">Newer</c-pagination.previous></c-pagination.item>
-<c-pagination.item><c-pagination.next href="#">Older</c-pagination.next></c-pagination.item>
-</c-pagination.content>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#">Newer</c-pagination.previous></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#">Older</c-pagination.next></c-pagination.item>
+  </c-pagination.content>
 </c-pagination>
-</c-docs.demo-section>
-
-```html
-<c-pagination.previous href="#">Newer</c-pagination.previous>
-<c-pagination.next href="#">Older</c-pagination.next>
-```
+</c-docs.example>
 
 :::en
 ## Notes

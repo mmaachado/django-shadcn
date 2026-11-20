@@ -25,8 +25,16 @@ CODE_BLOCK = re.compile(r"<pre>.*?</pre>", re.DOTALL)
 # :::pt-br opens a language inside a passage, a bare ::: closes the passage.
 PASSAGE = re.compile(r"^:::([a-z]{2}(?:-[a-z]+)?)?[ \t]*$")
 FENCE = re.compile(r"^(```|~~~)")
-DEMO_OPEN = re.compile(r"^<c-docs\.demo-section\b")
-DEMO_CLOSE = re.compile(r"</c-docs\.demo-section>")
+DEMO_OPEN = re.compile(r"^<c-docs\.(?:demo-section|example)\b")
+DEMO_CLOSE = re.compile(r"</c-docs\.(?:demo-section|example)>")
+
+# A demo written once: rendered, and shown below as its own source.
+EXAMPLE = re.compile(
+    r"^<c-docs\.example(?P<attrs>[^>]*)>[ \t]*\n"
+    r"(?P<source>.*?)\n"
+    r"</c-docs\.example>[ \t]*$",
+    re.DOTALL | re.MULTILINE,
+)
 
 
 class PageNotFound(Exception):
@@ -188,7 +196,27 @@ def source(slug):
         raise PageNotFound(slug)
 
     meta, body = _read(path)
-    return _localize(meta), _translate(body, language)
+    return _localize(meta), _expand_examples(_translate(body, language))
+
+
+def _expand_examples(body):
+    """Turn each <c-docs.example> into the demo and a fenced copy of it.
+
+    Both halves come from the same text, so the code a reader copies is the
+    code that rendered above it. The fence is wrapped in {% verbatim %} by
+    render(), which leaves Django tags in the source visible. Blank lines are
+    dropped from the demo half only: Markdown would end the HTML block there.
+    """
+
+    def expand(match):
+        source = match.group("source")
+        demo = "\n".join(line for line in source.splitlines() if line.strip())
+        return (
+            f"<c-docs.demo-section{match.group('attrs')}>\n{demo}\n"
+            f"</c-docs.demo-section>\n\n```html\n{source}\n```"
+        )
+
+    return EXAMPLE.sub(expand, body)
 
 
 def _is_prose(line):

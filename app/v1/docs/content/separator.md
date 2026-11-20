@@ -58,23 +58,15 @@ Um separador vertical pega a altura da linha em volta dele, então dê uma altur
 a essa linha.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex h-5 items-center space-x-4 text-sm">
-<div>Blog</div>
-<c-separator orientation="vertical" />
-<div>Docs</div>
-<c-separator orientation="vertical" />
-<div>Source</div>
+  <div>Blog</div>
+  <c-separator orientation="vertical" />
+  <div>Docs</div>
+  <c-separator orientation="vertical" />
+  <div>Source</div>
 </div>
-</c-docs.demo-section>
-
-```html
-<div class="flex h-5 items-center space-x-4 text-sm">
-    <div>Blog</div>
-    <c-separator orientation="vertical" />
-    <div>Docs</div>
-</div>
-```
+</c-docs.example>
 
 :::en
 ### Semantic
@@ -90,14 +82,10 @@ tela o pula. Quando o traço é a única coisa que distingue dois grupos, diga i
 e ele vira um `separator` de verdade, com um `aria-orientation`.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-full max-w-md">
-<p class="pb-4 text-sm text-muted-foreground">Account</p>
-<c-separator decorative="false" />
-<p class="pt-4 text-sm text-muted-foreground">Billing</p>
+  <p class="pb-4 text-sm text-muted-foreground">Account</p>
+  <c-separator decorative="false" />
+  <p class="pt-4 text-sm text-muted-foreground">Billing</p>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-separator decorative="false" />
-```
+</c-docs.example>

@@ -38,31 +38,18 @@ uvx django_shadcn@latest add radio_group
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-radio-group class="text-start">
-<label class="flex items-center gap-3">
-<c-radio-group.item name="delivery" value="standard" checked />
-<span class="text-sm font-medium">Standard</span>
-</label>
-<label class="flex items-center gap-3">
-<c-radio-group.item name="delivery" value="express" />
-<span class="text-sm font-medium">Express</span>
-</label>
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="delivery" value="standard" checked />
+    <span class="text-sm font-medium">Standard</span>
+  </label>
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="delivery" value="express" />
+    <span class="text-sm font-medium">Express</span>
+  </label>
 </c-radio-group>
-</c-docs.demo-section>
-
-```html
-<c-radio-group>
-    <label class="flex items-center gap-3">
-        <c-radio-group.item name="delivery" value="standard" checked />
-        <span class="text-sm font-medium">Standard</span>
-    </label>
-    <label class="flex items-center gap-3">
-        <c-radio-group.item name="delivery" value="express" />
-        <span class="text-sm font-medium">Express</span>
-    </label>
-</c-radio-group>
-```
+</c-docs.example>
 
 :::en
 Items are native radios, so `name` groups them and the browser handles the
@@ -97,22 +84,18 @@ exclusividade, do teclado e do envio do formulário.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-radio-group class="text-start">
-<label class="flex items-center gap-3">
-<c-radio-group.item name="tier" value="one" checked disabled />
-<span class="text-sm font-medium text-muted-foreground">Locked in</span>
-</label>
-<label class="flex items-center gap-3">
-<c-radio-group.item name="tier" value="two" disabled />
-<span class="text-sm font-medium text-muted-foreground">Not available</span>
-</label>
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="tier" value="one" checked disabled />
+    <span class="text-sm font-medium text-muted-foreground">Locked in</span>
+  </label>
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="tier" value="two" disabled />
+    <span class="text-sm font-medium text-muted-foreground">Not available</span>
+  </label>
 </c-radio-group>
-</c-docs.demo-section>
-
-```html
-<c-radio-group.item name="tier" value="one" checked disabled />
-```
+</c-docs.example>
 
 :::en
 ## Notes

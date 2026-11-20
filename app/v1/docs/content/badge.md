@@ -25,13 +25,9 @@ uvx django_shadcn@latest add badge
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-badge variant="default">Default</c-badge>
-</c-docs.demo-section>
-
-```html
-<c-badge variant="default">Default</c-badge>
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -43,13 +39,9 @@ uvx django_shadcn@latest add badge
 ### Primary
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-badge>Default</c-badge>
-</c-docs.demo-section>
-
-```html
-<c-badge>Default</c-badge>
-```
+</c-docs.example>
 
 :::en
 ### Secondary
@@ -57,13 +49,9 @@ uvx django_shadcn@latest add badge
 ### Secondary
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-badge variant="secondary">Secondary</c-badge>
-</c-docs.demo-section>
-
-```html
-<c-badge variant="secondary">Secondary</c-badge>
-```
+</c-docs.example>
 
 :::en
 ### Destructive
@@ -71,13 +59,9 @@ uvx django_shadcn@latest add badge
 ### Destructive
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-badge variant="destructive">Destructive</c-badge>
-</c-docs.demo-section>
-
-```html
-<c-badge variant="destructive">Destructive</c-badge>
-```
+</c-docs.example>
 
 :::en
 ### Outline
@@ -85,10 +69,6 @@ uvx django_shadcn@latest add badge
 ### Outline
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-badge variant="outline">Outline</c-badge>
-</c-docs.demo-section>
-
-```html
-<c-badge variant="outline">Outline</c-badge>
-```
+</c-docs.example>

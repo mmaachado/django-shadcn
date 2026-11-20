@@ -56,17 +56,13 @@ quando precisar de markup próprio nas opções.
 ### Pequeno
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select size="sm">
-<c-native-select.option value="10">10 per page</c-native-select.option>
-<c-native-select.option value="25">25 per page</c-native-select.option>
-<c-native-select.option value="50">50 per page</c-native-select.option>
+  <c-native-select.option value="10">10 per page</c-native-select.option>
+  <c-native-select.option value="25">25 per page</c-native-select.option>
+  <c-native-select.option value="50">50 per page</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select size="sm">...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Grouped options
@@ -74,25 +70,17 @@ quando precisar de markup próprio nas opções.
 ### Opções agrupadas
 :::
 
-<c-docs.demo-section>
-<c-native-select>
-<c-native-select.optgroup label="Fruits">
-<c-native-select.option value="apple">Apple</c-native-select.option>
-<c-native-select.option value="banana">Banana</c-native-select.option>
-</c-native-select.optgroup>
-<c-native-select.optgroup label="Vegetables">
-<c-native-select.option value="carrot">Carrot</c-native-select.option>
-</c-native-select.optgroup>
-</c-native-select>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-native-select>
   <c-native-select.optgroup label="Fruits">
     <c-native-select.option value="apple">Apple</c-native-select.option>
+    <c-native-select.option value="banana">Banana</c-native-select.option>
+  </c-native-select.optgroup>
+  <c-native-select.optgroup label="Vegetables">
+    <c-native-select.option value="carrot">Carrot</c-native-select.option>
   </c-native-select.optgroup>
 </c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -100,15 +88,11 @@ quando precisar de markup próprio nas opções.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select disabled>
-<c-native-select.option value="locked">Not available</c-native-select.option>
+  <c-native-select.option value="locked">Not available</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select disabled>...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Invalid
@@ -116,16 +100,12 @@ quando precisar de markup próprio nas opções.
 ### Inválido
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select aria-invalid="true">
-<c-native-select.option value="">Pick one</c-native-select.option>
-<c-native-select.option value="a">Option A</c-native-select.option>
+  <c-native-select.option value="">Pick one</c-native-select.option>
+  <c-native-select.option value="a">Option A</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select aria-invalid="true">...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### From a Django form
@@ -133,20 +113,10 @@ quando precisar de markup próprio nas opções.
 ### A partir de um formulário Django
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select name="country">
-{% for value, label in countries %}
-<c-native-select.option value="{{ value }}">{{ label }}</c-native-select.option>
-{% endfor %}
-</c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select name="country">
-  {% for value, label in form.country.field.choices %}
-  <c-native-select.option value="{{ value }}"
-    >{{ label }}</c-native-select.option
-  >
+  {% for value, label in countries %}
+    <c-native-select.option value="{{ value }}">{{ label }}</c-native-select.option>
   {% endfor %}
 </c-native-select>
-```
+</c-docs.example>

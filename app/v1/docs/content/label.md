@@ -49,18 +49,12 @@ no texto dar foco ao campo, e é o que um leitor de tela anuncia.
 ### Com um input
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="grid w-full max-w-sm gap-2">
-    <c-label for="project">Project name</c-label>
-    <c-input id="project" placeholder="django-shadcn" />
+  <c-label for="project">Project name</c-label>
+  <c-input id="project" placeholder="django-shadcn" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-label for="project">Project name</c-label>
-<c-input id="project" placeholder="django-shadcn" />
-```
+</c-docs.example>
 
 :::en
 ### With a checkbox
@@ -68,18 +62,12 @@ no texto dar foco ao campo, e é o que um leitor de tela anuncia.
 ### Com um checkbox
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center space-x-2">
-    <c-checkbox id="newsletter" />
-    <c-label for="newsletter">Subscribe to the newsletter</c-label>
+  <c-checkbox id="newsletter" />
+  <c-label for="newsletter">Subscribe to the newsletter</c-label>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-checkbox id="newsletter" />
-<c-label for="newsletter">Subscribe to the newsletter</c-label>
-```
+</c-docs.example>
 
 :::en
 ### Required
@@ -87,23 +75,15 @@ no texto dar foco ao campo, e é o que um leitor de tela anuncia.
 ### Obrigatório
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="grid w-full max-w-sm gap-2">
-    <c-label for="handle">
-        Handle
-        <span class="text-destructive" aria-hidden="true">*</span>
-    </c-label>
-    <c-input id="handle" required />
+  <c-label for="handle">
+    Handle
+    <span class="text-destructive" aria-hidden="true">*</span>
+  </c-label>
+  <c-input id="handle" required />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-label for="handle">
-  Handle
-  <span class="text-destructive" aria-hidden="true">*</span>
-</c-label>
-```
+</c-docs.example>
 
 :::en
 ### Disabled control
@@ -111,18 +91,12 @@ no texto dar foco ao campo, e é o que um leitor de tela anuncia.
 ### Controle desabilitado
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="grid w-full max-w-sm gap-2">
-    <c-input id="locked" class="peer" placeholder="Not editable" disabled />
-    <c-label for="locked">Locked field</c-label>
+  <c-input id="locked" class="peer" placeholder="Not editable" disabled />
+  <c-label for="locked">Locked field</c-label>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-input id="locked" class="peer" disabled />
-<c-label for="locked">Locked field</c-label>
-```
+</c-docs.example>
 
 :::en
 ## Notes

@@ -36,20 +36,7 @@ uvx django_shadcn@latest add select
 ## Uso
 :::
 
-<c-docs.demo-section>
-<c-select class="w-[180px]">
-<c-select.trigger>
-<c-select.value placeholder="Theme" />
-</c-select.trigger>
-<c-select.content>
-<c-select.item value="light">Light</c-select.item>
-<c-select.item value="dark">Dark</c-select.item>
-<c-select.item value="system">System</c-select.item>
-</c-select.content>
-</c-select>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-select class="w-[180px]">
   <c-select.trigger>
     <c-select.value placeholder="Theme" />
@@ -60,7 +47,7 @@ uvx django_shadcn@latest add select
     <c-select.item value="system">System</c-select.item>
   </c-select.content>
 </c-select>
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -72,18 +59,10 @@ uvx django_shadcn@latest add select
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
-<c-select name="library" class="w-[180px]">
-<c-select.trigger disabled>
-<c-select.value placeholder="Select a library" />
-</c-select.trigger>
-</c-select>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-select name="library" class="w-[180px]">
   <c-select.trigger disabled>
     <c-select.value placeholder="Select a library" />
   </c-select.trigger>
 </c-select>
-```
+</c-docs.example>

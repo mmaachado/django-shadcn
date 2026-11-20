@@ -90,36 +90,30 @@ drawer que não escurece a página.
 ### Direção
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-drawer direction="right">
-<c-drawer.trigger><c-button variant="outline" size="sm">Right</c-button></c-drawer.trigger>
-<c-drawer.overlay />
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>From the right</c-drawer.title>
-<c-drawer.description>No handle on this one.</c-drawer.description>
-</c-drawer.header>
-</c-drawer.content>
-</c-drawer>
-<c-drawer direction="top">
-<c-drawer.trigger><c-button variant="outline" size="sm">Top</c-button></c-drawer.trigger>
-<c-drawer.overlay />
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>From the top</c-drawer.title>
-<c-drawer.description>Useful for a notification tray.</c-drawer.description>
-</c-drawer.header>
-</c-drawer.content>
-</c-drawer>
+  <c-drawer direction="right">
+    <c-drawer.trigger><c-button variant="outline" size="sm">Right</c-button></c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+      <c-drawer.header>
+        <c-drawer.title>From the right</c-drawer.title>
+        <c-drawer.description>No handle on this one.</c-drawer.description>
+      </c-drawer.header>
+    </c-drawer.content>
+  </c-drawer>
+  <c-drawer direction="top">
+    <c-drawer.trigger><c-button variant="outline" size="sm">Top</c-button></c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+      <c-drawer.header>
+        <c-drawer.title>From the top</c-drawer.title>
+        <c-drawer.description>Useful for a notification tray.</c-drawer.description>
+      </c-drawer.header>
+    </c-drawer.content>
+  </c-drawer>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-drawer direction="right">...</c-drawer>
-<c-drawer direction="top">...</c-drawer>
-<c-drawer direction="left">...</c-drawer>
-```
+</c-docs.example>
 
 :::en
 ### Without the overlay
@@ -127,27 +121,20 @@ drawer que não escurece a página.
 ### Sem o overlay
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-drawer>
-<c-drawer.trigger><c-button variant="outline">No dimming</c-button></c-drawer.trigger>
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>The page stays lit</c-drawer.title>
-<c-drawer.description>Drop the overlay when the drawer is not modal.</c-drawer.description>
-</c-drawer.header>
-<c-drawer.footer>
-<c-drawer.close><c-button variant="outline" class="w-full">Close</c-button></c-drawer.close>
-</c-drawer.footer>
-</c-drawer.content>
+  <c-drawer.trigger><c-button variant="outline">No dimming</c-button></c-drawer.trigger>
+  <c-drawer.content>
+    <c-drawer.header>
+      <c-drawer.title>The page stays lit</c-drawer.title>
+      <c-drawer.description>Drop the overlay when the drawer is not modal.</c-drawer.description>
+    </c-drawer.header>
+    <c-drawer.footer>
+      <c-drawer.close><c-button variant="outline" class="w-full">Close</c-button></c-drawer.close>
+    </c-drawer.footer>
+  </c-drawer.content>
 </c-drawer>
-</c-docs.demo-section>
-
-```html
-<c-drawer>
-    <c-drawer.trigger>...</c-drawer.trigger>
-    <c-drawer.content>...</c-drawer.content>
-</c-drawer>
-```
+</c-docs.example>
 
 :::en
 ## Notes

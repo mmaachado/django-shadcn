@@ -155,37 +155,25 @@ Cada pergunta é um item. Dê um `name` aos controles e a view os lê de volta c
 esse nome — o componente não acrescenta nada próprio ao que é enviado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-questionnaire method="get" class="mx-auto w-full max-w-lg text-start">
-<c-questionnaire.progress />
-<c-questionnaire.item>
-<c-questionnaire.title>Pick one</c-questionnaire.title>
-<c-questionnaire.choices>
-<c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
-<c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
-</c-questionnaire.choices>
-<c-questionnaire.error />
-</c-questionnaire.item>
-<c-questionnaire.actions>
-<c-questionnaire.previous />
-<c-questionnaire.skip />
-<c-questionnaire.next />
-<c-questionnaire.submit />
-</c-questionnaire.actions>
-</c-questionnaire>
-</c-docs.demo-section>
-
-```html
-<c-questionnaire.item>
+  <c-questionnaire.progress />
+  <c-questionnaire.item>
     <c-questionnaire.title>Pick one</c-questionnaire.title>
-    <c-questionnaire.description>Optional helper text.</c-questionnaire.description>
     <c-questionnaire.choices>
-        <c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
-        <c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
+      <c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
+      <c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
     </c-questionnaire.choices>
     <c-questionnaire.error />
-</c-questionnaire.item>
-```
+  </c-questionnaire.item>
+  <c-questionnaire.actions>
+    <c-questionnaire.previous />
+    <c-questionnaire.skip />
+    <c-questionnaire.next />
+    <c-questionnaire.submit />
+  </c-questionnaire.actions>
+</c-questionnaire>
+</c-docs.example>
 
 :::en
 `title` renders the `<legend>` of the item's `<fieldset>`, so it names the

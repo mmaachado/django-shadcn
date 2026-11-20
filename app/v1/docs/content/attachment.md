@@ -86,60 +86,55 @@ tracejada, `uploading` e `processing` fazem o título cintilar, `error` deixa a
 borda e a mídia vermelhas.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-attachment state="idle">
-<c-attachment.media>
-<c-icon name="circle" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>Drop a file here</c-attachment.title>
-<c-attachment.description>Nothing chosen yet</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
-<c-attachment state="uploading">
-<c-attachment.media>
-<c-icon name="loader-circle" class="animate-spin" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>report.pdf</c-attachment.title>
-<c-attachment.description>Uploading · 2.1 MB</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
-<c-attachment state="processing">
-<c-attachment.media>
-<c-icon name="loader-circle" class="animate-spin" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>recording.wav</c-attachment.title>
-<c-attachment.description>Transcribing</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
-<c-attachment state="error">
-<c-attachment.media>
-<c-icon name="x" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>archive.zip</c-attachment.title>
-<c-attachment.description>Too large, 40 MB over the limit</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
-<c-attachment state="done">
-<c-attachment.media>
-<c-icon name="check" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>notes.md</c-attachment.title>
-<c-attachment.description>Markdown · 4 KB</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
+  <c-attachment state="idle">
+    <c-attachment.media>
+      <c-icon name="circle" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>Drop a file here</c-attachment.title>
+      <c-attachment.description>Nothing chosen yet</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment state="uploading">
+    <c-attachment.media>
+      <c-icon name="loader-circle" class="animate-spin" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>report.pdf</c-attachment.title>
+      <c-attachment.description>Uploading · 2.1 MB</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment state="processing">
+    <c-attachment.media>
+      <c-icon name="loader-circle" class="animate-spin" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>recording.wav</c-attachment.title>
+      <c-attachment.description>Transcribing</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment state="error">
+    <c-attachment.media>
+      <c-icon name="x" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>archive.zip</c-attachment.title>
+      <c-attachment.description>Too large, 40 MB over the limit</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment state="done">
+    <c-attachment.media>
+      <c-icon name="check" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>notes.md</c-attachment.title>
+      <c-attachment.description>Markdown · 4 KB</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-attachment state="uploading">...</c-attachment>
-<c-attachment state="error">...</c-attachment>
-```
+</c-docs.example>
 
 :::en
 The shimmer on the title is the `shimmer` utility from `input.css`. It stops
@@ -159,47 +154,41 @@ quando o leitor pediu menos movimento.
 em um bloco, com a mídia em cima e as ações flutuando sobre o canto dela.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-attachment size="sm">
-<c-attachment.media>
-<c-icon name="check" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>small.txt</c-attachment.title>
-<c-attachment.description>Text · 1 KB</c-attachment.description>
-</c-attachment.content>
-</c-attachment>
-<c-attachment size="xs">
-<c-attachment.media>
-<c-icon name="check" />
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>tiny.txt</c-attachment.title>
-</c-attachment.content>
-</c-attachment>
-<c-attachment orientation="vertical">
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>avatar.png</c-attachment.title>
-<c-attachment.description>84 KB</c-attachment.description>
-</c-attachment.content>
-<c-attachment.actions>
-<c-attachment.action aria-label="Remove avatar.png">
-<c-icon name="x" />
-</c-attachment.action>
-</c-attachment.actions>
-</c-attachment>
+  <c-attachment size="sm">
+    <c-attachment.media>
+      <c-icon name="check" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>small.txt</c-attachment.title>
+      <c-attachment.description>Text · 1 KB</c-attachment.description>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment size="xs">
+    <c-attachment.media>
+      <c-icon name="check" />
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>tiny.txt</c-attachment.title>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment orientation="vertical">
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>avatar.png</c-attachment.title>
+      <c-attachment.description>84 KB</c-attachment.description>
+    </c-attachment.content>
+    <c-attachment.actions>
+      <c-attachment.action aria-label="Remove avatar.png">
+        <c-icon name="x" />
+      </c-attachment.action>
+    </c-attachment.actions>
+  </c-attachment>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-attachment size="sm">...</c-attachment>
-<c-attachment size="xs">...</c-attachment>
-<c-attachment orientation="vertical">...</c-attachment>
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -219,37 +208,25 @@ das ações de propósito: o botão de remover mantém o próprio clique e a pr�
 parada de tab, e nenhum dos dois engole o outro.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-attachment>
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>avatar.png</c-attachment.title>
-<c-attachment.description>PNG · 84 KB</c-attachment.description>
-</c-attachment.content>
-<c-attachment.actions>
-<c-attachment.action aria-label="Remove avatar.png">
-<c-icon name="x" />
-</c-attachment.action>
-</c-attachment.actions>
-<c-attachment.trigger tag="a" href="https://github.com/mmaachado.png" aria-label="Open avatar.png"></c-attachment.trigger>
-</c-attachment>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-attachment>
-    ...
+  <c-attachment>
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>avatar.png</c-attachment.title>
+      <c-attachment.description>PNG · 84 KB</c-attachment.description>
+    </c-attachment.content>
     <c-attachment.actions>
-        <c-attachment.action aria-label="Remove">
-            <c-icon name="x" />
-        </c-attachment.action>
+      <c-attachment.action aria-label="Remove avatar.png">
+        <c-icon name="x" />
+      </c-attachment.action>
     </c-attachment.actions>
-    <c-attachment.trigger tag="a" href="{{ file.url }}" aria-label="Open {{ file.name }}"></c-attachment.trigger>
-</c-attachment>
-```
+    <c-attachment.trigger tag="a" href="https://github.com/mmaachado.png" aria-label="Open avatar.png"></c-attachment.trigger>
+  </c-attachment>
+</div>
+</c-docs.example>
 
 :::en
 The trigger has no text of its own, so it needs an `aria-label`. Without one it
@@ -275,49 +252,42 @@ O `group` rola para o lado, encaixa cada card no lugar e esmaece a borda da qual
 você rolou para longe.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-attachment.group class="w-full max-w-md">
-<c-attachment orientation="vertical">
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>one.png</c-attachment.title>
-</c-attachment.content>
-</c-attachment>
-<c-attachment orientation="vertical">
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>two.png</c-attachment.title>
-</c-attachment.content>
-</c-attachment>
-<c-attachment orientation="vertical">
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>three.png</c-attachment.title>
-</c-attachment.content>
-</c-attachment>
-<c-attachment orientation="vertical">
-<c-attachment.media variant="image">
-<img src="https://github.com/mmaachado.png" alt="">
-</c-attachment.media>
-<c-attachment.content>
-<c-attachment.title>four.png</c-attachment.title>
-</c-attachment.content>
-</c-attachment>
+  <c-attachment orientation="vertical">
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>one.png</c-attachment.title>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment orientation="vertical">
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>two.png</c-attachment.title>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment orientation="vertical">
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>three.png</c-attachment.title>
+    </c-attachment.content>
+  </c-attachment>
+  <c-attachment orientation="vertical">
+    <c-attachment.media variant="image">
+      <img src="https://github.com/mmaachado.png" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+      <c-attachment.title>four.png</c-attachment.title>
+    </c-attachment.content>
+  </c-attachment>
 </c-attachment.group>
-</c-docs.demo-section>
-
-```html
-<c-attachment.group>
-    <c-attachment orientation="vertical">...</c-attachment>
-    <c-attachment orientation="vertical">...</c-attachment>
-</c-attachment.group>
-```
+</c-docs.example>
 
 :::en
 The scroll, the snapping and the fade are all CSS. There is no JavaScript in

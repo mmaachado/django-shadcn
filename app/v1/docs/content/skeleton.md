@@ -32,13 +32,9 @@ uvx django_shadcn@latest add skeleton
 ## Uso
 :::
 
-<c-docs.demo-section background="bg-background">
+<c-docs.example background="bg-background">
 <c-skeleton class="h-4 w-[250px]" />
-</c-docs.demo-section>
-
-```html
-<c-skeleton class="h-4 w-[250px]" />
-```
+</c-docs.example>
 
 :::en
 The component ships no dimensions of its own. Give it the size and shape of
@@ -64,18 +60,7 @@ continuem visíveis.
 ### Card
 :::
 
-<c-docs.demo-section background="bg-background">
-
-<div class="flex flex-col gap-3">
-    <c-skeleton class="h-[125px] w-[250px] rounded-xl" />
-    <div class="space-y-2">
-        <c-skeleton class="h-4 w-[250px]" />
-        <c-skeleton class="h-4 w-[200px]" />
-    </div>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example background="bg-background">
 <div class="flex flex-col gap-3">
   <c-skeleton class="h-[125px] w-[250px] rounded-xl" />
   <div class="space-y-2">
@@ -83,7 +68,7 @@ continuem visíveis.
     <c-skeleton class="h-4 w-[200px]" />
   </div>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Avatar and text
@@ -91,18 +76,7 @@ continuem visíveis.
 ### Avatar e texto
 :::
 
-<c-docs.demo-section background="bg-background">
-
-<div class="flex items-center gap-4">
-    <c-skeleton class="size-12 rounded-full" />
-    <div class="space-y-2">
-        <c-skeleton class="h-4 w-[250px]" />
-        <c-skeleton class="h-4 w-[200px]" />
-    </div>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example background="bg-background">
 <div class="flex items-center gap-4">
   <c-skeleton class="size-12 rounded-full" />
   <div class="space-y-2">
@@ -110,7 +84,7 @@ continuem visíveis.
     <c-skeleton class="h-4 w-[200px]" />
   </div>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Standing in for a card
@@ -118,24 +92,8 @@ continuem visíveis.
 ### No lugar de um card
 :::
 
-<c-docs.demo-section background="bg-background">
+<c-docs.example background="bg-background">
 <c-card class="w-[320px]">
-<c-card.header>
-<c-skeleton class="h-5 w-[160px]" />
-<c-skeleton class="h-4 w-[220px]" />
-</c-card.header>
-<c-card.content class="space-y-2">
-<c-skeleton class="h-4 w-full" />
-<c-skeleton class="h-4 w-[80%]" />
-</c-card.content>
-<c-card.footer>
-<c-skeleton class="h-9 w-[100px] rounded-md" />
-</c-card.footer>
-</c-card>
-</c-docs.demo-section>
-
-```html
-<c-card>
   <c-card.header>
     <c-skeleton class="h-5 w-[160px]" />
     <c-skeleton class="h-4 w-[220px]" />
@@ -144,5 +102,8 @@ continuem visíveis.
     <c-skeleton class="h-4 w-full" />
     <c-skeleton class="h-4 w-[80%]" />
   </c-card.content>
+  <c-card.footer>
+    <c-skeleton class="h-9 w-[100px] rounded-md" />
+  </c-card.footer>
 </c-card>
-```
+</c-docs.example>

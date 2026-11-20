@@ -30,23 +30,14 @@ uvx django_shadcn@latest add tooltip
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-tooltip>
-<c-tooltip.trigger>
-<c-button variant="outline">Hover me</c-button>
-</c-tooltip.trigger>
-<c-tooltip.content>Add to library</c-tooltip.content>
+  <c-tooltip.trigger>
+    <c-button variant="outline">Hover me</c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Add to library</c-tooltip.content>
 </c-tooltip>
-</c-docs.demo-section>
-
-```html
-<c-tooltip>
-    <c-tooltip.trigger>
-        <c-button variant="outline">Hover me</c-button>
-    </c-tooltip.trigger>
-    <c-tooltip.content>Add to library</c-tooltip.content>
-</c-tooltip>
-```
+</c-docs.example>
 
 :::en
 The trigger reacts to `mouseenter` and to `focusin`, so the tooltip shows for
@@ -64,33 +55,26 @@ teclado assim como para o ponteiro.
 ### Lados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-4">
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Top</c-button></c-tooltip.trigger>
-<c-tooltip.content side="top">On top</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Right</c-button></c-tooltip.trigger>
-<c-tooltip.content side="right">To the right</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Bottom</c-button></c-tooltip.trigger>
-<c-tooltip.content side="bottom">Below</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Left</c-button></c-tooltip.trigger>
-<c-tooltip.content side="left">To the left</c-tooltip.content>
-</c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Top</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="top">On top</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Right</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="right">To the right</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Bottom</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="bottom">Below</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Left</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="left">To the left</c-tooltip.content>
+  </c-tooltip>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-tooltip.content side="top">On top</c-tooltip.content>
-<c-tooltip.content side="right">To the right</c-tooltip.content>
-<c-tooltip.content side="bottom">Below</c-tooltip.content>
-<c-tooltip.content side="left">To the left</c-tooltip.content>
-```
+</c-docs.example>
 
 :::en
 ## Notes

@@ -70,26 +70,22 @@ upstream. Acrescente `border` quando quiser que o contorno apareça.
 ### Outline
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-empty class="w-full border">
-<c-empty.header>
-<c-empty.media variant="icon">
-<c-icon name="x" />
-</c-empty.media>
-<c-empty.title>No projects</c-empty.title>
-<c-empty.description>
-Projects you create will show up here.
-</c-empty.description>
-</c-empty.header>
-<c-empty.content>
-<c-button>Create project</c-button>
-</c-empty.content>
+  <c-empty.header>
+    <c-empty.media variant="icon">
+      <c-icon name="x" />
+    </c-empty.media>
+    <c-empty.title>No projects</c-empty.title>
+    <c-empty.description>
+      Projects you create will show up here.
+    </c-empty.description>
+  </c-empty.header>
+  <c-empty.content>
+    <c-button>Create project</c-button>
+  </c-empty.content>
 </c-empty>
-</c-docs.demo-section>
-
-```html
-<c-empty class="border">...</c-empty>
-```
+</c-docs.example>
 
 :::en
 ### Without media
@@ -97,26 +93,17 @@ Projects you create will show up here.
 ### Sem mídia
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-empty class="w-full border">
-<c-empty.header>
-<c-empty.title>Nothing here yet</c-empty.title>
-<c-empty.description>
-Read the <a href="{% url 'page' slug='introduction' %}">introduction</a> to get
-started.
-</c-empty.description>
-</c-empty.header>
-</c-empty>
-</c-docs.demo-section>
-
-```html
-<c-empty>
   <c-empty.header>
     <c-empty.title>Nothing here yet</c-empty.title>
-    <c-empty.description>Read the docs to get started.</c-empty.description>
+    <c-empty.description>
+      Read the <a href="{% url 'page' slug='introduction' %}">introduction</a> to get
+      started.
+    </c-empty.description>
   </c-empty.header>
 </c-empty>
-```
+</c-docs.example>
 
 :::en
 ### Loading
@@ -124,20 +111,14 @@ started.
 ### Carregando
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-empty class="w-full border">
-<c-empty.header>
-<c-empty.media>
-<c-spinner class="size-6" />
-</c-empty.media>
-<c-empty.title>Loading projects</c-empty.title>
-<c-empty.description>This will only take a moment.</c-empty.description>
-</c-empty.header>
+  <c-empty.header>
+    <c-empty.media>
+      <c-spinner class="size-6" />
+    </c-empty.media>
+    <c-empty.title>Loading projects</c-empty.title>
+    <c-empty.description>This will only take a moment.</c-empty.description>
+  </c-empty.header>
 </c-empty>
-</c-docs.demo-section>
-
-```html
-<c-empty.media>
-  <c-spinner class="size-6" />
-</c-empty.media>
-```
+</c-docs.example>

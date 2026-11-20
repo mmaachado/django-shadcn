@@ -48,32 +48,14 @@ uvx django_shadcn@latest add checkbox
 ### Com texto
 :::
 
-<c-docs.demo-section>
-
-<div class="items-top flex space-x-2">
-    <c-checkbox id="terms" />
-    <div class="grid gap-1.5 leading-none">
-        <label
-            for="terms"
-            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-            Accept terms and conditions
-        </label>
-        <p class="text-sm text-muted-foreground">
-            You agree to our Terms of Service and Privacy Policy.
-        </p>
-    </div>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <div class="items-top flex space-x-2">
   <c-checkbox id="terms" />
   <div class="grid gap-1.5 leading-none">
     <label
       for="terms"
       class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-    >
+      >
       Accept terms and conditions
     </label>
     <p class="text-sm text-muted-foreground">
@@ -81,7 +63,7 @@ uvx django_shadcn@latest add checkbox
     </p>
   </div>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -89,10 +71,6 @@ uvx django_shadcn@latest add checkbox
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-checkbox id='terms' disabled />
-</c-docs.demo-section>
-
-```html
-<c-checkbox id="terms" disabled />
-```
+</c-docs.example>

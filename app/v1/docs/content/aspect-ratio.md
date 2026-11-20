@@ -31,21 +31,15 @@ uvx django_shadcn@latest add aspect_ratio
 ## Uso
 :::
 
-<c-docs.demo-section>
-    <div class="w-[300px]">
-        <c-aspect-ratio ratio="16/9" class="overflow-hidden rounded-lg bg-muted">
-            <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
-                16 / 9
-            </div>
-        </c-aspect-ratio>
+<c-docs.example>
+<div class="w-[300px]">
+  <c-aspect-ratio ratio="16/9" class="overflow-hidden rounded-lg bg-muted">
+    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+      16 / 9
     </div>
-</c-docs.demo-section>
-
-```html
-<c-aspect-ratio ratio='16/9' class='overflow-hidden rounded-lg'>
-    <img src='/cover.jpg' alt='' class='size-full object-cover' />
-</c-aspect-ratio>
-```
+  </c-aspect-ratio>
+</div>
+</c-docs.example>
 
 :::en
 Radix reserves the space with a padding hack. Here it is the native `aspect-
@@ -65,19 +59,15 @@ aceita: `16/9`, `4/3`, `1.85`. O padrão é `1/1`.
 ### Quadrado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[200px]">
-    <c-aspect-ratio class="overflow-hidden rounded-lg bg-muted">
-        <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
-            1 / 1
-        </div>
-    </c-aspect-ratio>
+  <c-aspect-ratio class="overflow-hidden rounded-lg bg-muted">
+    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+      1 / 1
+    </div>
+  </c-aspect-ratio>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-aspect-ratio class='overflow-hidden rounded-lg bg-muted'>...</c-aspect-ratio>
-```
+</c-docs.example>
 
 :::en
 ### Portrait
@@ -85,16 +75,12 @@ aceita: `16/9`, `4/3`, `1.85`. O padrão é `1/1`.
 ### Retrato
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[200px]">
-    <c-aspect-ratio ratio="3/4" class="overflow-hidden rounded-lg bg-muted">
-        <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
-            3 / 4
-        </div>
-    </c-aspect-ratio>
+  <c-aspect-ratio ratio="3/4" class="overflow-hidden rounded-lg bg-muted">
+    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+      3 / 4
+    </div>
+  </c-aspect-ratio>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-aspect-ratio ratio='3/4' class='overflow-hidden rounded-lg bg-muted'>...</c-aspect-ratio>
-```
+</c-docs.example>

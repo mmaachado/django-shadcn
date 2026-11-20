@@ -172,52 +172,48 @@ inteiro para fora. Rótulos, badges e submenus se escondem sozinhos; o `tooltip`
 de cada botão assume o papel de rótulo.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="relative h-[300px] w-full transform-gpu overflow-hidden rounded-lg border">
-<c-sidebar.provider class="min-h-full!">
-<c-sidebar collapsible="icon" class="h-full!">
-<c-sidebar.content>
-<c-sidebar.group>
-<c-sidebar.group-label>Workspace</c-sidebar.group-label>
-<c-sidebar.group-content>
-<c-sidebar.menu>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Search">
-<c-icon name="search" />
-<span>Search</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Drafts">
-<c-icon name="circle" />
-<span>Drafts</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Done">
-<c-icon name="check" />
-<span>Done</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-</c-sidebar.menu>
-</c-sidebar.group-content>
-</c-sidebar.group>
-</c-sidebar.content>
-<c-sidebar.rail />
-</c-sidebar>
-<c-sidebar.inset>
-<header class="flex h-12 shrink-0 items-center gap-2 border-b px-4">
-<c-sidebar.trigger />
-<span class="text-sm font-medium">Collapse me</span>
-</header>
-</c-sidebar.inset>
-</c-sidebar.provider>
+  <c-sidebar.provider class="min-h-full!">
+    <c-sidebar collapsible="icon" class="h-full!">
+      <c-sidebar.content>
+        <c-sidebar.group>
+          <c-sidebar.group-label>Workspace</c-sidebar.group-label>
+          <c-sidebar.group-content>
+            <c-sidebar.menu>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Search">
+                  <c-icon name="search" />
+                  <span>Search</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Drafts">
+                  <c-icon name="circle" />
+                  <span>Drafts</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Done">
+                  <c-icon name="check" />
+                  <span>Done</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+            </c-sidebar.menu>
+          </c-sidebar.group-content>
+        </c-sidebar.group>
+      </c-sidebar.content>
+      <c-sidebar.rail />
+    </c-sidebar>
+    <c-sidebar.inset>
+      <header class="flex h-12 shrink-0 items-center gap-2 border-b px-4">
+        <c-sidebar.trigger />
+        <span class="text-sm font-medium">Collapse me</span>
+      </header>
+    </c-sidebar.inset>
+  </c-sidebar.provider>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-sidebar collapsible="icon">...</c-sidebar>
-```
+</c-docs.example>
 
 :::en
 ### Variants and side
@@ -300,19 +296,15 @@ mesmo canto.
 ### Placeholder de carregamento
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[240px] rounded-lg bg-sidebar p-2">
-<c-sidebar.menu>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="60%" /></c-sidebar.menu-item>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="85%" /></c-sidebar.menu-item>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="70%" /></c-sidebar.menu-item>
-</c-sidebar.menu>
+  <c-sidebar.menu>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="60%" /></c-sidebar.menu-item>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="85%" /></c-sidebar.menu-item>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="70%" /></c-sidebar.menu-item>
+  </c-sidebar.menu>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-sidebar.menu-skeleton show_icon="true" width="60%" />
-```
+</c-docs.example>
 
 :::en
 ## Notes

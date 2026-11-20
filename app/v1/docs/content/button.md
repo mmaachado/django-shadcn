@@ -25,13 +25,9 @@ uvx django_shadcn@latest add button
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button>Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button>Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -43,13 +39,9 @@ uvx django_shadcn@latest add button
 ### Primary
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button>Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button>Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Secondary
@@ -57,13 +49,9 @@ uvx django_shadcn@latest add button
 ### Secondary
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button variant="secondary">Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button variant="secondary">Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Destructive
@@ -71,13 +59,9 @@ uvx django_shadcn@latest add button
 ### Destructive
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button variant="destructive">Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button variant="destructive">Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Outline
@@ -85,13 +69,9 @@ uvx django_shadcn@latest add button
 ### Outline
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button variant="outline">Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button variant="outline">Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Ghost
@@ -99,13 +79,9 @@ uvx django_shadcn@latest add button
 ### Ghost
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button variant="ghost">Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button variant="ghost">Button</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Link
@@ -113,10 +89,6 @@ uvx django_shadcn@latest add button
 ### Link
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-button variant="link">Button</c-button>
-</c-docs.demo-section>
-
-```html
-<c-button variant="link">Button</c-button>
-```
+</c-docs.example>

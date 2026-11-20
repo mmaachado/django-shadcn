@@ -121,23 +121,14 @@ cima, aparecendo no hover e no foco, e sempre numa tela de toque.
 ### Terminal
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-code-block class="max-w-xl">
-<c-code-block.actions>
-<c-code-block.copy-button />
-</c-code-block.actions>
-<c-code-block.content>uvx django_shadcn@latest add code_block</c-code-block.content>
-</c-code-block>
-</c-docs.demo-section>
-
-```html
-<c-code-block>
   <c-code-block.actions>
     <c-code-block.copy-button />
   </c-code-block.actions>
   <c-code-block.content>uvx django_shadcn@latest add code_block</c-code-block.content>
 </c-code-block>
-```
+</c-docs.example>
 
 :::en
 ### Diff
@@ -150,24 +141,17 @@ shades it.
 `added` e `removed` marcam a linha na margem, e `highlighted` só a sombreia.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-code-block class="max-w-xl">
-<c-code-block.content line_numbers="true" start_line="12">
-<c-code-block.line>    'calendar': Component(depends=('button', 'icon')),</c-code-block.line>
-<c-code-block.line variant="removed">    'card': Component(),</c-code-block.line>
-<c-code-block.line variant="added">    'card': Component(depends=('separator',)),</c-code-block.line>
-<c-code-block.line variant="added">    'code_block': Component(depends=('icon',)),</c-code-block.line>
-<c-code-block.line>    'collapsible': Component(scripts=(COLLAPSE,)),</c-code-block.line>
-</c-code-block.content>
+  <c-code-block.content line_numbers="true" start_line="12">
+    <c-code-block.line>    'calendar': Component(depends=('button', 'icon')),</c-code-block.line>
+    <c-code-block.line variant="removed">    'card': Component(),</c-code-block.line>
+    <c-code-block.line variant="added">    'card': Component(depends=('separator',)),</c-code-block.line>
+    <c-code-block.line variant="added">    'code_block': Component(depends=('icon',)),</c-code-block.line>
+    <c-code-block.line>    'collapsible': Component(scripts=(COLLAPSE,)),</c-code-block.line>
+  </c-code-block.content>
 </c-code-block>
-</c-docs.demo-section>
-
-```html
-<c-code-block.content line_numbers="true" start_line="12">
-  <c-code-block.line variant="removed">    'card': Component(),</c-code-block.line>
-  <c-code-block.line variant="added">    'card': Component(depends=('separator',)),</c-code-block.line>
-</c-code-block.content>
-```
+</c-docs.example>
 
 :::en
 ### Destructive
@@ -175,23 +159,14 @@ shades it.
 ### Destructive
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-code-block variant="destructive" class="max-w-xl">
-<c-code-block.header>
-<c-code-block.title>TemplateSyntaxError</c-code-block.title>
-</c-code-block.header>
-<c-code-block.content wrap="true">Unclosed tag on line 4: 'if'. Looking for one of: elif, else, endif.</c-code-block.content>
-</c-code-block>
-</c-docs.demo-section>
-
-```html
-<c-code-block variant="destructive">
   <c-code-block.header>
     <c-code-block.title>TemplateSyntaxError</c-code-block.title>
   </c-code-block.header>
-  <c-code-block.content wrap="true">Unclosed tag on line 4: 'if'.</c-code-block.content>
+  <c-code-block.content wrap="true">Unclosed tag on line 4: 'if'. Looking for one of: elif, else, endif.</c-code-block.content>
 </c-code-block>
-```
+</c-docs.example>
 
 :::en
 `wrap="true"` breaks long lines instead of scrolling sideways.
@@ -209,21 +184,17 @@ a card.
 mensagem ou de um card.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-code-block size="sm" class="max-w-md">
-<c-code-block.header>
-<c-code-block.title>requirements.txt</c-code-block.title>
-<c-code-block.actions>
-<c-code-block.copy-button />
-</c-code-block.actions>
-</c-code-block.header>
-<c-code-block.content>django-cotton>=2.7.1</c-code-block.content>
+  <c-code-block.header>
+    <c-code-block.title>requirements.txt</c-code-block.title>
+    <c-code-block.actions>
+      <c-code-block.copy-button />
+    </c-code-block.actions>
+  </c-code-block.header>
+  <c-code-block.content>django-cotton>=2.7.1</c-code-block.content>
 </c-code-block>
-</c-docs.demo-section>
-
-```html
-<c-code-block size="sm">...</c-code-block>
-```
+</c-docs.example>
 
 :::en
 ## Props

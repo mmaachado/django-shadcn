@@ -36,29 +36,18 @@ uvx django_shadcn@latest add context_menu
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-context-menu>
-<c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
-Right click here
-</c-context-menu.trigger>
-<c-context-menu.content class="w-48">
-<c-context-menu.item>Profile</c-context-menu.item>
-<c-context-menu.item>Billing</c-context-menu.item>
-<c-context-menu.item>Settings</c-context-menu.item>
-</c-context-menu.content>
+  <c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </c-context-menu.trigger>
+  <c-context-menu.content class="w-48">
+    <c-context-menu.item>Profile</c-context-menu.item>
+    <c-context-menu.item>Billing</c-context-menu.item>
+    <c-context-menu.item>Settings</c-context-menu.item>
+  </c-context-menu.content>
 </c-context-menu>
-</c-docs.demo-section>
-
-```html
-<c-context-menu>
-    <c-context-menu.trigger class="...">Right click here</c-context-menu.trigger>
-    <c-context-menu.content class="w-48">
-        <c-context-menu.item>Profile</c-context-menu.item>
-        <c-context-menu.item>Billing</c-context-menu.item>
-        <c-context-menu.item>Settings</c-context-menu.item>
-    </c-context-menu.content>
-</c-context-menu>
-```
+</c-docs.example>
 
 :::en
 The trigger swallows the browser's own menu and records where you clicked; the
@@ -78,35 +67,25 @@ embaixo do elemento.
 ### Rótulos, checkboxes e radios
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-context-menu>
-<c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
-Right click here
-</c-context-menu.trigger>
-<c-context-menu.content class="w-56">
-<c-context-menu.label>Appearance</c-context-menu.label>
-<c-context-menu.checkbox-item checked="true">Status bar</c-context-menu.checkbox-item>
-<c-context-menu.checkbox-item>Activity bar</c-context-menu.checkbox-item>
-<c-context-menu.separator />
-<c-context-menu.label>Panel position</c-context-menu.label>
-<c-context-menu.radio-group value="bottom">
-<c-context-menu.radio-item value="top">Top</c-context-menu.radio-item>
-<c-context-menu.radio-item value="bottom">Bottom</c-context-menu.radio-item>
-<c-context-menu.radio-item value="right">Right</c-context-menu.radio-item>
-</c-context-menu.radio-group>
-</c-context-menu.content>
+  <c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </c-context-menu.trigger>
+  <c-context-menu.content class="w-56">
+    <c-context-menu.label>Appearance</c-context-menu.label>
+    <c-context-menu.checkbox-item checked="true">Status bar</c-context-menu.checkbox-item>
+    <c-context-menu.checkbox-item>Activity bar</c-context-menu.checkbox-item>
+    <c-context-menu.separator />
+    <c-context-menu.label>Panel position</c-context-menu.label>
+    <c-context-menu.radio-group value="bottom">
+      <c-context-menu.radio-item value="top">Top</c-context-menu.radio-item>
+      <c-context-menu.radio-item value="bottom">Bottom</c-context-menu.radio-item>
+      <c-context-menu.radio-item value="right">Right</c-context-menu.radio-item>
+    </c-context-menu.radio-group>
+  </c-context-menu.content>
 </c-context-menu>
-</c-docs.demo-section>
-
-```html
-<c-context-menu.label>Appearance</c-context-menu.label>
-<c-context-menu.checkbox-item checked="true">Status bar</c-context-menu.checkbox-item>
-
-<c-context-menu.radio-group value="bottom">
-    <c-context-menu.radio-item value="top">Top</c-context-menu.radio-item>
-    <c-context-menu.radio-item value="bottom">Bottom</c-context-menu.radio-item>
-</c-context-menu.radio-group>
-```
+</c-docs.example>
 
 :::en
 ### Submenu
@@ -114,35 +93,25 @@ Right click here
 ### Submenu
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-context-menu>
-<c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
-Right click here
-</c-context-menu.trigger>
-<c-context-menu.content class="w-52">
-<c-context-menu.item>New file</c-context-menu.item>
-<c-context-menu.sub>
-<c-context-menu.sub-trigger>Share</c-context-menu.sub-trigger>
-<c-context-menu.sub-content class="w-40">
-<c-context-menu.item>Copy link</c-context-menu.item>
-<c-context-menu.item>Email</c-context-menu.item>
-</c-context-menu.sub-content>
-</c-context-menu.sub>
-<c-context-menu.separator />
-<c-context-menu.item variant="destructive">Delete</c-context-menu.item>
-</c-context-menu.content>
-</c-context-menu>
-</c-docs.demo-section>
-
-```html
-<c-context-menu.sub>
-    <c-context-menu.sub-trigger>Share</c-context-menu.sub-trigger>
-    <c-context-menu.sub-content class="w-40">
+  <c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </c-context-menu.trigger>
+  <c-context-menu.content class="w-52">
+    <c-context-menu.item>New file</c-context-menu.item>
+    <c-context-menu.sub>
+      <c-context-menu.sub-trigger>Share</c-context-menu.sub-trigger>
+      <c-context-menu.sub-content class="w-40">
         <c-context-menu.item>Copy link</c-context-menu.item>
         <c-context-menu.item>Email</c-context-menu.item>
-    </c-context-menu.sub-content>
-</c-context-menu.sub>
-```
+      </c-context-menu.sub-content>
+    </c-context-menu.sub>
+    <c-context-menu.separator />
+    <c-context-menu.item variant="destructive">Delete</c-context-menu.item>
+  </c-context-menu.content>
+</c-context-menu>
+</c-docs.example>
 
 :::en
 ### Inset items
@@ -150,22 +119,18 @@ Right click here
 ### Itens recuados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-context-menu>
-<c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
-Right click here
-</c-context-menu.trigger>
-<c-context-menu.content class="w-52">
-<c-context-menu.label inset="true">Actions</c-context-menu.label>
-<c-context-menu.item inset="true">Rename</c-context-menu.item>
-<c-context-menu.item inset="true">Duplicate</c-context-menu.item>
-</c-context-menu.content>
+  <c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </c-context-menu.trigger>
+  <c-context-menu.content class="w-52">
+    <c-context-menu.label inset="true">Actions</c-context-menu.label>
+    <c-context-menu.item inset="true">Rename</c-context-menu.item>
+    <c-context-menu.item inset="true">Duplicate</c-context-menu.item>
+  </c-context-menu.content>
 </c-context-menu>
-</c-docs.demo-section>
-
-```html
-<c-context-menu.item inset="true">Rename</c-context-menu.item>
-```
+</c-docs.example>
 
 :::en
 `inset` lines an item up with the ones that carry a checkbox or radio mark.

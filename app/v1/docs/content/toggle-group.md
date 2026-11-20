@@ -29,21 +29,13 @@ uvx django_shadcn@latest add toggle_group
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group>
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group>
-    <c-toggle-group.item>Left</c-toggle-group.item>
-    <c-toggle-group.item>Center</c-toggle-group.item>
-    <c-toggle-group.item>Right</c-toggle-group.item>
-</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 Variant and size go on the group, not on each item.
@@ -59,21 +51,13 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Outline
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group variant="outline">
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group variant="outline">
-    <c-toggle-group.item>Left</c-toggle-group.item>
-    <c-toggle-group.item>Center</c-toggle-group.item>
-    <c-toggle-group.item>Right</c-toggle-group.item>
-</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 ### Sizes
@@ -81,25 +65,20 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex flex-col items-center gap-4">
-<c-toggle-group variant="outline" size="sm">
-<c-toggle-group.item>S</c-toggle-group.item>
-<c-toggle-group.item>M</c-toggle-group.item>
-<c-toggle-group.item>L</c-toggle-group.item>
-</c-toggle-group>
-<c-toggle-group variant="outline" size="lg">
-<c-toggle-group.item>S</c-toggle-group.item>
-<c-toggle-group.item>M</c-toggle-group.item>
-<c-toggle-group.item>L</c-toggle-group.item>
-</c-toggle-group>
+  <c-toggle-group variant="outline" size="sm">
+    <c-toggle-group.item>S</c-toggle-group.item>
+    <c-toggle-group.item>M</c-toggle-group.item>
+    <c-toggle-group.item>L</c-toggle-group.item>
+  </c-toggle-group>
+  <c-toggle-group variant="outline" size="lg">
+    <c-toggle-group.item>S</c-toggle-group.item>
+    <c-toggle-group.item>M</c-toggle-group.item>
+    <c-toggle-group.item>L</c-toggle-group.item>
+  </c-toggle-group>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group variant="outline" size="sm">...</c-toggle-group>
-<c-toggle-group variant="outline" size="lg">...</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 ### Spaced
@@ -107,19 +86,13 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Espaçado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group variant="outline" spacing="1">
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group variant="outline" spacing="1">
-    <c-toggle-group.item>Left</c-toggle-group.item>
-</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 ## Notes

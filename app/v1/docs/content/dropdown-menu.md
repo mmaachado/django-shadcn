@@ -74,43 +74,37 @@ dois.
 ### Alinhamento
 :::
 
-<c-docs.demo-section class="min-h-[280px]">
+<c-docs.example class="min-h-[280px]">
 <div class="flex gap-4">
-<c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">Start</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content class="w-40">
-<c-dropdown-menu.item>Profile</c-dropdown-menu.item>
-<c-dropdown-menu.item>Billing</c-dropdown-menu.item>
-</c-dropdown-menu.content>
-</c-dropdown-menu>
-<c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">Center</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content align="center" class="w-40">
-<c-dropdown-menu.item>Profile</c-dropdown-menu.item>
-<c-dropdown-menu.item>Billing</c-dropdown-menu.item>
-</c-dropdown-menu.content>
-</c-dropdown-menu>
-<c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">End</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content align="end" class="w-40">
-<c-dropdown-menu.item>Profile</c-dropdown-menu.item>
-<c-dropdown-menu.item>Billing</c-dropdown-menu.item>
-</c-dropdown-menu.content>
-</c-dropdown-menu>
+  <c-dropdown-menu>
+    <c-dropdown-menu.trigger>
+      <c-button variant="outline">Start</c-button>
+    </c-dropdown-menu.trigger>
+    <c-dropdown-menu.content class="w-40">
+      <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+      <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+    </c-dropdown-menu.content>
+  </c-dropdown-menu>
+  <c-dropdown-menu>
+    <c-dropdown-menu.trigger>
+      <c-button variant="outline">Center</c-button>
+    </c-dropdown-menu.trigger>
+    <c-dropdown-menu.content align="center" class="w-40">
+      <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+      <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+    </c-dropdown-menu.content>
+  </c-dropdown-menu>
+  <c-dropdown-menu>
+    <c-dropdown-menu.trigger>
+      <c-button variant="outline">End</c-button>
+    </c-dropdown-menu.trigger>
+    <c-dropdown-menu.content align="end" class="w-40">
+      <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+      <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+    </c-dropdown-menu.content>
+  </c-dropdown-menu>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-dropdown-menu.content align="end" class="w-40">
-    <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
-</c-dropdown-menu.content>
-```
+</c-docs.example>
 
 :::en
 `align` takes `start`, `center` or `end` and defaults to `start`.
@@ -122,34 +116,25 @@ dois.
 ### Checkboxes e radios
 :::
 
-<c-docs.demo-section class="min-h-[340px]">
+<c-docs.example class="min-h-[340px]">
 <c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">View</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content class="w-56">
-<c-dropdown-menu.label>Appearance</c-dropdown-menu.label>
-<c-dropdown-menu.checkbox-item checked="true">Status bar</c-dropdown-menu.checkbox-item>
-<c-dropdown-menu.checkbox-item>Activity bar</c-dropdown-menu.checkbox-item>
-<c-dropdown-menu.separator />
-<c-dropdown-menu.label>Panel position</c-dropdown-menu.label>
-<c-dropdown-menu.radio-group value="bottom">
-<c-dropdown-menu.radio-item value="top">Top</c-dropdown-menu.radio-item>
-<c-dropdown-menu.radio-item value="bottom">Bottom</c-dropdown-menu.radio-item>
-<c-dropdown-menu.radio-item value="right">Right</c-dropdown-menu.radio-item>
-</c-dropdown-menu.radio-group>
-</c-dropdown-menu.content>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">View</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-56">
+    <c-dropdown-menu.label>Appearance</c-dropdown-menu.label>
+    <c-dropdown-menu.checkbox-item checked="true">Status bar</c-dropdown-menu.checkbox-item>
+    <c-dropdown-menu.checkbox-item>Activity bar</c-dropdown-menu.checkbox-item>
+    <c-dropdown-menu.separator />
+    <c-dropdown-menu.label>Panel position</c-dropdown-menu.label>
+    <c-dropdown-menu.radio-group value="bottom">
+      <c-dropdown-menu.radio-item value="top">Top</c-dropdown-menu.radio-item>
+      <c-dropdown-menu.radio-item value="bottom">Bottom</c-dropdown-menu.radio-item>
+      <c-dropdown-menu.radio-item value="right">Right</c-dropdown-menu.radio-item>
+    </c-dropdown-menu.radio-group>
+  </c-dropdown-menu.content>
 </c-dropdown-menu>
-</c-docs.demo-section>
-
-```html
-<c-dropdown-menu.checkbox-item checked="true">Status bar</c-dropdown-menu.checkbox-item>
-
-<c-dropdown-menu.radio-group value="bottom">
-    <c-dropdown-menu.radio-item value="top">Top</c-dropdown-menu.radio-item>
-    <c-dropdown-menu.radio-item value="bottom">Bottom</c-dropdown-menu.radio-item>
-</c-dropdown-menu.radio-group>
-```
+</c-docs.example>
 
 :::en
 These two keep the menu open when clicked, so a list of toggles can be worked
@@ -163,34 +148,25 @@ possa ser percorrida de uma vez.
 ### Submenu
 :::
 
-<c-docs.demo-section class="min-h-[300px]">
+<c-docs.example class="min-h-[300px]">
 <c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">Actions</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content class="w-52">
-<c-dropdown-menu.item>New file</c-dropdown-menu.item>
-<c-dropdown-menu.sub>
-<c-dropdown-menu.sub-trigger>Share</c-dropdown-menu.sub-trigger>
-<c-dropdown-menu.sub-content class="w-40">
-<c-dropdown-menu.item>Copy link</c-dropdown-menu.item>
-<c-dropdown-menu.item>Email</c-dropdown-menu.item>
-</c-dropdown-menu.sub-content>
-</c-dropdown-menu.sub>
-<c-dropdown-menu.separator />
-<c-dropdown-menu.item variant="destructive">Delete</c-dropdown-menu.item>
-</c-dropdown-menu.content>
-</c-dropdown-menu>
-</c-docs.demo-section>
-
-```html
-<c-dropdown-menu.sub>
-    <c-dropdown-menu.sub-trigger>Share</c-dropdown-menu.sub-trigger>
-    <c-dropdown-menu.sub-content class="w-40">
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Actions</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-52">
+    <c-dropdown-menu.item>New file</c-dropdown-menu.item>
+    <c-dropdown-menu.sub>
+      <c-dropdown-menu.sub-trigger>Share</c-dropdown-menu.sub-trigger>
+      <c-dropdown-menu.sub-content class="w-40">
         <c-dropdown-menu.item>Copy link</c-dropdown-menu.item>
-    </c-dropdown-menu.sub-content>
-</c-dropdown-menu.sub>
-```
+        <c-dropdown-menu.item>Email</c-dropdown-menu.item>
+      </c-dropdown-menu.sub-content>
+    </c-dropdown-menu.sub>
+    <c-dropdown-menu.separator />
+    <c-dropdown-menu.item variant="destructive">Delete</c-dropdown-menu.item>
+  </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.example>
 
 :::en
 ### Inset items
@@ -198,22 +174,18 @@ possa ser percorrida de uma vez.
 ### Itens recuados
 :::
 
-<c-docs.demo-section class="min-h-[280px]">
+<c-docs.example class="min-h-[280px]">
 <c-dropdown-menu>
-<c-dropdown-menu.trigger>
-<c-button variant="outline">Edit</c-button>
-</c-dropdown-menu.trigger>
-<c-dropdown-menu.content class="w-52">
-<c-dropdown-menu.label inset="true">Actions</c-dropdown-menu.label>
-<c-dropdown-menu.item inset="true">Rename</c-dropdown-menu.item>
-<c-dropdown-menu.item inset="true">Duplicate</c-dropdown-menu.item>
-</c-dropdown-menu.content>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Edit</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-52">
+    <c-dropdown-menu.label inset="true">Actions</c-dropdown-menu.label>
+    <c-dropdown-menu.item inset="true">Rename</c-dropdown-menu.item>
+    <c-dropdown-menu.item inset="true">Duplicate</c-dropdown-menu.item>
+  </c-dropdown-menu.content>
 </c-dropdown-menu>
-</c-docs.demo-section>
-
-```html
-<c-dropdown-menu.item inset="true">Rename</c-dropdown-menu.item>
-```
+</c-docs.example>
 
 :::en
 `inset` lines an item up with the ones that carry a checkbox or radio mark.

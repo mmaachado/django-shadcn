@@ -331,9 +331,6 @@
   .right-0 {
     right: 0px;
   }
-  .right-3 {
-    right: calc(var(--spacing) * 3);
-  }
   .right-4 {
     right: calc(var(--spacing) * 4);
   }

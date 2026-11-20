@@ -25,13 +25,9 @@ uvx django_shadcn@latest add textarea
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-textarea placeholder="Type your message here." />
-</c-docs.demo-section>
-
-```html
-<c-textarea placeholder="Type your message here." />
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -43,13 +39,9 @@ uvx django_shadcn@latest add textarea
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-textarea placeholder="Type your message here." disabled />
-</c-docs.demo-section>
-
-```html
-<c-textarea placeholder="Type your message here." disabled />
-```
+</c-docs.example>
 
 :::en
 ### With Label
@@ -57,20 +49,12 @@ uvx django_shadcn@latest add textarea
 ### Com rótulo
 :::
 
-<c-docs.demo-section>
-
-<div class="grid w-full gap-1.5">
-    <c-label for="message">Your Message</c-label>
-    <c-textarea id="message" placeholder="Type your message here." />
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <div class="grid w-full gap-1.5">
   <c-label for="message">Your Message</c-label>
   <c-textarea id="message" placeholder="Type your message here." />
 </div>
-```
+</c-docs.example>
 
 :::en
 ### With Button
@@ -78,17 +62,9 @@ uvx django_shadcn@latest add textarea
 ### Com botão
 :::
 
-<c-docs.demo-section>
-
-<div class="grid w-full gap-2">
-    <c-textarea placeholder="Type your message here." />
-    <c-button type="submit">Send message</c-button>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <div class="grid w-full gap-2">
   <c-textarea placeholder="Type your message here." />
   <c-button type="submit">Send message</c-button>
 </div>
-```
+</c-docs.example>

@@ -63,32 +63,25 @@ estado.
 ## Variantes
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-6 text-start">
-<c-marker>
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>Default, an inline row</c-marker.content>
-</c-marker>
-<c-marker variant="border">
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>Border, with a rule underneath</c-marker.content>
-</c-marker>
-<c-marker variant="separator">
-<c-marker.content>Separator, centred between two rules</c-marker.content>
-</c-marker>
+  <c-marker>
+    <c-marker.icon>
+      <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Default, an inline row</c-marker.content>
+  </c-marker>
+  <c-marker variant="border">
+    <c-marker.icon>
+      <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Border, with a rule underneath</c-marker.content>
+  </c-marker>
+  <c-marker variant="separator">
+    <c-marker.content>Separator, centred between two rules</c-marker.content>
+  </c-marker>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-marker variant="border">...</c-marker>
-<c-marker variant="separator">
-    <c-marker.content>Today</c-marker.content>
-</c-marker>
-```
+</c-docs.example>
 
 :::en
 `separator` draws its rules with `before` and `after`, so an icon inside it
@@ -116,25 +109,16 @@ desenhado. `role="status"` chega à raiz pelos atributos, e o brilho marca o
 texto como vivo.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-marker role="status">
-<c-marker.icon>
-<c-icon name="loader-circle" class="animate-spin" />
-</c-marker.icon>
-<c-marker.content class="shimmer">Thinking</c-marker.content>
-</c-marker>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-marker role="status">
+  <c-marker role="status">
     <c-marker.icon>
-        <c-icon name="loader-circle" class="animate-spin" />
+      <c-icon name="loader-circle" class="animate-spin" />
     </c-marker.icon>
     <c-marker.content class="shimmer">Thinking</c-marker.content>
-</c-marker>
-```
+  </c-marker>
+</div>
+</c-docs.example>
 
 :::en
 `shimmer` is a utility in `input.css`, not part of the component. It works on
@@ -156,29 +140,18 @@ Um marker pode apontar para algum lugar. Ponha o link no conteúdo e não na rai
 para que só as palavras sejam clicáveis e a linha mantenha o layout.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-marker>
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>
-<a href="{% url 'page' slug='installation' %}">Opened the installation guide</a>
-</c-marker.content>
-</c-marker>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-marker>
+  <c-marker>
     <c-marker.icon>
-        <c-icon name="check" />
+      <c-icon name="check" />
     </c-marker.icon>
     <c-marker.content>
-        <a href="/pull/482/">View the pull request</a>
+      <a href="{% url 'page' slug='installation' %}">Opened the installation guide</a>
     </c-marker.content>
-</c-marker>
-```
+  </c-marker>
+</div>
+</c-docs.example>
 
 :::en
 ### In a transcript

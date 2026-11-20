@@ -27,15 +27,9 @@ uvx django_shadcn@latest add toggle
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle aria-label="Toggle italic"><span class="italic">I</span></c-toggle>
-</c-docs.demo-section>
-
-```html
-<c-toggle aria-label="Toggle italic">
-    <span class="italic">I</span>
-</c-toggle>
-```
+</c-docs.example>
 
 :::en
 The pressed state lives in Alpine and is published as `data-state="on"` and
@@ -55,17 +49,12 @@ Comece pressionado com `pressed="true"`.
 ### Variantes
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-toggle>Default</c-toggle>
-<c-toggle variant="outline">Outline</c-toggle>
+  <c-toggle>Default</c-toggle>
+  <c-toggle variant="outline">Outline</c-toggle>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle>Default</c-toggle>
-<c-toggle variant="outline">Outline</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Sizes
@@ -73,19 +62,13 @@ Comece pressionado com `pressed="true"`.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-toggle variant="outline" size="sm">Small</c-toggle>
-<c-toggle variant="outline">Default</c-toggle>
-<c-toggle variant="outline" size="lg">Large</c-toggle>
+  <c-toggle variant="outline" size="sm">Small</c-toggle>
+  <c-toggle variant="outline">Default</c-toggle>
+  <c-toggle variant="outline" size="lg">Large</c-toggle>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle size="sm">Small</c-toggle>
-<c-toggle>Default</c-toggle>
-<c-toggle size="lg">Large</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Pressed by default
@@ -93,13 +76,9 @@ Comece pressionado com `pressed="true"`.
 ### Pressionado por padrão
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle variant="outline" pressed="true">Pressed</c-toggle>
-</c-docs.demo-section>
-
-```html
-<c-toggle variant="outline" pressed="true">Pressed</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -107,10 +86,6 @@ Comece pressionado com `pressed="true"`.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle variant="outline" disabled>Disabled</c-toggle>
-</c-docs.demo-section>
-
-```html
-<c-toggle variant="outline" disabled>Disabled</c-toggle>
-```
+</c-docs.example>

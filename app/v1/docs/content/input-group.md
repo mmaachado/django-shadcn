@@ -57,41 +57,28 @@ captar o foco e o estado de validação.
 ### No início e no fim
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex w-full flex-col gap-4">
-    <c-input-group>
-        <c-input-group.addon>
-            <c-input-group.text>$</c-input-group.text>
-        </c-input-group.addon>
-        <c-input-group.input placeholder="0.00" />
-        <c-input-group.addon align="inline-end">
-            <c-input-group.text>USD</c-input-group.text>
-        </c-input-group.addon>
-    </c-input-group>
-    <c-input-group>
-        <c-input-group.input placeholder="Search..." />
-        <c-input-group.addon align="inline-end">
-            <c-kbd.group>
-                <c-kbd>⌘</c-kbd>
-                <c-kbd>K</c-kbd>
-            </c-kbd.group>
-        </c-input-group.addon>
-    </c-input-group>
+  <c-input-group>
+    <c-input-group.addon>
+      <c-input-group.text>$</c-input-group.text>
+    </c-input-group.addon>
+    <c-input-group.input placeholder="0.00" />
+    <c-input-group.addon align="inline-end">
+      <c-input-group.text>USD</c-input-group.text>
+    </c-input-group.addon>
+  </c-input-group>
+  <c-input-group>
+    <c-input-group.input placeholder="Search..." />
+    <c-input-group.addon align="inline-end">
+      <c-kbd.group>
+        <c-kbd>⌘</c-kbd>
+        <c-kbd>K</c-kbd>
+      </c-kbd.group>
+    </c-input-group.addon>
+  </c-input-group>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-input-group>
-  <c-input-group.addon>
-    <c-input-group.text>$</c-input-group.text>
-  </c-input-group.addon>
-  <c-input-group.input placeholder="0.00" />
-  <c-input-group.addon align="inline-end">
-    <c-input-group.text>USD</c-input-group.text>
-  </c-input-group.addon>
-</c-input-group>
-```
+</c-docs.example>
 
 :::en
 ### With a button
@@ -99,20 +86,14 @@ captar o foco e o estado de validação.
 ### Com um botão
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-group>
-<c-input-group.input placeholder="Paste a link" />
-<c-input-group.addon align="inline-end">
-<c-input-group.button size="sm" variant="outline">Copy</c-input-group.button>
-</c-input-group.addon>
+  <c-input-group.input placeholder="Paste a link" />
+  <c-input-group.addon align="inline-end">
+    <c-input-group.button size="sm" variant="outline">Copy</c-input-group.button>
+  </c-input-group.addon>
 </c-input-group>
-</c-docs.demo-section>
-
-```html
-<c-input-group.addon align="inline-end">
-  <c-input-group.button size="sm" variant="outline">Copy</c-input-group.button>
-</c-input-group.addon>
-```
+</c-docs.example>
 
 :::en
 ### Textarea with a block addon
@@ -120,24 +101,15 @@ captar o foco e o estado de validação.
 ### Textarea com um addon em bloco
 :::
 
-<c-docs.demo-section>
-<c-input-group>
-<c-input-group.textarea placeholder="Write a message..." rows="3" />
-<c-input-group.addon align="block-end" class="border-t">
-<c-input-group.text>Markdown supported</c-input-group.text>
-<c-input-group.button size="sm" class="ms-auto">Send</c-input-group.button>
-</c-input-group.addon>
-</c-input-group>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-input-group>
   <c-input-group.textarea placeholder="Write a message..." rows="3" />
   <c-input-group.addon align="block-end" class="border-t">
-    <c-input-group.button size="sm">Send</c-input-group.button>
+    <c-input-group.text>Markdown supported</c-input-group.text>
+    <c-input-group.button size="sm" class="ms-auto">Send</c-input-group.button>
   </c-input-group.addon>
 </c-input-group>
-```
+</c-docs.example>
 
 :::en
 ### Invalid
@@ -145,18 +117,14 @@ captar o foco e o estado de validação.
 ### Inválido
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-group>
-<c-input-group.input placeholder="you@example.com" aria-invalid="true" />
-<c-input-group.addon align="inline-end">
-<c-icon name="x" class="text-destructive" />
-</c-input-group.addon>
+  <c-input-group.input placeholder="you@example.com" aria-invalid="true" />
+  <c-input-group.addon align="inline-end">
+    <c-icon name="x" class="text-destructive" />
+  </c-input-group.addon>
 </c-input-group>
-</c-docs.demo-section>
-
-```html
-<c-input-group.input aria-invalid="true" />
-```
+</c-docs.example>
 
 :::en
 ## Notes

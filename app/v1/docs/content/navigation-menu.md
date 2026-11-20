@@ -135,32 +135,11 @@ uvx django_shadcn@latest add navigation_menu
 ###
 :::
 
-<c-docs.demo-section>
-<c-card class="w-[380px]">
-<c-card.header>
-<c-card.title>Create Project</c-card.title>
-<c-card.description>Deploy your new project in one-click.</c-card.description>
-</c-card.header>
-<c-card.content class="space-y-2">
-<div class="flex flex-col space-y-1">
-<c-label for="name">Name</c-label>
-<c-input id="name" placeholder="Name of your project" />
-</div>
-</c-card.content>
-<c-card.footer class="flex justify-between">
-<c-button variant="outline">Cancel</c-button>
-<c-button>Submit</c-button>
-</c-card.footer>
-</c-card>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-card class="w-[380px]">
   <c-card.header>
     <c-card.title>Create Project</c-card.title>
-    <c-card.description
-      >Deploy your new project in one-click.</c-card.description
-    >
+    <c-card.description>Deploy your new project in one-click.</c-card.description>
   </c-card.header>
   <c-card.content class="space-y-2">
     <div class="flex flex-col space-y-1">
@@ -173,4 +152,4 @@ uvx django_shadcn@latest add navigation_menu
     <c-button>Submit</c-button>
   </c-card.footer>
 </c-card>
-```
+</c-docs.example>

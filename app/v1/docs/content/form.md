@@ -68,29 +68,17 @@ uvx django_shadcn@latest add form
 ###
 :::
 
-<c-docs.demo-section>
-
-<form class="w-2/3 space-y-4">
-    <c-form.field>
-        <c-form.label for="username" error="true">Username</c-form.label>
-        <c-input id="username" type="text" placeholder="Username"></c-input>
-        <c-form.error>
-            Username already taken.
-        </c-form.error>
-    </c-form.field>
-    <c-button type="submit">
-        Submit
-    </c-button>
-</form>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <form class="w-2/3 space-y-4">
   <c-form.field>
     <c-form.label for="username" error="true">Username</c-form.label>
     <c-input id="username" type="text" placeholder="Username"></c-input>
-    <c-form.error> Username already taken. </c-form.error>
+    <c-form.error>
+      Username already taken.
+    </c-form.error>
   </c-form.field>
-  <c-button type="submit"> Submit </c-button>
+  <c-button type="submit">
+    Submit
+  </c-button>
 </form>
-```
+</c-docs.example>

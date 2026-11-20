@@ -57,26 +57,19 @@ uma vez.
 ### Grupo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-field.group class="w-full max-w-md text-start">
-<c-field>
-<c-field.label for="name">Name</c-field.label>
-<c-input id="name" placeholder="Ada Lovelace" />
-</c-field>
-<c-field>
-<c-field.label for="bio">Bio</c-field.label>
-<c-textarea id="bio" rows="3"></c-textarea>
-<c-field.description>A short paragraph about yourself.</c-field.description>
-</c-field>
+  <c-field>
+    <c-field.label for="name">Name</c-field.label>
+    <c-input id="name" placeholder="Ada Lovelace" />
+  </c-field>
+  <c-field>
+    <c-field.label for="bio">Bio</c-field.label>
+    <c-textarea id="bio" rows="3"></c-textarea>
+    <c-field.description>A short paragraph about yourself.</c-field.description>
+  </c-field>
 </c-field.group>
-</c-docs.demo-section>
-
-```html
-<c-field.group>
-  <c-field>...</c-field>
-  <c-field>...</c-field>
-</c-field.group>
-```
+</c-docs.example>
 
 :::en
 ### Horizontal
@@ -84,25 +77,15 @@ uma vez.
 ### Horizontal
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-field orientation="horizontal" class="w-full max-w-md text-start">
-<c-checkbox id="terms" />
-<c-field.content>
-<c-field.label for="terms">Accept the terms</c-field.label>
-<c-field.description>You agree to our terms of service.</c-field.description>
-</c-field.content>
-</c-field>
-</c-docs.demo-section>
-
-```html
-<c-field orientation="horizontal">
   <c-checkbox id="terms" />
   <c-field.content>
     <c-field.label for="terms">Accept the terms</c-field.label>
-    <c-field.description>You agree to our terms.</c-field.description>
+    <c-field.description>You agree to our terms of service.</c-field.description>
   </c-field.content>
 </c-field>
-```
+</c-docs.example>
 
 :::en
 ### Fieldset and legend
@@ -110,30 +93,22 @@ uma vez.
 ### Fieldset e legenda
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-field.set class="w-full max-w-md text-start">
-<c-field.legend>Notifications</c-field.legend>
-<c-field.description>Choose how you want to be reached.</c-field.description>
-<c-field.group>
-<c-field orientation="horizontal">
-<c-checkbox id="by-email" />
-<c-field.label for="by-email">Email</c-field.label>
-</c-field>
-<c-field orientation="horizontal">
-<c-checkbox id="by-push" />
-<c-field.label for="by-push">Push notifications</c-field.label>
-</c-field>
-</c-field.group>
-</c-field.set>
-</c-docs.demo-section>
-
-```html
-<c-field.set>
   <c-field.legend>Notifications</c-field.legend>
   <c-field.description>Choose how you want to be reached.</c-field.description>
-  <c-field.group>...</c-field.group>
+  <c-field.group>
+    <c-field orientation="horizontal">
+      <c-checkbox id="by-email" />
+      <c-field.label for="by-email">Email</c-field.label>
+    </c-field>
+    <c-field orientation="horizontal">
+      <c-checkbox id="by-push" />
+      <c-field.label for="by-push">Push notifications</c-field.label>
+    </c-field>
+  </c-field.group>
 </c-field.set>
-```
+</c-docs.example>
 
 :::en
 ### Separator
@@ -141,23 +116,19 @@ uma vez.
 ### Separador
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-field.group class="w-full max-w-md text-start">
-<c-field>
-<c-field.label for="username">Username</c-field.label>
-<c-input id="username" />
-</c-field>
-<c-field.separator>or</c-field.separator>
-<c-field>
-<c-field.label for="sso">Single sign-on</c-field.label>
-<c-input id="sso" placeholder="company.com" />
-</c-field>
+  <c-field>
+    <c-field.label for="username">Username</c-field.label>
+    <c-input id="username" />
+  </c-field>
+  <c-field.separator>or</c-field.separator>
+  <c-field>
+    <c-field.label for="sso">Single sign-on</c-field.label>
+    <c-input id="sso" placeholder="company.com" />
+  </c-field>
 </c-field.group>
-</c-docs.demo-section>
-
-```html
-<c-field.separator>or</c-field.separator>
-```
+</c-docs.example>
 
 :::en
 ### Errors
@@ -165,28 +136,20 @@ uma vez.
 ### Erros
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-6 text-start">
-    <c-field data-invalid="true">
-        <c-field.label for="password">Password</c-field.label>
-        <c-input id="password" type="password" aria-invalid="true" />
-        <c-field.error>Password is too short.</c-field.error>
-    </c-field>
-    <c-field data-invalid="true">
-        <c-field.label for="handle">Handle</c-field.label>
-        <c-input id="handle" aria-invalid="true" />
-        <c-field.error :errors="handle_errors" />
-    </c-field>
+  <c-field data-invalid="true">
+    <c-field.label for="password">Password</c-field.label>
+    <c-input id="password" type="password" aria-invalid="true" />
+    <c-field.error>Password is too short.</c-field.error>
+  </c-field>
+  <c-field data-invalid="true">
+    <c-field.label for="handle">Handle</c-field.label>
+    <c-input id="handle" aria-invalid="true" />
+    <c-field.error :errors="handle_errors" />
+  </c-field>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-field.error>Password is too short.</c-field.error>
-
-<!-- or straight from a Django form field -->
-<c-field.error :errors="form.handle.errors" />
-```
+</c-docs.example>
 
 :::en
 ### Title inside a label
@@ -194,29 +157,17 @@ uma vez.
 ### Título dentro de um rótulo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-field.label class="w-full max-w-md text-start">
-<c-field orientation="horizontal">
-<c-checkbox id="pro" />
-<c-field.content>
-<c-field.title>Pro plan</c-field.title>
-<c-field.description>Everything in Free, plus priority support.</c-field.description>
-</c-field.content>
-</c-field>
-</c-field.label>
-</c-docs.demo-section>
-
-```html
-<c-field.label>
   <c-field orientation="horizontal">
     <c-checkbox id="pro" />
     <c-field.content>
       <c-field.title>Pro plan</c-field.title>
-      <c-field.description>Priority support.</c-field.description>
+      <c-field.description>Everything in Free, plus priority support.</c-field.description>
     </c-field.content>
   </c-field>
 </c-field.label>
-```
+</c-docs.example>
 
 :::en
 ## Notes

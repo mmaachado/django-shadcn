@@ -117,6 +117,11 @@ another component without declaring it as a dependency, if its markup needs an
 Alpine plugin the registry does not declare, or if it has no page and no
 sidebar entry.
 
+On the page, write each demo once, in `<c-docs.example>`. It renders the
+markup and shows the same text below it as the code to copy, Django tags
+included, so the two cannot drift apart. Keep fenced code for what is not a
+demo: install commands, Python and settings.
+
 The last two are what makes the component findable, and they are written in the
 same pull request as the component itself — documentation written later is
 documentation that describes an earlier version.

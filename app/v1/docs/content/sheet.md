@@ -63,8 +63,7 @@ uvx django_shadcn@latest add sheet
 ###
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="grid grid-cols-2 gap-2">
   {% for side in sides %}
     <c-sheet>
@@ -82,25 +81,7 @@ uvx django_shadcn@latest add sheet
     </c-sheet>
   {% endfor %}
 </div>
-</c-docs.demo-section>
-
-```html
-<div class="grid grid-cols-2 gap-2">
-  <c-sheet>
-    <c-sheet.trigger>
-      <c-button variant="outline" class="w-full">Top</c-button>
-    </c-sheet.trigger>
-    <c-sheet.content side="top">
-      <c-sheet.header>
-        <c-sheet.title>Top Sheet</c-sheet.title>
-        <c-sheet.description>
-          This sheet appears from the top of the screen.
-        </c-sheet.description>
-      </c-sheet.header>
-    </c-sheet.content>
-  </c-sheet>
-</div>
-```
+</c-docs.example>
 
 :::en
 ### Adjust Size
@@ -108,34 +89,18 @@ uvx django_shadcn@latest add sheet
 ### Ajustar o tamanho
 :::
 
-<c-docs.demo-section>
-<c-sheet>
-<c-sheet.trigger>
-<c-button variant="outline">Right</c-button>
-</c-sheet.trigger>
-<c-sheet.content side="right" class="w-[700px] sm:w-[540px]">
-<c-sheet.header>
-<c-sheet.title>Adjust Sheet Size</c-sheet.title>
-<c-sheet.description>
-This sheet content is larger and appears from the right of the screen.
-</c-sheet.description>
-</c-sheet.header>
-</c-sheet.content>
-</c-sheet>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-sheet>
   <c-sheet.trigger>
-    <c-button variant="outline" class="w-full">Right</c-button>
+    <c-button variant="outline">Right</c-button>
   </c-sheet.trigger>
   <c-sheet.content side="right" class="w-[700px] sm:w-[540px]">
     <c-sheet.header>
-      <c-sheet.title>Right Sheet</c-sheet.title>
+      <c-sheet.title>Adjust Sheet Size</c-sheet.title>
       <c-sheet.description>
-        This sheet appears from the right of the screen.
+        This sheet content is larger and appears from the right of the screen.
       </c-sheet.description>
     </c-sheet.header>
   </c-sheet.content>
 </c-sheet>
-```
+</c-docs.example>

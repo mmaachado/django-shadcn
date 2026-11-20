@@ -69,23 +69,19 @@ recebe foco.
 ### Separador personalizado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-breadcrumb>
-<c-breadcrumb.list>
-<c-breadcrumb.item>
-<c-breadcrumb.link href="/">Home</c-breadcrumb.link>
-</c-breadcrumb.item>
-<c-breadcrumb.separator>/</c-breadcrumb.separator>
-<c-breadcrumb.item>
-<c-breadcrumb.page>Components</c-breadcrumb.page>
-</c-breadcrumb.item>
-</c-breadcrumb.list>
+  <c-breadcrumb.list>
+    <c-breadcrumb.item>
+      <c-breadcrumb.link href="/">Home</c-breadcrumb.link>
+    </c-breadcrumb.item>
+    <c-breadcrumb.separator>/</c-breadcrumb.separator>
+    <c-breadcrumb.item>
+      <c-breadcrumb.page>Components</c-breadcrumb.page>
+    </c-breadcrumb.item>
+  </c-breadcrumb.list>
 </c-breadcrumb>
-</c-docs.demo-section>
-
-```html
-<c-breadcrumb.separator>/</c-breadcrumb.separator>
-```
+</c-docs.example>
 
 :::en
 ### Collapsed
@@ -93,26 +89,20 @@ recebe foco.
 ### Recolhido
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-breadcrumb>
-<c-breadcrumb.list>
-<c-breadcrumb.item>
-<c-breadcrumb.link href="/">Home</c-breadcrumb.link>
-</c-breadcrumb.item>
-<c-breadcrumb.separator />
-<c-breadcrumb.item>
-<c-breadcrumb.ellipsis />
-</c-breadcrumb.item>
-<c-breadcrumb.separator />
-<c-breadcrumb.item>
-<c-breadcrumb.page>Breadcrumb</c-breadcrumb.page>
-</c-breadcrumb.item>
-</c-breadcrumb.list>
+  <c-breadcrumb.list>
+    <c-breadcrumb.item>
+      <c-breadcrumb.link href="/">Home</c-breadcrumb.link>
+    </c-breadcrumb.item>
+    <c-breadcrumb.separator />
+    <c-breadcrumb.item>
+      <c-breadcrumb.ellipsis />
+    </c-breadcrumb.item>
+    <c-breadcrumb.separator />
+    <c-breadcrumb.item>
+      <c-breadcrumb.page>Breadcrumb</c-breadcrumb.page>
+    </c-breadcrumb.item>
+  </c-breadcrumb.list>
 </c-breadcrumb>
-</c-docs.demo-section>
-
-```html
-<c-breadcrumb.item>
-  <c-breadcrumb.ellipsis />
-</c-breadcrumb.item>
-```
+</c-docs.example>

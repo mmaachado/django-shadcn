@@ -25,13 +25,9 @@ uvx django_shadcn@latest add input
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input type="email" placeholder="Email" />
-</c-docs.demo-section>
-
-```html
-<c-input type="email" placeholder="Email" />
-```
+</c-docs.example>
 
 :::en
 ## Examples
@@ -43,13 +39,9 @@ uvx django_shadcn@latest add input
 ### Padrão
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input type="email" placeholder="Email" />
-</c-docs.demo-section>
-
-```html
-<c-input type="email" placeholder="Email" />
-```
+</c-docs.example>
 
 :::en
 ### File
@@ -57,13 +49,9 @@ uvx django_shadcn@latest add input
 ### Arquivo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input type="file" id="picture" />
-</c-docs.demo-section>
-
-```html
-<c-input type="file" id="picture" />
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -71,13 +59,9 @@ uvx django_shadcn@latest add input
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input type="email" placeholder="Email" disabled />
-</c-docs.demo-section>
-
-```html
-<c-input type="email" placeholder="Email" disabled />
-```
+</c-docs.example>
 
 :::en
 ### With Label
@@ -85,20 +69,12 @@ uvx django_shadcn@latest add input
 ### Com rótulo
 :::
 
-<c-docs.demo-section>
-
-<div class="grid w-full max-w-sm items-center gap-1.5">
-    <c-label for="email">Email</c-label>
-    <c-input type="email" placeholder="you@example.com" />
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <div class="grid w-full max-w-sm items-center gap-1.5">
   <c-label for="email">Email</c-label>
   <c-input type="email" placeholder="you@example.com" />
 </div>
-```
+</c-docs.example>
 
 :::en
 ### With Button
@@ -106,17 +82,9 @@ uvx django_shadcn@latest add input
 ### Com botão
 :::
 
-<c-docs.demo-section>
-
-<div class="flex w-full max-w-sm items-center space-x-2">
-    <c-input type="email" placeholder="you@example.com" />
-    <c-button type="submit">Subscribe</c-button>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <div class="flex w-full max-w-sm items-center space-x-2">
   <c-input type="email" placeholder="you@example.com" />
   <c-button type="submit">Subscribe</c-button>
 </div>
-```
+</c-docs.example>
