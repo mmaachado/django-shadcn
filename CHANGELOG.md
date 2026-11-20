@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.11.0 — Unreleased
+
+### Fixed
+
+- **`message_scroller` no longer flashes its oldest rows.** A transcript opened
+  at the end painted at the top and then jumped down. The viewport now stays
+  invisible until the opening position applies, as upstream does since
+  shadcn-ui/ui#11720, and `data-pending-scroll` reports it. Without
+  JavaScript, nothing is hidden.
+
 ## 1.10.0 — 2026-11-19
 
 Blocks. Four whole pages, a dashboard, a log-in and sign-up pair, an

@@ -88,3 +88,24 @@ def test_interpolations_stay_on_one_line(component_templates):
     assert not offenders, 'interpolations split across lines:\n' + '\n'.join(
         offenders
     )
+
+
+def test_the_message_scroller_stays_hidden_until_it_opens(components_root):
+    """A transcript opened at the end used to paint its oldest rows first.
+
+    The viewport renders pending and Alpine clears the flag once the opening
+    position applies. The rule only hides it with scripting on, so a page
+    without JavaScript, which nothing would ever clear, still shows the rows.
+    """
+    viewport = (
+        components_root / 'message_scroller' / 'viewport.html'
+    ).read_text(encoding='utf-8')
+
+    assert 'data-pending-scroll="true"' in viewport
+    assert (
+        "x-bind:data-pending-scroll=\"opened ? 'false' : 'true'\"" in viewport
+    )
+    assert (
+        '[@media(scripting:enabled)]:data-[pending-scroll=true]:invisible'
+        in viewport
+    )

@@ -223,6 +223,9 @@
   .collapse {
     visibility: collapse;
   }
+  .invisible {
+    visibility: hidden;
+  }
   .visible {
     visibility: visible;
   }
@@ -4524,6 +4527,11 @@
   }
   .\[\&\[data-state\=open\]\>svg\]\:rotate-180[data-state=open] > svg {
     rotate: 180deg;
+  }
+  @media (scripting:enabled) {
+    .\[\@media\(scripting\:enabled\)\]\:data-\[pending-scroll\=true\]\:invisible[data-pending-scroll="true"] {
+      visibility: hidden;
+    }
   }
   [data-side=left][data-collapsible=offcanvas] .\[\[data-side\=left\]\[data-collapsible\=offcanvas\]_\&\]\:-right-2 {
     right: calc(var(--spacing) * -2);

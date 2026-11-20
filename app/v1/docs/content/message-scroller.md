@@ -452,6 +452,7 @@ without touching the Alpine scope:
 | `data-at-end` | the transcript is at the live edge |
 | `data-stick` | new rows are being followed |
 | `data-autoscrolling` | a programmatic scroll is running |
+| `data-pending-scroll` | the opening position has not applied yet, and the viewport is held invisible |
 
 The scroll buttons use the same idea: each carries `data-active`, and the one
 with nothing to scroll to fades out and stops taking clicks rather than
@@ -490,6 +491,7 @@ posição de rolagem sem mexer no escopo do Alpine:
 | `data-at-end` | a transcrição está na borda viva |
 | `data-stick` | as linhas novas estão sendo acompanhadas |
 | `data-autoscrolling` | uma rolagem programática está em andamento |
+| `data-pending-scroll` | a posição de abertura ainda não foi aplicada, e a viewport fica invisível |
 
 Os botões de rolagem usam a mesma ideia: cada um leva `data-active`, e o que não
 tem para onde rolar esmaece e para de aceitar cliques em vez de sumir, para
