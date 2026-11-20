@@ -393,6 +393,16 @@ REBUILT = {
     "bubble",
     "button-group",
     "calendar",
+    "card",
+    "carousel",
+    "chart",
+    "checkbox",
+    "code-block",
+    "collapsible",
+    "combobox",
+    "command",
+    "command-dialog",
+    "context-menu",
 }
 
 

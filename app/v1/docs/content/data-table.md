@@ -92,11 +92,15 @@ uvx django_shadcn@latest add table pagination input checkbox button badge dropdo
 ```
 
 :::en
-## The view
+## Usage
+
+### The view
 
 One view reads three query parameters and hands back a page of rows.
 :::pt-br
-## A view
+## Uso
+
+### A view
 
 Uma view lê três parâmetros da query string e devolve uma página de linhas.
 :::
@@ -148,14 +152,14 @@ including one that walks a relation — `?sort=author__user__password` is a
 `FieldError` at best and a disclosure at worst. Sort only by names you wrote
 down yourself.
 
-## The template
+### The template
 :::pt-br
 `SORTABLE` não é enfeite. O `order_by` aceita qualquer string que você der,
 inclusive uma que atravessa uma relação — `?sort=author__user__password` é um
 `FieldError` na melhor das hipóteses e um vazamento na pior. Ordene só por nomes
 que você mesmo escreveu.
 
-## O template
+### O template
 :::
 
 ```html
@@ -204,7 +208,9 @@ The filter form has no submit button because Enter submits it. Everything the
 table needs travels in the query string, so a page is a URL you can bookmark
 and send to someone.
 
-## Pagination
+## Examples
+
+### Pagination
 
 `{% verbatim %}{% querystring %}{% endverbatim %}` rewrites one parameter and
 keeps the rest, which is what makes the filter survive a page change. It landed
@@ -215,7 +221,9 @@ O formulário de filtro não tem botão de enviar porque o Enter envia. Tudo de
 que a tabela precisa viaja na query string, então uma página é uma URL que você
 pode salvar nos favoritos e mandar para alguém.
 
-## Paginação
+## Exemplos
+
+### Paginação
 
 `{% verbatim %}{% querystring %}{% endverbatim %}` reescreve um parâmetro e
 mantém o resto, que é o que faz o filtro sobreviver a uma troca de página. Ele
@@ -263,7 +271,7 @@ render as seven links.
 `is_active` cannot be worked out inside the tag — Django templates have no
 inline comparison — so the current page is a separate branch.
 
-## Row selection
+### Row selection
 
 Wrap the table in a form and give the checkboxes one name. The selection is a
 list of ids in `request.POST`, which is all a bulk action needs.
@@ -276,7 +284,7 @@ viram sete links.
 `is_active` não pode ser calculado dentro da tag — os templates do Django não
 têm comparação inline — então a página atual é um ramo separado.
 
-## Seleção de linhas
+### Seleção de linhas
 
 Envolva a tabela num formulário e dê um nome só aos checkboxes. A seleção é uma
 lista de ids no `request.POST`, que é tudo de que uma ação em massa precisa.
@@ -290,7 +298,7 @@ lista de ids no `request.POST`, que é tudo de que uma ação em massa precisa.
             {% for invoice in page %}
             <c-table.row x-data="{ selected: false }" :data-state="selected ? 'selected' : ''">
                 <c-table.cell>
-                    <c-checkbox name="selected" value="{{ invoice.pk }}" x-model="selected" />
+                    <c-checkbox name="selected" value="{{ invoice.pk }}" x-model="selected" aria-label="Select invoice {{ invoice.pk }}" />
                 </c-table.cell>
                 <c-table.cell>{{ invoice.email }}</c-table.cell>
             </c-table.row>
@@ -307,7 +315,7 @@ lista de ids no `request.POST`, que é tudo de que uma ação em massa precisa.
 `<c-table.row>` already paints `data-[state=selected]:bg-muted`; the two lines
 of Alpine only exist so the row highlights before the round trip.
 
-## Column visibility
+### Column visibility
 
 Nothing server-side to do here — the rows are already in the page.
 :::pt-br
@@ -315,7 +323,7 @@ O `<c-table.row>` já pinta `data-[state=selected]:bg-muted`; as duas linhas de
 Alpine só existem para que a linha fique destacada antes da ida e volta ao
 servidor.
 
-## Visibilidade das colunas
+### Visibilidade das colunas
 
 Nada a fazer no servidor aqui — as linhas já estão na página.
 :::
@@ -353,6 +361,75 @@ Nada a fazer no servidor aqui — as linhas já estão na página.
 Every `<th>` and its `<td>` need the same `x-show`. Two places per column, and
 no way around it without a column loop in the body as well.
 
+### Cell formatting
+
+A cell is whatever the template writes into it, so formatting is a filter or a
+component: `floatformat` for an amount, `date` for a timestamp,
+[Badge]({% url 'page' slug='badge' %}) for a status.
+:::pt-br
+Cada `<th>` e o `<td>` dele precisam do mesmo `x-show`. Dois lugares por coluna,
+e não há como fugir disso sem um laço de colunas no corpo também.
+
+### Formatação das células
+
+Uma célula é o que o template escreve nela, então formatar é um filtro ou um
+componente: `floatformat` para um valor, `date` para uma data,
+[Badge]({% url 'page' slug='badge' %}) para um status.
+:::
+
+```html
+<c-table.cell><c-badge variant="secondary">{{ payment.get_status_display }}</c-badge></c-table.cell>
+<c-table.cell>{{ payment.created|date:"SHORT_DATE_FORMAT" }}</c-table.cell>
+<c-table.cell class="text-end tabular-nums">{{ payment.amount|floatformat:2 }}</c-table.cell>
+```
+
+:::en
+### Row actions
+
+A [Dropdown Menu]({% url 'page' slug='dropdown-menu' %}) in the last cell holds
+what can be done to that row. An action that changes data is a `<button>` in a
+small form that posts to it, with the `csrf_token`.
+:::pt-br
+### Ações por linha
+
+Um [Dropdown Menu]({% url 'page' slug='dropdown-menu' %}) na última célula
+guarda o que pode ser feito com aquela linha. Uma ação que muda dados é um
+`<button>` num formulário pequeno que envia para ela, com o `csrf_token`.
+:::
+
+```html
+<c-table.cell class="w-10">
+  <c-dropdown-menu>
+    <c-dropdown-menu.trigger>
+      <c-button variant="ghost" size="icon" aria-label="Actions for {{ payment.email }}">
+        <c-icon name="ellipsis" />
+      </c-button>
+    </c-dropdown-menu.trigger>
+    <c-dropdown-menu.content align="end">
+      <c-dropdown-menu.item><a href="{{ payment.get_absolute_url }}">View</a></c-dropdown-menu.item>
+      <form method="post" action="{% url 'payment-refund' payment.pk %}">
+        {% csrf_token %}
+        <c-dropdown-menu.item variant="destructive"><button>Refund</button></c-dropdown-menu.item>
+      </form>
+    </c-dropdown-menu.content>
+  </c-dropdown-menu>
+</c-table.cell>
+```
+
+:::en
+## RTL
+
+The table runs with the text, so under `dir="rtl"` the first column is on the
+right. Numbers aligned with `text-end` move to the left edge with it, which is
+where the end of the line is.
+
+## Accessibility
+
+It is a real `<table>`, with header cells a screen reader announces as it moves
+across a row. A sort link in a header should say which way it sorts, and the
+selection checkboxes need an `aria-label` naming their row, as in the
+template above.
+
 ## Notes
 
 Sorting happens in the database, so it sorts the whole table and not the ten
@@ -370,8 +447,18 @@ For a filter that reacts as you type, keep the form and let
 The view does not change: it is the same query parameters, and the response is
 the same markup.
 :::pt-br
-Cada `<th>` e o `<td>` dele precisam do mesmo `x-show`. Dois lugares por coluna,
-e não há como fugir disso sem um laço de colunas no corpo também.
+## RTL
+
+A tabela corre com o texto, então sob `dir="rtl"` a primeira coluna fica à
+direita. Os números alinhados com `text-end` vão junto para a borda esquerda,
+que é onde fica o fim da linha.
+
+## Acessibilidade
+
+É uma `<table>` de verdade, com células de cabeçalho que um leitor de tela
+anuncia ao percorrer uma linha. Um link de ordenação num cabeçalho deve dizer
+para que lado ordena, e os checkboxes de seleção precisam de um `aria-label`
+com o nome da linha, como no template acima.
 
 ## Observações
 
