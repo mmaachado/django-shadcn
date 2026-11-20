@@ -965,6 +965,9 @@
   .max-w-\[80\%\] {
     max-width: 80%;
   }
+  .max-w-\[280px\] {
+    max-width: 280px;
+  }
   .max-w-\[300px\] {
     max-width: 300px;
   }
@@ -1452,6 +1455,10 @@
   }
   .rounded-xs {
     border-radius: var(--radius-xs);
+  }
+  .rounded-s {
+    border-start-start-radius: 0.25rem;
+    border-end-start-radius: 0.25rem;
   }
   .rounded-t-\[4px\] {
     border-top-left-radius: 4px;
@@ -3919,6 +3926,9 @@
     .\@md\/field-group\:has-\[\>\[data-slot\=field-content\]\]\:items-start:has( > [data-slot=field-content]) {
       align-items: flex-start;
     }
+  }
+  .rtl\:rotate-180:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    rotate: 180deg;
   }
   .dark\:block:is(.dark *) {
     display: block;
