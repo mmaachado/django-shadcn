@@ -53,6 +53,7 @@ registry: dict[str, Component] = {
     'carousel': Component(depends=('icon',)),
     'chart': Component(),
     'combobox': Component(depends=('button', 'popover', 'icon')),
+    'code_block': Component(depends=('icon',)),
     'collapsible': Component(scripts=(COLLAPSE,)),
     'context_menu': Component(depends=('icon',)),
     'command': Component(depends=('icon',)),
@@ -146,6 +147,7 @@ registry: dict[str, Component] = {
     'toggle': Component(),
     'toggle_group': Component(),
     'tooltip': Component(),
+    'trace': Component(depends=('icon',), scripts=(COLLAPSE,)),
     'typography': Component(),
 }
 

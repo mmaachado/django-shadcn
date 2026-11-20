@@ -1,0 +1,23 @@
+<c-vars class="" wrap="false" line_numbers="false" start_line="1"></c-vars>
+
+{% comment %}
+Always left to right and start-aligned: code reads the same on an RTL page.
+The counter starts one before start_line, because each line increments it
+before showing it. With line_numbers on, write the lines as
+<c-code-block.line> parts; plain text in the slot is one unnumbered block.
+{% endcomment %}
+<pre dir="ltr" tabindex="0" style="counter-reset: line {{ start_line|add:'-1' }}"
+    {% if wrap == 'true' %}data-wrap="true"{% endif %}
+    {% if line_numbers == 'true' %}data-numbered="true"{% endif %}
+    class="
+    min-h-0 min-w-0 overflow-auto px-4 py-4 text-start font-mono
+    leading-relaxed outline-none scroll-fade-x [scrollbar-width:thin]
+    data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap
+    group-has-data-[slot=code-block-header]/code-block:pt-2
+    group-has-data-[slot=code-block-footer]/code-block:pb-2
+    group-data-[size=sm]/code-block:px-3 group-data-[size=sm]/code-block:py-3
+    group-data-[size=sm]/code-block:group-has-data-[slot=code-block-header]/code-block:pt-1.5
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    " data-slot="code-block-content" {{ attrs }}><code data-slot="code-block-code" class="grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0">{{ slot }}</code></pre>

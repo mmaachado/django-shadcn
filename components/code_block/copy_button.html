@@ -1,0 +1,50 @@
+<c-vars class="" value="" label="Copy" copied_label="Copied"></c-vars>
+
+{% comment %}
+Copies value when it is given, and otherwise the text of the block's content,
+so the code is not written twice. The value travels in data-value: a template
+value inside an Alpine expression is a value that can close the expression.
+"Copied" stays for two seconds and is announced through the live region.
+{% endcomment %}
+<span x-data="{
+        copied: false,
+        timer: null,
+        copy() {
+            const block = this.$el.closest('[data-slot=code-block]');
+            const content = block && block.querySelector('[data-slot=code-block-content]');
+            const lines = content ? [...content.querySelectorAll('[data-slot=code-block-line-content]')] : [];
+            // An empty line holds a newline for a selection's sake; joined
+            // here, it would count twice.
+            const read = lines.length
+                ? lines.map(line => line.textContent === '\n' ? '' : line.textContent).join('\n')
+                : (content ? content.textContent : '');
+            const text = this.$refs.button.dataset.value || read;
+            navigator.clipboard.writeText(text).then(() => {
+                this.copied = true;
+                clearTimeout(this.timer);
+                this.timer = setTimeout(() => { this.copied = false; }, 2000);
+            }).catch(() => {});
+        },
+    }" class="contents">
+    <button type="button" x-ref="button" x-on:click="copy()"
+        data-value="{{ value }}"
+        data-label="{{ label }}" data-copied-label="{{ copied_label }}"
+        aria-label="{{ label }}"
+        x-bind:aria-label="copied ? $el.dataset.copiedLabel : $el.dataset.label"
+        x-bind:data-copied="copied ? 'true' : null"
+        class="
+        inline-flex size-6 shrink-0 items-center justify-center rounded-md
+        text-muted-foreground transition-colors
+        hover:bg-accent hover:text-accent-foreground
+        focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring
+        disabled:pointer-events-none disabled:opacity-50
+        [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0
+        {% if class %}
+            {{ class }}
+        {% endif %}
+        " data-slot="code-block-copy-button" {{ attrs }}>
+        <c-icon name="copy" x-show="!copied" />
+        <c-icon name="check" x-show="copied" x-cloak />
+    </button>
+    <span aria-live="polite" class="sr-only" x-text="copied ? $refs.button.dataset.copiedLabel : ''"></span>
+</span>
