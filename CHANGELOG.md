@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.11.0 — Unreleased
+## 1.11.0 — 2026-11-19
+
+Parity again. The two components upstream added after 1.8.0, `code_block`
+and `trace`, and its fix for the message scroller opening.
 
 ### Added
 
