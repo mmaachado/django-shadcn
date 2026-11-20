@@ -9,13 +9,21 @@ description.es: Muestra un campo de formulario, o un componente con aspecto de c
 <c-input type="email" placeholder="Email" />
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add input
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-input type="email" placeholder="Email" />
@@ -25,9 +33,15 @@ uvx django_shadcn@latest add input
 <c-input type="email" placeholder="Email" />
 ```
 
+:::en
 ## Examples
 
 ### Default
+:::pt-br
+## Exemplos
+
+### Padrão
+:::
 
 <c-docs.demo-section>
 <c-input type="email" placeholder="Email" />
@@ -37,7 +51,11 @@ uvx django_shadcn@latest add input
 <c-input type="email" placeholder="Email" />
 ```
 
+:::en
 ### File
+:::pt-br
+### Arquivo
+:::
 
 <c-docs.demo-section>
 <c-input type="file" id="picture" />
@@ -47,7 +65,11 @@ uvx django_shadcn@latest add input
 <c-input type="file" id="picture" />
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-input type="email" placeholder="Email" disabled />
@@ -57,7 +79,11 @@ uvx django_shadcn@latest add input
 <c-input type="email" placeholder="Email" disabled />
 ```
 
+:::en
 ### With Label
+:::pt-br
+### Com rótulo
+:::
 
 <c-docs.demo-section>
 
@@ -74,7 +100,11 @@ uvx django_shadcn@latest add input
 </div>
 ```
 
+:::en
 ### With Button
+:::pt-br
+### Com botão
+:::
 
 <c-docs.demo-section>
 

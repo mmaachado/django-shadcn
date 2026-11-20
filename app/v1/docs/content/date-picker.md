@@ -9,18 +9,31 @@ description.es: Un campo de fecha para un formulario Django común — un botón
 <c-date-picker />
 </c-docs.demo-section>
 
+:::en
 <p class="mt-4 text-sm text-muted-foreground">
     The button shows the date the way the active locale writes it. What goes to
     the server is the ISO date, in a hidden input.
 </p>
 
 ## Installation
+:::pt-br
+<p class="mt-4 text-sm text-muted-foreground">
+    O botão mostra a data do jeito que o locale ativo a escreve. O que vai para
+    o servidor é a data ISO, num input oculto.
+</p>
+
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add date_picker
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <form method="post">
@@ -35,6 +48,7 @@ class TaskForm(forms.Form):
     due_date = forms.DateField()
 ```
 
+:::en
 Nothing else is needed on the view side. The hidden input posts `2026-08-13`,
 which is what `DateField` expects, and it already carries `value` before Alpine
 has started — so a form that round-trips with errors keeps the date.
@@ -58,6 +72,31 @@ own: <a href="{% url 'page' slug='popover' %}">Popover</a>,
 
 `min` and `max` are handed to the calendar, so the days outside the range are
 dimmed and cannot be picked:
+:::pt-br
+Não é preciso mais nada do lado da view. O input oculto envia `2026-08-13`, que
+é o que o `DateField` espera, e ele já leva `value` antes de o Alpine começar —
+então um formulário que volta com erros mantém a data.
+
+## Um componente, não uma receita
+
+O upstream entrega isto como uma receita: um popover, um botão e um calendário
+ligados na página, com um `useState` no meio guardando a data.
+
+Aqui é um componente só, porque a ligação é exatamente a parte que um
+formulário Django precisa acertar. Duas representações da mesma data têm de
+andar juntas — a string ISO que o servidor interpreta e a frase legível que o
+botão mostra — e isso não vale a pena digitar de novo em cada formulário.
+
+Por baixo continua a mesma composição, e cada peça ainda pode ser usada
+sozinha: <a href="{% url 'page' slug='popover' %}">Popover</a>,
+<a href="{% url 'page' slug='calendar' %}">Calendar</a> e
+<a href="{% url 'page' slug='button' %}">Button</a>.
+
+## Limitando o intervalo
+
+`min` e `max` são repassados ao calendário, então os dias fora do intervalo
+aparecem esmaecidos e não podem ser escolhidos:
+:::
 
 ```html
 <c-date-picker name="appointment" min="2026-08-10" max="2026-08-20" />
@@ -67,6 +106,7 @@ dimmed and cannot be picked:
 <c-date-picker min="2026-08-10" max="2026-08-20" placeholder="Within range" />
 </c-docs.demo-section>
 
+:::en
 ## Props
 
 | Prop | Default | Meaning |
@@ -83,9 +123,31 @@ dimmed and cannot be picked:
 Upstream puts the width on the trigger. Here it is on the component itself, so
 `class` can change it — a class handed to a component cannot reach an element
 that component renders further in:
+:::pt-br
+## Props
+
+| Prop | Padrão | Significado |
+| --- | --- | --- |
+| `name` | — | o nome com que o input oculto é enviado; deixe de fora para um seletor só de exibição |
+| `value` | — | a data ISO selecionada quando a página carrega |
+| `placeholder` | `Pick a date` | o texto do botão enquanto nada está selecionado |
+| `first_day` | a do locale | `0` para domingo até `6` para sábado |
+| `min` | — | a data ISO mais cedo que pode ser escolhida |
+| `max` | — | a data ISO mais tarde que pode ser escolhida |
+
+## Deixando mais largo
+
+O upstream põe a largura no trigger. Aqui ela fica no próprio componente, para
+que `class` possa mudá-la — uma classe passada a um componente não alcança um
+elemento que o componente renderiza mais para dentro:
+:::
 
 ```html
 <c-date-picker name="due_date" class="w-full" />
 ```
 
+:::en
 It is `w-[240px]` by default, as upstream.
+:::pt-br
+É `w-[240px]` por padrão, como no upstream.
+:::

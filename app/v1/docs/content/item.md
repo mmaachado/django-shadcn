@@ -20,13 +20,21 @@ description.es: Una fila con medios, texto y acciones. Sirve para listas, ajuste
 </c-item>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add item
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-item variant="outline">
@@ -43,10 +51,18 @@ uvx django_shadcn@latest add item
 </c-item>
 ```
 
+:::en
 ## Media
 
 `media` boxes the icon by default: `variant="icon"` draws a bordered square
 around it, exactly as upstream. Leave the variant out for a bare icon.
+:::pt-br
+## Mídia
+
+`media` põe o ícone numa caixa por padrão: `variant="icon"` desenha um quadrado
+com borda em volta dele, exatamente como no upstream. Deixe a variante de fora
+para um ícone sem moldura.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full flex-col gap-4">
@@ -81,9 +97,15 @@ around it, exactly as upstream. Leave the variant out for a bare icon.
 </c-item.media>
 ```
 
+:::en
 ## Examples
 
 ### Variants
+:::pt-br
+## Exemplos
+
+### Variantes
+:::
 
 <c-docs.demo-section>
 
@@ -113,7 +135,11 @@ around it, exactly as upstream. Leave the variant out for a bare icon.
 <c-item variant="outline">...</c-item> <c-item variant="muted">...</c-item>
 ```
 
+:::en
 ### Sizes
+:::pt-br
+### Tamanhos
+:::
 
 <c-docs.demo-section>
 
@@ -135,7 +161,11 @@ around it, exactly as upstream. Leave the variant out for a bare icon.
 <c-item variant="outline" size="sm">...</c-item>
 ```
 
+:::en
 ### Group
+:::pt-br
+### Grupo
+:::
 
 <c-docs.demo-section>
 <c-item.group class="w-full rounded-md border">
@@ -175,7 +205,11 @@ around it, exactly as upstream. Leave the variant out for a bare icon.
 </c-item.group>
 ```
 
+:::en
 ### With an image
+:::pt-br
+### Com uma imagem
+:::
 
 <c-docs.demo-section>
 <c-item variant="outline" class="w-full">
@@ -195,7 +229,11 @@ around it, exactly as upstream. Leave the variant out for a bare icon.
 </c-item.media>
 ```
 
+:::en
 ### Header and footer
+:::pt-br
+### Cabeçalho e rodapé
+:::
 
 <c-docs.demo-section>
 <c-item variant="outline" class="w-full">

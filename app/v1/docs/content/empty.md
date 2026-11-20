@@ -23,13 +23,21 @@ looking for.
 </c-empty>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add empty
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-empty>
@@ -46,12 +54,21 @@ uvx django_shadcn@latest add empty
 </c-empty>
 ```
 
+:::en
 The border is dashed but no border width is applied, exactly as upstream.
 Add `border` when you want the outline to show.
 
 ## Examples
 
 ### Outline
+:::pt-br
+A borda é tracejada, mas nenhuma largura de borda é aplicada, exatamente como no
+upstream. Acrescente `border` quando quiser que o contorno apareça.
+
+## Exemplos
+
+### Outline
+:::
 
 <c-docs.demo-section>
 <c-empty class="w-full border">
@@ -74,7 +91,11 @@ Projects you create will show up here.
 <c-empty class="border">...</c-empty>
 ```
 
+:::en
 ### Without media
+:::pt-br
+### Sem mídia
+:::
 
 <c-docs.demo-section>
 <c-empty class="w-full border">
@@ -97,7 +118,11 @@ started.
 </c-empty>
 ```
 
+:::en
 ### Loading
+:::pt-br
+### Carregando
+:::
 
 <c-docs.demo-section>
 <c-empty class="w-full border">

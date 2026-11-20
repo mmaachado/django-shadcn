@@ -25,13 +25,21 @@ description.es: Formularios HTML bien presentados.
         </form>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add form
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <form class="w-2/3 space-y-4">
@@ -50,9 +58,15 @@ uvx django_shadcn@latest add form
 </form>
 ```
 
+:::en
 ## Examples
 
 ###
+:::pt-br
+## Exemplos
+
+###
+:::
 
 <c-docs.demo-section>
 

@@ -25,13 +25,21 @@ description.es: Una tarjeta de vista previa que abre al pasar el ratón por un e
 </c-hover-card>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add hover_card
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-hover-card>
@@ -55,6 +63,7 @@ uvx django_shadcn@latest add hover_card
 </c-hover-card>
 ```
 
+:::en
 The card waits before opening and before closing, so crossing the gap between
 the link and the card does not dismiss it. Both delays are attributes:
 `open_delay` and `close_delay`, in milliseconds.
@@ -62,6 +71,15 @@ the link and the card does not dismiss it. Both delays are attributes:
 ## Examples
 
 ### Alignment
+:::pt-br
+O card espera antes de abrir e antes de fechar, então atravessar o espaço entre
+o link e o card não o fecha. Os dois atrasos são atributos: `open_delay` e
+`close_delay`, em milissegundos.
+
+## Exemplos
+
+### Alinhamento
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-10">
@@ -81,7 +99,11 @@ the link and the card does not dismiss it. Both delays are attributes:
 <c-hover-card.content align="end">...</c-hover-card.content>
 ```
 
+:::en
 ### Slower
+:::pt-br
+### Mais devagar
+:::
 
 <c-docs.demo-section>
 <c-hover-card open_delay="700" close_delay="300">
@@ -96,8 +118,16 @@ the link and the card does not dismiss it. Both delays are attributes:
 </c-hover-card>
 ```
 
+:::en
 ## Notes
 
 As with the tooltip, `side` and `align` are choices rather than measurements —
 there is no portal and no collision detection. On a touch screen there is no
 hover, so anything behind a hover card needs to be reachable another way.
+:::pt-br
+## Observações
+
+Como no tooltip, `side` e `align` são escolhas e não medições — não há portal
+nem detecção de colisão. Numa tela de toque não existe hover, então tudo o que
+fica atrás de um hover card precisa ser alcançável de outro jeito.
+:::

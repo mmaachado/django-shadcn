@@ -14,13 +14,21 @@ description.es: Envuelve un campo con iconos, texto o botones bajo un solo conto
 </c-input-group>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add input_group
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-input-group>
@@ -31,6 +39,7 @@ uvx django_shadcn@latest add input_group
 </c-input-group>
 ```
 
+:::en
 The outline and the focus ring live on the group, not on the input. Use
 `c-input-group.input` rather than a plain `c-input` so the group can pick up
 focus and validation state.
@@ -38,6 +47,15 @@ focus and validation state.
 ## Examples
 
 ### Leading and trailing
+:::pt-br
+O contorno e o anel de foco ficam no grupo, não no input. Use
+`c-input-group.input` em vez de um `c-input` simples para que o grupo possa
+captar o foco e o estado de validação.
+
+## Exemplos
+
+### No início e no fim
+:::
 
 <c-docs.demo-section>
 
@@ -75,7 +93,11 @@ focus and validation state.
 </c-input-group>
 ```
 
+:::en
 ### With a button
+:::pt-br
+### Com um botão
+:::
 
 <c-docs.demo-section>
 <c-input-group>
@@ -92,7 +114,11 @@ focus and validation state.
 </c-input-group.addon>
 ```
 
+:::en
 ### Textarea with a block addon
+:::pt-br
+### Textarea com um addon em bloco
+:::
 
 <c-docs.demo-section>
 <c-input-group>
@@ -113,7 +139,11 @@ focus and validation state.
 </c-input-group>
 ```
 
+:::en
 ### Invalid
+:::pt-br
+### Inválido
+:::
 
 <c-docs.demo-section>
 <c-input-group>
@@ -128,6 +158,7 @@ focus and validation state.
 <c-input-group.input aria-invalid="true" />
 ```
 
+:::en
 ## Notes
 
 `c-input-group.input`, `.textarea` and `.button` render their own element
@@ -140,3 +171,17 @@ and `icon-sm`.
 
 Clicking an addon focuses the input, which needs Alpine. The addon carries
 its own `x-data`, so it works without an Alpine scope around it.
+:::pt-br
+## Observações
+
+`c-input-group.input`, `.textarea` e `.button` renderizam o próprio elemento em
+vez de envolver `c-input`, `c-textarea` e `c-button`. O cotton descarta sem
+aviso o repasse de `attrs` quando ele cai em outro componente, e esses
+controles precisam repassar tudo o que você coloca neles.
+
+Os tamanhos deles vêm do grupo, não do `c-button`: `xs`, `sm`, `icon-xs` e
+`icon-sm`.
+
+Clicar num addon dá foco ao input, o que precisa do Alpine. O addon leva o
+próprio `x-data`, então funciona sem um escopo do Alpine em volta.
+:::

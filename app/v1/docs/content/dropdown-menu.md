@@ -24,13 +24,21 @@ description.es: Un menú que abre un botón — un conjunto de acciones, por eje
 </c-dropdown-menu>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add dropdown_menu
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-dropdown-menu>
@@ -48,6 +56,7 @@ uvx django_shadcn@latest add dropdown_menu
 </c-dropdown-menu>
 ```
 
+:::en
 The trigger wraps the button instead of sitting inside it. It is the element
 that takes the click, and the content is positioned against the menu around
 both.
@@ -55,6 +64,15 @@ both.
 ## Examples
 
 ### Alignment
+:::pt-br
+O trigger envolve o botão em vez de ficar dentro dele. É ele o elemento que
+recebe o clique, e o conteúdo é posicionado em relação ao menu que envolve os
+dois.
+
+## Exemplos
+
+### Alinhamento
+:::
 
 <c-docs.demo-section class="min-h-[280px]">
 <div class="flex gap-4">
@@ -94,9 +112,15 @@ both.
 </c-dropdown-menu.content>
 ```
 
+:::en
 `align` takes `start`, `center` or `end` and defaults to `start`.
 
 ### Checkboxes and radios
+:::pt-br
+`align` aceita `start`, `center` ou `end`, e o padrão é `start`.
+
+### Checkboxes e radios
+:::
 
 <c-docs.demo-section class="min-h-[340px]">
 <c-dropdown-menu>
@@ -127,10 +151,17 @@ both.
 </c-dropdown-menu.radio-group>
 ```
 
+:::en
 These two keep the menu open when clicked, so a list of toggles can be worked
 through in one go.
 
 ### Submenu
+:::pt-br
+Esses dois mantêm o menu aberto quando clicados, para que uma lista de opções
+possa ser percorrida de uma vez.
+
+### Submenu
+:::
 
 <c-docs.demo-section class="min-h-[300px]">
 <c-dropdown-menu>
@@ -161,7 +192,11 @@ through in one go.
 </c-dropdown-menu.sub>
 ```
 
+:::en
 ### Inset items
+:::pt-br
+### Itens recuados
+:::
 
 <c-docs.demo-section class="min-h-[280px]">
 <c-dropdown-menu>
@@ -180,12 +215,21 @@ through in one go.
 <c-dropdown-menu.item inset="true">Rename</c-dropdown-menu.item>
 ```
 
+:::en
 `inset` lines an item up with the ones that carry a checkbox or radio mark.
 
 ### Keeping the menu open
 
 An item closes the menu when clicked. Pass `close_on_select="false"` when the
 item carries a control of its own.
+:::pt-br
+`inset` alinha um item com os que levam uma marca de checkbox ou de radio.
+
+### Mantendo o menu aberto
+
+Um item fecha o menu quando é clicado. Passe `close_on_select="false"` quando o
+item tiver um controle próprio.
+:::
 
 ```html
 <c-dropdown-menu.item close_on_select="false">
@@ -195,6 +239,7 @@ item carries a control of its own.
 </c-dropdown-menu.item>
 ```
 
+:::en
 ## Notes
 
 The content is placed with `absolute` against the trigger, so `align` is a
@@ -210,3 +255,20 @@ escapes through a portal. A very long menu grows instead of scrolling.
 
 There is no roving focus. The menu answers to the pointer and to `Escape`, not
 to the arrow keys.
+:::pt-br
+## Observações
+
+O conteúdo é posicionado com `absolute` em relação ao trigger, então `align` é
+uma escolha e não uma medição: um menu perto da borda direita da viewport passa
+dela em vez de virar para o outro lado. O Radix mede.
+
+O submenu abre no `mouseenter` e fecha no `mouseleave`, sem o triângulo de
+segurança que o Radix desenha — cortar caminho demais o fecha.
+
+O upstream limita a altura do menu e faz a rolagem dentro dele. Isso foi
+deixado de fora aqui, como no context menu: o overflow cortaria o submenu, coisa
+de que o Radix escapa com um portal. Um menu muito longo cresce em vez de rolar.
+
+Não há foco itinerante. O menu responde ao ponteiro e ao `Escape`, não às setas
+do teclado.
+:::
