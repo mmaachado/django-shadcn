@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.12.0 — Unreleased
+
+The keyboard and screen reader gaps the 1.11.1 pages documented, fixed in the
+components, and the transforms that did not mirror under `dir="rtl"`. Nothing
+to change in a project's templates; re-add a component with `--overwrite` to
+pick its fix up.
+
+### Fixed
+
+- **`select` can be used from the keyboard.** The trigger is a combobox that
+  points at the highlighted option through `aria-activedescendant`. Arrows,
+  Home and End move through the options, typing jumps to one, and Enter or
+  Space picks it. Options with `data-disabled` are skipped, and the chosen
+  one reports `aria-selected`.
+- **`dialog`, `alert_dialog`, `sheet`, `drawer` and `command_dialog` keep
+  focus inside while open.** Tab and Shift+Tab wrap at the panel's edges,
+  opening moves focus in (the sheet and the drawer did not), and closing
+  gives it back to what opened it. `command_dialog` now announces itself
+  with `role="dialog"` and `aria-modal`.
+- **`dropdown_menu`, `context_menu` and `menubar` items can be reached from
+  the keyboard.** Arrows, Home, End and typeahead move between items, Enter
+  or Space activate one, and Right and Left open and close submenus. In the
+  menubar, Left and Right move between the menus.
+- **`tabs` report the selected tab.** The triggers carry `aria-selected` and
+  `aria-controls`, the panels `aria-labelledby`, only the active tab is in
+  the Tab order, and Left, Right, Home and End move between tabs.
+- **`switch`'s thumb stays in its track under `dir="rtl"`,** and `toast`
+  leaves by the edge it sits on. `sidebar`'s sub-menu lines up with its
+  parent icon again, and submenu chevrons point the way they open.
+- **`alert` no longer declares `type`,** which it never read.
+
 ## 1.11.1 — 2026-11-20
 
 The documentation site is rebuilt: every component page follows one structure,
