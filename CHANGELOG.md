@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.10.0 — Unreleased
+## 1.10.0 — 2026-11-19
+
+Blocks. Four whole pages, a dashboard, a log-in and sign-up pair, an
+application shell and a settings screen, added like components and listed
+apart from them.
 
 ### Added
 
