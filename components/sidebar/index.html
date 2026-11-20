@@ -1,5 +1,11 @@
 <c-vars class="" side="left" variant="sidebar" collapsible="offcanvas"></c-vars>
 
+{% comment %}
+left-0, right-0, their offcanvas offsets and border-l and border-r stay
+physical: side="left" and side="right" name a side of the screen, and
+that side does not change with the direction.
+{% endcomment %}
+
 {% if collapsible == 'none' %}
 <div class="
     flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground

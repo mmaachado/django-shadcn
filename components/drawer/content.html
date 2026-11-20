@@ -1,5 +1,11 @@
 <c-vars class="" direction="bottom"></c-vars>
 
+{% comment %}
+right-0, left-0, border-l and border-r stay physical: direction="left"
+and direction="right" name a side of the screen, and that side does not
+change with the direction.
+{% endcomment %}
+
 <div
     x-show="open"
     x-cloak

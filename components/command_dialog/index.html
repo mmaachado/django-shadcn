@@ -1,5 +1,10 @@
 <c-vars class="" shortcut_key="k"></c-vars>
 
+{% comment %}
+left-[50%] stays physical: with translate-x-[-50%] it centres the
+dialog, and the centre is the same in either direction.
+{% endcomment %}
+
 <div
   x-data="{
     open: false,

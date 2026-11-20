@@ -15,10 +15,10 @@ group-data-* would chain into a descendant selector instead.
 
     data-[spacing=0]:[&>*]:rounded-none
     data-[spacing=0]:[&>*]:shadow-none
-    data-[spacing=0]:[&>*:first-child]:rounded-l-md
-    data-[spacing=0]:[&>*:last-child]:rounded-r-md
-    data-[spacing=0]:data-[variant=outline]:[&>*]:border-l-0
-    data-[spacing=0]:data-[variant=outline]:[&>*:first-child]:border-l
+    data-[spacing=0]:[&>*:first-child]:rounded-s-md
+    data-[spacing=0]:[&>*:last-child]:rounded-e-md
+    data-[spacing=0]:data-[variant=outline]:[&>*]:border-s-0
+    data-[spacing=0]:data-[variant=outline]:[&>*:first-child]:border-s
     {% if class %}
         {{ class }}
     {% endif %}

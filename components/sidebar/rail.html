@@ -1,5 +1,11 @@
 <c-vars class=""></c-vars>
 
+{% comment %}
+The left- and right- utilities stay physical. The rail sits on the
+edge of the sidebar, and side="left" and side="right" name a side of
+the screen that does not change with the direction.
+{% endcomment %}
+
 <button @click="toggle()" type="button" tabindex="-1" aria-label="Toggle Sidebar" title="Toggle Sidebar" class="
     absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all
     ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0

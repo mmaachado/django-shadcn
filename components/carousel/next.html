@@ -1,5 +1,11 @@
 <c-vars class="" variant="outline" type="button"></c-vars>
 
+{% comment %}
+-right-12 and left-1/2 stay physical. The carousel scrolls in physical
+coordinates, with scrollLeft and the left and right arrow keys, so its
+buttons keep their sides too.
+{% endcomment %}
+
 <button type="{{ type }}" class="
     absolute size-8 rounded-full
     inline-flex items-center justify-center gap-2
