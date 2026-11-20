@@ -169,3 +169,21 @@ class PassageTests(SimpleTestCase):
     def test_a_whole_file_override_counts_as_translated(self):
         self.assertEqual(untranslated("introduction", "pt-br"), [])
         self.assertEqual(untranslated("introduction", "en"), [])
+
+
+class LlmsTxtTests(SimpleTestCase):
+    def test_each_language_gets_its_own_summary_and_headings(self):
+        expected = {
+            "en": ("unofficial Django port", "## Optional"),
+            "pt-br": ("port não oficial", "## Opcional"),
+            "es": ("port no oficial", "## Opcional"),
+        }
+
+        for code, (summary, heading) in expected.items():
+            with self.subTest(language=code), translation.override(code):
+                index = self.client.get(reverse("llms")).content.decode()
+                full = self.client.get(reverse("llms-full")).content.decode()
+
+                self.assertIn(summary, index)
+                self.assertIn(heading, index)
+                self.assertIn(summary, full)
