@@ -30,17 +30,29 @@ description.es: Encabezados apilados que revelan, cada uno, una sección de cont
         </c-accordion>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add accordion
 ```
 
+:::en
 <p class="mt-4 text-sm text-muted-foreground">
     <strong>Note:</strong> This component requires the <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">Alpine.js Collapse plugin</a> for animations.
 </p>
 
 ## Usage
+:::pt-br
+<p class="mt-4 text-sm text-muted-foreground">
+    <strong>Observação:</strong> este componente precisa do <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">plugin Collapse do Alpine.js</a> para as animações.
+</p>
+
+## Uso
+:::
 
 ```html
 <c-accordion type='single' collapsible='true'>

@@ -13,13 +13,21 @@ description.es: Agrupa botones relacionados bajo un solo contorno.
 </c-button-group>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add button_group
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-button-group>
@@ -35,12 +43,21 @@ uvx django_shadcn@latest add button_group
 </c-button-group>
 ```
 
+:::en
 The group flattens the inner corners and drops the duplicated borders
 through descendant selectors, so the buttons need nothing special.
 
 ## Examples
 
 ### Vertical
+:::pt-br
+O grupo achata os cantos internos e tira as bordas duplicadas por seletores de
+descendente, então os botões não precisam de nada especial.
+
+## Exemplos
+
+### Vertical
+:::
 
 <c-docs.demo-section>
 <c-button-group orientation="vertical">
@@ -57,7 +74,11 @@ through descendant selectors, so the buttons need nothing special.
 </c-button-group>
 ```
 
+:::en
 ### With text
+:::pt-br
+### Com texto
+:::
 
 <c-docs.demo-section>
 <c-button-group>
@@ -75,7 +96,11 @@ through descendant selectors, so the buttons need nothing special.
 </c-button-group>
 ```
 
+:::en
 ### With a separator
+:::pt-br
+### Com separador
+:::
 
 <c-docs.demo-section>
 <c-button-group>
@@ -97,7 +122,11 @@ through descendant selectors, so the buttons need nothing special.
 </c-button-group>
 ```
 
+:::en
 ### Nested groups
+:::pt-br
+### Grupos aninhados
+:::
 
 <c-docs.demo-section>
 <c-button-group>
