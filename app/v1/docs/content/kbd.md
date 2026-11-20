@@ -89,8 +89,63 @@ uvx django_shadcn@latest add kbd
 </c-docs.example>
 
 :::en
+### Tooltip
+
+A tooltip can name the shortcut for a button.
+:::pt-br
+### Tooltip
+
+Um tooltip pode dizer o atalho de um botão.
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-button variant="outline" size="sm">Save</c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Save <c-kbd>⌘S</c-kbd></c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+### Input group
+:::pt-br
+### Input group
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.addon><c-icon name="search" /></c-input-group.addon>
+  <c-input-group.input placeholder="Search..." aria-label="Search" />
+  <c-input-group.addon align="inline-end"><c-kbd>⌘K</c-kbd></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+## RTL
+
+A key stays where the markup puts it, so a combination reads in the order
+you write it under `dir="rtl"` too.
+
+## Accessibility
+
+It renders a `<kbd>`, which a screen reader can announce as keyboard input.
+Write the key's name as text, such as "Ctrl", rather than only a symbol, so
+it reads out as something.
+
 ## API reference
 :::pt-br
+## RTL
+
+Uma tecla fica onde o markup a põe, então uma combinação é lida na ordem em
+que você a escreve também sob `dir="rtl"`.
+
+## Acessibilidade
+
+Ele renderiza um `<kbd>`, que um leitor de tela pode anunciar como entrada de
+teclado. Escreva o nome da tecla como texto, como "Ctrl", e não só um
+símbolo, para ele ser lido como algo.
+
 ## Referência da API
 :::
 

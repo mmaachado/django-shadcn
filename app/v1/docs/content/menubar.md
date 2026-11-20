@@ -170,6 +170,60 @@ fecha o menu.
 </c-docs.example>
 
 :::en
+### With icons
+:::pt-br
+### Com ícones
+:::
+
+<c-docs.example>
+<c-menubar>
+  <c-menubar.menu>
+    <c-menubar.trigger>File</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item><c-icon name="folder" />Open</c-menubar.item>
+      <c-menubar.item><c-icon name="copy" />Duplicate</c-menubar.item>
+      <c-menubar.separator />
+      <c-menubar.item><c-icon name="settings" />Settings</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
+</c-menubar>
+</c-docs.example>
+
+:::en
+## RTL
+
+Menus open below their triggers and align with `align`, and items align to the
+start with shortcuts at the end, so under `dir="rtl"` the bar and its menus
+mirror. A submenu opens on the other side.
+
+## Accessibility
+
+Each menu is a `role="menu"` of `menuitem`, `menuitemcheckbox` and
+`menuitemradio` items with `aria-checked`, and triggers report `aria-haspopup`
+and `aria-expanded`. Escape closes the open menu. There is no roving focus:
+the bar answers to the pointer and Tab, not to the arrow keys.
+
+## API reference
+:::pt-br
+## RTL
+
+Os menus abrem embaixo dos triggers e se alinham com `align`, e os itens se
+alinham ao início com os atalhos no fim, então sob `dir="rtl"` a barra e os
+menus espelham. Um submenu abre do outro lado.
+
+## Acessibilidade
+
+Cada menu é um `role="menu"` de itens `menuitem`, `menuitemcheckbox` e
+`menuitemradio` com `aria-checked`, e os triggers informam `aria-haspopup` e
+`aria-expanded`. O Escape fecha o menu aberto. Não há foco itinerante: a barra
+responde ao ponteiro e ao Tab, não às setas.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="menubar" />
+
+:::en
 ## Notes
 
 Which menu is open is tracked by element identity rather than a name you have
@@ -194,11 +248,3 @@ Como no context menu, não há foco itinerante: a barra responde ao ponteiro e a
 trigger com classes utilitárias, então `align` é uma escolha e não uma medição —
 um menu perto da borda direita pede `align="end"`.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="menubar" />

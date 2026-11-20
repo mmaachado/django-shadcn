@@ -484,20 +484,6 @@ The scroll buttons use the same idea: each carries `data-active`, and the one
 with nothing to scroll to fades out and stops taking clicks rather than
 disappearing, so it keeps its place in the tab order.
 
-## Accessibility
-
-The viewport is a `region` with a label, and the content is a `log` with
-`aria-relevant="additions"` — a new message is announced as it arrives, without
-the whole transcript being read back each time. Change the region's name with
-`label` on the viewport when a page has more than one transcript.
-
-## A note on what is not here
-
-Upstream sets `content-visibility: auto` and `contain-intrinsic-size` on each
-row to skip painting what is off screen. Those change what the provider
-measures, and a measurement error here is a scroll jump — which is the one
-defect this component exists to prevent. They belong after the behaviour has
-proven itself, not before.
 :::pt-br
 `scrollToMessage` devolve `false` quando o id não está na página, então um link
 para uma mensagem que ainda não carregou pode cair para um carregamento
@@ -523,14 +509,52 @@ Os botões de rolagem usam a mesma ideia: cada um leva `data-active`, e o que n�
 tem para onde rolar esmaece e para de aceitar cliques em vez de sumir, para
 manter o lugar dele na ordem de tab.
 
+:::
+
+:::en
+## RTL
+
+The transcript scrolls vertically, which has no direction, and its rows are
+whatever you put in them: a [Message]({% url 'page' slug='message' %}) mirrors
+under `dir="rtl"` on its own.
+
+## Accessibility
+
+The viewport is a `region` with a label, and the content is a `log` with
+`aria-relevant="additions"`: a new message is announced as it arrives, without
+the whole transcript being read back each time. Change the region's name with
+`label` on the viewport when a page has more than one transcript.
+
+## API reference
+:::pt-br
+## RTL
+
+A transcrição rola na vertical, o que não tem direção, e as linhas são o que
+você puser nelas: uma [Message]({% url 'page' slug='message' %}) espelha sob
+`dir="rtl"` por conta própria.
+
 ## Acessibilidade
 
 A viewport é uma `region` com rótulo, e o conteúdo é um `log` com
-`aria-relevant="additions"` — uma mensagem nova é anunciada quando chega, sem
+`aria-relevant="additions"`: uma mensagem nova é anunciada quando chega, sem
 que a transcrição inteira seja lida de novo a cada vez. Mude o nome da região
 com `label` na viewport quando uma página tiver mais de uma transcrição.
 
-## Sobre o que não está aqui
+## Referência da API
+:::
+
+<c-docs.api-reference name="message-scroller" />
+
+:::en
+## Notes
+
+Upstream sets `content-visibility: auto` and `contain-intrinsic-size` on each
+row to skip painting what is off screen. Those change what the provider
+measures, and a measurement error here is a scroll jump — which is the one
+defect this component exists to prevent. They belong after the behaviour has
+proven itself, not before.
+:::pt-br
+## Observações
 
 O upstream define `content-visibility: auto` e `contain-intrinsic-size` em cada
 linha para não pintar o que está fora da tela. Isso muda o que o provider mede,
@@ -538,11 +562,3 @@ e um erro de medição aqui é um salto na rolagem — que é justamente o defei
 este componente existe para evitar. Essas propriedades entram depois que o
 comportamento tiver se provado, não antes.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="message-scroller" />

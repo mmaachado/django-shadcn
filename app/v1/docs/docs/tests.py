@@ -416,6 +416,13 @@ REBUILT = {
     "input-group",
     "input-otp",
     "item",
+    "kbd",
+    "label",
+    "marker",
+    "menubar",
+    "message",
+    "message-scroller",
+    "metric",
 }
 
 

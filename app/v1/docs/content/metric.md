@@ -85,7 +85,9 @@ Todo o resto aqui é tipografia comum. Se preferir montar você mesmo, `card` e
 ```
 
 :::en
-## The delta reads its own sign
+## Examples
+
+### The delta reads its own sign
 
 `value` is shown as it arrives, and the sign in it picks the icon and the
 colour — on the server, so the card is right before any JavaScript runs.
@@ -99,7 +101,9 @@ colour — on the server, so the card is right before any JavaScript runs.
 Up is not green. There is no green in the palette, and this is not the place to
 invent one — a project that wants it passes it in:
 :::pt-br
-## A variação lê o próprio sinal
+## Exemplos
+
+### A variação lê o próprio sinal
 
 `value` é mostrado como chega, e o sinal nele escolhe o ícone e a cor — no
 servidor, então o card já está certo antes de qualquer JavaScript rodar.
@@ -123,7 +127,7 @@ Note that a value going up is not always good news. Churn rising is a bad month
 with an up arrow, which is why the component states the direction and leaves the
 judgement to you.
 
-## With a sparkline
+### With a sparkline
 
 A sparkline is <a href="{% url 'page' slug='chart' %}">Chart</a> with no grid
 and no axes. Each axis claims its own room, so leaving them out gives the line
@@ -133,7 +137,7 @@ Repare que um valor subindo nem sempre é boa notícia. Churn em alta é um mês
 ruim com uma seta para cima, e é por isso que o componente informa a direção e
 deixa o julgamento com você.
 
-## Com um sparkline
+### Com um sparkline
 
 Um sparkline é o <a href="{% url 'page' slug='chart' %}">Chart</a> sem grade e
 sem eixos. Cada eixo reserva o próprio espaço, então deixá-los de fora dá à
@@ -154,7 +158,40 @@ linha a largura inteira do card:
 ```
 
 :::en
-## Anatomy
+## RTL
+
+The label, the value and the delta align to the start, so a card mirrors under
+`dir="rtl"`. The trend arrow does not turn: up is up in every language.
+
+## Accessibility
+
+The card is text read in order: the label, the value, then the delta. The
+delta's arrow and colour are not read, so its sign has to be in the value, as
+in `+20.1%`, and the label after it says what it is compared with.
+
+## API reference
+:::pt-br
+## RTL
+
+O rótulo, o valor e a variação se alinham ao início, então um card espelha sob
+`dir="rtl"`. A seta de tendência não vira: para cima é para cima em qualquer
+idioma.
+
+## Acessibilidade
+
+O card é texto lido em ordem: o rótulo, o valor e depois a variação. A seta e
+a cor da variação não são lidas, então o sinal tem de estar no valor, como em
+`+20.1%`, e o rótulo depois dele diz com o que se compara.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="metric" />
+
+:::en
+## Notes
+
+**Anatomy.**
 
 | Tag | What it is |
 | --- | --- |
@@ -163,14 +200,16 @@ linha a largura inteira do card:
 | `<c-metric.value>` | the number, in tabular figures so a row of cards lines up |
 | `<c-metric.delta>` | the change, with its arrow |
 
-## Props
+**What the attributes mean.**
 
 | Prop | Where | Default | Meaning |
 | --- | --- | --- | --- |
 | `value` | `<c-metric.delta>` | — | the change, shown as given; its sign picks the arrow |
 | `label` | `<c-metric.delta>` | — | the quiet text after it, such as the period compared |
 :::pt-br
-## Anatomia
+## Observações
+
+**Anatomia.**
 
 | Tag | O que é |
 | --- | --- |
@@ -179,18 +218,10 @@ linha a largura inteira do card:
 | `<c-metric.value>` | o número, em algarismos tabulares para que uma fileira de cards se alinhe |
 | `<c-metric.delta>` | a variação, com a seta |
 
-## Props
+**O que os atributos significam.**
 
 | Prop | Onde | Padrão | Significado |
 | --- | --- | --- | --- |
 | `value` | `<c-metric.delta>` | — | a variação, mostrada como veio; o sinal escolhe a seta |
 | `label` | `<c-metric.delta>` | — | o texto discreto depois dela, como o período comparado |
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="metric" />

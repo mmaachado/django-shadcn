@@ -63,13 +63,17 @@ uvx django_shadcn@latest add marker
 The icon slot is decorative and hidden from assistive technology, so the content
 has to carry the whole meaning on its own. Nothing here is stateful.
 
-## Variants
+## Examples
+
+### Variants
 :::pt-br
 O espaço do ícone é decorativo e fica escondido das tecnologias assistivas,
 então o conteúdo tem de carregar sozinho todo o significado. Nada aqui tem
 estado.
 
-## Variantes
+## Exemplos
+
+### Variantes
 :::
 
 <c-docs.example>
@@ -97,8 +101,6 @@ estado.
 lands between the label and the left rule rather than at the start of the row.
 Date breaks usually read better without one.
 
-## Examples
-
 ### Announcing a change
 
 A marker that reports work in progress should be announced, not just drawn.
@@ -108,8 +110,6 @@ the text as live.
 `separator` desenha os traços com `before` e `after`, então um ícone dentro dele
 cai entre o rótulo e o traço da esquerda, e não no início da linha. Quebras de
 data costumam ficar melhores sem ícone.
-
-## Exemplos
 
 ### Anunciando uma mudança
 
@@ -198,8 +198,47 @@ Entre mensagens, um marker é a linha que explica uma lacuna.
 </c-docs.demo-section>
 
 :::en
+## RTL
+
+The icon sits at the start and the label after it, and a separator's rules
+run to both sides, so under `dir="rtl"` a marker mirrors with the text.
+
+## Accessibility
+
+**Status and progress.** A marker that reports work in progress should be
+announced: give it `role="status"`, as the example does.
+
+**Labelled separators.** The rules are drawn with `before` and `after` and are
+not read; the label is.
+
+**Decorative icons.** The icon slot is hidden from assistive technology, so
+the text carries the whole meaning.
+
+**Interactive markers.** Put a link in the content rather than on the root, so
+only the words are the control.
+
 ## API reference
 :::pt-br
+## RTL
+
+O ícone fica no início e o rótulo depois dele, e os traços de um separador
+correm para os dois lados, então sob `dir="rtl"` um marker espelha com o
+texto.
+
+## Acessibilidade
+
+**Status e progresso.** Um marker que informa um trabalho em andamento deve
+ser anunciado: dê a ele `role="status"`, como faz o exemplo.
+
+**Separadores com rótulo.** Os traços são desenhados com `before` e `after` e
+não são lidos; o rótulo é.
+
+**Ícones decorativos.** O espaço do ícone fica escondido das tecnologias
+assistivas, então o texto carrega todo o significado.
+
+**Markers interativos.** Ponha um link no conteúdo e não na raiz, para que só
+as palavras sejam o controle.
+
 ## Referência da API
 :::
 

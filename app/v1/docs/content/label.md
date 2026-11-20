@@ -103,6 +103,54 @@ no texto dar foco ao campo, e é o que um leitor de tela anuncia.
 </c-docs.example>
 
 :::en
+### Label in a field
+
+[Field]({% url 'page' slug='field' %}) has a label part of its own, laid out with the
+control, a description and an error.
+:::pt-br
+### Rótulo num field
+
+O [Field]({% url 'page' slug='field' %}) tem uma parte de rótulo própria,
+diagramada com o controle, uma descrição e um erro.
+:::
+
+<c-docs.example>
+<c-field class="max-w-sm">
+  <c-field.label for="label-field-email">Email</c-field.label>
+  <c-input id="label-field-email" type="email" />
+  <c-field.description>We never share it.</c-field.description>
+</c-field>
+</c-docs.example>
+
+:::en
+## RTL
+
+A label follows the text, so under `dir="rtl"` it sits to the right of the
+field it names when they share a row.
+
+## Accessibility
+
+It is a native `<label>`. With `for` set to the control's id it names the
+control, and a click on it focuses or toggles the control.
+
+## API reference
+:::pt-br
+## RTL
+
+Um rótulo acompanha o texto, então sob `dir="rtl"` ele fica à direita do
+campo que nomeia quando os dois dividem uma linha.
+
+## Acessibilidade
+
+É um `<label>` nativo. Com `for` igual ao id do controle ele dá nome ao
+controle, e um clique nele dá foco ao controle ou o alterna.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="label" />
+
+:::en
 ## Notes
 
 The dimmed style for a disabled control comes from `peer-disabled:`, so the
@@ -114,11 +162,3 @@ markup.
 O estilo esmaecido de um controle desabilitado vem de `peer-disabled:`, então o
 controle precisa da classe `peer` e tem de vir antes do rótulo no markup.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="label" />
