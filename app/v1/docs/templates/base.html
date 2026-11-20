@@ -21,7 +21,6 @@
         </script>
 
         <script src="{% static 'js/alpine-collapse.min.js' %}" defer></script>
-        <script src="{% static 'js/htmx.min.js' %}" defer></script>
         <script src="{% static 'js/alpine.min.js' %}" defer></script>
         <script src="{% static 'js/prism.min.js' %}" defer></script>
         <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
@@ -36,7 +35,6 @@
 
     <body
        class="min-h-svh bg-background font-sans antialiased"
-       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
        x-data="{ mobileMenuOpen: false }"
     >
         <div class="relative flex min-h-svh flex-col bg-background">
