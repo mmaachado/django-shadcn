@@ -151,3 +151,11 @@ It is `w-[240px]` by default, as upstream.
 :::pt-br
 É `w-[240px]` por padrão, como no upstream.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="date-picker" />

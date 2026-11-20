@@ -118,3 +118,11 @@ Cada item mantém o próprio estado de pressionado. O Radix também oferece um m
 de seleção única, em que escolher um desmarca os outros — isso precisa de estado
 compartilhado e ainda não está aqui.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="toggle-group" />

@@ -88,3 +88,11 @@ estilizada: a rolagem com embalo e o comportamento da plataforma continuam
 intactos, e a troca é que o Firefox só respeita a largura e a cor, não o
 puxador arredondado.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="scroll-area" />

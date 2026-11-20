@@ -74,3 +74,11 @@ uvx django_shadcn@latest add checkbox
 <c-docs.example>
 <c-checkbox id='terms' disabled />
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="checkbox" />

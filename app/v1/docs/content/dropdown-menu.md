@@ -244,3 +244,11 @@ de que o Radix escapa com um portal. Um menu muito longo cresce em vez de rolar.
 Não há foco itinerante. O menu responde ao ponteiro e ao `Escape`, não às setas
 do teclado.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="dropdown-menu" />

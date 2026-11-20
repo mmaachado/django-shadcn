@@ -226,3 +226,19 @@ def test_every_block_has_a_page_that_extends_the_project_base(
 
 
 EXTENDS = '{% extends base_template|default:"base.html" %}'
+
+
+def test_every_component_page_has_the_generated_reference(component_names):
+    """The reference is read from the templates, so a page that shows it
+    cannot fall behind the component."""
+    missing = []
+
+    for name in component_names:
+        if registry[name].block:
+            continue
+        page = DOCS / 'content' / f'{name.replace("_", "-")}.md'
+        tag = f'<c-docs.api-reference name="{name.replace("_", "-")}" />'
+        if tag not in page.read_text(encoding='utf-8'):
+            missing.append(name)
+
+    assert not missing, f'pages without the API reference: {missing}'

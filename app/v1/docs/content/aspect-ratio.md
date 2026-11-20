@@ -84,3 +84,11 @@ aceita: `16/9`, `4/3`, `1.85`. O padrão é `1/1`.
   </c-aspect-ratio>
 </div>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="aspect-ratio" />

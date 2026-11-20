@@ -434,3 +434,11 @@ Se uma dessas coisas é o que você precisa, a resposta honesta é uma bibliotec
 de gráficos, e o registry pode declarar uma por componente quando chegar a
 hora.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="chart" />

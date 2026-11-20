@@ -321,3 +321,11 @@ componente.
 </c-message>
 </c-message.group>
 </c-docs.demo-section>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="attachment" />

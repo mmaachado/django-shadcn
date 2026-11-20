@@ -64,3 +64,11 @@ uvx django_shadcn@latest add accordion
     </c-accordion.item>
 </c-accordion>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="accordion" />

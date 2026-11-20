@@ -152,3 +152,11 @@ aceita o que o input aceitar; `inputmode="numeric"` pede aos celulares o teclado
 numérico mas não obriga a digitar só números, então valide no servidor como
 faria com qualquer outro campo.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="input-otp" />

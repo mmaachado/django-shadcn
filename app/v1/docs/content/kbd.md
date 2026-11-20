@@ -83,3 +83,11 @@ uvx django_shadcn@latest add kbd
   Press <c-kbd>Esc</c-kbd> to close this dialog.
 </p>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="kbd" />

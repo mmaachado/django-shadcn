@@ -122,3 +122,11 @@ upstream. Acrescente `border` quando quiser que o contorno apareça.
   </c-empty.header>
 </c-empty>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="empty" />

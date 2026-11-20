@@ -100,3 +100,11 @@ em volta e `group-has-[:checked]` no puxador. A diferença na prática é que es
 é um controle de formulário: nenhum campo oculto, nenhum JavaScript, e `checked`
 funciona como em qualquer outro lugar.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="switch" />

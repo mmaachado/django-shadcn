@@ -29,6 +29,7 @@ from .content import (
     untranslated,
 )
 from .nav import NAV, SLUGS
+from .reference import attributes, table
 from .views import BLOCK_EXTENDS
 
 
@@ -323,3 +324,39 @@ class ExampleTests(SimpleTestCase):
         ]
 
         self.assertEqual(twice, [], "write these demos with <c-docs.example>")
+
+
+class ReferenceTests(SimpleTestCase):
+    def test_every_row_is_an_attribute_the_template_declares(self):
+        row = re.compile(r"^\| `<(c-[\w.-]+)>` \| `([\w-]+)` \|", re.MULTILINE)
+        wrong = []
+
+        for directory in sorted(settings.COMPONENTS_DIR.iterdir()):
+            if not (directory / "index.html").is_file() and not any(
+                directory.glob("*.html")
+            ):
+                continue
+            for tag, name in row.findall(table(directory.name)):
+                part = tag.split(".", 1)[1] if "." in tag else "index"
+                source = (directory / f"{part.replace('-', '_')}.html").read_text(
+                    encoding="utf-8"
+                )
+                declared = re.search(r"<c-vars\b([^>]*)>", source).group(1)
+                if not re.search(rf"(^|\s){re.escape(name)}(=|\s|$)", declared):
+                    wrong.append(f"{tag} {name}")
+
+        self.assertEqual(wrong, [])
+
+    def test_values_come_from_the_branches_and_include_the_default(self):
+        source = (
+            '<c-vars class="" size="md"></c-vars>'
+            "{% if size == 'sm' %}a{% elif size == 'lg' %}b{% endif %}"
+        )
+
+        self.assertEqual(attributes(source), [("size", "md", ["md", "sm", "lg"])])
+
+    def test_the_page_shows_the_table(self):
+        response = self.client.get(reverse("page", kwargs={"slug": "button"}))
+
+        self.assertContains(response, "<code>&lt;c-button&gt;</code>")
+        self.assertContains(response, "<code>ghost</code>")

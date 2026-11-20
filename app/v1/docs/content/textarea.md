@@ -68,3 +68,11 @@ uvx django_shadcn@latest add textarea
   <c-button type="submit">Send message</c-button>
 </div>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="textarea" />

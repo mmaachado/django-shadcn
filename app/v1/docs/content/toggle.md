@@ -89,3 +89,11 @@ Comece pressionado com `pressed="true"`.
 <c-docs.example>
 <c-toggle variant="outline" disabled>Disabled</c-toggle>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="toggle" />

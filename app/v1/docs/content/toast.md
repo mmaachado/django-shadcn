@@ -122,3 +122,11 @@ uvx django_shadcn@latest add toast
   </c-toast.content>
 </c-toast>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="toast" />

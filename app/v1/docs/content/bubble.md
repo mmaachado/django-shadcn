@@ -256,3 +256,11 @@ do que mensagens separadas.
   </c-bubble>
 </c-bubble.group>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="bubble" />

@@ -28,3 +28,11 @@ uvx django_shadcn@latest add progress
 ```html
 <c-progress value="65" max="100" class="w-[60%]" />
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="progress" />

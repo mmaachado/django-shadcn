@@ -193,3 +193,11 @@ meio seletor de intervalo é pior do que nenhum — ele pareceria o componente d
 upstream e obedeceria a outras regras. A seleção de uma data só é fiel, e é o
 que um campo de formulário Django precisa.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="calendar" />

@@ -107,3 +107,11 @@ uvx django_shadcn@latest add table
   </c-table.body>
 </c-table>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="table" />

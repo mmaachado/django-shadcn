@@ -164,3 +164,11 @@ escreveu. O Tailwind os ordena pelo nome, então `bg-primary` fica depois de
 A regra vale para qualquer classe sua que colida com uma que o componente já
 define. Ela se aplica a todos os componentes daqui, não só a este.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="avatar" />

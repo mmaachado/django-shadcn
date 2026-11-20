@@ -153,3 +153,11 @@ Os tamanhos deles vêm do grupo, não do `c-button`: `xs`, `sm`, `icon-xs` e
 Clicar num addon dá foco ao input, o que precisa do Alpine. O addon leva o
 próprio `x-data`, então funciona sem um escopo do Alpine em volta.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="input-group" />

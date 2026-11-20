@@ -72,3 +72,11 @@ uvx django_shadcn@latest add badge
 <c-docs.example>
 <c-badge variant="outline">Outline</c-badge>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="badge" />

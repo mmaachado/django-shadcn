@@ -187,3 +187,11 @@ Entre mensagens, um marker é a linha que explica uma lacuna.
 </c-message>
 </c-message.group>
 </c-docs.demo-section>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="marker" />

@@ -104,3 +104,11 @@ uvx django_shadcn@latest add sheet
   </c-sheet.content>
 </c-sheet>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="sheet" />

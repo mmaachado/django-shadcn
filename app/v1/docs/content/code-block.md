@@ -243,3 +243,11 @@ O upstream escreve as classes como nomes `cn-*` resolvidos por um arquivo de
 estilo. O registry que o resto desta biblioteca segue não tem code block, então
 os utilitários daqui vêm do estilo mais próximo dele.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="code-block" />

@@ -56,3 +56,11 @@ uvx django_shadcn@latest add dialog
   </c-dialog.content>
 </c-dialog>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="dialog" />

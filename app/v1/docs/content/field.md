@@ -185,3 +185,11 @@ erros de um campo de formulário Django, com a mesma regra: um erro em linha,
 vários como uma lista com marcadores. Nada é renderizado quando os dois estão
 vazios.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="field" />

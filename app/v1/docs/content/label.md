@@ -110,3 +110,11 @@ markup.
 O estilo esmaecido de um controle desabilitado vem de `peer-disabled:`, então o
 controle precisa da classe `peer` e tem de vir antes do rótulo no markup.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="label" />

@@ -175,3 +175,11 @@ As classes de direção vêm do registry, com `data-vaul-drawer-direction`
 renomeado para `data-direction` — levar o nome de uma biblioteca que não
 distribuímos seria enganoso.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="drawer" />

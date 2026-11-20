@@ -512,3 +512,11 @@ e um erro de medição aqui é um salto na rolagem — que é justamente o defei
 este componente existe para evitar. Essas propriedades entram depois que o
 comportamento tiver se provado, não antes.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="message-scroller" />

@@ -55,3 +55,11 @@ uvx django_shadcn@latest add popover
   <c-popover.content> Place content for popover here. </c-popover.content>
 </c-popover>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="popover" />

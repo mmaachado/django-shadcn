@@ -171,3 +171,11 @@ guardar um layout por id; aqui um recarregamento começa de novo do
 Nada impõe um mínimo: um painel pode ser arrastado até fechar. Dê ao conteúdo
 dentro dele um `min-w-*` se isso importar.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="resizable" />

@@ -67,3 +67,11 @@ uvx django_shadcn@latest add alert_dialog
 
 </c-alert-dialog>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="alert-dialog" />

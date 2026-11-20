@@ -50,3 +50,11 @@ uvx django_shadcn@latest add combobox
     {'value': 'htmx', 'label': 'HTMX'},
 ]-->
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="combobox" />

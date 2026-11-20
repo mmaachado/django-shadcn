@@ -106,3 +106,11 @@ recebe foco.
   </c-breadcrumb.list>
 </c-breadcrumb>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="breadcrumb" />

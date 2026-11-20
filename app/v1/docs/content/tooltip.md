@@ -91,3 +91,11 @@ há espaço. Aqui o conteúdo é posicionado em relação ao trigger com classes
 utilitárias, então `side` é uma escolha sua e não algo calculado em tempo de
 execução. Perto da borda da tela, escolha o lado que cabe.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="tooltip" />

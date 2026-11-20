@@ -342,3 +342,11 @@ mostra todas as perguntas de uma vez, num formulário longo, e o botão de envia
 continua funcionando. O passo a passo é uma melhoria por cima de um formulário
 que já funciona.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="questionnaire" />

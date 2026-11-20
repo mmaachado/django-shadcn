@@ -82,3 +82,11 @@ uvx django_shadcn@latest add form
   </c-button>
 </form>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="form" />

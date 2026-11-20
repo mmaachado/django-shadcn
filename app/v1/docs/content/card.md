@@ -79,3 +79,11 @@ uvx django_shadcn@latest add card
   </c-card.footer>
 </c-card>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="card" />

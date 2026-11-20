@@ -66,3 +66,11 @@ uvx django_shadcn@latest add select
   </c-select.trigger>
 </c-select>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="select" />

@@ -28,6 +28,11 @@ FENCE = re.compile(r"^(```|~~~)")
 DEMO_OPEN = re.compile(r"^<c-docs\.(?:demo-section|example)\b")
 DEMO_CLOSE = re.compile(r"</c-docs\.(?:demo-section|example)>")
 
+# The attribute reference of a component, generated from its templates.
+REFERENCE = re.compile(
+    r'^<c-docs\.api-reference name="(?P<name>[\w-]+)"\s*/>[ \t]*$', re.MULTILINE
+)
+
 # A demo written once: rendered, and shown below as its own source.
 EXAMPLE = re.compile(
     r"^<c-docs\.example(?P<attrs>[^>]*)>[ \t]*\n"
@@ -196,7 +201,16 @@ def source(slug):
         raise PageNotFound(slug)
 
     meta, body = _read(path)
-    return _localize(meta), _expand_examples(_translate(body, language))
+    body = _expand_examples(_translate(body, language))
+    return _localize(meta), _expand_references(body)
+
+
+def _expand_references(body):
+    from .reference import table
+
+    return REFERENCE.sub(
+        lambda match: table(match.group("name").replace("-", "_")), body
+    )
 
 
 def _expand_examples(body):

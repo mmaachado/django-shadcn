@@ -350,3 +350,11 @@ Os tokens de cor da própria sidebar — `--sidebar`, `--sidebar-accent`,
 `--sidebar-border` e o resto — moram no `input.css`. Mude o estilo do painel lá,
 não com classes utilitárias em cada parte.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="sidebar" />

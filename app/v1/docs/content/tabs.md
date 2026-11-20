@@ -88,3 +88,11 @@ uvx django_shadcn@latest add tabs
   <c-tabs.content value="password">Change your password here.</c-tabs.content>
 </c-tabs>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="tabs" />

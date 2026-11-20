@@ -251,3 +251,11 @@ O upstream não tem um componente de pontos; a demo dele lê a lista de encaixes
 da API do Embla e os desenha na página. Essa lista é o que `count` é aqui, então
 o `<c-carousel.dots>` os traz.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="carousel" />

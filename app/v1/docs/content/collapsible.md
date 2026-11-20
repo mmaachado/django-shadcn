@@ -101,3 +101,11 @@ accordion uses. Without it the panel still opens and closes, just instantly.
 A animação de altura vem do plugin `collapse` do Alpine, o mesmo que o accordion
 usa. Sem ele o painel continua abrindo e fechando, só que na hora.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="collapsible" />

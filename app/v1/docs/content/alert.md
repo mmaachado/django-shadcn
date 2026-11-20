@@ -54,3 +54,11 @@ uvx django_shadcn@latest add alert
     </c-alert.description>
 </c-alert>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="alert" />

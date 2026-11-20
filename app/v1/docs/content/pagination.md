@@ -114,3 +114,11 @@ phone the controls stay as two arrows.
 Os rótulos ao lado das setas ficam escondidos abaixo do breakpoint `sm`, então
 num celular os controles continuam sendo duas setas.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="pagination" />

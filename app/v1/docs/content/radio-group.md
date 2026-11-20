@@ -113,3 +113,11 @@ pode ter filhos, então aqui o ponto é o fundo pintado só na caixa de conteúd
 resultado visível é o mesmo e o controle continua sendo um campo de formulário
 de verdade.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="radio-group" />

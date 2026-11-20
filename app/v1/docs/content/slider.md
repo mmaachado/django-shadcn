@@ -87,3 +87,11 @@ O Radix aceita vários puxadores numa mesma trilha para selecionar um intervalo.
 Isso precisa de estado compartilhado entre os puxadores e não está aqui; um
 valor por slider.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="slider" />

@@ -178,3 +178,11 @@ linha a largura inteira do card:
 | `value` | `<c-metric.delta>` | — | a variação, mostrada como veio; o sinal escolhe a seta |
 | `label` | `<c-metric.delta>` | — | o texto discreto depois dela, como o período comparado |
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="metric" />

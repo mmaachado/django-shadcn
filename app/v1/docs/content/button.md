@@ -92,3 +92,11 @@ uvx django_shadcn@latest add button
 <c-docs.example>
 <c-button variant="link">Button</c-button>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="button" />

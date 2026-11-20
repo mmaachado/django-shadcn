@@ -71,3 +71,11 @@ uvx django_shadcn@latest add command_dialog
   </c-command.list>
 </c-command-dialog>
 ```
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="command-dialog" />

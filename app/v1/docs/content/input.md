@@ -88,3 +88,11 @@ uvx django_shadcn@latest add input
   <c-button type="submit">Subscribe</c-button>
 </div>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="input" />

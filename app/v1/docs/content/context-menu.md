@@ -175,3 +175,11 @@ do teclado. A mesma limitação do tooltip no posicionamento — o conteúdo é
 colocado no cursor sem medir se cabe, então um clique com o botão direito perto
 da borda de baixo abre um menu que passa dela.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="context-menu" />

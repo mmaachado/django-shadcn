@@ -86,3 +86,11 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
   <c-spinner class="size-6 text-destructive" />
 </div>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="spinner" />

@@ -176,3 +176,11 @@ Como no context menu, não há foco itinerante: a barra responde ao ponteiro e a
 trigger com classes utilitárias, então `align` é uma escolha e não uma medição —
 um menu perto da borda direita pede `align="end"`.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="menubar" />

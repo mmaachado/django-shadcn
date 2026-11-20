@@ -89,3 +89,11 @@ e ele vira um `separator` de verdade, com um `aria-orientation`.
   <p class="pt-4 text-sm text-muted-foreground">Billing</p>
 </div>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="separator" />

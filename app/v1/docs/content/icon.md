@@ -183,3 +183,11 @@ Os ícones vêm do <a href="https://lucide.dev" target="_blank" rel="noopener
 noreferrer" class="font-medium underline underline-offset-4">Lucide</a>,
 sob a licença ISC. O aviso completo vem com o componente, em `icon/LICENSE`.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="icon" />

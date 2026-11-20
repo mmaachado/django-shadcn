@@ -197,3 +197,11 @@ no do horário.
   </c-message>
 </c-message.group>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="message" />

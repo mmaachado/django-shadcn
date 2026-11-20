@@ -183,3 +183,11 @@ são as da página original, sem mudanças.
 <c-docs.example>
 <c-typography.muted>Enter your email address.</c-typography.muted>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="typography" />

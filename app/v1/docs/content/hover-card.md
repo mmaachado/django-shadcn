@@ -109,3 +109,11 @@ Como no tooltip, `side` e `align` são escolhas e não medições — não há p
 nem detecção de colisão. Numa tela de toque não existe hover, então tudo o que
 fica atrás de um hover card precisa ser alcançável de outro jeito.
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="hover-card" />

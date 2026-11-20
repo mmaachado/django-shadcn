@@ -120,3 +120,11 @@ quando precisar de markup próprio nas opções.
   {% endfor %}
 </c-native-select>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="native-select" />

@@ -217,3 +217,11 @@ para um ícone sem moldura.
   </c-item.footer>
 </c-item>
 </c-docs.example>
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="item" />

@@ -62,3 +62,22 @@ msgstr "Documentação completa"
 
 msgid "every page above, inlined as Markdown"
 msgstr "todas as páginas acima, inteiras, em Markdown"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Attribute"
+msgstr "Atributo"
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Values"
+msgstr "Valores"
+
+msgid ""
+"Every part also takes `class`, added to its own classes, and passes any "
+"other attribute on to its element."
+msgstr ""
+"Toda parte também aceita `class`, somada às próprias classes, e repassa "
+"qualquer outro atributo ao seu elemento."

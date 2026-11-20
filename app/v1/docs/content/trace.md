@@ -184,3 +184,11 @@ foco, e a linha passa para a cor de primeiro plano no hover.
 | `<c-trace.collapsible-trigger>` | a linha que o abre, com o chevron |
 | `<c-trace.collapsible-content>` | o detalhe, recuado sob um traço |
 :::
+
+:::en
+## API reference
+:::pt-br
+## Referência da API
+:::
+
+<c-docs.api-reference name="trace" />
