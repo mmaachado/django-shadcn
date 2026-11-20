@@ -30,12 +30,17 @@ description.es: El número grande del que está hecho un dashboard de KPI — un
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add metric
 ```
 
+:::en
 ## Not from shadcn/ui
 
 There is no metric in the upstream registry. This one exists because a KPI
@@ -48,6 +53,20 @@ Everything else here is ordinary typography. If you would rather compose it
 yourself, `card` and `badge` will get you the same place.
 
 ## Usage
+:::pt-br
+## Não vem do shadcn/ui
+
+Não há metric no registry do upstream. Este existe porque um dashboard de KPI é,
+na maior parte, este card repetido, e montá-lo a partir do
+<a href="{% url 'page' slug='card' %}">Card</a> toda vez significava digitar de
+novo os mesmos quatro elementos — incluindo a única parte com uma regra, que é a
+variação descobrindo a própria seta e a própria cor.
+
+Todo o resto aqui é tipografia comum. Se preferir montar você mesmo, `card` e
+`badge` levam ao mesmo lugar.
+
+## Uso
+:::
 
 ```html
 <c-metric>
@@ -57,6 +76,7 @@ yourself, `card` and `badge` will get you the same place.
 </c-metric>
 ```
 
+:::en
 ## The delta reads its own sign
 
 `value` is shown as it arrives, and the sign in it picks the icon and the
@@ -70,11 +90,27 @@ colour — on the server, so the card is right before any JavaScript runs.
 
 Up is not green. There is no green in the palette, and this is not the place to
 invent one — a project that wants it passes it in:
+:::pt-br
+## A variação lê o próprio sinal
+
+`value` é mostrado como chega, e o sinal nele escolhe o ícone e a cor — no
+servidor, então o card já está certo antes de qualquer JavaScript rodar.
+
+| `value` | Ícone | Cor |
+| --- | --- | --- |
+| começa com `-` | em queda | `text-destructive` |
+| exatamente `0` | um traço | `text-muted-foreground` |
+| qualquer outra coisa | em alta | `text-foreground` |
+
+Subir não é verde. Não há verde na paleta, e aqui não é o lugar de inventar um —
+um projeto que o queira passa a cor:
+:::
 
 ```html
 <c-metric.delta value="+20.1%" class="text-emerald-600 dark:text-emerald-400" />
 ```
 
+:::en
 Note that a value going up is not always good news. Churn rising is a bad month
 with an up arrow, which is why the component states the direction and leaves the
 judgement to you.
@@ -84,6 +120,17 @@ judgement to you.
 A sparkline is <a href="{% url 'page' slug='chart' %}">Chart</a> with no grid
 and no axes. Each axis claims its own room, so leaving them out gives the line
 the whole width of the card:
+:::pt-br
+Repare que um valor subindo nem sempre é boa notícia. Churn em alta é um mês
+ruim com uma seta para cima, e é por isso que o componente informa a direção e
+deixa o julgamento com você.
+
+## Com um sparkline
+
+Um sparkline é o <a href="{% url 'page' slug='chart' %}">Chart</a> sem grade e
+sem eixos. Cada eixo reserva o próprio espaço, então deixá-los de fora dá à
+linha a largura inteira do card:
+:::
 
 ```html
 <c-metric>
@@ -98,6 +145,7 @@ the whole width of the card:
 </c-metric>
 ```
 
+:::en
 ## Anatomy
 
 | Tag | What it is |
@@ -113,3 +161,20 @@ the whole width of the card:
 | --- | --- | --- | --- |
 | `value` | `<c-metric.delta>` | — | the change, shown as given; its sign picks the arrow |
 | `label` | `<c-metric.delta>` | — | the quiet text after it, such as the period compared |
+:::pt-br
+## Anatomia
+
+| Tag | O que é |
+| --- | --- |
+| `<c-metric>` | o card |
+| `<c-metric.label>` | o que está sendo medido |
+| `<c-metric.value>` | o número, em algarismos tabulares para que uma fileira de cards se alinhe |
+| `<c-metric.delta>` | a variação, com a seta |
+
+## Props
+
+| Prop | Onde | Padrão | Significado |
+| --- | --- | --- | --- |
+| `value` | `<c-metric.delta>` | — | a variação, mostrada como veio; o sinal escolhe a seta |
+| `label` | `<c-metric.delta>` | — | o texto discreto depois dela, como o período comparado |
+:::
