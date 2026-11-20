@@ -16,13 +16,21 @@ description.es: Un espacio reservado mientras el contenido carga.
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add skeleton
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section background="bg-background">
 <c-skeleton class="h-4 w-[250px]" />
@@ -32,6 +40,7 @@ uvx django_shadcn@latest add skeleton
 <c-skeleton class="h-4 w-[250px]" />
 ```
 
+:::en
 The component ships no dimensions of its own. Give it the size and shape of
 whatever it stands in for.
 
@@ -42,6 +51,18 @@ stay visible.
 ## Examples
 
 ### Card
+:::pt-br
+O componente não traz dimensões próprias. Dê a ele o tamanho e a forma do que
+quer que ele esteja substituindo.
+
+Ele é preenchido com `bg-accent`, que tem o mesmo valor de `bg-muted` na paleta
+padrão. As demos abaixo ficam sobre o fundo da página para que as formas
+continuem visíveis.
+
+## Exemplos
+
+### Card
+:::
 
 <c-docs.demo-section background="bg-background">
 
@@ -64,7 +85,11 @@ stay visible.
 </div>
 ```
 
+:::en
 ### Avatar and text
+:::pt-br
+### Avatar e texto
+:::
 
 <c-docs.demo-section background="bg-background">
 
@@ -87,7 +112,11 @@ stay visible.
 </div>
 ```
 
+:::en
 ### Standing in for a card
+:::pt-br
+### No lugar de um card
+:::
 
 <c-docs.demo-section background="bg-background">
 <c-card class="w-[320px]">

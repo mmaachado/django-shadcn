@@ -13,13 +13,21 @@ description.es: Organiza la etiqueta, el control, la descripción y los errores 
 </c-field>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add field
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-field>
@@ -29,6 +37,7 @@ uvx django_shadcn@latest add field
 </c-field>
 ```
 
+:::en
 <a href="{% url 'page' slug='form' %}" class="font-medium underline underline-offset-4">Form</a>
 covers the same ground with a smaller surface. Field is the newer shadcn/ui
 component: more parts, orientations, and a group that lays out several
@@ -37,6 +46,16 @@ fields at once.
 ## Examples
 
 ### Group
+:::pt-br
+O <a href="{% url 'page' slug='form' %}" class="font-medium underline underline-offset-4">Form</a>
+cobre o mesmo terreno com uma superfície menor. O Field é o componente mais novo
+do shadcn/ui: mais partes, orientações, e um grupo que diagrama vários campos de
+uma vez.
+
+## Exemplos
+
+### Grupo
+:::
 
 <c-docs.demo-section>
 <c-field.group class="w-full max-w-md text-start">
@@ -59,7 +78,11 @@ fields at once.
 </c-field.group>
 ```
 
+:::en
 ### Horizontal
+:::pt-br
+### Horizontal
+:::
 
 <c-docs.demo-section>
 <c-field orientation="horizontal" class="w-full max-w-md text-start">
@@ -81,7 +104,11 @@ fields at once.
 </c-field>
 ```
 
+:::en
 ### Fieldset and legend
+:::pt-br
+### Fieldset e legenda
+:::
 
 <c-docs.demo-section>
 <c-field.set class="w-full max-w-md text-start">
@@ -108,7 +135,11 @@ fields at once.
 </c-field.set>
 ```
 
+:::en
 ### Separator
+:::pt-br
+### Separador
+:::
 
 <c-docs.demo-section>
 <c-field.group class="w-full max-w-md text-start">
@@ -128,7 +159,11 @@ fields at once.
 <c-field.separator>or</c-field.separator>
 ```
 
+:::en
 ### Errors
+:::pt-br
+### Erros
+:::
 
 <c-docs.demo-section>
 
@@ -153,7 +188,11 @@ fields at once.
 <c-field.error :errors="form.handle.errors" />
 ```
 
+:::en
 ### Title inside a label
+:::pt-br
+### Título dentro de um rótulo
+:::
 
 <c-docs.demo-section>
 <c-field.label class="w-full max-w-md text-start">
@@ -179,9 +218,19 @@ fields at once.
 </c-field.label>
 ```
 
+:::en
 ## Notes
 
 Upstream, `FieldError` takes either children or an array of errors and
 renders a list when there is more than one. Here `errors` takes a Django
 form field's error list directly, with the same rule: one error inline,
 several as a bulleted list. Nothing renders when both are empty.
+:::pt-br
+## Observações
+
+No upstream, o `FieldError` aceita ou filhos ou um array de erros, e renderiza
+uma lista quando há mais de um. Aqui `errors` aceita diretamente a lista de
+erros de um campo de formulário Django, com a mesma regra: um erro em linha,
+vários como uma lista com marcadores. Nada é renderizado quando os dois estão
+vazios.
+:::

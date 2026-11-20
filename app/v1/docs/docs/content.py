@@ -22,6 +22,12 @@ EXTENSIONS = ["fenced_code", "tables", "attr_list", "sane_lists"]
 FRONT_MATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
 CODE_BLOCK = re.compile(r"<pre>.*?</pre>", re.DOTALL)
 
+# :::pt-br opens a language inside a passage, a bare ::: closes the passage.
+PASSAGE = re.compile(r"^:::([a-z]{2}(?:-[a-z]+)?)?[ \t]*$")
+FENCE = re.compile(r"^(```|~~~)")
+DEMO_OPEN = re.compile(r"^<c-docs\.demo-section\b")
+DEMO_CLOSE = re.compile(r"</c-docs\.demo-section>")
+
 
 class PageNotFound(Exception):
     pass
@@ -74,22 +80,178 @@ def _localize(meta):
     return resolved
 
 
+class PassageError(ValueError):
+    pass
+
+
+def _passages(body):
+    """Split a body into markup and translated passages, in order.
+
+    Prose that has a translation is written as a passage, one block per
+    language, closed by a bare marker:
+
+        :::en
+        ## Usage
+        :::pt-br
+        ## Uso
+        :::
+
+    Everything outside a passage, the demos and the fenced code above all, is
+    written once and shared by every language. Yields ("text", str) for that
+    and ("passage", {language: str}) for each passage.
+    """
+    languages = {code for code, _name in settings.LANGUAGES}
+    text, passage, current, fence = [], None, None, None
+
+    for number, line in enumerate(body.splitlines(keepends=True), 1):
+        marker = PASSAGE.match(line)
+        opens_fence = FENCE.match(line)
+
+        if fence:
+            if line.strip() == fence:
+                fence = None
+        elif opens_fence or DEMO_OPEN.match(line):
+            if opens_fence:
+                fence = opens_fence.group(1)
+            if passage is not None:
+                raise PassageError(
+                    f"line {number}: demos and fenced code belong outside a "
+                    "passage, written once for every language"
+                )
+        elif marker and marker.group(1):
+            language = marker.group(1)
+            if language not in languages:
+                raise PassageError(
+                    f"line {number}: unknown language {language}"
+                )
+            if passage is None:
+                if text:
+                    yield "text", "".join(text)
+                    text = []
+                passage = {}
+            if language in passage:
+                raise PassageError(f"line {number}: {language} given twice")
+            passage[language] = []
+            current = language
+            continue
+        elif marker:
+            if passage is None:
+                raise PassageError(f"line {number}: ::: closes no passage")
+            if "en" not in passage:
+                raise PassageError(f"line {number}: a passage needs English")
+            yield "passage", {
+                key: "".join(lines) for key, lines in passage.items()
+            }
+            passage, current = None, None
+            continue
+
+        if passage is None:
+            text.append(line)
+        else:
+            passage[current].append(line)
+
+    if passage is not None:
+        raise PassageError("a passage is never closed with :::")
+    if text:
+        yield "text", "".join(text)
+
+
+def _translate(body, language):
+    """The body in one language, English wherever a passage lacks it."""
+    return "".join(
+        payload if kind == "text" else payload.get(language, payload["en"])
+        for kind, payload in _passages(body)
+    )
+
+
+def _override(slug, language):
+    return CONTENT_ROOT / language / f"{slug}.md"
+
+
+def _read(path):
+    return _split_front_matter(path.read_text(encoding="utf-8"))
+
+
 def source(slug):
     """Return the front matter and the raw Markdown body of a page.
 
-    A page translated into the active language wins; anything untranslated
-    falls back to English rather than disappearing.
+    A whole-file override in content/<language>/ wins, for the pages that are
+    nearly all prose. Otherwise the English file is read, and its passages
+    resolve to the active language; anything untranslated falls back to
+    English rather than disappearing.
     """
     language = get_language() or "en"
-    candidates = [CONTENT_ROOT / language / f"{slug}.md"]
-    candidates.append(CONTENT_ROOT / f"{slug}.md")
+    override = _override(slug, language)
+    path = override if override.is_file() else CONTENT_ROOT / f"{slug}.md"
 
-    for path in candidates:
-        if path.is_file():
-            meta, body = _split_front_matter(path.read_text(encoding="utf-8"))
-            return _localize(meta), body
+    if not path.is_file():
+        raise PageNotFound(slug)
 
-    raise PageNotFound(slug)
+    meta, body = _read(path)
+    return _localize(meta), _translate(body, language)
+
+
+def _is_prose(line):
+    stripped = line.strip()
+    return bool(stripped) and not stripped.startswith(("<", "{%"))
+
+
+def untranslated(slug, language):
+    """English prose a reader of the language would see, first line of each
+    paragraph. Empty when the page is fully translated."""
+    if language == "en" or _override(slug, language).is_file():
+        return []
+
+    meta, body = _read(CONTENT_ROOT / f"{slug}.md")
+    missing = missing_prose(body, language)
+    if "description" in meta and f"description.{language}" not in meta:
+        missing.insert(0, f"description: {meta['description']}")
+    return missing
+
+
+def coverage(language):
+    """Every page in the sidebar that still shows English to a reader of the
+    language, with the passages it lacks."""
+    from .nav import SLUGS
+
+    report = {slug: untranslated(slug, language) for slug in SLUGS}
+    return {slug: missing for slug, missing in report.items() if missing}
+
+
+def missing_prose(body, language):
+    """The English prose of a body that has no passage in the language."""
+    missing = []
+
+    for kind, payload in _passages(body):
+        if kind == "passage":
+            if language not in payload:
+                prose = [
+                    line.strip()
+                    for line in payload["en"].splitlines()
+                    if _is_prose(line)
+                ]
+                missing += prose[:1]
+            continue
+
+        demo = fence = paragraph = False
+        for line in payload.splitlines():
+            if fence:
+                fence = not FENCE.match(line)
+            elif FENCE.match(line):
+                fence = True
+            elif DEMO_OPEN.match(line):
+                demo = not DEMO_CLOSE.search(line)
+            elif demo:
+                demo = not DEMO_CLOSE.search(line)
+            elif _is_prose(line) and not paragraph:
+                missing.append(line.strip())
+            paragraph = (
+                _is_prose(line)
+                and not (fence or demo)
+                and not FENCE.match(line)
+            )
+
+    return missing
 
 
 def render(slug, context=None):

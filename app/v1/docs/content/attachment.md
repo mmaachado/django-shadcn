@@ -33,13 +33,21 @@ description.es: Un archivo dentro de un mensaje, con vista previa, metadatos, es
 </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add attachment
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-attachment>
@@ -58,6 +66,7 @@ uvx django_shadcn@latest add attachment
 </c-attachment>
 ```
 
+:::en
 The card is presentational. Nothing here uploads a file or tracks progress — you
 set `state` from whatever already knows, and the card follows.
 
@@ -66,6 +75,16 @@ set `state` from whatever already knows, and the card follows.
 Five, and each one changes more than a label: `idle` dashes the border,
 `uploading` and `processing` shimmer the title, `error` turns the border and
 the media red.
+:::pt-br
+O card é só apresentação. Nada aqui envia um arquivo ou acompanha o progresso —
+você define `state` a partir do que já sabe disso, e o card acompanha.
+
+## Estados
+
+São cinco, e cada um muda mais do que um rótulo: `idle` deixa a borda
+tracejada, `uploading` e `processing` fazem o título cintilar, `error` deixa a
+borda e a mídia vermelhas.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
@@ -122,6 +141,7 @@ the media red.
 <c-attachment state="error">...</c-attachment>
 ```
 
+:::en
 The shimmer on the title is the `shimmer` utility from `input.css`. It stops
 by itself when the reader has asked for reduced motion.
 
@@ -129,6 +149,15 @@ by itself when the reader has asked for reduced motion.
 
 `size` takes `default`, `sm` and `xs`. `orientation="vertical"` turns the card
 into a tile, with the media on top and the actions floating over its corner.
+:::pt-br
+O brilho no título é o utilitário `shimmer` do `input.css`. Ele para sozinho
+quando o leitor pediu menos movimento.
+
+## Tamanhos e orientação
+
+`size` aceita `default`, `sm` e `xs`. `orientation="vertical"` transforma o card
+em um bloco, com a mídia em cima e as ações flutuando sobre o canto dela.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
@@ -172,6 +201,7 @@ into a tile, with the media on top and the actions floating over its corner.
 <c-attachment orientation="vertical">...</c-attachment>
 ```
 
+:::en
 ## Examples
 
 ### A card that opens the file
@@ -179,6 +209,15 @@ into a tile, with the media on top and the actions floating over its corner.
 `trigger` covers the whole card, so the card itself is the target. It sits
 behind the actions on purpose: the remove button keeps its own click and its
 own tab stop, and neither swallows the other.
+:::pt-br
+## Exemplos
+
+### Um card que abre o arquivo
+
+O `trigger` cobre o card inteiro, então o próprio card é o alvo. Ele fica atrás
+das ações de propósito: o botão de remover mantém o próprio clique e a própria
+parada de tab, e nenhum dos dois engole o outro.
+:::
 
 <c-docs.demo-section>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
@@ -212,6 +251,7 @@ own tab stop, and neither swallows the other.
 </c-attachment>
 ```
 
+:::en
 The trigger has no text of its own, so it needs an `aria-label`. Without one it
 is an unlabelled control covering the entire card.
 
@@ -222,6 +262,18 @@ opens a preview instead of navigating.
 
 `group` scrolls sideways, snaps each card into place and fades the edge you have
 scrolled away from.
+:::pt-br
+O trigger não tem texto próprio, então precisa de um `aria-label`. Sem ele, é
+um controle sem rótulo cobrindo o card inteiro.
+
+Sem `tag`, ele renderiza um `button` com `type="button"`, para um card que abre
+uma pré-visualização em vez de navegar.
+
+### Uma fileira de arquivos
+
+O `group` rola para o lado, encaixa cada card no lugar e esmaece a borda da qual
+você rolou para longe.
+:::
 
 <c-docs.demo-section>
 <c-attachment.group class="w-full max-w-md">
@@ -267,10 +319,17 @@ scrolled away from.
 </c-attachment.group>
 ```
 
+:::en
 The scroll, the snapping and the fade are all CSS. There is no JavaScript in
 this component.
 
 ### Inside a message
+:::pt-br
+A rolagem, o encaixe e o esmaecimento são todos CSS. Não há JavaScript neste
+componente.
+
+### Dentro de uma mensagem
+:::
 
 <c-docs.demo-section>
 <c-message.group class="w-full max-w-md text-start">

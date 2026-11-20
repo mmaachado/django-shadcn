@@ -13,13 +13,21 @@ description.es: Un conjunto de toggles que comparten un mismo contorno.
 </c-toggle-group>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add toggle_group
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-toggle-group>
@@ -37,11 +45,19 @@ uvx django_shadcn@latest add toggle_group
 </c-toggle-group>
 ```
 
+:::en
 Variant and size go on the group, not on each item.
 
 ## Examples
 
 ### Outline
+:::pt-br
+A variante e o tamanho vão no grupo, não em cada item.
+
+## Exemplos
+
+### Outline
+:::
 
 <c-docs.demo-section>
 <c-toggle-group variant="outline">
@@ -59,7 +75,11 @@ Variant and size go on the group, not on each item.
 </c-toggle-group>
 ```
 
+:::en
 ### Sizes
+:::pt-br
+### Tamanhos
+:::
 
 <c-docs.demo-section>
 <div class="flex flex-col items-center gap-4">
@@ -81,7 +101,11 @@ Variant and size go on the group, not on each item.
 <c-toggle-group variant="outline" size="lg">...</c-toggle-group>
 ```
 
+:::en
 ### Spaced
+:::pt-br
+### Espaçado
+:::
 
 <c-docs.demo-section>
 <c-toggle-group variant="outline" spacing="1">
@@ -97,6 +121,7 @@ Variant and size go on the group, not on each item.
 </c-toggle-group>
 ```
 
+:::en
 ## Notes
 
 Radix hands variant and size down through React context. Cotton has no
@@ -107,3 +132,16 @@ rules live on the group rather than on the item.
 
 Each item keeps its own pressed state. Radix also offers single-selection mode,
 where picking one clears the rest — that needs shared state and is not here yet.
+:::pt-br
+## Observações
+
+O Radix passa a variante e o tamanho para baixo pelo contexto do React. O cotton
+não tem equivalente, então o grupo estiliza os próprios filhos com seletores
+`[&>*]`. Duas condições `data-*` num mesmo elemento se combinam como você
+esperaria; dois `group-data-*` se encadeariam num seletor de descendente, e é
+por isso que as regras ficam no grupo e não no item.
+
+Cada item mantém o próprio estado de pressionado. O Radix também oferece um modo
+de seleção única, em que escolher um desmarca os outros — isso precisa de estado
+compartilhado e ainda não está aqui.
+:::

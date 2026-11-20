@@ -31,13 +31,21 @@ description.es: Muestra contenido enriquecido sobre la página, abierto por un b
 </c-popover>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add popover
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-popover>

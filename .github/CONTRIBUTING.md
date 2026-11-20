@@ -121,6 +121,32 @@ The last two are what makes the component findable, and they are written in the
 same pull request as the component itself — documentation written later is
 documentation that describes an earlier version.
 
+## Translating a page
+
+A page is one file, whatever the language. Prose that has a translation is
+written as a passage, one block per language, closed by a bare `:::`:
+
+```markdown
+:::en
+## Usage
+
+Press the button.
+:::pt-br
+## Uso
+
+Aperte o botão.
+:::
+```
+
+The active language picks its block, and a language with no block falls back
+to English, as does prose outside any passage. Demos and fenced code stay
+outside the passages, written once for every language: a passage that holds
+either fails to render. The `description` in the front matter takes a suffix
+instead, as in `description.pt-br:`.
+
+`introduction` and `installation` are nearly all prose, so they are translated
+as whole files in `content/<language>/`.
+
 ## Tests and linting
 
 ```bash

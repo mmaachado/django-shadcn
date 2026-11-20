@@ -22,13 +22,21 @@ description.es: Un conjunto de opciones donde solo se puede elegir una.
 </c-radio-group>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add radio_group
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-radio-group class="text-start">
@@ -56,12 +64,21 @@ uvx django_shadcn@latest add radio_group
 </c-radio-group>
 ```
 
+:::en
 Items are native radios, so `name` groups them and the browser handles the
 exclusivity, the keyboard and the form submission.
 
 ## Examples
 
 ### From a Django form
+:::pt-br
+Os itens são radios nativos, então o `name` os agrupa e o navegador cuida da
+exclusividade, do teclado e do envio do formulário.
+
+## Exemplos
+
+### A partir de um formulário Django
+:::
 
 ```html
 <c-radio-group>
@@ -74,7 +91,11 @@ exclusivity, the keyboard and the form submission.
 </c-radio-group>
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-radio-group class="text-start">
@@ -93,9 +114,19 @@ exclusivity, the keyboard and the form submission.
 <c-radio-group.item name="tier" value="one" checked disabled />
 ```
 
+:::en
 ## Notes
 
 Radix draws the dot with a nested indicator element. A native radio cannot hold
 children, so the dot here is the background painted onto the content box only —
 `bg-clip-content` with a small padding shrinks it to a circle in the middle.
 The visible result is the same and the control stays a real form field.
+:::pt-br
+## Observações
+
+O Radix desenha o ponto com um elemento indicador aninhado. Um radio nativo não
+pode ter filhos, então aqui o ponto é o fundo pintado só na caixa de conteúdo —
+`bg-clip-content` com um padding pequeno o reduz a um círculo no meio. O
+resultado visível é o mesmo e o controle continua sendo um campo de formulário
+de verdade.
+:::

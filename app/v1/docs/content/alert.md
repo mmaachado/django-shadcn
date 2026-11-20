@@ -30,13 +30,21 @@ description.es: Destaca un aviso para llamar la atención del usuario.
         </c-alert>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add alert
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-alert variant='default'>

@@ -33,13 +33,21 @@ description.es: Una barra de menús, como la de una aplicación de escritorio.
 </c-menubar>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add menubar
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-menubar>
@@ -77,6 +85,7 @@ uvx django_shadcn@latest add menubar
 </c-menubar>
 ```
 
+:::en
 Open one menu and the others answer to hover — moving along the bar switches
 between them without another click, which is what makes a menubar feel like
 one. Clicking the open trigger again, picking an item, pressing `Escape` or
@@ -85,6 +94,16 @@ clicking away all close it.
 ## Examples
 
 ### Checkboxes and radios
+:::pt-br
+Abra um menu e os outros passam a responder ao hover — andar pela barra troca de
+um para o outro sem outro clique, que é o que faz um menubar parecer um. Clicar
+de novo no trigger aberto, escolher um item, apertar `Escape` ou clicar fora
+fecha o menu.
+
+## Exemplos
+
+### Checkboxes e radios
+:::
 
 <c-docs.demo-section>
 <c-menubar>
@@ -114,7 +133,11 @@ clicking away all close it.
 </c-menubar.radio-group>
 ```
 
+:::en
 ### Submenu
+:::pt-br
+### Submenu
+:::
 
 <c-docs.demo-section>
 <c-menubar>
@@ -146,7 +169,11 @@ clicking away all close it.
 </c-menubar.sub>
 ```
 
+:::en
 ### Alignment
+:::pt-br
+### Alinhamento
+:::
 
 <c-docs.demo-section>
 <c-menubar>
@@ -166,6 +193,7 @@ clicking away all close it.
 <c-menubar.content align="end">...</c-menubar.content>
 ```
 
+:::en
 ## Notes
 
 Which menu is open is tracked by element identity rather than a name you have
@@ -177,3 +205,16 @@ Like the context menu, there is no roving focus: the bar answers to the
 pointer and to `Escape`, not to the arrow keys. The content is positioned
 against its trigger with utility classes, so `align` is a choice rather than a
 measurement — a menu near the right edge wants `align="end"`.
+:::pt-br
+## Observações
+
+Qual menu está aberto é rastreado pela identidade do elemento, e não por um nome
+que você tenha de inventar, então um `<c-menubar.menu>` não precisa de `value`.
+O trigger e o conteúdo se encontram pelo menu que os dois têm como pai, e é por
+isso que os dois precisam ser filhos diretos dele.
+
+Como no context menu, não há foco itinerante: a barra responde ao ponteiro e ao
+`Escape`, não às setas do teclado. O conteúdo é posicionado em relação ao
+trigger com classes utilitárias, então `align` é uma escolha e não uma medição —
+um menu perto da borda direita pede `align="end"`.
+:::

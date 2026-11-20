@@ -41,13 +41,21 @@ A list of your recent invoices.
 </c-table>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add table
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-table>
@@ -71,9 +79,15 @@ uvx django_shadcn@latest add table
 </c-table>
 ```
 
+:::en
 ## Examples
 
 ### Empty Table
+:::pt-br
+## Exemplos
+
+### Tabela vazia
+:::
 
 <c-docs.demo-section>
 <c-table>

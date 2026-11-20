@@ -18,21 +18,35 @@ description.es: Un control que el usuario alterna entre marcado y sin marcar.
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add checkbox
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-checkbox id="terms" />
 ```
 
+:::en
 ## Examples
 
 ### With text
+:::pt-br
+## Exemplos
+
+### Com texto
+:::
 
 <c-docs.demo-section>
 
@@ -69,7 +83,11 @@ uvx django_shadcn@latest add checkbox
 </div>
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-checkbox id='terms' disabled />

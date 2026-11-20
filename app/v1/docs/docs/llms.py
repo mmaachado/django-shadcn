@@ -9,11 +9,12 @@ import re
 
 from django.http import HttpResponse
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from .content import source
 from .nav import NAV
 
-SUMMARY = (
+SUMMARY = _(
     "django-shadcn is an unofficial Django port of shadcn/ui. It ships as a "
     "CLI that copies django-cotton templates into your project, so the "
     "components become your code rather than a dependency. Components are "
@@ -40,16 +41,16 @@ def llms_txt(request):
     for section, entries in NAV:
         lines += [f"## {section}", ""]
         for slug, label in entries:
-            meta, _ = source(slug)
+            meta, _body = source(slug)
             url = absolute("page", slug=slug)
             lines.append(f"- [{label}]({url}): {meta.get('description', '')}")
         lines.append("")
 
     lines += [
-        "## Optional",
+        f"## {_('Optional')}",
         "",
-        f"- [Full documentation]({absolute('llms-full')}): every page above, "
-        "inlined as Markdown",
+        f"- [{_('Full documentation')}]({absolute('llms-full')}): "
+        f"{_('every page above, inlined as Markdown')}",
         "",
     ]
 
@@ -57,9 +58,9 @@ def llms_txt(request):
 
 
 def llms_full_txt(request):
-    parts = ["# django-shadcn", "", SUMMARY, ""]
+    parts = ["# django-shadcn", "", str(SUMMARY), ""]
 
-    for _, entries in NAV:
+    for _section, entries in NAV:
         for slug, _label in entries:
             meta, body = source(slug)
             parts += [

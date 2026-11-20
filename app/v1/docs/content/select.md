@@ -20,13 +20,21 @@ description.es: Una lista de opciones para que el usuario elija, abierta por un 
 </c-select>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add select
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-select class="w-[180px]">
@@ -54,9 +62,15 @@ uvx django_shadcn@latest add select
 </c-select>
 ```
 
+:::en
 ## Examples
 
 ### Disabled
+:::pt-br
+## Exemplos
+
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-select name="library" class="w-[180px]">

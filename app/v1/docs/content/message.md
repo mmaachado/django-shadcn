@@ -31,13 +31,21 @@ description.es: La fila de una conversación: avatar, alineación, encabezado y 
 </c-message.group>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add message
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-message>
@@ -56,6 +64,7 @@ uvx django_shadcn@latest add message
 </c-message>
 ```
 
+:::en
 `message` is layout and nothing else. It decides which side the row sits on and
 where the avatar, the header and the footer go; what fills the middle is up to
 you. In a chat that is usually a [Bubble]({% url 'page' slug='bubble' %}), but a card, a table or
@@ -65,6 +74,17 @@ a plain paragraph all work.
 
 `align="end"` flips the row, and everything inside follows: the content moves to
 the far side, the footer aligns with it, and the avatar changes sides.
+:::pt-br
+`message` é layout e mais nada. Ele decide de que lado a linha fica e onde vão o
+avatar, o cabeçalho e o rodapé; o que preenche o meio fica a seu critério. Num
+chat costuma ser um [Bubble]({% url 'page' slug='bubble' %}), mas um card, uma
+tabela ou um parágrafo simples também funcionam.
+
+## Alinhamento
+
+`align="end"` inverte a linha, e tudo dentro dela acompanha: o conteúdo vai para
+o lado oposto, o rodapé se alinha com ele e o avatar troca de lado.
+:::
 
 <c-docs.demo-section>
 <c-message.group class="w-full max-w-md text-start">
@@ -105,12 +125,22 @@ the far side, the footer aligns with it, and the avatar changes sides.
 </c-message>
 ```
 
+:::en
 ## Examples
 
 ### Grouped
 
 `group` stacks a run from the same sender. Give the avatar to the last message
 of the run and leave it off the others, so the run reads as one turn.
+:::pt-br
+## Exemplos
+
+### Agrupadas
+
+O `group` empilha uma sequência do mesmo remetente. Dê o avatar à última
+mensagem da sequência e deixe-o de fora das outras, para que a sequência seja
+lida como uma vez só de falar.
+:::
 
 <c-docs.demo-section>
 <c-message.group class="w-full max-w-md text-start">
@@ -154,12 +184,21 @@ of the run and leave it off the others, so the run reads as one turn.
 </c-message.group>
 ```
 
+:::en
 ### Header and footer
 
 The header names the sender and stays where the reader starts, whatever the
 alignment. The footer carries status or actions and follows the message side.
 When a footer is present the avatar lifts so it stays level with the message
 rather than with the timestamp.
+:::pt-br
+### Cabeçalho e rodapé
+
+O cabeçalho dá o nome de quem envia e fica onde o leitor começa, qualquer que
+seja o alinhamento. O rodapé leva status ou ações e acompanha o lado da
+mensagem. Quando há rodapé, o avatar sobe para ficar no nível da mensagem e não
+no do horário.
+:::
 
 <c-docs.demo-section>
 <c-message.group class="w-full max-w-md text-start">

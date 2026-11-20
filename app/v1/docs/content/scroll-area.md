@@ -19,13 +19,21 @@ description.es: Un área desplazable con barra de desplazamiento acorde al tema.
 </c-scroll-area>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add scroll_area
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-scroll-area class="h-32 w-[320px] rounded-md border">
@@ -43,11 +51,20 @@ of the operating system that wandered in.
 </c-scroll-area>
 ```
 
+:::en
 The size goes on the component; the content inside is free to be taller.
 
 ## Examples
 
 ### Horizontal
+:::pt-br
+O tamanho vai no componente; o conteúdo dentro dele pode ser mais alto à
+vontade.
+
+## Exemplos
+
+### Horizontal
+:::
 
 <c-docs.demo-section>
 <c-scroll-area class="w-[320px] rounded-md border">
@@ -68,6 +85,7 @@ The size goes on the component; the content inside is free to be taller.
 </c-scroll-area>
 ```
 
+:::en
 ## Notes
 
 Radix hides the native scrollbar and draws its own with JavaScript, which is
@@ -75,3 +93,12 @@ how it gets the same thin bar everywhere. Here the native scrollbar is styled
 instead: momentum scrolling and the platform behaviour stay intact, and the
 trade is that Firefox only honours the width and the colour, not the rounded
 thumb.
+:::pt-br
+## Observações
+
+O Radix esconde a barra de rolagem nativa e desenha a dele com JavaScript, que é
+como consegue a mesma barra fina em todo lugar. Aqui a barra nativa é
+estilizada: a rolagem com embalo e o comportamento da plataforma continuam
+intactos, e a troca é que o Firefox só respeita a largura e a cor, não o
+puxador arredondado.
+:::

@@ -55,13 +55,21 @@ Install and set up your project.
 
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add navigation_menu
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-navigation-menu>
@@ -117,9 +125,15 @@ uvx django_shadcn@latest add navigation_menu
 </c-navigation-menu>
 ```
 
+:::en
 ## Examples
 
 ###
+:::pt-br
+## Exemplos
+
+###
+:::
 
 <c-docs.demo-section>
 <c-card class="w-[380px]">

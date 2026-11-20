@@ -9,13 +9,21 @@ description.es: Un indicador de que algo está en marcha.
 <c-spinner />
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add spinner
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-spinner />
@@ -25,12 +33,21 @@ uvx django_shadcn@latest add spinner
 <c-spinner />
 ```
 
+:::en
 It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 `role="status"` and an accessible label.
 
 ## Examples
 
 ### Sizes
+:::pt-br
+É o ícone `loader-circle` do lucide com `animate-spin`, já levando
+`role="status"` e um rótulo acessível.
+
+## Exemplos
+
+### Tamanhos
+:::
 
 <c-docs.demo-section>
 
@@ -48,7 +65,11 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 <c-spinner class="size-6" />
 ```
 
+:::en
 ### Inside a button
+:::pt-br
+### Dentro de um botão
+:::
 
 <c-docs.demo-section>
 
@@ -71,7 +92,11 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 </c-button>
 ```
 
+:::en
 ### Color
+:::pt-br
+### Cor
+:::
 
 <c-docs.demo-section>
 

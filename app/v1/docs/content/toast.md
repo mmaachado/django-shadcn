@@ -24,13 +24,21 @@ Show Toast
 
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add toast
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-toast.trigger toast_target="toast-success"> Show Toast </c-toast.trigger>
@@ -39,9 +47,15 @@ uvx django_shadcn@latest add toast
 </c-toast>
 ```
 
+:::en
 ## Examples
 
 ### Simple
+:::pt-br
+## Exemplos
+
+### Simples
+:::
 
 <c-docs.demo-section>
 <c-button variant="outline">
@@ -63,7 +77,11 @@ Show Toast
 </c-toast>
 ```
 
+:::en
 ### With title
+:::pt-br
+### Com título
+:::
 
 <c-docs.demo-section>
 <c-button variant="outline">
@@ -85,7 +103,11 @@ Show Toast
 </c-toast>
 ```
 
+:::en
 ### With Action
+:::pt-br
+### Com ação
+:::
 
 <c-docs.demo-section>
 <c-button variant="outline">
@@ -111,7 +133,11 @@ Show Toast
 </c-toast>
 ```
 
+:::en
 ### Destructive
+:::pt-br
+### Destructive
+:::
 
 <c-docs.demo-section>
 <c-button variant="outline">
