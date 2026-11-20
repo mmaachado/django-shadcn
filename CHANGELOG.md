@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.9.0 — Unreleased
+## 1.9.0 — 2026-11-19
+
+Right to left. The components mirror under `dir="rtl"`, a test keeps them
+that way, and a new `direction` page shows the one attribute that sets it.
 
 ### Changed
 
