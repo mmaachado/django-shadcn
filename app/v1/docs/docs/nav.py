@@ -20,6 +20,7 @@ NAV = [
             ("theming", _("Theming")),
             ("cli", _("CLI")),
             ("forms", _("Forms and Django")),
+            ("alpine", _("Alpine and JavaScript")),
         ],
     ),
     (

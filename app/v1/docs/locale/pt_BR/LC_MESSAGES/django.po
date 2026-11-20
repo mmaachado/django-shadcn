@@ -102,3 +102,6 @@ msgstr "CLI"
 
 msgid "Forms and Django"
 msgstr "Formulários e Django"
+
+msgid "Alpine and JavaScript"
+msgstr "Alpine e JavaScript"
