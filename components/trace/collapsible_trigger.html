@@ -1,0 +1,25 @@
+<c-vars class=""></c-vars>
+
+<button
+    type="button"
+    @click="open = !open"
+    x-bind:aria-expanded="open"
+    x-bind:data-state="open ? 'open' : 'closed'"
+    class="
+    group/trace-collapsible-trigger flex w-fit max-w-full min-w-0
+    cursor-pointer items-center gap-1 rounded-md text-start
+    text-muted-foreground transition-colors outline-none hover:text-foreground
+    focus-visible:ring-3 focus-visible:ring-ring/50
+    has-[[data-status=error]]:text-destructive
+    {% if class %}
+        {{ class }}
+    {% endif %}
+    "
+    data-slot="trace-collapsible-trigger"
+    {{ attrs }}
+>
+    {{ slot }}
+    <c-trace.icon class="transition-transform group-aria-expanded/trace-collapsible-trigger:rotate-90">
+        <c-icon name="chevron-right" />
+    </c-trace.icon>
+</button>

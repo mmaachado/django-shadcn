@@ -147,6 +147,7 @@ registry: dict[str, Component] = {
     'toggle': Component(),
     'toggle_group': Component(),
     'tooltip': Component(),
+    'trace': Component(depends=('icon',), scripts=(COLLAPSE,)),
     'typography': Component(),
 }
 

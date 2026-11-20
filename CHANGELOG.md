@@ -10,6 +10,10 @@
   copies `value`, or the block's own text when there is none, and announces
   "Copied" for two seconds. The content is always left to right. No syntax
   highlighting, as upstream.
+- **`trace`.** The steps behind an answer in a chat: lines with an icon, a
+  title and a description, a `status` of `running`, `error` or `pending`, and
+  a collapsible step whose chevron turns as it opens. A line inside a link or
+  a button becomes one, with a focus ring.
 
 ### Fixed
 

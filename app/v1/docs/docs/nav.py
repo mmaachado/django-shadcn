@@ -96,6 +96,7 @@ NAV = [
             ("toggle", "Toggle"),
             ("toggle-group", "Toggle Group"),
             ("tooltip", "Tooltip"),
+            ("trace", "Trace"),
             ("typography", "Typography"),
         ],
     ),

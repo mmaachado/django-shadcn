@@ -484,6 +484,9 @@
   .ms-6 {
     margin-inline-start: calc(var(--spacing) * 6);
   }
+  .ms-\[calc\(--spacing\(2\)-1px\)\] {
+    margin-inline-start: calc(calc(var(--spacing) * 2) - 1px);
+  }
   .ms-auto {
     margin-inline-start: auto;
   }
@@ -1799,11 +1802,17 @@
   .ps-3 {
     padding-inline-start: calc(var(--spacing) * 3);
   }
+  .ps-4 {
+    padding-inline-start: calc(var(--spacing) * 4);
+  }
   .ps-6 {
     padding-inline-start: calc(var(--spacing) * 6);
   }
   .ps-8 {
     padding-inline-start: calc(var(--spacing) * 8);
+  }
+  .pe-1 {
+    padding-inline-end: var(--spacing);
   }
   .pe-2 {
     padding-inline-end: calc(var(--spacing) * 2);
@@ -2012,6 +2021,12 @@
   }
   .text-muted-foreground {
     color: var(--muted-foreground);
+  }
+  .text-muted-foreground\/70 {
+    color: var(--muted-foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+    }
   }
   .text-popover-foreground {
     color: var(--popover-foreground);
@@ -2379,6 +2394,9 @@
   }
   .group-has-\[\>input\:checked\]\/questionnaire-choice\:text-primary-foreground:is(:where(.group\/questionnaire-choice):has( > input:checked) *) {
     color: var(--primary-foreground);
+  }
+  .group-aria-expanded\/trace-collapsible-trigger\:rotate-90:is(:where(.group\/trace-collapsible-trigger)[aria-expanded="true"] *) {
+    rotate: 90deg;
   }
   .group-data-\[align\=end\]\/bubble\:self-end:is(:where(.group\/bubble)[data-align="end"] *) {
     align-self: flex-end;
@@ -3249,6 +3267,12 @@
   :where([data-side="right"]) .in-data-\[side\=right\]\:cursor-e-resize {
     cursor: e-resize;
   }
+  :where(:is(a, button)) .in-\[a\,button\]\:cursor-pointer {
+    cursor: pointer;
+  }
+  :where(:is(a:hover, button:hover)) .in-\[a\:hover\,button\:hover\]\:text-foreground {
+    color: var(--foreground);
+  }
   .has-disabled\:opacity-50:has(:disabled) {
     opacity: 50%;
   }
@@ -3338,6 +3362,9 @@
       --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
     }
   }
+  .has-\[\[data-status\=error\]\]\:text-destructive:has(:is([data-status=error])) {
+    color: var(--destructive);
+  }
   .has-\[button\]\:p-0:has(:is(button)) {
     padding: 0px;
   }
@@ -3396,6 +3423,38 @@
   }
   .has-\[\>\[data-slot\=radio-group\]\]\:gap-3:has( > [data-slot=radio-group]) {
     gap: calc(var(--spacing) * 3);
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:flex > *):has( > [data-slot=trace-line]) {
+    display: flex;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:w-fit > *):has( > [data-slot=trace-line]) {
+    width: fit-content;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:max-w-full > *):has( > [data-slot=trace-line]) {
+    max-width: 100%;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:min-w-0 > *):has( > [data-slot=trace-line]) {
+    min-width: 0px;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:rounded-md > *):has( > [data-slot=trace-line]) {
+    border-radius: calc(var(--radius) - 2px);
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:text-start > *):has( > [data-slot=trace-line]) {
+    text-align: start;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:outline-none > *):has( > [data-slot=trace-line]) {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:focus-visible\:ring-3 > *):has( > [data-slot=trace-line]):focus-visible {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  :is(.\*\:has-\[\>\[data-slot\=trace-line\]\]\:focus-visible\:ring-ring\/50 > *):has( > [data-slot=trace-line]):focus-visible {
+    --tw-ring-color: var(--ring);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+    }
   }
   @media (hover: hover) {
     .has-\[\>a\,\>button\]\:hover\:bg-muted\/50:has( > a,  > button):hover {
@@ -3827,6 +3886,35 @@
   }
   .data-\[state\=selected\]\:bg-muted[data-state="selected"] {
     background-color: var(--muted);
+  }
+  .data-\[status\=error\]\:text-destructive[data-status="error"] {
+    color: var(--destructive);
+  }
+  :where(:is(a:hover, button:hover)) .data-\[status\=error\]\:in-\[a\:hover\,button\:hover\]\:text-destructive[data-status="error"] {
+    color: var(--destructive);
+  }
+  .data-\[status\=pending\]\:opacity-60[data-status="pending"] {
+    opacity: 60%;
+  }
+  :is(.data-\[status\=running\]\:\*\:data-\[slot\=trace-title\]\:shimmer[data-status="running"] > *)[data-slot="trace-title"] {
+    --shimmer-spread: calc(3ch + 40px);
+    --shimmer-highlight: oklch(from currentColor l c h / calc(alpha * 0.2));
+    background-image: linear-gradient( 110deg, currentColor calc(50% - var(--shimmer-spread)), var(--shimmer-highlight) calc(50% - var(--shimmer-spread) * 0.5), var(--shimmer-highlight) 50%, var(--shimmer-highlight) calc(50% + var(--shimmer-spread) * 0.5), currentColor calc(50% + var(--shimmer-spread)) );
+    @supports (color: color-mix(in lab, red, red)) {
+      background-image: linear-gradient( 110deg, currentColor calc(50% - var(--shimmer-spread)), color-mix(in oklch, var(--shimmer-highlight), currentColor 50%) calc(50% - var(--shimmer-spread) * 0.5), var(--shimmer-highlight) 50%, color-mix(in oklch, var(--shimmer-highlight), currentColor 50%) calc(50% + var(--shimmer-spread) * 0.5), currentColor calc(50% + var(--shimmer-spread)) );
+    }
+    background-repeat: no-repeat;
+    background-size: calc(200% + var(--shimmer-spread) * 2) 100%;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 2s linear infinite;
+    &:is(.dark *) {
+      --shimmer-highlight: oklch(
+      from currentColor max(0.8, calc(l + 0.4)) c h / calc(alpha + 0.4)
+    );
+    }
   }
   .data-\[variant\=destructive\]\:text-destructive[data-variant="destructive"] {
     color: var(--destructive);
@@ -4814,6 +4902,9 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--background) 10%, transparent);
     }
+  }
+  [data-slot=trace-title] ~ .\[\[data-slot\=trace-title\]\~\&\]\:-ms-1 {
+    margin-inline-start: calc(var(--spacing) * -1);
   }
   [data-variant=legend] + .\[\[data-variant\=legend\]\+\&\]\:-mt-1\.5 {
     margin-top: calc(var(--spacing) * -1.5);
