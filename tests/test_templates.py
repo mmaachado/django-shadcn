@@ -109,3 +109,37 @@ def test_the_message_scroller_stays_hidden_until_it_opens(components_root):
         '[@media(scripting:enabled)]:data-[pending-scroll=true]:invisible'
         in viewport
     )
+
+
+# A name declared in <c-vars> and never read does nothing, yet the docs'
+# generated reference lists it as an attribute. The ones below are declared on
+# purpose: declaring a name keeps cotton from writing it onto the element.
+CVARS = re.compile(r'<c-vars\b(.*?)/?>(?:</c-vars>)?', re.DOTALL)
+DECLARED = re.compile(r'(?<![\w-]):?([a-zA-Z_][\w-]*)(?:="[^"]*")?')
+SWALLOWED = {
+    ('accordion/item.html', 'value'): (
+        'the item shares its value with its trigger and content, and only '
+        'they read it; on the item it would land on the <div>'
+    ),
+}
+
+
+def test_every_declared_attribute_is_read(
+    component_templates, components_root
+):
+    unread = []
+
+    for template in component_templates:
+        source = template.read_text(encoding='utf-8')
+        declaration = CVARS.search(source)
+        if declaration is None:
+            continue
+        body = source[: declaration.start()] + source[declaration.end() :]
+        path = template.relative_to(components_root).as_posix()
+        for name in DECLARED.findall(declaration.group(1)):
+            if name == 'class' or (path, name) in SWALLOWED:
+                continue
+            if not re.search(rf'(?<![\w-]){re.escape(name)}(?![\w-])', body):
+                unread.append(f'{path}: {name}')
+
+    assert not unread, 'declared but never read:\n' + '\n'.join(unread)
