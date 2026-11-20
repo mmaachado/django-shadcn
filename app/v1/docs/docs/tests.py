@@ -5,12 +5,14 @@ manifest would otherwise only show up after the deploy. Run collectstatic
 first: the storage backend raises when the manifest is missing.
 """
 
+import io
 import sys
 import tempfile
 from pathlib import Path
 from unittest import mock
 
 from django.conf import settings
+from django.core.management import call_command
 from django.test import SimpleTestCase
 from django.urls import reverse
 from django.utils import translation
@@ -20,10 +22,11 @@ from scripts.check_stylesheet import classes, main
 from .content import (
     PassageError,
     _translate,
+    coverage,
     missing_prose,
     untranslated,
 )
-from .nav import NAV
+from .nav import NAV, SLUGS
 
 
 class PageRenderTests(SimpleTestCase):
@@ -187,3 +190,47 @@ class LlmsTxtTests(SimpleTestCase):
                 self.assertIn(summary, index)
                 self.assertIn(heading, index)
                 self.assertIn(summary, full)
+
+
+class TranslationCoverageTests(SimpleTestCase):
+    def test_portuguese_is_complete(self):
+        """M17 finished Portuguese; a page added without it fails here."""
+        missing = coverage("pt-br")
+
+        self.assertEqual(
+            missing,
+            {},
+            "pages showing English in pt-br; add a :::pt-br passage and a "
+            "description.pt-br:\n"
+            + "\n".join(f"{slug}: {lines[0]}" for slug, lines in missing.items()),
+        )
+
+    def test_a_new_page_without_portuguese_is_reported(self):
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, "widget.md").write_text(
+                "---\ntitle: Widget\ndescription: A widget.\n---\n\n"
+                + DEMO
+                + "\n## Usage\n\nPress it.\n",
+                encoding="utf-8",
+            )
+            with mock.patch("docs.content.CONTENT_ROOT", Path(root)):
+                missing = untranslated("widget", "pt-br")
+
+        self.assertEqual(
+            missing, ["description: A widget.", "## Usage", "Press it."]
+        )
+
+    def test_a_language_with_nothing_translated_reports(self):
+        """A new language starts empty; the report lists every page and
+        nothing fails."""
+        missing = coverage("it")
+
+        self.assertEqual(set(missing), set(SLUGS))
+
+    def test_the_command_reports_every_language_but_english(self):
+        output = io.StringIO()
+        call_command("translation_coverage", stdout=output)
+
+        self.assertIn("pt-br: ", output.getvalue())
+        self.assertIn("es: ", output.getvalue())
+        self.assertNotIn("en: ", output.getvalue())

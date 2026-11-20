@@ -202,8 +202,20 @@ def untranslated(slug, language):
     if language == "en" or _override(slug, language).is_file():
         return []
 
-    _meta, body = _read(CONTENT_ROOT / f"{slug}.md")
-    return missing_prose(body, language)
+    meta, body = _read(CONTENT_ROOT / f"{slug}.md")
+    missing = missing_prose(body, language)
+    if "description" in meta and f"description.{language}" not in meta:
+        missing.insert(0, f"description: {meta['description']}")
+    return missing
+
+
+def coverage(language):
+    """Every page in the sidebar that still shows English to a reader of the
+    language, with the passages it lacks."""
+    from .nav import SLUGS
+
+    report = {slug: untranslated(slug, language) for slug in SLUGS}
+    return {slug: missing for slug, missing in report.items() if missing}
 
 
 def missing_prose(body, language):
