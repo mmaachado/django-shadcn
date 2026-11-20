@@ -16,6 +16,11 @@ description.es: Estilos para títulos, párrafos, listas y texto en línea.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="typography">
+<c-typography.h1>Taxing Laughter</c-typography.h1>
+<c-typography.p>The king thought long and hard.</c-typography.p>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -57,13 +62,9 @@ são as da página original, sem mudanças.
 ### h1
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.h1>Taxing Laughter: The Joke Tax Chronicles</c-typography.h1>
-</c-docs.demo-section>
-
-```html
-<c-typography.h1>Taxing Laughter</c-typography.h1>
-```
+</c-docs.example>
 
 :::en
 ### h2
@@ -71,13 +72,9 @@ são as da página original, sem mudanças.
 ### h2
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.h2 class="w-full">The People of the Kingdom</c-typography.h2>
-</c-docs.demo-section>
-
-```html
-<c-typography.h2>The People of the Kingdom</c-typography.h2>
-```
+</c-docs.example>
 
 :::en
 ### h3
@@ -85,13 +82,9 @@ são as da página original, sem mudanças.
 ### h3
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.h3>The Joke Tax</c-typography.h3>
-</c-docs.demo-section>
-
-```html
-<c-typography.h3>The Joke Tax</c-typography.h3>
-```
+</c-docs.example>
 
 :::en
 ### h4
@@ -99,13 +92,9 @@ são as da página original, sem mudanças.
 ### h4
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.h4>People stopped telling jokes</c-typography.h4>
-</c-docs.demo-section>
-
-```html
-<c-typography.h4>People stopped telling jokes</c-typography.h4>
-```
+</c-docs.example>
 
 :::en
 ### Paragraph
@@ -113,16 +102,12 @@ são as da página original, sem mudanças.
 ### Parágrafo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.p>
-The king, seeing how much happier his subjects were, realized the
-error of his ways and repealed the joke tax.
+  The king, seeing how much happier his subjects were, realized the
+  error of his ways and repealed the joke tax.
 </c-typography.p>
-</c-docs.demo-section>
-
-```html
-<c-typography.p>The king repealed the joke tax.</c-typography.p>
-```
+</c-docs.example>
 
 :::en
 ### Blockquote
@@ -130,16 +115,12 @@ error of his ways and repealed the joke tax.
 ### Citação
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.blockquote>
-"After all," he said, "everyone enjoys a good joke, so it's only
-fair that they should pay for the privilege."
+  "After all," he said, "everyone enjoys a good joke, so it's only
+  fair that they should pay for the privilege."
 </c-typography.blockquote>
-</c-docs.demo-section>
-
-```html
-<c-typography.blockquote>After all, he said.</c-typography.blockquote>
-```
+</c-docs.example>
 
 :::en
 ### List
@@ -147,20 +128,13 @@ fair that they should pay for the privilege."
 ### Lista
 :::
 
-<c-docs.demo-section>
-<c-typography.list>
-<li>1st level of puns: 5 gold coins</li>
-<li>2nd level of jokes: 10 gold coins</li>
-<li>3rd level of one-liners: 20 gold coins</li>
-</c-typography.list>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-typography.list>
   <li>1st level of puns: 5 gold coins</li>
   <li>2nd level of jokes: 10 gold coins</li>
+  <li>3rd level of one-liners: 20 gold coins</li>
 </c-typography.list>
-```
+</c-docs.example>
 
 :::en
 ### Inline code
@@ -168,13 +142,9 @@ fair that they should pay for the privilege."
 ### Código em linha
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.code>django-cotton</c-typography.code>
-</c-docs.demo-section>
-
-```html
-<c-typography.code>django-cotton</c-typography.code>
-```
+</c-docs.example>
 
 :::en
 ### Lead
@@ -182,16 +152,12 @@ fair that they should pay for the privilege."
 ### Lead
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.lead>
-A modal dialog that interrupts the user with important content and
-expects a response.
+  A modal dialog that interrupts the user with important content and
+  expects a response.
 </c-typography.lead>
-</c-docs.demo-section>
-
-```html
-<c-typography.lead>A modal dialog.</c-typography.lead>
-```
+</c-docs.example>
 
 :::en
 ### Large
@@ -199,13 +165,9 @@ expects a response.
 ### Large
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.large>Are you absolutely sure?</c-typography.large>
-</c-docs.demo-section>
-
-```html
-<c-typography.large>Are you absolutely sure?</c-typography.large>
-```
+</c-docs.example>
 
 :::en
 ### Small
@@ -213,13 +175,9 @@ expects a response.
 ### Small
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.small>Email address</c-typography.small>
-</c-docs.demo-section>
-
-```html
-<c-typography.small>Email address</c-typography.small>
-```
+</c-docs.example>
 
 :::en
 ### Muted
@@ -227,10 +185,48 @@ expects a response.
 ### Muted
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-typography.muted>Enter your email address.</c-typography.muted>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-typography.muted>Enter your email address.</c-typography.muted>
-```
+:::en
+## RTL
+
+Text aligns to the start, and the blockquote's rule and the list's markers sit
+at the start too, so under `dir="rtl"` they move to the right.
+
+## Accessibility
+
+The headings are real `<h1>` to `<h4>`, so a page built from them has an
+outline a screen reader can move through. Pick the level for the page's
+structure, not for the size.
+
+## API reference
+:::pt-br
+## RTL
+
+O texto se alinha ao início, e o traço da citação e os marcadores da lista
+ficam no início também, então sob `dir="rtl"` vão para a direita.
+
+## Acessibilidade
+
+Os cabeçalhos são `<h1>` a `<h4>` de verdade, então uma página feita com eles
+tem um sumário que um leitor de tela pode percorrer. Escolha o nível pela
+estrutura da página, não pelo tamanho.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="typography" />
+
+:::en
+## Notes
+
+Upstream's typography page also styles a plain `<table>`. Here that is
+[Table]({% url 'page' slug='table' %}), a component of its own.
+:::pt-br
+## Observações
+
+A página de tipografia do upstream também estiliza uma `<table>` simples. Aqui
+isso é o [Table]({% url 'page' slug='table' %}), um componente próprio.
+:::

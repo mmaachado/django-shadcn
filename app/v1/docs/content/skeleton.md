@@ -16,6 +16,10 @@ description.es: Un espacio reservado mientras el contenido carga.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="skeleton">
+<c-skeleton class="h-4 w-[250px]" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -32,13 +36,9 @@ uvx django_shadcn@latest add skeleton
 ## Uso
 :::
 
-<c-docs.demo-section background="bg-background">
+<c-docs.example background="bg-background">
 <c-skeleton class="h-4 w-[250px]" />
-</c-docs.demo-section>
-
-```html
-<c-skeleton class="h-4 w-[250px]" />
-```
+</c-docs.example>
 
 :::en
 The component ships no dimensions of its own. Give it the size and shape of
@@ -64,18 +64,7 @@ continuem visíveis.
 ### Card
 :::
 
-<c-docs.demo-section background="bg-background">
-
-<div class="flex flex-col gap-3">
-    <c-skeleton class="h-[125px] w-[250px] rounded-xl" />
-    <div class="space-y-2">
-        <c-skeleton class="h-4 w-[250px]" />
-        <c-skeleton class="h-4 w-[200px]" />
-    </div>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example background="bg-background">
 <div class="flex flex-col gap-3">
   <c-skeleton class="h-[125px] w-[250px] rounded-xl" />
   <div class="space-y-2">
@@ -83,7 +72,7 @@ continuem visíveis.
     <c-skeleton class="h-4 w-[200px]" />
   </div>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Avatar and text
@@ -91,18 +80,7 @@ continuem visíveis.
 ### Avatar e texto
 :::
 
-<c-docs.demo-section background="bg-background">
-
-<div class="flex items-center gap-4">
-    <c-skeleton class="size-12 rounded-full" />
-    <div class="space-y-2">
-        <c-skeleton class="h-4 w-[250px]" />
-        <c-skeleton class="h-4 w-[200px]" />
-    </div>
-</div>
-</c-docs.demo-section>
-
-```html
+<c-docs.example background="bg-background">
 <div class="flex items-center gap-4">
   <c-skeleton class="size-12 rounded-full" />
   <div class="space-y-2">
@@ -110,7 +88,7 @@ continuem visíveis.
     <c-skeleton class="h-4 w-[200px]" />
   </div>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Standing in for a card
@@ -118,24 +96,8 @@ continuem visíveis.
 ### No lugar de um card
 :::
 
-<c-docs.demo-section background="bg-background">
+<c-docs.example background="bg-background">
 <c-card class="w-[320px]">
-<c-card.header>
-<c-skeleton class="h-5 w-[160px]" />
-<c-skeleton class="h-4 w-[220px]" />
-</c-card.header>
-<c-card.content class="space-y-2">
-<c-skeleton class="h-4 w-full" />
-<c-skeleton class="h-4 w-[80%]" />
-</c-card.content>
-<c-card.footer>
-<c-skeleton class="h-9 w-[100px] rounded-md" />
-</c-card.footer>
-</c-card>
-</c-docs.demo-section>
-
-```html
-<c-card>
   <c-card.header>
     <c-skeleton class="h-5 w-[160px]" />
     <c-skeleton class="h-4 w-[220px]" />
@@ -144,5 +106,60 @@ continuem visíveis.
     <c-skeleton class="h-4 w-full" />
     <c-skeleton class="h-4 w-[80%]" />
   </c-card.content>
+  <c-card.footer>
+    <c-skeleton class="h-9 w-[100px] rounded-md" />
+  </c-card.footer>
 </c-card>
-```
+</c-docs.example>
+
+:::en
+### Table
+
+A few rows of bars stand in for a table that is still loading.
+:::pt-br
+### Tabela
+
+Algumas linhas de barras ficam no lugar de uma tabela que ainda está carregando.
+:::
+
+<c-docs.example>
+<div class="w-full max-w-md space-y-3" aria-busy="true">
+  {% for row in "123" %}
+    <div class="flex gap-4">
+      <c-skeleton class="h-4 w-1/4" />
+      <c-skeleton class="h-4 w-1/2" />
+      <c-skeleton class="h-4 w-1/4" />
+    </div>
+  {% endfor %}
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+A skeleton is shapes, so under `dir="rtl"` it mirrors with whatever layout
+you give it.
+
+## Accessibility
+
+The shapes are empty and silent. Mark the region that is loading
+`aria-busy="true"` while the skeleton stands in, and swap in the content when
+it arrives.
+
+## API reference
+:::pt-br
+## RTL
+
+Um skeleton são formas, então sob `dir="rtl"` ele espelha com o layout que
+você der a ele.
+
+## Acessibilidade
+
+As formas são vazias e silenciosas. Marque a região que está carregando com
+`aria-busy="true"` enquanto o skeleton ocupa o lugar, e troque pelo conteúdo
+quando ele chegar.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="skeleton" />

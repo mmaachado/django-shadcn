@@ -18,6 +18,17 @@ description.es: Navegación entre páginas de un listado.
 </c-pagination>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="pagination">
+<c-pagination>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
+  </c-pagination.content>
+</c-pagination>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -34,29 +45,16 @@ uvx django_shadcn@latest add pagination
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-pagination>
-<c-pagination.content>
-<c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
-<c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
-<c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
-<c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
-</c-pagination.content>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
+  </c-pagination.content>
 </c-pagination>
-</c-docs.demo-section>
-
-```html
-<c-pagination>
-    <c-pagination.content>
-        <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
-        <c-pagination.item>
-            <c-pagination.link href="#" is_active="true">1</c-pagination.link>
-        </c-pagination.item>
-        <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
-        <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
-    </c-pagination.content>
-</c-pagination>
-```
+</c-docs.example>
 
 :::en
 The current page is marked with `is_active="true"`, which switches the link to
@@ -107,19 +105,46 @@ outline e define `aria-current="page"`.
 ### Rótulos personalizados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-pagination>
-<c-pagination.content>
-<c-pagination.item><c-pagination.previous href="#">Newer</c-pagination.previous></c-pagination.item>
-<c-pagination.item><c-pagination.next href="#">Older</c-pagination.next></c-pagination.item>
-</c-pagination.content>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#">Newer</c-pagination.previous></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#">Older</c-pagination.next></c-pagination.item>
+  </c-pagination.content>
 </c-pagination>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-pagination.previous href="#">Newer</c-pagination.previous>
-<c-pagination.next href="#">Older</c-pagination.next>
-```
+:::en
+## RTL
+
+The links run with the text, and the previous and next arrows sit at the start
+and the end, so under `dir="rtl"` the row reverses.
+
+## Accessibility
+
+It is a `<nav>` labelled "pagination" around a list of links. The current page
+carries `aria-current="page"`, and the arrows are labelled "Go to previous
+page" and "Go to next page". The ellipsis is hidden from assistive
+technology.
+
+## API reference
+:::pt-br
+## RTL
+
+Os links correm com o texto, e as setas de anterior e próximo ficam no início
+e no fim, então sob `dir="rtl"` a fileira se inverte.
+
+## Acessibilidade
+
+É um `<nav>` com o rótulo "pagination" em volta de uma lista de links. A
+página atual leva `aria-current="page"`, e as setas têm os rótulos "Go to
+previous page" e "Go to next page". A reticência fica escondida das
+tecnologias assistivas.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="pagination" />
 
 :::en
 ## Notes

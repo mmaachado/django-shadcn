@@ -15,6 +15,15 @@ NAV = [
         ],
     ),
     (
+        _("Guides"),
+        [
+            ("theming", _("Theming")),
+            ("cli", _("CLI")),
+            ("forms", _("Forms and Django")),
+            ("alpine", _("Alpine and JavaScript")),
+        ],
+    ),
+    (
         _("Blocks"),
         [
             ("allauth", "django-allauth"),

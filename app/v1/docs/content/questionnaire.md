@@ -55,6 +55,33 @@ description.es: Un flujo de preguntas que avanza paso a paso y aun así envía u
 </c-questionnaire>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="questionnaire">
+<c-questionnaire action="{% url 'onboarding' %}" method="post">
+    {% csrf_token %}
+    <c-questionnaire.progress />
+
+    <c-questionnaire.item>
+        <c-questionnaire.title>What should we prototype next?</c-questionnaire.title>
+        <c-questionnaire.choices>
+            <c-questionnaire.choice name="direction" value="delegation" required>
+                Sub-agent delegation
+            </c-questionnaire.choice>
+            <c-questionnaire.choice name="direction" value="questions" required>
+                Question prompts
+            </c-questionnaire.choice>
+        </c-questionnaire.choices>
+        <c-questionnaire.error />
+    </c-questionnaire.item>
+
+    <c-questionnaire.actions>
+        <c-questionnaire.previous />
+        <c-questionnaire.skip />
+        <c-questionnaire.next />
+        <c-questionnaire.submit />
+    </c-questionnaire.actions>
+</c-questionnaire>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     The demo above uses <code>method="get"</code>, so submitting it puts the
@@ -155,37 +182,25 @@ Cada pergunta é um item. Dê um `name` aos controles e a view os lê de volta c
 esse nome — o componente não acrescenta nada próprio ao que é enviado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-questionnaire method="get" class="mx-auto w-full max-w-lg text-start">
-<c-questionnaire.progress />
-<c-questionnaire.item>
-<c-questionnaire.title>Pick one</c-questionnaire.title>
-<c-questionnaire.choices>
-<c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
-<c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
-</c-questionnaire.choices>
-<c-questionnaire.error />
-</c-questionnaire.item>
-<c-questionnaire.actions>
-<c-questionnaire.previous />
-<c-questionnaire.skip />
-<c-questionnaire.next />
-<c-questionnaire.submit />
-</c-questionnaire.actions>
-</c-questionnaire>
-</c-docs.demo-section>
-
-```html
-<c-questionnaire.item>
+  <c-questionnaire.progress />
+  <c-questionnaire.item>
     <c-questionnaire.title>Pick one</c-questionnaire.title>
-    <c-questionnaire.description>Optional helper text.</c-questionnaire.description>
     <c-questionnaire.choices>
-        <c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
-        <c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
+      <c-questionnaire.choice name="single" value="a" required>The first</c-questionnaire.choice>
+      <c-questionnaire.choice name="single" value="b" required>The second</c-questionnaire.choice>
     </c-questionnaire.choices>
     <c-questionnaire.error />
-</c-questionnaire.item>
-```
+  </c-questionnaire.item>
+  <c-questionnaire.actions>
+    <c-questionnaire.previous />
+    <c-questionnaire.skip />
+    <c-questionnaire.next />
+    <c-questionnaire.submit />
+  </c-questionnaire.actions>
+</c-questionnaire>
+</c-docs.example>
 
 :::en
 `title` renders the `<legend>` of the item's `<fieldset>`, so it names the
@@ -354,3 +369,37 @@ mostra todas as perguntas de uma vez, num formulário longo, e o botão de envia
 continua funcionando. O passo a passo é uma melhoria por cima de um formulário
 que já funciona.
 :::
+
+:::en
+## RTL
+
+The questions, the choices and the buttons follow the text, so under
+`dir="rtl"` the form mirrors, with next and back changing sides.
+
+## Accessibility
+
+Each question is a `<fieldset>` whose `<legend>` is the title, so a group of
+radios is announced by its question. Inactive questions are `hidden` and
+`inert`, out of the tab order and the reading order. The progress is a
+`role="progressbar"` with the step in `aria-valuetext`, and moving between
+steps moves focus to the new question.
+
+## API reference
+:::pt-br
+## RTL
+
+As perguntas, as opções e os botões acompanham o texto, então sob
+`dir="rtl"` o formulário espelha, com avançar e voltar trocando de lado.
+
+## Acessibilidade
+
+Cada pergunta é um `<fieldset>` cuja `<legend>` é o título, então um grupo de
+radios é anunciado pela pergunta. As perguntas inativas são `hidden` e `inert`,
+fora da ordem de tab e da leitura. O progresso é um `role="progressbar"` com a
+etapa em `aria-valuetext`, e passar de uma etapa para outra leva o foco à nova
+pergunta.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="questionnaire" />

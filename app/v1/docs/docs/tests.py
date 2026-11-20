@@ -6,6 +6,7 @@ first: the storage backend raises when the manifest is missing.
 """
 
 import io
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -21,12 +22,14 @@ from scripts.check_stylesheet import classes, main
 
 from .content import (
     PassageError,
+    _expand_examples,
     _translate,
     coverage,
     missing_prose,
     untranslated,
 )
 from .nav import NAV, SLUGS
+from .reference import attributes, cheat_sheet, table
 from .views import BLOCK_EXTENDS
 
 
@@ -274,3 +277,162 @@ class TranslationCoverageTests(SimpleTestCase):
         self.assertIn("pt-br: ", output.getvalue())
         self.assertIn("es: ", output.getvalue())
         self.assertNotIn("en: ", output.getvalue())
+
+
+class ExampleTests(SimpleTestCase):
+    EXAMPLE = (
+        '<c-docs.example class="min-h-[200px]">\n'
+        "<div>\n"
+        '  <a href="{% url \'page\' slug=\'button\' %}">Button</a>\n'
+        "\n"
+        "</div>\n"
+        "</c-docs.example>\n"
+    )
+
+    def test_an_example_is_the_demo_and_its_own_source(self):
+        body = _expand_examples(self.EXAMPLE)
+
+        self.assertIn('<c-docs.demo-section class="min-h-[200px]">', body)
+        self.assertIn(
+            "```html\n<div>\n  <a href=\"{% url 'page' slug='button' %}\">"
+            "Button</a>\n\n</div>\n```",
+            body,
+        )
+
+    def test_the_demo_half_has_no_blank_line(self):
+        demo = _expand_examples(self.EXAMPLE).split("```html")[0]
+
+        self.assertNotIn("\n\n<", demo.strip())
+
+    def test_the_code_shows_django_tags_unrendered(self):
+        response = self.client.get(reverse("page", kwargs={"slug": "bubble"}))
+        html = response.content.decode()
+
+        # Rendered in the demo, written out in the code below it.
+        self.assertRegex(html, r"\{% url (&#x27;|')page(&#x27;|') slug=")
+
+    def test_no_demo_is_written_twice(self):
+        """A demo followed by its own fenced copy is two sources of truth;
+        <c-docs.example> makes it one."""
+        pair = re.compile(
+            r"</c-docs\.demo-section>\n\n+```html", re.MULTILINE
+        )
+        twice = [
+            path.name
+            for path in sorted((settings.BASE_DIR / "content").rglob("*.md"))
+            if pair.search(path.read_text(encoding="utf-8"))
+        ]
+
+        self.assertEqual(twice, [], "write these demos with <c-docs.example>")
+
+
+class ReferenceTests(SimpleTestCase):
+    def test_every_row_is_an_attribute_the_template_declares(self):
+        row = re.compile(r"^\| `<(c-[\w.-]+)>` \| `([\w-]+)` \|", re.MULTILINE)
+        wrong = []
+
+        for directory in sorted(settings.COMPONENTS_DIR.iterdir()):
+            if not (directory / "index.html").is_file() and not any(
+                directory.glob("*.html")
+            ):
+                continue
+            for tag, name in row.findall(table(directory.name)):
+                part = tag.split(".", 1)[1] if "." in tag else "index"
+                source = (directory / f"{part.replace('-', '_')}.html").read_text(
+                    encoding="utf-8"
+                )
+                declared = re.search(r"<c-vars\b([^>]*)>", source).group(1)
+                if not re.search(rf"(^|\s){re.escape(name)}(=|\s|$)", declared):
+                    wrong.append(f"{tag} {name}")
+
+        self.assertEqual(wrong, [])
+
+    def test_values_come_from_the_branches_and_include_the_default(self):
+        source = (
+            '<c-vars class="" size="md"></c-vars>'
+            "{% if size == 'sm' %}a{% elif size == 'lg' %}b{% endif %}"
+        )
+
+        self.assertEqual(attributes(source), [("size", "md", ["md", "sm", "lg"])])
+
+    def test_the_page_shows_the_table(self):
+        response = self.client.get(reverse("page", kwargs={"slug": "button"}))
+
+        self.assertContains(response, "<code>&lt;c-button&gt;</code>")
+        self.assertContains(response, "<code>ghost</code>")
+
+
+class CheatSheetTests(SimpleTestCase):
+    def test_it_names_the_tag_the_parts_and_the_root_attributes(self):
+        box = cheat_sheet("card", "<c-card>...</c-card>")
+
+        self.assertIn("<code>&lt;c-card&gt;</code>", box)
+        self.assertIn("<code>&lt;c-card.header&gt;</code>", box)
+        self.assertTrue(box.endswith("```html\n<c-card>...</c-card>\n```"))
+
+    def test_the_attributes_carry_their_defaults(self):
+        box = cheat_sheet("button", "<c-button>Button</c-button>")
+
+        self.assertIn("<code>variant=&quot;default&quot;</code>", box)
+        self.assertNotIn("Parts", box)
+
+
+def component_pages():
+    """Every component's page: a directory of components/ whose templates
+    are not pages a view renders, as a block's and allauth's are."""
+    pages = []
+    for directory in sorted(settings.COMPONENTS_DIR.iterdir()):
+        templates = list(directory.glob("*.html"))
+        if not templates or any(
+            path.read_text(encoding="utf-8").startswith("{% extends")
+            for path in templates
+        ):
+            continue
+        pages.append(directory.name.replace("_", "-"))
+    return pages
+
+
+class PageStructureTests(SimpleTestCase):
+    """A component page reads in one order: the demo, the cheat sheet,
+    installation, usage, examples, RTL, accessibility, the API reference and
+    notes. Examples and notes are the two a page may leave out."""
+
+    ORDER = [
+        ("demo", r"^<c-docs\.(?:demo-section|example)\b", True),
+        ("cheat sheet", r"^<c-docs\.cheat-sheet ", True),
+        ("installation", r"^## Installation$", True),
+        ("usage", r"^## Usage$", True),
+        ("examples", r"^## Examples$", False),
+        ("rtl", r"^## RTL$", True),
+        ("accessibility", r"^## Accessibility$", True),
+        ("reference", r"^## API reference$", True),
+        ("notes", r"^## Notes$", False),
+    ]
+
+    def test_every_component_page_follows_the_order(self):
+        wrong = []
+
+        for slug in component_pages():
+            source = (settings.BASE_DIR / "content" / f"{slug}.md").read_text(
+                encoding="utf-8"
+            )
+            english = _translate(source, "en")
+            found = []
+            for name, pattern, required in self.ORDER:
+                match = re.search(pattern, english, re.MULTILINE)
+                if match:
+                    found.append((match.start(), name))
+                elif required:
+                    wrong.append(f"{slug}: no {name}")
+            if [name for _at, name in sorted(found)] != [name for _at, name in found]:
+                wrong.append(f"{slug}: sections out of order")
+
+        self.assertEqual(wrong, [])
+
+
+class LlmsFullTests(SimpleTestCase):
+    def test_the_cheat_sheet_box_is_left_out_and_its_snippet_kept(self):
+        text = self.client.get(reverse("llms-full")).content.decode()
+
+        self.assertNotIn('data-slot="cheat-sheet"', text)
+        self.assertIn('<c-button variant="outline" type="button">Button</c-button>', text)

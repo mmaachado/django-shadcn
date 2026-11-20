@@ -48,8 +48,8 @@ INSTALLED_APPS = [
 ```
 
 Depois inicialize o tema. Isso cria `templates/cotton/` e traz um `input.css`
-com a paleta, os tokens de design e as fontes Geist em que todo componente se
-apoia:
+com a paleta e os tokens de design em que todo componente se apoia, que a
+página de [Theming]({% url 'page' slug='theming' %}) percorre:
 
 ```bash
 uvx django_shadcn@latest init

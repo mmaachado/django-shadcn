@@ -29,6 +29,27 @@ Drag the handle down to dismiss, or press Escape.
 </c-drawer>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="drawer">
+<c-drawer>
+    <c-drawer.trigger>
+        <c-button variant="outline">Open drawer</c-button>
+    </c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+        <c-drawer.header>
+            <c-drawer.title>Move to folder</c-drawer.title>
+            <c-drawer.description>Pick where this should live.</c-drawer.description>
+        </c-drawer.header>
+        <c-drawer.footer>
+            <c-button>Move</c-button>
+            <c-drawer.close>
+                <c-button variant="outline" class="w-full">Cancel</c-button>
+            </c-drawer.close>
+        </c-drawer.footer>
+    </c-drawer.content>
+</c-drawer>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -90,36 +111,30 @@ drawer que não escurece a página.
 ### Direção
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-drawer direction="right">
-<c-drawer.trigger><c-button variant="outline" size="sm">Right</c-button></c-drawer.trigger>
-<c-drawer.overlay />
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>From the right</c-drawer.title>
-<c-drawer.description>No handle on this one.</c-drawer.description>
-</c-drawer.header>
-</c-drawer.content>
-</c-drawer>
-<c-drawer direction="top">
-<c-drawer.trigger><c-button variant="outline" size="sm">Top</c-button></c-drawer.trigger>
-<c-drawer.overlay />
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>From the top</c-drawer.title>
-<c-drawer.description>Useful for a notification tray.</c-drawer.description>
-</c-drawer.header>
-</c-drawer.content>
-</c-drawer>
+  <c-drawer direction="right">
+    <c-drawer.trigger><c-button variant="outline" size="sm">Right</c-button></c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+      <c-drawer.header>
+        <c-drawer.title>From the right</c-drawer.title>
+        <c-drawer.description>No handle on this one.</c-drawer.description>
+      </c-drawer.header>
+    </c-drawer.content>
+  </c-drawer>
+  <c-drawer direction="top">
+    <c-drawer.trigger><c-button variant="outline" size="sm">Top</c-button></c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+      <c-drawer.header>
+        <c-drawer.title>From the top</c-drawer.title>
+        <c-drawer.description>Useful for a notification tray.</c-drawer.description>
+      </c-drawer.header>
+    </c-drawer.content>
+  </c-drawer>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-drawer direction="right">...</c-drawer>
-<c-drawer direction="top">...</c-drawer>
-<c-drawer direction="left">...</c-drawer>
-```
+</c-docs.example>
 
 :::en
 ### Without the overlay
@@ -127,27 +142,83 @@ drawer que não escurece a página.
 ### Sem o overlay
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-drawer>
-<c-drawer.trigger><c-button variant="outline">No dimming</c-button></c-drawer.trigger>
-<c-drawer.content>
-<c-drawer.header>
-<c-drawer.title>The page stays lit</c-drawer.title>
-<c-drawer.description>Drop the overlay when the drawer is not modal.</c-drawer.description>
-</c-drawer.header>
-<c-drawer.footer>
-<c-drawer.close><c-button variant="outline" class="w-full">Close</c-button></c-drawer.close>
-</c-drawer.footer>
-</c-drawer.content>
+  <c-drawer.trigger><c-button variant="outline">No dimming</c-button></c-drawer.trigger>
+  <c-drawer.content>
+    <c-drawer.header>
+      <c-drawer.title>The page stays lit</c-drawer.title>
+      <c-drawer.description>Drop the overlay when the drawer is not modal.</c-drawer.description>
+    </c-drawer.header>
+    <c-drawer.footer>
+      <c-drawer.close><c-button variant="outline" class="w-full">Close</c-button></c-drawer.close>
+    </c-drawer.footer>
+  </c-drawer.content>
 </c-drawer>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
+:::en
+### Scrollable content
+
+Long content scrolls inside the drawer while the header stays put: give the
+body a height and `overflow-y-auto`.
+:::pt-br
+### Conteúdo com rolagem
+
+Um conteúdo longo rola dentro do drawer enquanto o cabeçalho fica no lugar:
+dê ao corpo uma altura e `overflow-y-auto`.
+:::
+
+<c-docs.example>
 <c-drawer>
-    <c-drawer.trigger>...</c-drawer.trigger>
-    <c-drawer.content>...</c-drawer.content>
+  <c-drawer.trigger><c-button variant="outline">Release notes</c-button></c-drawer.trigger>
+  <c-drawer.overlay />
+  <c-drawer.content>
+    <c-drawer.header>
+      <c-drawer.title>What changed in 1.11</c-drawer.title>
+    </c-drawer.header>
+    <div class="max-h-60 space-y-3 overflow-y-auto px-4 pb-4 text-sm text-muted-foreground">
+      {% for n in "123456" %}
+        <p>A change worth reading about, number {{ n }}, with a sentence on what it means for your templates.</p>
+      {% endfor %}
+    </div>
+  </c-drawer.content>
 </c-drawer>
-```
+</c-docs.example>
+
+:::en
+## RTL
+
+`direction` names a side of the screen, so a drawer from the left stays on
+the left under `dir="rtl"`, and its border with it. The contents follow the
+text.
+
+## Accessibility
+
+The content is a `role="dialog"` with `aria-modal="true"`, and Escape closes
+it. Focus is not moved into the drawer or trapped there, so put the first
+thing to do near its top, and dragging the handle is a pointer gesture only:
+keep a close button for the keyboard.
+
+## API reference
+:::pt-br
+## RTL
+
+`direction` nomeia um lado da tela, então um drawer da esquerda continua à
+esquerda sob `dir="rtl"`, e a borda dele também. O conteúdo acompanha o
+texto.
+
+## Acessibilidade
+
+O conteúdo é um `role="dialog"` com `aria-modal="true"`, e o Escape o fecha.
+O foco não é levado para dentro do drawer nem preso ali, então ponha a primeira
+coisa a fazer perto do topo dele, e arrastar a alça é um gesto só de ponteiro:
+mantenha um botão de fechar para o teclado.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="drawer" />
 
 :::en
 ## Notes

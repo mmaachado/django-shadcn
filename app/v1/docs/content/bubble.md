@@ -19,6 +19,12 @@ description.es: La superficie del mensaje, con la variante, la alineación y las
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="bubble">
+<c-bubble variant="{% if message.mine %}default{% else %}muted{% endif %}" align="{% if message.mine %}end{% else %}start{% endif %}">
+  <c-bubble.content>{{ message.text|linebreaksbr }}</c-bubble.content>
+</c-bubble>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -30,290 +36,327 @@ uvx django_shadcn@latest add bubble
 ```
 
 :::en
-<p class="mt-4 text-sm text-muted-foreground">
-    <strong>Note:</strong> This pulls in <a href="{% url 'page' slug='collapsible' %}" class="underline">Collapsible</a>, which the <em>Long messages</em> example below builds on, and with it the <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">Alpine.js Collapse plugin</a>. The bubble itself has no JavaScript.
-</p>
+This pulls in [Collapsible]({% url 'page' slug='collapsible' %}), which the
+show more example builds on, and with it Alpine's collapse plugin. The bubble
+itself has no JavaScript.
 
 ## Usage
+
+The variant lives on the root and the padding on the content, so the reactions
+can hang off the edge of the surface without the surface clipping them. That
+split is why the two tags are always written together.
+
+A bubble is markup and CSS only, so a conversation renders the same without
+JavaScript. The text is yours to escape: `linebreaksbr` keeps the line breaks
+of a message without marking anything safe.
 :::pt-br
-<p class="mt-4 text-sm text-muted-foreground">
-    <strong>Observação:</strong> isto traz junto o <a href="{% url 'page' slug='collapsible' %}" class="underline">Collapsible</a>, em que o exemplo <em>Mensagens longas</em> abaixo se apoia, e com ele o <a href="https://alpinejs.dev/plugins/collapse" target="_blank" rel="noopener noreferrer" class="underline">plugin Collapse do Alpine.js</a>. O bubble em si não tem JavaScript.
-</p>
+Isto traz junto o [Collapsible]({% url 'page' slug='collapsible' %}), em que o
+exemplo de mostrar mais se apoia, e com ele o plugin collapse do Alpine. O
+bubble em si não tem JavaScript.
 
 ## Uso
+
+A variante fica na raiz e o padding no conteúdo, para que as reações possam
+pender para fora da borda da superfície sem que a superfície as corte. É por
+essa divisão que as duas tags são sempre escritas juntas.
+
+Um bubble é só markup e CSS, então uma conversa renderiza igual sem
+JavaScript. O texto é seu para escapar: `linebreaksbr` mantém as quebras de
+linha de uma mensagem sem marcar nada como seguro.
 :::
 
 ```html
-<c-bubble variant="muted">
-    <c-bubble.content>How can I help you today?</c-bubble.content>
-</c-bubble>
+{% for message in conversation.messages.all %}
+  <c-bubble align="{% if message.author == request.user %}end{% else %}start{% endif %}">
+    <c-bubble.content>{{ message.text|linebreaksbr }}</c-bubble.content>
+  </c-bubble>
+{% endfor %}
 ```
 
 :::en
-The variant lives on the root and the padding lives on the content, so the
-reactions can hang off the edge of the surface without the surface clipping
-them. That split is why the two tags are always written together.
+## Examples
 
-## Variants
+### Variants
 
 Seven, matching the upstream registry. `default` is the primary colour, for the
 side of the conversation the reader is on; `muted` and `secondary` are the
 neutral surfaces for the other side.
 :::pt-br
-A variante fica na raiz e o padding fica no conteúdo, para que as reações possam
-pender para fora da borda da superfície sem que a superfície as corte. É por
-essa divisão que as duas tags são sempre escritas juntas.
+## Exemplos
 
-## Variantes
+### Variantes
 
-Sete, as mesmas do registry do upstream. `default` é a cor primária, para o lado
-da conversa em que o leitor está; `muted` e `secondary` são as superfícies
+Sete, as mesmas do registry do upstream. `default` é a cor primária, para o
+lado da conversa em que o leitor está; `muted` e `secondary` são as superfícies
 neutras para o outro lado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble>
-<c-bubble.content>Default</c-bubble.content>
-</c-bubble>
-<c-bubble variant="secondary">
-<c-bubble.content>Secondary</c-bubble.content>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Muted</c-bubble.content>
-</c-bubble>
-<c-bubble variant="tinted">
-<c-bubble.content>Tinted</c-bubble.content>
-</c-bubble>
-<c-bubble variant="outline">
-<c-bubble.content>Outline</c-bubble.content>
-</c-bubble>
-<c-bubble variant="ghost">
-<c-bubble.content>Ghost, with no surface at all</c-bubble.content>
-</c-bubble>
-<c-bubble variant="destructive">
-<c-bubble.content>Destructive</c-bubble.content>
-</c-bubble>
+  <c-bubble>
+    <c-bubble.content>Default</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="secondary">
+    <c-bubble.content>Secondary</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Muted</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="tinted">
+    <c-bubble.content>Tinted</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="outline">
+    <c-bubble.content>Outline</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="ghost">
+    <c-bubble.content>Ghost, with no surface at all</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="destructive">
+    <c-bubble.content>Destructive</c-bubble.content>
+  </c-bubble>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="secondary">...</c-bubble>
-<c-bubble variant="tinted">...</c-bubble>
-<c-bubble variant="ghost">...</c-bubble>
-```
+</c-docs.example>
 
 :::en
-## Alignment
+### Alignment
 
 `align="end"` pushes the bubble to the far side. Inside a
 [Message]({% url 'page' slug='message' %}) the row already sets the side, and
 the bubble follows it without being told.
 :::pt-br
-## Alinhamento
+### Alinhamento
 
 `align="end"` empurra o bubble para o lado oposto. Dentro de uma
 [Message]({% url 'page' slug='message' %}) a linha já define o lado, e o bubble
 o acompanha sem precisar ser avisado.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble variant="muted">
-<c-bubble.content>Aligned to the start.</c-bubble.content>
-</c-bubble>
-<c-bubble align="end">
-<c-bubble.content>Aligned to the end.</c-bubble.content>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble align="end">
+  <c-bubble variant="muted">
+    <c-bubble.content>Aligned to the start.</c-bubble.content>
+  </c-bubble>
+  <c-bubble align="end">
     <c-bubble.content>Aligned to the end.</c-bubble.content>
-</c-bubble>
-```
+  </c-bubble>
+</div>
+</c-docs.example>
 
 :::en
-## Examples
+### Bubble group
 
+`group` stacks consecutive bubbles from the same sender at a tighter rhythm
+than separate messages.
+:::pt-br
+### Grupo de bubbles
+
+O `group` empilha bubbles seguidos do mesmo remetente num ritmo mais apertado
+do que mensagens separadas.
+:::
+
+<c-docs.example>
+<c-bubble.group class="w-full max-w-md text-start">
+  <c-bubble variant="muted">
+    <c-bubble.content>One thought.</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Then another, a second later.</c-bubble.content>
+  </c-bubble>
+</c-bubble.group>
+</c-docs.example>
+
+:::en
+### Links and buttons
+
+`tag` renders the content as a button or a link instead of a plain box, so a
+suggested reply can be clicked and a shared file opened. A `button` gets
+`type="button"` unless you pass your own, so a bubble inside a form does not
+submit it by accident.
+:::pt-br
+### Links e botões
+
+`tag` renderiza o conteúdo como um botão ou um link em vez de uma caixa
+simples, para que uma resposta sugerida possa ser clicada e um arquivo
+compartilhado aberto. Um `button` recebe `type="button"` a menos que você passe
+o seu, para que um bubble dentro de um formulário não o envie sem querer.
+:::
+
+<c-docs.example>
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
+  <c-bubble variant="outline">
+    <c-bubble.content tag="button">I forgot my password</c-bubble.content>
+  </c-bubble>
+  <c-bubble variant="outline">
+    <c-bubble.content tag="a" href="{% url 'page' slug='installation' %}">Read the installation guide</c-bubble.content>
+  </c-bubble>
+</div>
+</c-docs.example>
+
+:::en
 ### Reactions
 
 Reactions overlap the edge of the surface. `side` picks the top or the bottom
 edge, `align` picks the corner.
 :::pt-br
-## Exemplos
-
 ### Reações
 
 As reações sobrepõem a borda da superfície. `side` escolhe a borda de cima ou a
 de baixo, `align` escolhe o canto.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-10 text-start">
-<c-bubble variant="muted">
-<c-bubble.content>Bottom and end, the default.</c-bubble.content>
-<c-bubble.reactions>
-<span>🔥</span>
-<span>+8</span>
-</c-bubble.reactions>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Top and start.</c-bubble.content>
-<c-bubble.reactions side="top" align="start">
-<span>👍</span>
-</c-bubble.reactions>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="muted">
+  <c-bubble variant="muted">
     <c-bubble.content>Bottom and end, the default.</c-bubble.content>
     <c-bubble.reactions>
-        <span>🔥</span>
-        <span>+8</span>
+      <span>🔥</span>
+      <span>+8</span>
     </c-bubble.reactions>
-</c-bubble>
-
-<c-bubble.reactions side="top" align="start">...</c-bubble.reactions>
-```
+  </c-bubble>
+  <c-bubble variant="muted">
+    <c-bubble.content>Top and start.</c-bubble.content>
+    <c-bubble.reactions side="top" align="start">
+      <span>👍</span>
+    </c-bubble.reactions>
+  </c-bubble>
+</div>
+</c-docs.example>
 
 :::en
-A row of emoji says nothing to a screen reader on its own. Name it:
+### Show more
+
+A long message is a wall. Wrap the bubble in a
+[Collapsible]({% url 'page' slug='collapsible' %}) and put the toggle in the
+content, as upstream does: the bubble stays presentational and the open state
+lives one level up.
 :::pt-br
-Uma fileira de emojis sozinha não diz nada a um leitor de tela. Dê um nome a ela:
+### Mostrar mais
+
+Uma mensagem longa vira um paredão. Envolva o bubble num
+[Collapsible]({% url 'page' slug='collapsible' %}) e ponha o botão de abrir no
+conteúdo, como faz o upstream: o bubble continua só de apresentação e o estado
+de aberto mora um nível acima.
+:::
+
+<c-docs.example>
+<c-collapsible class="w-full max-w-md text-start">
+  <c-bubble variant="muted">
+    <c-bubble.content>
+      <p>The focus ring was being drawn by the primitive and by the style file at the same time, which is why it doubled up on the outline variant.</p>
+      <c-collapsible.content>
+        <p class="mt-2">Moving it to the style file keeps the primitive neutral, so the other themes can pick their own treatment later instead of overriding this one.</p>
+      </c-collapsible.content>
+      <c-collapsible.trigger class="mt-2 text-xs underline underline-offset-4 opacity-80">
+        <span x-text="open ? 'Show less' : 'Show more'">Show more</span>
+      </c-collapsible.trigger>
+    </c-bubble.content>
+  </c-bubble>
+</c-collapsible>
+</c-docs.example>
+
+:::en
+### Tooltip
+
+A [Tooltip]({% url 'page' slug='tooltip' %}) around the bubble shows when a
+message was sent, without a timestamp under every line.
+:::pt-br
+### Tooltip
+
+Um [Tooltip]({% url 'page' slug='tooltip' %}) em volta do bubble mostra quando
+uma mensagem foi enviada, sem um horário embaixo de cada linha.
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-bubble variant="muted">
+      <c-bubble.content tag="button">Did the deploy go out?</c-bubble.content>
+    </c-bubble>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Sent at 14:32</c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+### Popover
+
+A bubble rendered as a button can open a
+[Popover]({% url 'page' slug='popover' %}) with the actions for that message.
+:::pt-br
+### Popover
+
+Um bubble renderizado como botão pode abrir um
+[Popover]({% url 'page' slug='popover' %}) com as ações daquela mensagem.
+:::
+
+<c-docs.example>
+<c-popover>
+  <c-popover.trigger>
+    <c-bubble align="end">
+      <c-bubble.content tag="button">Can you review my pull request?</c-bubble.content>
+    </c-bubble>
+  </c-popover.trigger>
+  <c-popover.content class="w-48">
+    <div class="flex flex-col gap-1 text-sm">
+      <c-button variant="ghost" size="sm" class="justify-start">Reply</c-button>
+      <c-button variant="ghost" size="sm" class="justify-start">Copy text</c-button>
+    </div>
+  </c-popover.content>
+</c-popover>
+</c-docs.example>
+
+:::en
+## RTL
+
+`align` is logical: `start` is the reader's side of the line and `end` the far
+side, so under `dir="rtl"` a conversation mirrors with the text. Reactions sit
+on the corner `align` names, and move with it.
+
+## Accessibility
+
+**Labelling reactions.** A row of emoji says nothing to a screen reader on its
+own. Name it:
+:::pt-br
+## RTL
+
+O `align` é lógico: `start` é o lado do leitor na linha e `end` o lado oposto,
+então sob `dir="rtl"` uma conversa espelha junto com o texto. As reações ficam
+no canto que o `align` nomeia, e se movem com ele.
+
+## Acessibilidade
+
+**Rotulando reações.** Uma fileira de emojis sozinha não diz nada a um leitor
+de tela. Dê um nome a ela:
 :::
 
 ```html
 <c-bubble.reactions role="img" aria-label="Reactions: fire, and 8 more">
-    <span>🔥</span>
-    <span>+8</span>
+  <span>🔥</span>
+  <span>+8</span>
 </c-bubble.reactions>
 ```
 
 :::en
-### A bubble that does something
+**Interactive bubbles.** A bubble with `tag="button"` or `tag="a"` is a real
+control, focusable and announced as one. Its text is its name, so keep it the
+action, not a fragment of the message around it.
 
-`tag` renders the content as a button or a link instead of a plain box, so a
-suggested reply can be clicked and a shared file can be opened. The hover and
-focus treatment is already in the variant, waiting for an element that can take
-it.
+**Meaning beyond colour.** Who sent a message is shown by the side and the
+colour, neither of which a screen reader hears. Put the sender's name in a
+[Message]({% url 'page' slug='message' %}) header, or in visually hidden text.
+
+## API reference
 :::pt-br
-### Um bubble que faz alguma coisa
+**Bubbles interativos.** Um bubble com `tag="button"` ou `tag="a"` é um
+controle de verdade, focável e anunciado como tal. O texto dele é o nome, então
+mantenha-o como a ação, e não como um trecho da mensagem em volta.
 
-`tag` renderiza o conteúdo como um botão ou um link em vez de uma caixa simples,
-para que uma resposta sugerida possa ser clicada e um arquivo compartilhado
-possa ser aberto. O tratamento de hover e de foco já está na variante,
-esperando por um elemento que o aceite.
+**Significado além da cor.** Quem enviou uma mensagem aparece pelo lado e pela
+cor, e nenhum dos dois chega a um leitor de tela. Ponha o nome de quem enviou
+num cabeçalho de [Message]({% url 'page' slug='message' %}), ou num texto
+visualmente escondido.
+
+## Referência da API
 :::
 
-<c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-bubble variant="outline">
-<c-bubble.content tag="button">I forgot my password</c-bubble.content>
-</c-bubble>
-<c-bubble variant="outline">
-<c-bubble.content tag="a" href="{% url 'page' slug='installation' %}">Read the installation guide</c-bubble.content>
-</c-bubble>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-bubble variant="outline">
-    <c-bubble.content tag="button">I forgot my password</c-bubble.content>
-</c-bubble>
-
-<c-bubble variant="outline">
-    <c-bubble.content tag="a" href="/help/">Read the guide</c-bubble.content>
-</c-bubble>
-```
-
-:::en
-A `button` gets `type="button"` unless you pass your own, so a bubble inside a
-form does not submit it by accident.
-
-### Long messages
-
-A long message is a wall. Wrap the bubble in a
-[Collapsible]({% url 'page' slug='collapsible' %}) and put the toggle in the
-content, exactly as the upstream example does — the bubble stays presentational
-and the open state lives one level up.
-:::pt-br
-Um `button` recebe `type="button"` a menos que você passe o seu, para que um
-bubble dentro de um formulário não o envie sem querer.
-
-### Mensagens longas
-
-Uma mensagem longa vira um paredão. Envolva o bubble em um
-[Collapsible]({% url 'page' slug='collapsible' %}) e ponha o botão de abrir no
-conteúdo, exatamente como faz o exemplo do upstream — o bubble continua só de
-apresentação e o estado de aberto mora um nível acima.
-:::
-
-<c-docs.demo-section>
-<c-collapsible class="w-full max-w-md text-start">
-<c-bubble variant="muted">
-<c-bubble.content>
-<p>The focus ring was being drawn by the primitive and by the style file at the same time, which is why it doubled up on the outline variant.</p>
-<c-collapsible.content>
-<p class="mt-2">Moving it to the style file keeps the primitive neutral, so the other themes can pick their own treatment later instead of overriding this one.</p>
-</c-collapsible.content>
-<c-collapsible.trigger class="mt-2 text-xs underline underline-offset-4 opacity-80">
-<span x-text="open ? 'Show less' : 'Show more'">Show more</span>
-</c-collapsible.trigger>
-</c-bubble.content>
-</c-bubble>
-</c-collapsible>
-</c-docs.demo-section>
-
-```html
-<c-collapsible>
-    <c-bubble variant="muted">
-        <c-bubble.content>
-            <p>The first paragraph, always visible.</p>
-            <c-collapsible.content>
-                <p>The rest, hidden until asked for.</p>
-            </c-collapsible.content>
-            <c-collapsible.trigger>
-                <span x-text="open ? 'Show less' : 'Show more'">Show more</span>
-            </c-collapsible.trigger>
-        </c-bubble.content>
-    </c-bubble>
-</c-collapsible>
-```
-
-:::en
-### Grouped
-
-`group` stacks consecutive bubbles from the same sender at a tighter rhythm than
-separate messages.
-:::pt-br
-### Agrupados
-
-O `group` empilha bubbles seguidos do mesmo remetente num ritmo mais apertado
-do que mensagens separadas.
-:::
-
-<c-docs.demo-section>
-<c-bubble.group class="w-full max-w-md text-start">
-<c-bubble variant="muted">
-<c-bubble.content>One thought.</c-bubble.content>
-</c-bubble>
-<c-bubble variant="muted">
-<c-bubble.content>Then another, a second later.</c-bubble.content>
-</c-bubble>
-</c-bubble.group>
-</c-docs.demo-section>
-
-```html
-<c-bubble.group>
-    <c-bubble variant="muted">
-        <c-bubble.content>One thought.</c-bubble.content>
-    </c-bubble>
-    <c-bubble variant="muted">
-        <c-bubble.content>Then another.</c-bubble.content>
-    </c-bubble>
-</c-bubble.group>
-```
+<c-docs.api-reference name="bubble" />

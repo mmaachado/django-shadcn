@@ -132,12 +132,12 @@ carries the selection, and it carries `value` before Alpine has started.
                 <c-button variant="ghost" size="" type="button"
                     class="size-(--cell-size) p-0 select-none aria-disabled:opacity-50" aria-label="Previous month"
                     x-on:click="move(-1)">
-                    <c-icon name="chevron-left" class="size-4" />
+                    <c-icon name="chevron-left" class="size-4 rtl:rotate-180" />
                 </c-button>
                 <c-button variant="ghost" size="" type="button"
                     class="size-(--cell-size) p-0 select-none aria-disabled:opacity-50" aria-label="Next month"
                     x-on:click="move(1)">
-                    <c-icon name="chevron-right" class="size-4" />
+                    <c-icon name="chevron-right" class="size-4 rtl:rotate-180" />
                 </c-button>
             </div>
 
