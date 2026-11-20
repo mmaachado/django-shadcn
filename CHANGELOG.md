@@ -18,6 +18,9 @@
 - **`dashboard`.** A sidebar that folds to icons, a breadcrumb, four metrics,
   a stacked revenue chart and a table of recent orders, all sample data to
   replace.
+- **`login`.** A split-screen log-in page and a sign-up page beside it, each
+  a card with the form, an "or continue with" divider and two provider
+  buttons. Markup only: point the forms at your views, or at django-allauth.
 
 ## 1.9.0 — 2026-11-19
 

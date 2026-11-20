@@ -19,6 +19,7 @@ NAV = [
         [
             ("allauth", "django-allauth"),
             ("dashboard", "Dashboard"),
+            ("login", "Login and Sign Up"),
         ],
     ),
     (

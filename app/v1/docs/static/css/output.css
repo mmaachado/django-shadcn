@@ -1388,6 +1388,9 @@
   .gap-y-1\.5 {
     row-gap: calc(var(--spacing) * 1.5);
   }
+  .self-center {
+    align-self: center;
+  }
   .self-end {
     align-self: flex-end;
   }
@@ -1673,6 +1676,9 @@
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);
+  }
+  .p-10 {
+    padding: calc(var(--spacing) * 10);
   }
   .p-\[3px\] {
     padding: 3px;
@@ -3555,6 +3561,9 @@
   .data-\[slot\=checkbox-group\]\:gap-3[data-slot="checkbox-group"] {
     gap: calc(var(--spacing) * 3);
   }
+  :is(.\*\:data-\[slot\=field-separator-content\]\:bg-card > *)[data-slot="field-separator-content"] {
+    background-color: var(--card);
+  }
   :is(.group-data-\[orientation\=vertical\]\/attachment\:\*\:data-\[slot\=spinner\]\:size-6\!:is(:where(.group\/attachment)[data-orientation="vertical"] *) > *)[data-slot="spinner"] {
     width: calc(var(--spacing) * 6) !important;
     height: calc(var(--spacing) * 6) !important;
@@ -3900,17 +3909,26 @@
     .lg\:mr-6 {
       margin-right: calc(var(--spacing) * 6);
     }
+    .lg\:flex {
+      display: flex;
+    }
     .lg\:inline-block {
       display: inline-block;
     }
     .lg\:basis-1\/3 {
       flex-basis: calc(1 / 3 * 100%);
     }
+    .lg\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .lg\:grid-cols-\[240px_minmax\(0\,1fr\)\] {
       grid-template-columns: 240px minmax(0,1fr);
     }
     .lg\:gap-10 {
       gap: calc(var(--spacing) * 10);
+    }
+    .lg\:self-start {
+      align-self: flex-start;
     }
     .lg\:py-8 {
       padding-block: calc(var(--spacing) * 8);

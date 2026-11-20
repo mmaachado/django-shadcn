@@ -89,6 +89,10 @@ registry: dict[str, Component] = {
     'item': Component(depends=('separator',)),
     'kbd': Component(),
     'label': Component(),
+    'login': Component(
+        depends=('button', 'card', 'field', 'icon', 'input'),
+        block=True,
+    ),
     'marker': Component(depends=('icon',)),
     'menubar': Component(depends=('icon',)),
     'message': Component(depends=('avatar',)),
