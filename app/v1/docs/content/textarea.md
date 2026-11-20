@@ -9,13 +9,21 @@ description.es: Muestra un área de texto, o un componente con aspecto de área 
 <c-textarea placeholder="Type your message here." />
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add textarea
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-textarea placeholder="Type your message here." />
@@ -25,9 +33,15 @@ uvx django_shadcn@latest add textarea
 <c-textarea placeholder="Type your message here." />
 ```
 
+:::en
 ## Examples
 
 ### Disabled
+:::pt-br
+## Exemplos
+
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-textarea placeholder="Type your message here." disabled />
@@ -37,7 +51,11 @@ uvx django_shadcn@latest add textarea
 <c-textarea placeholder="Type your message here." disabled />
 ```
 
+:::en
 ### With Label
+:::pt-br
+### Com rótulo
+:::
 
 <c-docs.demo-section>
 
@@ -54,7 +72,11 @@ uvx django_shadcn@latest add textarea
 </div>
 ```
 
+:::en
 ### With Button
+:::pt-br
+### Com botão
+:::
 
 <c-docs.demo-section>
 

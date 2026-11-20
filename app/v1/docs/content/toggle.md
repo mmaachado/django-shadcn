@@ -11,13 +11,21 @@ description.es: Un botón de dos estados, encendido o apagado.
 </c-toggle>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add toggle
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <c-toggle aria-label="Toggle italic"><span class="italic">I</span></c-toggle>
@@ -29,6 +37,7 @@ uvx django_shadcn@latest add toggle
 </c-toggle>
 ```
 
+:::en
 The pressed state lives in Alpine and is published as `data-state="on"` and
 `aria-pressed`, so the styling and assistive technology read the same source.
 Start it pressed with `pressed="true"`.
@@ -36,6 +45,15 @@ Start it pressed with `pressed="true"`.
 ## Examples
 
 ### Variants
+:::pt-br
+O estado de pressionado mora no Alpine e é publicado como `data-state="on"` e
+`aria-pressed`, então o estilo e as tecnologias assistivas leem a mesma fonte.
+Comece pressionado com `pressed="true"`.
+
+## Exemplos
+
+### Variantes
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-3">
@@ -49,7 +67,11 @@ Start it pressed with `pressed="true"`.
 <c-toggle variant="outline">Outline</c-toggle>
 ```
 
+:::en
 ### Sizes
+:::pt-br
+### Tamanhos
+:::
 
 <c-docs.demo-section>
 <div class="flex items-center gap-3">
@@ -65,7 +87,11 @@ Start it pressed with `pressed="true"`.
 <c-toggle size="lg">Large</c-toggle>
 ```
 
+:::en
 ### Pressed by default
+:::pt-br
+### Pressionado por padrão
+:::
 
 <c-docs.demo-section>
 <c-toggle variant="outline" pressed="true">Pressed</c-toggle>
@@ -75,7 +101,11 @@ Start it pressed with `pressed="true"`.
 <c-toggle variant="outline" pressed="true">Pressed</c-toggle>
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <c-toggle variant="outline" disabled>Disabled</c-toggle>

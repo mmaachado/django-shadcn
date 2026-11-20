@@ -9,13 +9,21 @@ description.es: Elige un valor dentro de un intervalo.
 <div class="w-[320px]"><c-slider name="volume" value="60" /></div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add slider
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 <c-docs.demo-section>
 <div class="w-[320px]"><c-slider name="volume" value="50" /></div>
@@ -27,6 +35,7 @@ uvx django_shadcn@latest add slider
 </div>
 ```
 
+:::en
 The slider fills the width it is given, so set the width on a wrapper
 rather than passing a `w-*` class to the component: two width utilities on
 the same element are settled by the compiled stylesheet, not by you.
@@ -39,6 +48,21 @@ of vendor pseudo-elements.
 ## Examples
 
 ### Range and step
+:::pt-br
+O slider preenche a largura que recebe, então defina a largura num elemento em
+volta em vez de passar uma classe `w-*` ao componente: dois utilitários de
+largura no mesmo elemento são decididos pela folha de estilo compilada, não por
+você.
+
+Um `<input type="range">` de verdade fica transparente por cima e carrega o
+valor, o teclado e o envio do formulário. A trilha, o trecho preenchido e o
+puxador embaixo dele são o que você vê, o que mantém o estilo em classes
+utilitárias em vez de pseudo-elementos de cada navegador.
+
+## Exemplos
+
+### Intervalo e passo
+:::
 
 <c-docs.demo-section>
 <div class="flex w-[320px] flex-col gap-6">
@@ -52,7 +76,11 @@ of vendor pseudo-elements.
 <c-slider name="ratio" min="0" max="1" step="0.05" value="0.4" />
 ```
 
+:::en
 ### Disabled
+:::pt-br
+### Desabilitado
+:::
 
 <c-docs.demo-section>
 <div class="w-[320px]"><c-slider value="35" disabled /></div>
@@ -62,7 +90,15 @@ of vendor pseudo-elements.
 <c-slider value="35" disabled />
 ```
 
+:::en
 ## Notes
 
 Radix supports several thumbs on one track for a range selection. That needs
 shared state between thumbs and is not here; one value per slider.
+:::pt-br
+## Observações
+
+O Radix aceita vários puxadores numa mesma trilha para selecionar um intervalo.
+Isso precisa de estado compartilhado entre os puxadores e não está aqui; um
+valor por slider.
+:::

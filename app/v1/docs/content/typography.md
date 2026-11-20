@@ -16,19 +16,28 @@ description.es: Estilos para títulos, párrafos, listas y texto en línea.
         </div>
 </c-docs.demo-section>
 
+:::en
 ## Installation
+:::pt-br
+## Instalação
+:::
 
 ```bash
 uvx django_shadcn@latest add typography
 ```
 
+:::en
 ## Usage
+:::pt-br
+## Uso
+:::
 
 ```html
 <c-typography.h1>Taxing Laughter</c-typography.h1>
 <c-typography.p>The king thought long and hard.</c-typography.p>
 ```
 
+:::en
 shadcn/ui documents typography as utility classes rather than shipping a
 component. There is no per-file equivalent of a `prose` wrapper in a Django
 template, so each style is its own subcomponent here. The classes are the
@@ -37,6 +46,16 @@ ones from the original page, unchanged.
 ## Examples
 
 ### h1
+:::pt-br
+O shadcn/ui documenta a tipografia como classes utilitárias em vez de distribuir
+um componente. Não há um equivalente por arquivo de um invólucro `prose` num
+template Django, então aqui cada estilo é o próprio subcomponente. As classes
+são as da página original, sem mudanças.
+
+## Exemplos
+
+### h1
+:::
 
 <c-docs.demo-section>
 <c-typography.h1>Taxing Laughter: The Joke Tax Chronicles</c-typography.h1>
@@ -46,7 +65,11 @@ ones from the original page, unchanged.
 <c-typography.h1>Taxing Laughter</c-typography.h1>
 ```
 
+:::en
 ### h2
+:::pt-br
+### h2
+:::
 
 <c-docs.demo-section>
 <c-typography.h2 class="w-full">The People of the Kingdom</c-typography.h2>
@@ -56,7 +79,11 @@ ones from the original page, unchanged.
 <c-typography.h2>The People of the Kingdom</c-typography.h2>
 ```
 
+:::en
 ### h3
+:::pt-br
+### h3
+:::
 
 <c-docs.demo-section>
 <c-typography.h3>The Joke Tax</c-typography.h3>
@@ -66,7 +93,11 @@ ones from the original page, unchanged.
 <c-typography.h3>The Joke Tax</c-typography.h3>
 ```
 
+:::en
 ### h4
+:::pt-br
+### h4
+:::
 
 <c-docs.demo-section>
 <c-typography.h4>People stopped telling jokes</c-typography.h4>
@@ -76,7 +107,11 @@ ones from the original page, unchanged.
 <c-typography.h4>People stopped telling jokes</c-typography.h4>
 ```
 
+:::en
 ### Paragraph
+:::pt-br
+### Parágrafo
+:::
 
 <c-docs.demo-section>
 <c-typography.p>
@@ -89,7 +124,11 @@ error of his ways and repealed the joke tax.
 <c-typography.p>The king repealed the joke tax.</c-typography.p>
 ```
 
+:::en
 ### Blockquote
+:::pt-br
+### Citação
+:::
 
 <c-docs.demo-section>
 <c-typography.blockquote>
@@ -102,7 +141,11 @@ fair that they should pay for the privilege."
 <c-typography.blockquote>After all, he said.</c-typography.blockquote>
 ```
 
+:::en
 ### List
+:::pt-br
+### Lista
+:::
 
 <c-docs.demo-section>
 <c-typography.list>
@@ -119,7 +162,11 @@ fair that they should pay for the privilege."
 </c-typography.list>
 ```
 
+:::en
 ### Inline code
+:::pt-br
+### Código em linha
+:::
 
 <c-docs.demo-section>
 <c-typography.code>django-cotton</c-typography.code>
@@ -129,7 +176,11 @@ fair that they should pay for the privilege."
 <c-typography.code>django-cotton</c-typography.code>
 ```
 
+:::en
 ### Lead
+:::pt-br
+### Lead
+:::
 
 <c-docs.demo-section>
 <c-typography.lead>
@@ -142,7 +193,11 @@ expects a response.
 <c-typography.lead>A modal dialog.</c-typography.lead>
 ```
 
+:::en
 ### Large
+:::pt-br
+### Large
+:::
 
 <c-docs.demo-section>
 <c-typography.large>Are you absolutely sure?</c-typography.large>
@@ -152,7 +207,11 @@ expects a response.
 <c-typography.large>Are you absolutely sure?</c-typography.large>
 ```
 
+:::en
 ### Small
+:::pt-br
+### Small
+:::
 
 <c-docs.demo-section>
 <c-typography.small>Email address</c-typography.small>
@@ -162,7 +221,11 @@ expects a response.
 <c-typography.small>Email address</c-typography.small>
 ```
 
+:::en
 ### Muted
+:::pt-br
+### Muted
+:::
 
 <c-docs.demo-section>
 <c-typography.muted>Enter your email address.</c-typography.muted>
