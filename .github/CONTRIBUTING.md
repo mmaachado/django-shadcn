@@ -122,6 +122,13 @@ markup and shows the same text below it as the code to copy, Django tags
 included, so the two cannot drift apart. Keep fenced code for what is not a
 demo: install commands, Python and settings.
 
+A component page reads in one order: the demo, the cheat sheet, Installation,
+Usage, Examples, RTL, Accessibility, API reference and Notes. Usage says how
+the component behaves inside a Django template: what reaches the form through
+`name`, what works without JavaScript, and which Alpine plugin it needs.
+Examples follow the upstream page one for one, and Notes says why when one
+does not apply. `button` is the page to copy.
+
 Two parts of the page are generated from the templates, so they cannot fall
 behind them: `<c-docs.api-reference name="<name>" />`, the table of every
 attribute, its default and its values, and `<c-docs.cheat-sheet name="<name>">`

@@ -375,3 +375,46 @@ class CheatSheetTests(SimpleTestCase):
 
         self.assertIn("<code>variant=&quot;default&quot;</code>", box)
         self.assertNotIn("Parts", box)
+
+
+# Component pages already rebuilt to the structure below. The last batch of
+# the rebuild replaces this with every component page.
+REBUILT = {"button"}
+
+
+class PageStructureTests(SimpleTestCase):
+    """A component page reads in one order: the demo, the cheat sheet,
+    installation, usage, examples, RTL, accessibility, the API reference and
+    notes. Examples and notes are the two a page may leave out."""
+
+    ORDER = [
+        ("demo", r"^<c-docs\.(?:demo-section|example)\b", True),
+        ("cheat sheet", r"^<c-docs\.cheat-sheet ", True),
+        ("installation", r"^## Installation$", True),
+        ("usage", r"^## Usage$", True),
+        ("examples", r"^## Examples$", False),
+        ("rtl", r"^## RTL$", True),
+        ("accessibility", r"^## Accessibility$", True),
+        ("reference", r"^## API reference$", True),
+        ("notes", r"^## Notes$", False),
+    ]
+
+    def test_rebuilt_pages_follow_the_order(self):
+        wrong = []
+
+        for slug in sorted(REBUILT):
+            source = (settings.BASE_DIR / "content" / f"{slug}.md").read_text(
+                encoding="utf-8"
+            )
+            english = _translate(source, "en")
+            found = []
+            for name, pattern, required in self.ORDER:
+                match = re.search(pattern, english, re.MULTILINE)
+                if match:
+                    found.append((match.start(), name))
+                elif required:
+                    wrong.append(f"{slug}: no {name}")
+            if [name for _at, name in sorted(found)] != [name for _at, name in found]:
+                wrong.append(f"{slug}: sections out of order")
+
+        self.assertEqual(wrong, [])
