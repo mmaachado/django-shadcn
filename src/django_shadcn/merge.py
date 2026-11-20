@@ -49,21 +49,25 @@ def conflicting_paths(source: Path, destination: Path) -> list[Path]:
     a file it never touched. A file sitting where a directory belongs is
     the loud one, raising from mkdir partway through the copy.
 
-    Neither is recoverable once writing has started, so the caller checks
-    first and refuses the component.
+    A symlink is refused wherever it sits, from the component's directory
+    down: copy2 writes through one, so a link committed into a repository
+    would have `add` overwrite, or create, a file outside the project.
+
+    None of these is recoverable once writing has started, so the caller
+    checks first and refuses the component.
     """
     conflicts: set[Path] = set()
 
     for relative in _relative_files(source):
         target = destination / relative
 
-        if target.is_dir():
+        if target.is_symlink() or target.is_dir():
             conflicts.add(target)
 
         for parent in relative.parents:
             ancestor = destination / parent
 
-            if ancestor.is_file():
+            if ancestor.is_symlink() or ancestor.is_file():
                 conflicts.add(ancestor)
 
     return sorted(conflicts)

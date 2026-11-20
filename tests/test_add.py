@@ -272,6 +272,26 @@ def test_a_file_where_a_directory_belongs_stops_the_run(project):
     assert icon.read_text(encoding='utf-8') == 'mine'
 
 
+@pytest.mark.parametrize('flags', [[], ['--overwrite'], ['--sync', '--yes']])
+def test_a_symlink_in_the_component_stops_the_run(project, tmp_path, flags):
+    """A link committed into a repository must not let add write outside
+    the project, whichever mode it runs in."""
+    outside = tmp_path / 'outside.txt'
+    outside.write_text('mine', encoding='utf-8')
+    target = project / 'templates' / 'cotton' / 'button' / 'index.html'
+    target.parent.mkdir(parents=True)
+    try:
+        target.symlink_to(outside)
+    except OSError:
+        pytest.skip('symlinks are not available here')
+
+    result = runner.invoke(app, ['add', 'button', *flags])
+
+    assert result.exit_code == 1
+    assert 'paths in the way' in result.stdout
+    assert outside.read_text(encoding='utf-8') == 'mine'
+
+
 def test_a_conflict_in_a_dependency_writes_nothing_at_all(project):
     """The reason the check runs before the loop and not inside it."""
     icon = project / 'templates' / 'cotton' / 'icon'
