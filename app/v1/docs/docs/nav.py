@@ -18,6 +18,7 @@ NAV = [
         _("Guides"),
         [
             ("theming", _("Theming")),
+            ("cli", _("CLI")),
         ],
     ),
     (

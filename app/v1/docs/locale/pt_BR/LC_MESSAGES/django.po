@@ -96,3 +96,6 @@ msgstr "Guias"
 
 msgid "Theming"
 msgstr "Temas"
+
+msgid "CLI"
+msgstr "CLI"
