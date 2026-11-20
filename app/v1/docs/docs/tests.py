@@ -6,7 +6,9 @@ first: the storage backend raises when the manifest is missing.
 """
 
 import io
+import os
 import re
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -436,3 +438,34 @@ class LlmsFullTests(SimpleTestCase):
 
         self.assertNotIn('data-slot="cheat-sheet"', text)
         self.assertIn('<c-button variant="outline" type="button">Button</c-button>', text)
+
+
+class ProductionSettingsTests(SimpleTestCase):
+    """The base settings fall back to a published key; production must not."""
+
+    def load(self, key):
+        environment = {**os.environ, "DJANGO_SECRET_KEY": key}
+        return subprocess.run(
+            [sys.executable, "-c", "import docs.settings_production"],
+            cwd=settings.BASE_DIR,
+            env=environment,
+            capture_output=True,
+            text=True,
+        )
+
+    def test_a_missing_key_stops_the_deploy(self):
+        result = self.load("")
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("DJANGO_SECRET_KEY must be set", result.stderr)
+
+    def test_the_published_key_stops_the_deploy(self):
+        result = self.load("django-insecure-copied-from-the-repository")
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("DJANGO_SECRET_KEY must be set", result.stderr)
+
+    def test_a_real_key_loads(self):
+        result = self.load("a-key-only-the-deploy-knows-" + "x" * 40)
+
+        self.assertEqual(result.returncode, 0, result.stderr)

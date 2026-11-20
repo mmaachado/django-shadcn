@@ -152,6 +152,53 @@ def test_a_file_where_the_component_belongs_is_a_conflict(source, destination):
     assert conflicting_paths(source, destination) == [destination]
 
 
+def link(path: Path, target: Path) -> None:
+    """Windows only creates symlinks with a privilege CI may not have."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        path.symlink_to(target)
+    except OSError:
+        pytest.skip('symlinks are not available here')
+
+
+def test_a_symlink_where_a_file_belongs_is_a_conflict(
+    source, destination, tmp_path
+):
+    """copy2 writes through it, to a file outside the project."""
+    outside = tmp_path / 'outside.txt'
+    outside.write_text('mine', encoding='utf-8')
+    link(destination / 'index.html', outside)
+
+    assert conflicting_paths(source, destination) == [
+        destination / 'index.html'
+    ]
+
+
+def test_a_dangling_symlink_is_a_conflict(source, destination, tmp_path):
+    """exists() is false for it, so safe mode would create the target."""
+    link(destination / 'index.html', tmp_path / 'not-there.txt')
+
+    assert conflicting_paths(source, destination) == [
+        destination / 'index.html'
+    ]
+
+
+def test_a_symlinked_directory_is_a_conflict(source, destination, tmp_path):
+    (tmp_path / 'elsewhere').mkdir()
+    link(destination / 'nested', tmp_path / 'elsewhere')
+
+    assert conflicting_paths(source, destination) == [destination / 'nested']
+
+
+def test_a_symlinked_component_directory_is_a_conflict(
+    source, destination, tmp_path
+):
+    (tmp_path / 'elsewhere').mkdir()
+    link(destination, tmp_path / 'elsewhere')
+
+    assert destination in conflicting_paths(source, destination)
+
+
 def test_dry_run_reports_creations_without_making_them(source, destination):
     result = merge(source, destination, WriteMode.safe, dry_run=True)
 

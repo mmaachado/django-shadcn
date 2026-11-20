@@ -9,7 +9,6 @@ requires-python = ">=3.14"
 dependencies = [
     "django-environ>=0.11.2",
     "django>=6.0",
-    "django-htmx",
     "whitenoise>=6.8.2",
     "gunicorn>=23.0.0",
     # 2.x is the only line that supports Django 5.2 and up, and 2.7.1 carries

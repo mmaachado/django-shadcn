@@ -246,6 +246,22 @@ def test_the_menubar_moves_between_its_menus(components_root):
     assert "direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight'" in source
 
 
+def test_a_dialog_trigger_opens_only_its_own_dialog(components_root):
+    """The as_child trigger dispatched a window event every dialog listened
+    for, so one click opened every dialog on the page."""
+    trigger = (components_root / 'dialog' / 'trigger.html').read_text(
+        encoding='utf-8'
+    )
+
+    assert '$dispatch' not in trigger
+    assert trigger.count('showDialog()') == 2
+    for name in ('dialog', 'sheet'):
+        root = (components_root / name / 'index.html').read_text(
+            encoding='utf-8'
+        )
+        assert '.window="show' not in root, name
+
+
 # A name declared in <c-vars> and never read does nothing, yet the docs'
 # generated reference lists it as an attribute. The ones below are declared on
 # purpose: declaring a name keeps cotton from writing it onto the element.

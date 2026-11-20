@@ -20,3 +20,23 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  # The portal is its own uv and npm project, deployed on its own. Its locks
+  # already get security alerts; these open the version updates too.
+  - package-ecosystem: "uv"
+    directory: "/app/v1/docs"
+    target-branch: "development"
+    schedule:
+      interval: "weekly"
+    groups:
+      portal-python:
+        patterns: ["*"]
+
+  - package-ecosystem: "npm"
+    directory: "/app/v1/docs"
+    target-branch: "development"
+    schedule:
+      interval: "weekly"
+    groups:
+      portal-npm:
+        patterns: ["*"]

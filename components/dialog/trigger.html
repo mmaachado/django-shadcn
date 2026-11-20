@@ -2,7 +2,7 @@
 
 {% if as_child == "true" %}
   <div
-    @click.stop="$dispatch('show-dialog')"
+    @click.stop="showDialog()"
     class="{% if class %}{{ class }}{% endif %}"
     data-slot="dialog-trigger" {{ attrs }}
   >

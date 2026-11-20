@@ -125,7 +125,9 @@ report, file by file, that the real run would, and never asks, so it is worth
 the habit before `--sync`.
 
 A run that would put a file where a directory is, or the other way round,
-stops before the first write rather than halfway through.
+stops before the first write rather than halfway through. So does a symlink
+anywhere in a component's directory: writing through it would change a file
+outside the project.
 
 **Plugins.** Some components need an Alpine plugin that Alpine's core does not
 include. `add` names it once at the end of the run, for everything it added;
@@ -147,7 +149,9 @@ mesmo relatório, arquivo por arquivo, que a execução de verdade, e nunca
 pergunta, então vale o hábito antes do `--sync`.
 
 Uma execução que poria um arquivo onde há um diretório, ou o contrário, para
-antes da primeira escrita, e não no meio do caminho.
+antes da primeira escrita, e não no meio do caminho. O mesmo vale para um link
+simbólico em qualquer ponto do diretório de um componente: escrever através
+dele mudaria um arquivo fora do projeto.
 
 **Plugins.** Alguns componentes precisam de um plugin do Alpine que o núcleo do
 Alpine não traz. O `add` o cita uma vez no fim da execução, para tudo o que
