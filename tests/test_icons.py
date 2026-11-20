@@ -5,7 +5,11 @@ access. These checks are offline: they only compare what the markup asks for
 against what is on disk.
 """
 
+import importlib.util
 import re
+from pathlib import Path
+
+import pytest
 
 ICON_USAGE = re.compile(r'<c-icon\s[^>]*name=[\'"]([a-z0-9-]+)[\'"]')
 
@@ -71,3 +75,55 @@ def test_no_inline_svg_outside_the_icon_component(components_root):
     ]
 
     assert not offenders, f'inline svg found in: {offenders}'
+
+
+def _generator():
+    path = Path(__file__).resolve().parent.parent / 'scripts'
+    spec = importlib.util.spec_from_file_location(
+        'generate_icons', path / 'generate_icons.py'
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_every_shipped_partial_is_only_shapes(components_root):
+    """What the generator refuses to write must not be on disk either."""
+    unsafe_shapes = _generator().unsafe_shapes
+    offenders = {}
+
+    for path in (components_root / 'icon').glob('*.html'):
+        if path.name in NOT_AN_ICON:
+            continue
+        lines = path.read_text(encoding='utf-8').splitlines()
+        if unsafe_shapes(lines):
+            offenders[path.name] = unsafe_shapes(lines)
+
+    assert not offenders, offenders
+
+
+@pytest.mark.parametrize(
+    'line',
+    [
+        '<script>alert(1)</script>',
+        '<path d="M0 0" onload="alert(1)" />',
+        '<path d="{% debug %}" />',
+        '<path d="{{ request }}" />',
+        '<image href="https://example.com/x.png" />',
+        '<path d="M0 0" style="fill:url(#x)" />',
+        '<path d="M0 0"/><script/>',
+        '<a href="javascript:alert(1)"><path d="M0 0" /></a>',
+    ],
+)
+def test_the_generator_refuses_anything_but_shapes(line):
+    assert _generator().unsafe_shapes([line]) == [line]
+
+
+def test_the_generator_accepts_lucide_shapes():
+    shapes = [
+        '<path d="M20 6 9 17l-5-5" />',
+        '<circle cx="12" cy="12" r="10" />',
+        '<rect width="18" height="18" x="3" y="3" rx="2" />',
+    ]
+
+    assert _generator().unsafe_shapes(shapes) == []

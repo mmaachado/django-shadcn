@@ -34,6 +34,21 @@ USAGE = re.compile(r'<c-icon\s[^>]*name=[\'"]([a-z0-9-]+)[\'"]')
 # Everything between the opening <svg ...> and </svg>.
 SVG_BODY = re.compile(r'<svg[^>]*>(.*)</svg>', re.DOTALL)
 
+# The partials land in every project that installs a component, written as
+# they arrive. One shape per line, geometry only: no braces a template would
+# run, no quotes, colons or parentheses a script or a url() would need.
+SHAPE = re.compile(
+    r'<(?:path|circle|rect|line|polyline|polygon|ellipse)'
+    r'(?:\s+(?:d|cx|cy|r|rx|ry|x|y|x1|y1|x2|y2|width|height|points)'
+    r'="[-0-9a-zA-Z.,\s]*")*'
+    r'\s*/>'
+)
+
+
+def unsafe_shapes(shapes: list[str]) -> list[str]:
+    """The lines of a partial that are not a plain SVG shape."""
+    return [line for line in shapes if not SHAPE.fullmatch(line)]
+
 
 def used_icons() -> set[str]:
     names: set[str] = set()
@@ -60,6 +75,10 @@ def fetch(name: str) -> str:
         sys.exit(f'unexpected svg markup for {name}')
 
     shapes = [line.strip() for line in body.group(1).strip().splitlines()]
+
+    unsafe = unsafe_shapes(shapes)
+    if unsafe:
+        sys.exit(f'refusing {name}, which is not only shapes: {unsafe[0]}')
 
     return '\n'.join(shapes) + '\n'
 
