@@ -76,7 +76,9 @@ own: <a href="{% url 'page' slug='popover' %}">Popover</a>,
 <a href="{% url 'page' slug='calendar' %}">Calendar</a> and
 <a href="{% url 'page' slug='button' %}">Button</a>.
 
-## Limiting the range
+## Examples
+
+### Limiting the range
 
 `min` and `max` are handed to the calendar, so the days outside the range are
 dimmed and cannot be picked:
@@ -100,7 +102,9 @@ sozinha: <a href="{% url 'page' slug='popover' %}">Popover</a>,
 <a href="{% url 'page' slug='calendar' %}">Calendar</a> e
 <a href="{% url 'page' slug='button' %}">Button</a>.
 
-## Limitando o intervalo
+## Exemplos
+
+### Limitando o intervalo
 
 `min` e `max` são repassados ao calendário, então os dias fora do intervalo
 aparecem esmaecidos e não podem ser escolhidos:
@@ -115,35 +119,13 @@ aparecem esmaecidos e não podem ser escolhidos:
 </c-docs.demo-section>
 
 :::en
-## Props
-
-| Prop | Default | Meaning |
-| --- | --- | --- |
-| `name` | — | the name the hidden input posts under; leave it out for a display-only picker |
-| `value` | — | the ISO date selected when the page loads |
-| `placeholder` | `Pick a date` | the button's text while nothing is selected |
-| `first_day` | the locale's | `0` for Sunday through `6` for Saturday |
-| `min` | — | the earliest selectable ISO date |
-| `max` | — | the latest selectable ISO date |
-
-## Widening it
+### Widening it
 
 Upstream puts the width on the trigger. Here it is on the component itself, so
 `class` can change it — a class handed to a component cannot reach an element
 that component renders further in:
 :::pt-br
-## Props
-
-| Prop | Padrão | Significado |
-| --- | --- | --- |
-| `name` | — | o nome com que o input oculto é enviado; deixe de fora para um seletor só de exibição |
-| `value` | — | a data ISO selecionada quando a página carrega |
-| `placeholder` | `Pick a date` | o texto do botão enquanto nada está selecionado |
-| `first_day` | a do locale | `0` para domingo até `6` para sábado |
-| `min` | — | a data ISO mais cedo que pode ser escolhida |
-| `max` | — | a data ISO mais tarde que pode ser escolhida |
-
-## Deixando mais largo
+### Deixando mais largo
 
 O upstream põe a largura no trigger. Aqui ela fica no próprio componente, para
 que `class` possa mudá-la — uma classe passada a um componente não alcança um
@@ -161,9 +143,70 @@ It is `w-[240px]` by default, as upstream.
 :::
 
 :::en
+## RTL
+
+The button's text and its icon follow the text, and the calendar inside
+mirrors as [Calendar]({% url 'page' slug='calendar' %}) does, with its arrows
+turned.
+
+## Accessibility
+
+The button opens the calendar in a popover. The calendar's days are labelled
+buttons with `aria-selected`, and the chosen date shows on the button in the
+locale's words. Give the picker a label, as for any field.
+
 ## API reference
 :::pt-br
+## RTL
+
+O texto do botão e o ícone acompanham o texto, e o calendário dentro espelha
+como o [Calendar]({% url 'page' slug='calendar' %}), com as setas viradas.
+
+## Acessibilidade
+
+O botão abre o calendário num popover. Os dias do calendário são botões com
+rótulo e `aria-selected`, e a data escolhida aparece no botão com as palavras
+do locale. Dê um rótulo ao seletor, como a qualquer campo.
+
 ## Referência da API
 :::
 
 <c-docs.api-reference name="date-picker" />
+
+:::en
+## Notes
+
+**What each attribute means.**
+
+| Prop | Default | Meaning |
+| --- | --- | --- |
+| `name` | — | the name the hidden input posts under; leave it out for a display-only picker |
+| `value` | — | the ISO date selected when the page loads |
+| `placeholder` | `Pick a date` | the button's text while nothing is selected |
+| `first_day` | the locale's | `0` for Sunday through `6` for Saturday |
+| `min` | — | the earliest selectable ISO date |
+| `max` | — | the latest selectable ISO date |
+
+Upstream's range picker, its input and time pickers and its natural language
+picker have no counterpart: the calendar picks one date, and the picker is that
+calendar in a popover. A date of birth is a picker with a `max` of today and a
+`value` far enough back to start from.
+:::pt-br
+## Observações
+
+**O que cada atributo significa.**
+
+| Prop | Padrão | Significado |
+| --- | --- | --- |
+| `name` | — | o nome com que o input oculto é enviado; deixe de fora para um seletor só de exibição |
+| `value` | — | a data ISO selecionada quando a página carrega |
+| `placeholder` | `Pick a date` | o texto do botão enquanto nada está selecionado |
+| `first_day` | a do locale | `0` para domingo até `6` para sábado |
+| `min` | — | a data ISO mais cedo que pode ser escolhida |
+| `max` | — | a data ISO mais tarde que pode ser escolhida |
+
+O seletor de intervalo do upstream, os seletores com input e com hora e o de
+linguagem natural não têm equivalente: o calendário escolhe uma data, e o
+seletor é esse calendário num popover. Uma data de nascimento é um seletor com
+`max` igual a hoje e um `value` antigo o bastante para começar.
+:::

@@ -178,6 +178,91 @@ uma vez.
 </c-docs.example>
 
 :::en
+### Checkbox and switch
+
+With `orientation="horizontal"` the control sits beside its label.
+:::pt-br
+### Checkbox e switch
+
+Com `orientation="horizontal"` o controle fica ao lado do rótulo.
+:::
+
+<c-docs.example>
+<c-field.group class="max-w-sm">
+  <c-field orientation="horizontal">
+    <c-checkbox id="field-terms" name="terms" />
+    <c-field.label for="field-terms">Accept the terms</c-field.label>
+  </c-field>
+  <c-field orientation="horizontal">
+    <c-switch id="field-digest" name="digest" />
+    <c-field.label for="field-digest">Weekly digest</c-field.label>
+  </c-field>
+</c-field.group>
+</c-docs.example>
+
+:::en
+### Radio
+
+A set with a legend names the question the radios answer.
+:::pt-br
+### Radio
+
+Um set com legenda dá nome à pergunta que os radios respondem.
+:::
+
+<c-docs.example>
+<c-field.set class="max-w-sm">
+  <c-field.legend>Plan</c-field.legend>
+  <c-radio-group>
+    <c-field orientation="horizontal">
+      <c-radio-group.item id="plan-free" name="plan" value="free" checked />
+      <c-field.label for="plan-free">Free</c-field.label>
+    </c-field>
+    <c-field orientation="horizontal">
+      <c-radio-group.item id="plan-pro" name="plan" value="pro" />
+      <c-field.label for="plan-pro">Pro</c-field.label>
+    </c-field>
+  </c-radio-group>
+</c-field.set>
+</c-docs.example>
+
+:::en
+## RTL
+
+Labels, descriptions and errors align to the start, and a horizontal field
+puts its label at the start of the row, so under `dir="rtl"` the field mirrors
+with the text.
+
+## Accessibility
+
+`field.label` is a `<label>`; tie it to the control with `for`. A set is a
+`<fieldset>` with a `<legend>`, so a group of radios or checkboxes is announced
+by its question. `field.error` carries `role="alert"`, so an error is read as it
+appears; tie it to the control with `aria-describedby` and mark the control
+`aria-invalid="true"` too.
+
+## API reference
+:::pt-br
+## RTL
+
+Rótulos, descrições e erros se alinham ao início, e um campo horizontal põe
+o rótulo no início da linha, então sob `dir="rtl"` o campo espelha com o
+texto.
+
+## Acessibilidade
+
+O `field.label` é um `<label>`; ligue-o ao controle com `for`. Um set é um
+`<fieldset>` com uma `<legend>`, então um grupo de radios ou checkboxes é
+anunciado pela pergunta. O `field.error` leva `role="alert"`, então um erro é
+lido quando aparece; ligue-o ao controle com `aria-describedby` e marque o
+controle com `aria-invalid="true"` também.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="field" />
+
+:::en
 ## Notes
 
 Upstream, `FieldError` takes either children or an array of errors and
@@ -193,11 +278,3 @@ erros de um campo de formulário Django, com a mesma regra: um erro em linha,
 vários como uma lista com marcadores. Nada é renderizado quando os dois estão
 vazios.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="field" />

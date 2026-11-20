@@ -189,8 +189,31 @@ sob a licença ISC. O aviso completo vem com o componente, em `icon/LICENSE`.
 :::
 
 :::en
+## RTL
+
+Icons do not mirror. Lucide has no RTL variants, so an arrow that means
+"next" needs `rtl:rotate-180` to point the way the text runs.
+
+## Accessibility
+
+An icon is an inline `<svg>`. One beside text is decorative and should carry
+`aria-hidden="true"`; one that stands alone, in a button, takes its name from
+the button's `aria-label`.
+
 ## API reference
 :::pt-br
+## RTL
+
+Os ícones não espelham. O Lucide não tem variantes RTL, então uma seta que
+significa "próximo" precisa de `rtl:rotate-180` para apontar no sentido do
+texto.
+
+## Acessibilidade
+
+Um ícone é um `<svg>` em linha. Um ao lado de texto é decorativo e deve
+levar `aria-hidden="true"`; um que fica sozinho, num botão, recebe o nome do
+`aria-label` do botão.
+
 ## Referência da API
 :::
 

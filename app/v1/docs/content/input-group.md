@@ -136,6 +136,85 @@ captar o foco e o estado de validação.
 </c-docs.example>
 
 :::en
+### Text
+
+`text` puts a fixed piece, a unit or a domain, beside the field.
+:::pt-br
+### Texto
+
+O `text` põe um pedaço fixo, uma unidade ou um domínio, ao lado do campo.
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.input placeholder="example" aria-label="Subdomain" />
+  <c-input-group.addon align="inline-end"><c-input-group.text>.example.com</c-input-group.text></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+### Kbd
+:::pt-br
+### Kbd
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.addon><c-icon name="search" /></c-input-group.addon>
+  <c-input-group.input placeholder="Search..." aria-label="Search" />
+  <c-input-group.addon align="inline-end"><c-kbd>⌘K</c-kbd></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+### Spinner
+
+A spinner in an addon shows the field is waiting, such as on a lookup.
+:::pt-br
+### Spinner
+
+Um spinner num addon mostra que o campo está esperando, como numa consulta.
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.input value="mmaachado" aria-label="Username" />
+  <c-input-group.addon align="inline-end"><c-spinner /></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+## RTL
+
+`inline-start` and `inline-end` are logical, so under `dir="rtl"` a leading
+icon moves to the right of the field and a trailing button to the left.
+
+## Accessibility
+
+The group is a `role="group"` and the field inside is a native input, so it
+keeps its label and its validation. An addon with only an icon is decorative;
+a button in it with only an icon needs an `aria-label`. Clicking an addon
+focuses the field.
+
+## API reference
+:::pt-br
+## RTL
+
+`inline-start` e `inline-end` são lógicos, então sob `dir="rtl"` um ícone do
+início vai para a direita do campo e um botão do fim para a esquerda.
+
+## Acessibilidade
+
+O grupo é um `role="group"` e o campo dentro é um input nativo, então mantém
+o rótulo e a validação. Um addon só com ícone é decorativo; um botão nele só
+com ícone precisa de um `aria-label`. Clicar num addon dá foco ao campo.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="input-group" />
+
+:::en
 ## Notes
 
 `c-input-group.input`, `.textarea` and `.button` render their own element
@@ -162,11 +241,3 @@ Os tamanhos deles vêm do grupo, não do `c-button`: `xs`, `sm`, `icon-xs` e
 Clicar num addon dá foco ao input, o que precisa do Alpine. O addon leva o
 próprio `x-data`, então funciona sem um escopo do Alpine em volta.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="input-group" />

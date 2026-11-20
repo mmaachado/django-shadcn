@@ -139,8 +139,95 @@ upstream. Acrescente `border` quando quiser que o contorno apareça.
 </c-docs.example>
 
 :::en
+### Background
+
+A muted background sets the empty state apart from the page.
+:::pt-br
+### Fundo
+
+Um fundo discreto separa o estado vazio da página.
+:::
+
+<c-docs.example>
+<c-empty class="w-full bg-muted/50">
+  <c-empty.header>
+    <c-empty.title>No notifications</c-empty.title>
+    <c-empty.description>You are all caught up.</c-empty.description>
+  </c-empty.header>
+</c-empty>
+</c-docs.example>
+
+:::en
+### Avatar
+:::pt-br
+### Avatar
+:::
+
+<c-docs.example>
+<c-empty class="w-full border">
+  <c-empty.header>
+    <c-empty.media>
+      <c-avatar size="lg">
+        <c-avatar.fallback>MM</c-avatar.fallback>
+      </c-avatar>
+    </c-empty.media>
+    <c-empty.title>No messages from Marcelo</c-empty.title>
+    <c-empty.description>Start the conversation.</c-empty.description>
+  </c-empty.header>
+  <c-empty.content>
+    <c-button size="sm">Send a message</c-button>
+  </c-empty.content>
+</c-empty>
+</c-docs.example>
+
+:::en
+### Input group
+
+A search with no results keeps the search field in reach.
+:::pt-br
+### Input group
+
+Uma busca sem resultados mantém o campo de busca ao alcance.
+:::
+
+<c-docs.example>
+<c-empty class="w-full border">
+  <c-empty.header>
+    <c-empty.title>Nothing matches "invoce"</c-empty.title>
+    <c-empty.description>Check the spelling, or search for something else.</c-empty.description>
+  </c-empty.header>
+  <c-empty.content>
+    <c-input-group class="max-w-xs">
+      <c-input-group.addon><c-icon name="search" /></c-input-group.addon>
+      <c-input-group.input value="invoce" aria-label="Search" />
+    </c-input-group>
+  </c-empty.content>
+</c-empty>
+</c-docs.example>
+
+:::en
+## RTL
+
+The empty state is centred, so it looks the same under `dir="rtl"`.
+
+## Accessibility
+
+It is plain markup: the title and the description are read in order, and an
+icon in the media is decorative. Make the next step a real link or button, so
+the reader has somewhere to go.
+
 ## API reference
 :::pt-br
+## RTL
+
+O estado vazio é centralizado, então fica igual sob `dir="rtl"`.
+
+## Acessibilidade
+
+É markup simples: o título e a descrição são lidos em ordem, e um ícone na
+mídia é decorativo. Faça do próximo passo um link ou botão de verdade, para o
+leitor ter para onde ir.
+
 ## Referência da API
 :::
 

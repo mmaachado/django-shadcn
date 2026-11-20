@@ -158,6 +158,69 @@ drawer que não escurece a página.
 </c-docs.example>
 
 :::en
+### Scrollable content
+
+Long content scrolls inside the drawer while the header stays put: give the
+body a height and `overflow-y-auto`.
+:::pt-br
+### Conteúdo com rolagem
+
+Um conteúdo longo rola dentro do drawer enquanto o cabeçalho fica no lugar:
+dê ao corpo uma altura e `overflow-y-auto`.
+:::
+
+<c-docs.example>
+<c-drawer>
+  <c-drawer.trigger><c-button variant="outline">Release notes</c-button></c-drawer.trigger>
+  <c-drawer.overlay />
+  <c-drawer.content>
+    <c-drawer.header>
+      <c-drawer.title>What changed in 1.11</c-drawer.title>
+    </c-drawer.header>
+    <div class="max-h-60 space-y-3 overflow-y-auto px-4 pb-4 text-sm text-muted-foreground">
+      {% for n in "123456" %}
+        <p>A change worth reading about, number {{ n }}, with a sentence on what it means for your templates.</p>
+      {% endfor %}
+    </div>
+  </c-drawer.content>
+</c-drawer>
+</c-docs.example>
+
+:::en
+## RTL
+
+`direction` names a side of the screen, so a drawer from the left stays on
+the left under `dir="rtl"`, and its border with it. The contents follow the
+text.
+
+## Accessibility
+
+The content is a `role="dialog"` with `aria-modal="true"`, and Escape closes
+it. Focus is not moved into the drawer or trapped there, so put the first
+thing to do near its top, and dragging the handle is a pointer gesture only:
+keep a close button for the keyboard.
+
+## API reference
+:::pt-br
+## RTL
+
+`direction` nomeia um lado da tela, então um drawer da esquerda continua à
+esquerda sob `dir="rtl"`, e a borda dele também. O conteúdo acompanha o
+texto.
+
+## Acessibilidade
+
+O conteúdo é um `role="dialog"` com `aria-modal="true"`, e o Escape o fecha.
+O foco não é levado para dentro do drawer nem preso ali, então ponha a primeira
+coisa a fazer perto do topo dele, e arrastar a alça é um gesto só de ponteiro:
+mantenha um botão de fechar para o teclado.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="drawer" />
+
+:::en
 ## Notes
 
 Upstream builds on `vaul`, which adds momentum, snap points that let the panel
@@ -196,11 +259,3 @@ As classes de direção vêm do registry, com `data-vaul-drawer-direction`
 renomeado para `data-direction` — levar o nome de uma biblioteca que não
 distribuímos seria enganoso.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="drawer" />

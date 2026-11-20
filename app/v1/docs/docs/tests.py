@@ -403,6 +403,19 @@ REBUILT = {
     "command",
     "command-dialog",
     "context-menu",
+    "date-picker",
+    "dialog",
+    "drawer",
+    "dropdown-menu",
+    "empty",
+    "field",
+    "form",
+    "hover-card",
+    "icon",
+    "input",
+    "input-group",
+    "input-otp",
+    "item",
 }
 
 

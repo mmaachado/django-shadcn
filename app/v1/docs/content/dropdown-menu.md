@@ -79,7 +79,7 @@ both.
 
 ## Examples
 
-### Alignment
+### Basic
 :::pt-br
 O trigger envolve o botão em vez de ficar dentro dele. É ele o elemento que
 recebe o clique, e o conteúdo é posicionado em relação ao menu que envolve os
@@ -87,6 +87,27 @@ dois.
 
 ## Exemplos
 
+### Básico
+:::
+
+<c-docs.example>
+<c-dropdown-menu>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Open</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-48">
+    <c-dropdown-menu.label>My account</c-dropdown-menu.label>
+    <c-dropdown-menu.separator />
+    <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+    <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+    <c-dropdown-menu.item>Settings</c-dropdown-menu.item>
+  </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.example>
+
+:::en
+### Alignment
+:::pt-br
 ### Alinhamento
 :::
 
@@ -228,6 +249,95 @@ item tiver um controle próprio.
 ```
 
 :::en
+### Shortcuts
+:::pt-br
+### Atalhos
+:::
+
+<c-docs.example>
+<c-dropdown-menu>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Open</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-48">
+    <c-dropdown-menu.item>New tab<c-dropdown-menu.shortcut>⌘T</c-dropdown-menu.shortcut></c-dropdown-menu.item>
+    <c-dropdown-menu.item>New window<c-dropdown-menu.shortcut>⌘N</c-dropdown-menu.shortcut></c-dropdown-menu.item>
+  </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.example>
+
+:::en
+### Icons
+:::pt-br
+### Ícones
+:::
+
+<c-docs.example>
+<c-dropdown-menu>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Open</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-48">
+    <c-dropdown-menu.item><c-icon name="users" />Team</c-dropdown-menu.item>
+    <c-dropdown-menu.item><c-icon name="settings" />Settings</c-dropdown-menu.item>
+  </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.example>
+
+:::en
+### Destructive
+:::pt-br
+### Destructive
+:::
+
+<c-docs.example>
+<c-dropdown-menu>
+  <c-dropdown-menu.trigger>
+    <c-button variant="outline">Open</c-button>
+  </c-dropdown-menu.trigger>
+  <c-dropdown-menu.content class="w-48">
+    <c-dropdown-menu.item>Edit</c-dropdown-menu.item>
+    <c-dropdown-menu.separator />
+    <c-dropdown-menu.item variant="destructive">Delete</c-dropdown-menu.item>
+  </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.example>
+
+:::en
+## RTL
+
+Items align their text to the start, with shortcuts and submenu arrows at
+the end, so under `dir="rtl"` they mirror, and `align="start"` lines the menu
+up with the start of the trigger. A submenu opens on the other side.
+
+## Accessibility
+
+The content is a `role="menu"`, the items `menuitem`, `menuitemcheckbox` or
+`menuitemradio` with `aria-checked`, and the trigger and submenu triggers report
+`aria-haspopup` and `aria-expanded`. Escape closes the menu. There is no roving
+focus: Tab moves through the items rather than the arrow keys.
+
+## API reference
+:::pt-br
+## RTL
+
+Os itens alinham o texto ao início, com atalhos e setas de submenu no fim,
+então sob `dir="rtl"` eles espelham, e `align="start"` alinha o menu com o
+início do trigger. Um submenu abre do outro lado.
+
+## Acessibilidade
+
+O conteúdo é um `role="menu"`, os itens são `menuitem`, `menuitemcheckbox`
+ou `menuitemradio` com `aria-checked`, e o trigger e os triggers de submenu
+informam `aria-haspopup` e `aria-expanded`. O Escape fecha o menu. Não há foco
+itinerante: o Tab percorre os itens, e não as setas.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="dropdown-menu" />
+
+:::en
 ## Notes
 
 The content is placed with `absolute` against the trigger, so `align` is a
@@ -260,11 +370,3 @@ de que o Radix escapa com um portal. Um menu muito longo cresce em vez de rolar.
 Não há foco itinerante. O menu responde ao ponteiro e ao `Escape`, não às setas
 do teclado.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="dropdown-menu" />

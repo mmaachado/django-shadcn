@@ -234,8 +234,73 @@ para um ícone sem moldura.
 </c-docs.example>
 
 :::en
+### Link
+
+Wrap the item in an `<a>` to make all of it a link.
+:::pt-br
+### Link
+
+Envolva o item num `<a>` para torná-lo inteiro um link.
+:::
+
+<c-docs.example>
+<a href="#" class="block max-w-md rounded-md">
+  <c-item variant="outline">
+    <c-item.content>
+      <c-item.title>Your profile is 80% complete</c-item.title>
+      <c-item.description>Add a photo to finish it.</c-item.description>
+    </c-item.content>
+    <c-item.actions><c-icon name="chevron-right" class="size-4" /></c-item.actions>
+  </c-item>
+</a>
+</c-docs.example>
+
+:::en
+### Avatar
+:::pt-br
+### Avatar
+:::
+
+<c-docs.example>
+<c-item variant="outline" class="max-w-md">
+  <c-item.media>
+    <c-avatar><c-avatar.fallback>MM</c-avatar.fallback></c-avatar>
+  </c-item.media>
+  <c-item.content>
+    <c-item.title>Marcelo Machado</c-item.title>
+    <c-item.description>Invited you to the project.</c-item.description>
+  </c-item.content>
+  <c-item.actions><c-button size="sm" variant="outline">Accept</c-button></c-item.actions>
+</c-item>
+</c-docs.example>
+
+:::en
+## RTL
+
+The media sits at the start of the item and the actions at its end, so under
+`dir="rtl"` they change sides with the text.
+
+## Accessibility
+
+A group is a `role="list"`; wrap each item in a `role="listitem"` when the
+list is meaningful, or wrap an item in an `<a>`
+when the whole item is a link.
+The separator between items is hidden from assistive technology.
+
 ## API reference
 :::pt-br
+## RTL
+
+A mídia fica no início do item e as ações no fim, então sob `dir="rtl"` elas
+trocam de lado com o texto.
+
+## Acessibilidade
+
+Um grupo é um `role="list"`; envolva cada item num `role="listitem"` quando a
+lista tiver significado, ou envolva um item num `<a>` quando o item inteiro
+for um link. O separador entre itens fica escondido das tecnologias
+assistivas.
+
 ## Referência da API
 :::
 

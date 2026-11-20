@@ -33,6 +33,7 @@
     --color-black: #000;
     --spacing: 0.25rem;
     --breakpoint-2xl: 96rem;
+    --container-xs: 20rem;
     --container-sm: 24rem;
     --container-md: 28rem;
     --container-lg: 32rem;
@@ -810,6 +811,9 @@
   .max-h-32 {
     max-height: calc(var(--spacing) * 32);
   }
+  .max-h-60 {
+    max-height: calc(var(--spacing) * 60);
+  }
   .max-h-\[200px\] {
     max-height: 200px;
   }
@@ -875,9 +879,6 @@
   }
   .w-\(--sidebar-width\) {
     width: var(--sidebar-width);
-  }
-  .w-2\/3 {
-    width: calc(2 / 3 * 100%);
   }
   .w-3 {
     width: calc(var(--spacing) * 3);
@@ -1043,6 +1044,9 @@
   }
   .max-w-xl {
     max-width: var(--container-xl);
+  }
+  .max-w-xs {
+    max-width: var(--container-xs);
   }
   .min-w-\(--cell-size\) {
     min-width: var(--cell-size);
@@ -4078,6 +4082,15 @@
     .sm\:w-\[540px\] {
       width: 540px;
     }
+    .sm\:max-w-\[425px\] {
+      max-width: 425px;
+    }
+    .sm\:max-w-lg {
+      max-width: var(--container-lg);
+    }
+    .sm\:max-w-md {
+      max-width: var(--container-md);
+    }
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -4801,6 +4814,9 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--muted) 50%, transparent);
     }
+  }
+  .\[\&\>\[data-slot\=button\]\:first-child\]\:hidden > [data-slot=button]:first-child {
+    display: none;
   }
   .\[\&\>\[data-slot\=field-group\]\]\:gap-4 > [data-slot=field-group] {
     gap: calc(var(--spacing) * 4);
