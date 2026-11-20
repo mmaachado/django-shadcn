@@ -1,7 +1,11 @@
 <c-vars class=""></c-vars>
 
+{% comment %}
+The chevron points towards the current page, which under dir="rtl" is the
+other way, so it turns with the text. A separator passed in is left alone.
+{% endcomment %}
 <li class="
-    [&>svg]:size-3.5
+    [&>svg]:size-3.5 rtl:[&>svg]:rotate-180
     {% if class %}
         {{ class }}
     {% endif %}
