@@ -120,11 +120,19 @@ the text.
 
 ## Accessibility
 
-The trigger is a `<button>` that reports `aria-expanded`, the list is a
-`role="listbox"` of `option`s, and Escape closes it. The options are not
-focusable, though, so a keyboard can open the list but cannot choose from it.
-For anything a keyboard must reach, use
-[Native Select]({% url 'page' slug='native-select' %}).
+The trigger is a `<button role="combobox">` that reports `aria-expanded` and
+controls a `role="listbox"` of `option`s; the chosen one reports
+`aria-selected="true"`. Focus stays on the trigger while the list is open, and
+`aria-activedescendant` points at the option the keyboard is on, so a screen
+reader reads it as it moves.
+
+Down, Up, Enter or Space open the list. Down and Up then move through the
+options, Home and End go to the ends, typing jumps to an option that starts
+with what was typed, and Enter or Space picks one and returns to the trigger.
+Escape and Tab close it. Options with `data-disabled` are skipped.
+
+It needs JavaScript to post anything. For a form that must work without it,
+use [Native Select]({% url 'page' slug='native-select' %}).
 
 ## API reference
 :::pt-br
@@ -135,10 +143,20 @@ no início, então sob `dir="rtl"` eles trocam de lado com o texto.
 
 ## Acessibilidade
 
-O trigger é um `<button>` que informa `aria-expanded`, a lista é um
-`role="listbox"` de `option`s, e o Escape a fecha. As opções não recebem foco,
-porém, então o teclado consegue abrir a lista mas não escolher nela. Para tudo
-que o teclado precisa alcançar, use o
+O trigger é um `<button role="combobox">` que informa `aria-expanded` e
+controla um `role="listbox"` de `option`s; a escolhida informa
+`aria-selected="true"`. O foco fica no trigger enquanto a lista está aberta, e
+o `aria-activedescendant` aponta para a opção em que o teclado está, então um
+leitor de tela a lê enquanto ela muda.
+
+As setas para baixo e para cima, o Enter ou o Espaço abrem a lista. Depois, as
+setas passam pelas opções, Home e End vão para as pontas, digitar pula para
+uma opção que começa com o que foi digitado, e o Enter ou o Espaço escolhem
+uma e voltam para o trigger. O Escape e o Tab a fecham. Opções com
+`data-disabled` são puladas.
+
+Ele precisa de JavaScript para enviar alguma coisa. Para um formulário que
+precisa funcionar sem ele, use o
 [Native Select]({% url 'page' slug='native-select' %}).
 
 ## Referência da API

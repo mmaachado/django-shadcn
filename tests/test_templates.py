@@ -137,6 +137,33 @@ def test_tabs_report_the_selected_tab_and_take_the_arrow_keys(
     assert "direction === 'rtl'" in root
 
 
+def test_the_select_is_a_combobox_the_keyboard_can_choose_from(
+    components_root,
+):
+    """The options were divs nothing could reach: a keyboard opened the
+    list and could only close it again."""
+
+    def read(name):
+        return (components_root / 'select' / name).read_text(encoding='utf-8')
+
+    root, trigger, item = (
+        read('index.html'),
+        read('trigger.html'),
+        read('item.html'),
+    )
+
+    assert '@keydown="key($event)"' in trigger
+    assert 'role="combobox"' in trigger
+    assert 'aria-haspopup="listbox"' in trigger
+    assert 'x-bind:aria-activedescendant=' in trigger
+    assert 'x-bind:id="$id(\'select-listbox\')"' in read('content.html')
+    assert 'x-bind:id="$id(\'select-option\', own)"' in item
+    assert 'x-bind:aria-selected="(value === own).toString()"' in item
+    for key in ('ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', 'Tab'):
+        assert f"'{key}'" in root
+    assert ':not([data-disabled])' in root
+
+
 # A name declared in <c-vars> and never read does nothing, yet the docs'
 # generated reference lists it as an attribute. The ones below are declared on
 # purpose: declaring a name keeps cotton from writing it onto the element.
