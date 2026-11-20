@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.11.1 — Unreleased
+## 1.11.1 — 2026-11-20
+
+The documentation site is rebuilt: every component page follows one structure,
+with an attribute reference generated from the templates and a cheat sheet,
+and four guides are new. The components need no change when upgrading.
 
 ### Fixed
 
