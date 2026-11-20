@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 
 from django_shadcn.components import registry
+from django_shadcn.constants import TEMPLATE_ROOT_COMPONENTS
 
 # Cotton tags that never map to a component of their own. `component` is the
 # dynamic tag: <c-component :is="..."> resolves at render time.
@@ -138,11 +139,12 @@ def test_every_component_has_an_index_template(
 ):
     """<c-name> resolves to name/index.html, so it has to exist.
 
-    `allauth` ships page templates into templates/account/ rather than a
-    cotton component. `form` and `typography` are only sets of
-    subcomponents, with no root element of their own.
+    Blocks ship page templates rather than a cotton component. `form` and
+    `typography` are only sets of subcomponents, with no root element of
+    their own.
     """
-    without_root = {'allauth', 'form', 'typography'}
+    blocks = {name for name, entry in registry.items() if entry.block}
+    without_root = blocks | {'form', 'typography'}
 
     for component in set(component_names) - without_root:
         index = components_root / component / 'index.html'
@@ -192,3 +194,30 @@ def test_install_commands_in_the_docs_name_real_components():
                     wrong.append(f'{page.name}: add {name}')
 
     assert not wrong, f'install commands that fail: {wrong}'
+
+
+def test_every_block_has_a_page_that_extends_the_project_base(
+    components_root,
+):
+    """A block renders as a whole page from a view, inside the project's
+    own layout, and the portal previews it by passing another base. allauth
+    fills django-allauth's template names instead."""
+    blocks = [
+        name
+        for name, entry in registry.items()
+        if entry.block and name not in TEMPLATE_ROOT_COMPONENTS
+    ]
+    wrong = []
+
+    for block in blocks:
+        page = components_root / block / 'page.html'
+        first = page.read_text(encoding='utf-8').splitlines()[0]
+        if first != EXTENDS:
+            wrong.append(f'{block}: {first}')
+
+    assert not wrong, (
+        f'blocks whose page.html does not open {EXTENDS}: {wrong}'
+    )
+
+
+EXTENDS = '{% extends base_template|default:"base.html" %}'

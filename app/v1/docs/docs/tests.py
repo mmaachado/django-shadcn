@@ -27,6 +27,7 @@ from .content import (
     untranslated,
 )
 from .nav import NAV, SLUGS
+from .views import BLOCK_EXTENDS
 
 
 class PageRenderTests(SimpleTestCase):
@@ -43,11 +44,50 @@ class PageRenderTests(SimpleTestCase):
                         urls.append(
                             reverse("page", kwargs={"slug": slug})
                         )
+                for name, page in block_pages():
+                    urls.append(
+                        reverse(
+                            "block-preview", kwargs={"name": name, "page": page}
+                        )
+                    )
 
                 for url in urls:
                     with self.subTest(url=url):
                         response = self.client.get(url)
                         self.assertEqual(response.status_code, 200)
+
+
+def block_pages():
+    """(block, page) for every page a block ships, found on disk."""
+    return sorted(
+        (path.parent.name, path.stem)
+        for path in settings.COMPONENTS_DIR.glob("*/*.html")
+        if path.read_text(encoding="utf-8").startswith(BLOCK_EXTENDS)
+    )
+
+
+class BlockPreviewTests(SimpleTestCase):
+    def test_a_block_renders_inside_the_bare_frame(self):
+        for name, page in block_pages():
+            with self.subTest(block=name, page=page):
+                response = self.client.get(
+                    reverse("block-preview", kwargs={"name": name, "page": page})
+                )
+                self.assertTemplateUsed(response, "block_frame.html")
+                self.assertTemplateNotUsed(response, "base.html")
+                self.assertEqual(response["X-Frame-Options"], "SAMEORIGIN")
+
+    def test_only_a_block_is_served(self):
+        for name, page in [
+            ("button", "index"),
+            ("allauth", "login"),
+            ("nothing", "page"),
+        ]:
+            with self.subTest(name=name):
+                response = self.client.get(
+                    reverse("block-preview", kwargs={"name": name, "page": page})
+                )
+                self.assertEqual(response.status_code, 404)
 
 
 class StylesheetClassTests(SimpleTestCase):

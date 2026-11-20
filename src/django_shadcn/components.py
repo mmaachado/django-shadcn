@@ -8,10 +8,16 @@ class Component:
     `scripts` names JavaScript the markup needs and Alpine's core does not
     provide. A component that declares one renders without erroring and
     without behaving, so `add` has to say so.
+
+    `block` marks a page assembled from components rather than a component.
+    It installs the same way, through `add` and its dependencies, but lands
+    in templates/blocks/<name>/ and is listed apart. Its page extends the
+    project's base.html, or `base_template` when the view passes one.
     """
 
     depends: tuple[str, ...] = ()
     scripts: tuple[str, ...] = ()
+    block: bool = False
 
 
 COLLAPSE = '@alpinejs/collapse'
@@ -31,7 +37,8 @@ registry: dict[str, Component] = {
             'alert',
             'badge',
             'separator',
-        )
+        ),
+        block=True,
     ),
     'aspect_ratio': Component(),
     'attachment': Component(depends=('button', 'icon')),

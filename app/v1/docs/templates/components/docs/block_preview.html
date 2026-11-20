@@ -1,0 +1,14 @@
+<c-vars name="" page="page" height="h-[680px]"></c-vars>
+
+{% comment %}
+A block is a whole page, with fixed and full-height parts that would escape a
+demo box, so it is shown in a frame that renders the file the CLI installs.
+{% endcomment %}
+<div class="overflow-hidden rounded-lg border border-border {% if class %}{{ class }}{% endif %}">
+    <iframe
+        src="{% url 'block-preview' name=name page=page %}"
+        title="{{ name }}"
+        loading="lazy"
+        class="block w-full {{ height }} bg-background"
+    ></iframe>
+</div>

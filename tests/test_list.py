@@ -101,3 +101,12 @@ def test_the_panel_reports_the_installed_count(project):
 
     assert result.exit_code == 0
     assert 'installed' in result.stdout
+
+
+def test_blocks_are_listed_apart_from_components(project):
+    result = runner.invoke(app, ['list'])
+    out = result.stdout
+
+    assert result.exit_code == 0
+    assert out.index('Available Components') < out.index('button')
+    assert out.index('button') < out.index('Blocks') < out.index('allauth')

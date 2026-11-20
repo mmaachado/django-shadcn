@@ -2,7 +2,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.urls import include, path
 
 from .llms import llms_full_txt, llms_txt
-from .views import home, page
+from .views import block_preview, home, page
 
 # set_language stores the choice in a cookie, so it survives a visit to
 # the bare domain later. It must sit outside the localized patterns.
@@ -15,6 +15,11 @@ urlpatterns += i18n_patterns(
     path("", home, name="home"),
     path("llms.txt", llms_txt, name="llms"),
     path("llms-full.txt", llms_full_txt, name="llms-full"),
+    path(
+        "blocks/<slug:name>/<slug:page>/",
+        block_preview,
+        name="block-preview",
+    ),
     path("<slug:slug>/", page, name="page"),
     prefix_default_language=False,
 )

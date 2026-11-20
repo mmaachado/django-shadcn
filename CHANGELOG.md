@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.10.0 — Unreleased
+
+### Added
+
+- **Blocks.** A block is a page assembled from components. It is added like
+  one, `add dashboard`, and brings its components along, but its page lands
+  in `templates/blocks/<name>/page.html`, one directory per block, so
+  `--sync` on one block never reaches another. `list` shows blocks apart from
+  components; `allauth` moves there too and still installs to
+  `templates/account/`.
+
+  The page extends your `base.html` and fills `{% block content %}`, so a view
+  renders it as it is. Pass `base_template` in the context to extend another
+  layout.
+
 ## 1.9.0 — 2026-11-19
 
 Right to left. The components mirror under `dir="rtl"`, a test keeps them

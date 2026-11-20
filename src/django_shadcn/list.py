@@ -37,33 +37,37 @@ def is_installed(component: str) -> bool:
     )
 
 
-@app.command(name='list')
-def list_components():
-    """List all available components"""
-    components = get_all_components()
-    installed = {name for name in components if is_installed(name)}
-
-    styled_components = [
+def _panel(title: str, names: list[str], installed: set[str]) -> Panel:
+    styled = [
         Text(
-            f'{component} *' if component in installed else component,
-            style='bold green' if component in installed else 'green',
+            f'{name} *' if name in installed else name,
+            style='bold green' if name in installed else 'green',
         )
-        for component in sorted(components)
+        for name in sorted(names)
     ]
 
-    columns = Columns(styled_components, column_first=False, padding=(0, 2))
+    subtitle = f'[bold cyan]Total: {len(names)}'
+    mine = installed & set(names)
+    if mine:
+        subtitle += f' | {len(mine)} installed (*)'
 
-    subtitle = f'[bold cyan]Total: {len(components)} components'
-    if installed:
-        subtitle += f' | {len(installed)} installed (*)'
-
-    panel = Panel(
-        columns,
-        title='[bold blue]Available Components',
+    return Panel(
+        Columns(styled, column_first=False, padding=(0, 2)),
+        title=f'[bold blue]{title}',
         subtitle=subtitle,
         box=box.ROUNDED,
         border_style='blue',
         padding=(1, 2),
     )
 
-    console.print(panel)
+
+@app.command(name='list')
+def list_components():
+    """List all available components and blocks"""
+    names = get_all_components()
+    installed = {name for name in names if is_installed(name)}
+    blocks = [name for name in names if registry[name].block]
+    components = [name for name in names if not registry[name].block]
+
+    console.print(_panel('Available Components', components, installed))
+    console.print(_panel('Blocks', blocks, installed))
