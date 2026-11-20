@@ -95,8 +95,41 @@ Comece pressionado com `pressed="true"`.
 </c-docs.example>
 
 :::en
+### With text
+:::pt-br
+### Com texto
+:::
+
+<c-docs.example>
+<c-toggle variant="outline" aria-label="Bookmark">
+  <c-icon name="check" />
+  Bookmark
+</c-toggle>
+</c-docs.example>
+
+:::en
+## RTL
+
+A toggle has no side of its own; an icon in it stays where the markup puts it.
+
+## Accessibility
+
+It is a `<button>` that reports `aria-pressed`, so a screen reader announces
+it as a toggle button, pressed or not. One with only an icon needs an
+`aria-label`.
+
 ## API reference
 :::pt-br
+## RTL
+
+Um toggle não tem um lado próprio; um ícone nele fica onde o markup o põe.
+
+## Acessibilidade
+
+É um `<button>` que informa `aria-pressed`, então um leitor de tela o anuncia
+como um botão de alternar, pressionado ou não. Um só com ícone precisa de um
+`aria-label`.
+
 ## Referência da API
 :::
 

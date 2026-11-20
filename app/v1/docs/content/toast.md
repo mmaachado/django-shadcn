@@ -131,8 +131,30 @@ uvx django_shadcn@latest add toast
 </c-docs.example>
 
 :::en
+## RTL
+
+The toast sits in a corner of the screen, and its text and action follow the
+page's direction.
+
+## Accessibility
+
+The toast carries `role="alert"`, so a screen reader announces it as it
+appears. It goes away on its own, so keep the message short, and do not put
+the only way to do something in it.
+
 ## API reference
 :::pt-br
+## RTL
+
+O toast fica num canto da tela, e o texto e a ação dele seguem a direção da
+página.
+
+## Acessibilidade
+
+O toast leva `role="alert"`, então um leitor de tela o anuncia quando ele
+aparece. Ele some sozinho, então mantenha a mensagem curta, e não ponha nele o
+único jeito de fazer algo.
+
 ## Referência da API
 :::
 

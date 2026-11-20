@@ -80,6 +80,37 @@ utilitárias em vez de pseudo-elementos de cada navegador.
 </c-docs.example>
 
 :::en
+## RTL
+
+The range input fills from the start, so under `dir="rtl"` the track fills
+from the right and the arrow keys follow the browser's direction.
+
+## Accessibility
+
+A real `<input type="range">` carries the value, so the arrow keys, Home and
+End move it and a screen reader announces it. Name it with a `<label>` or an
+`aria-label`.
+
+## API reference
+:::pt-br
+## RTL
+
+O input de intervalo se preenche a partir do início, então sob `dir="rtl"` a
+trilha se preenche a partir da direita e as setas seguem a direção do
+navegador.
+
+## Acessibilidade
+
+Um `<input type="range">` de verdade carrega o valor, então as setas, o Home e
+o End o movem e um leitor de tela o anuncia. Dê um nome a ele com um `<label>`
+ou um `aria-label`.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="slider" />
+
+:::en
 ## Notes
 
 Radix supports several thumbs on one track for a range selection. That needs
@@ -91,11 +122,3 @@ O Radix aceita vários puxadores numa mesma trilha para selecionar um intervalo.
 Isso precisa de estado compartilhado entre os puxadores e não está aqui; um
 valor por slider.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="slider" />

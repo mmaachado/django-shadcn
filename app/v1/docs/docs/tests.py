@@ -377,66 +377,19 @@ class CheatSheetTests(SimpleTestCase):
         self.assertNotIn("Parts", box)
 
 
-# Component pages already rebuilt to the structure below. The last batch of
-# the rebuild replaces this with every component page.
-REBUILT = {
-    "button",
-    "a",
-    "accordion",
-    "alert",
-    "alert-dialog",
-    "aspect-ratio",
-    "attachment",
-    "avatar",
-    "badge",
-    "breadcrumb",
-    "bubble",
-    "button-group",
-    "calendar",
-    "card",
-    "carousel",
-    "chart",
-    "checkbox",
-    "code-block",
-    "collapsible",
-    "combobox",
-    "command",
-    "command-dialog",
-    "context-menu",
-    "date-picker",
-    "dialog",
-    "drawer",
-    "dropdown-menu",
-    "empty",
-    "field",
-    "form",
-    "hover-card",
-    "icon",
-    "input",
-    "input-group",
-    "input-otp",
-    "item",
-    "kbd",
-    "label",
-    "marker",
-    "menubar",
-    "message",
-    "message-scroller",
-    "metric",
-    "native-select",
-    "navigation-menu",
-    "pagination",
-    "popover",
-    "progress",
-    "questionnaire",
-    "radio-group",
-    "resizable",
-    "scroll-area",
-    "select",
-    "separator",
-    "sheet",
-    "sidebar",
-}
+def component_pages():
+    """Every component's page: a directory of components/ whose templates
+    are not pages a view renders, as a block's and allauth's are."""
+    pages = []
+    for directory in sorted(settings.COMPONENTS_DIR.iterdir()):
+        templates = list(directory.glob("*.html"))
+        if not templates or any(
+            path.read_text(encoding="utf-8").startswith("{% extends")
+            for path in templates
+        ):
+            continue
+        pages.append(directory.name.replace("_", "-"))
+    return pages
 
 
 class PageStructureTests(SimpleTestCase):
@@ -456,10 +409,10 @@ class PageStructureTests(SimpleTestCase):
         ("notes", r"^## Notes$", False),
     ]
 
-    def test_rebuilt_pages_follow_the_order(self):
+    def test_every_component_page_follows_the_order(self):
         wrong = []
 
-        for slug in sorted(REBUILT):
+        for slug in component_pages():
             source = (settings.BASE_DIR / "content" / f"{slug}.md").read_text(
                 encoding="utf-8"
             )

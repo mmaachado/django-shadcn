@@ -74,8 +74,42 @@ uvx django_shadcn@latest add textarea
 </c-docs.example>
 
 :::en
+### Invalid
+
+There is no invalid style built in: mark it `aria-invalid="true"` and add a class.
+:::pt-br
+### Inválido
+
+Não há estilo de inválido embutido: marque com `aria-invalid="true"` e acrescente uma classe.
+:::
+
+<c-docs.example>
+<c-textarea aria-invalid="true" aria-label="Message" class="max-w-sm aria-invalid:border-destructive">Too short</c-textarea>
+</c-docs.example>
+
+:::en
+## RTL
+
+The text starts at the start of the field, so under `dir="rtl"` it runs from
+the right.
+
+## Accessibility
+
+It is a native `<textarea>`: name it with a `<label>` tied by `for`, or an
+`aria-label`. A placeholder is not a label.
+
 ## API reference
 :::pt-br
+## RTL
+
+O texto começa no início do campo, então sob `dir="rtl"` ele corre a partir
+da direita.
+
+## Acessibilidade
+
+É um `<textarea>` nativo: dê um nome a ele com um `<label>` ligado por `for`,
+ou um `aria-label`. Um placeholder não é um rótulo.
+
 ## Referência da API
 :::
 

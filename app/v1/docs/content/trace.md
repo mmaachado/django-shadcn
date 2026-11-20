@@ -89,14 +89,16 @@ line: an icon, a title that truncates, and a description in tabular figures
 for a count or a duration. The icon is decorative and hidden from a screen
 reader, so the title has to say what happened.
 
-## Status
+## Examples
+
+### Status
 
 `status` is `running`, `error` or `pending`, and a line without one is done. A
 running title shimmers, an error turns the line red, and a pending one fades.
 The status changes the look and nothing else: swap the icon too, as the demo
 does with a spinner, a cross and an empty circle.
 
-## A step that opens
+### A step that opens
 
 Reasoning and a tool call's output go in a collapsible. The trigger holds a
 line and adds a chevron that turns when it opens, and the content is indented
@@ -109,14 +111,16 @@ linha: um ícone, um título que trunca e uma descrição em algarismos tabulare
 para uma contagem ou uma duração. O ícone é decorativo e fica escondido de um
 leitor de tela, então o título tem de dizer o que aconteceu.
 
-## Status
+## Exemplos
+
+### Status
 
 `status` é `running`, `error` ou `pending`, e uma linha sem status está
 concluída. Um título em andamento cintila, um erro deixa a linha vermelha e um
 pendente esmaece. O status muda a aparência e mais nada: troque o ícone também,
 como a demo faz com um spinner, um x e um círculo vazio.
 
-## Um passo que se abre
+### Um passo que se abre
 
 O raciocínio e a saída de uma ferramenta vão num collapsible. O trigger guarda
 uma linha e acrescenta um chevron que gira quando abre, e o conteúdo fica
@@ -141,7 +145,7 @@ recuado sob um traço.
 collapse plugin, as in [Collapsible]({% url 'page' slug='collapsible' %});
 without the plugin it opens instantly.
 
-## A step that links
+### A step that links
 
 Wrap a line in an `<a>` or a `<button>` to open a source or a step. The trace
 styles the wrapper, rounding it and giving it a focus ring, and the line turns
@@ -151,7 +155,7 @@ to the foreground colour on hover.
 Alpine, como no [Collapsible]({% url 'page' slug='collapsible' %}); sem o
 plugin ele abre na hora.
 
-## Um passo que é link
+### Um passo que é link
 
 Envolva uma linha num `<a>` ou num `<button>` para abrir uma fonte ou um passo.
 O trace estiliza o elemento em volta, arredondando-o e dando a ele um anel de
@@ -168,7 +172,45 @@ foco, e a linha passa para a cor de primeiro plano no hover.
 ```
 
 :::en
-## Anatomy
+## RTL
+
+Lines start at the start of the row and the detail of a collapsible step is
+indented under a logical rule, so under `dir="rtl"` the trace mirrors and the
+rule moves to the right.
+
+## Accessibility
+
+The icon is hidden from assistive technology, so the title says what
+happened. A collapsible step's trigger is a `<button>` reporting
+`aria-expanded`. A running step is shown by its shimmer, which a screen reader
+does not hear: put the state in words, or announce a finished answer with
+`aria-live` on the container.
+
+## API reference
+:::pt-br
+## RTL
+
+As linhas começam no início da fileira e o detalhe de um passo que se abre fica
+recuado sob um traço lógico, então sob `dir="rtl"` o trace espelha e o traço
+vai para a direita.
+
+## Acessibilidade
+
+O ícone fica escondido das tecnologias assistivas, então o título diz o que
+aconteceu. O trigger de um passo que se abre é um `<button>` que informa
+`aria-expanded`. Um passo em andamento aparece pelo brilho, que um leitor de
+tela não ouve: ponha o estado em palavras, ou anuncie uma resposta pronta com
+`aria-live` no contêiner.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="trace" />
+
+:::en
+## Notes
+
+**Anatomy.**
 
 | Tag | What it is |
 | --- | --- |
@@ -181,7 +223,9 @@ foco, e a linha passa para a cor de primeiro plano no hover.
 | `<c-trace.collapsible-trigger>` | the line that opens it, with the chevron |
 | `<c-trace.collapsible-content>` | the detail, indented under a rule |
 :::pt-br
-## Anatomia
+## Observações
+
+**Anatomia.**
 
 | Tag | O que é |
 | --- | --- |
@@ -194,11 +238,3 @@ foco, e a linha passa para a cor de primeiro plano no hover.
 | `<c-trace.collapsible-trigger>` | a linha que o abre, com o chevron |
 | `<c-trace.collapsible-content>` | o detalhe, recuado sob um traço |
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="trace" />

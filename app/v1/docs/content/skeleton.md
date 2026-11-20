@@ -113,8 +113,52 @@ continuem visíveis.
 </c-docs.example>
 
 :::en
+### Table
+
+A few rows of bars stand in for a table that is still loading.
+:::pt-br
+### Tabela
+
+Algumas linhas de barras ficam no lugar de uma tabela que ainda está carregando.
+:::
+
+<c-docs.example>
+<div class="w-full max-w-md space-y-3" aria-busy="true">
+  {% for row in "123" %}
+    <div class="flex gap-4">
+      <c-skeleton class="h-4 w-1/4" />
+      <c-skeleton class="h-4 w-1/2" />
+      <c-skeleton class="h-4 w-1/4" />
+    </div>
+  {% endfor %}
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+A skeleton is shapes, so under `dir="rtl"` it mirrors with whatever layout
+you give it.
+
+## Accessibility
+
+The shapes are empty and silent. Mark the region that is loading
+`aria-busy="true"` while the skeleton stands in, and swap in the content when
+it arrives.
+
 ## API reference
 :::pt-br
+## RTL
+
+Um skeleton são formas, então sob `dir="rtl"` ele espelha com o layout que
+você der a ele.
+
+## Acessibilidade
+
+As formas são vazias e silenciosas. Marque a região que está carregando com
+`aria-busy="true"` enquanto o skeleton ocupa o lugar, e troque pelo conteúdo
+quando ele chegar.
+
 ## Referência da API
 :::
 

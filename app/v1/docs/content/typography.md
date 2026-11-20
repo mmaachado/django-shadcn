@@ -190,9 +190,43 @@ são as da página original, sem mudanças.
 </c-docs.example>
 
 :::en
+## RTL
+
+Text aligns to the start, and the blockquote's rule and the list's markers sit
+at the start too, so under `dir="rtl"` they move to the right.
+
+## Accessibility
+
+The headings are real `<h1>` to `<h4>`, so a page built from them has an
+outline a screen reader can move through. Pick the level for the page's
+structure, not for the size.
+
 ## API reference
 :::pt-br
+## RTL
+
+O texto se alinha ao início, e o traço da citação e os marcadores da lista
+ficam no início também, então sob `dir="rtl"` vão para a direita.
+
+## Acessibilidade
+
+Os cabeçalhos são `<h1>` a `<h4>` de verdade, então uma página feita com eles
+tem um sumário que um leitor de tela pode percorrer. Escolha o nível pela
+estrutura da página, não pelo tamanho.
+
 ## Referência da API
 :::
 
 <c-docs.api-reference name="typography" />
+
+:::en
+## Notes
+
+Upstream's typography page also styles a plain `<table>`. Here that is
+[Table]({% url 'page' slug='table' %}), a component of its own.
+:::pt-br
+## Observações
+
+A página de tipografia do upstream também estiliza uma `<table>` simples. Aqui
+isso é o [Table]({% url 'page' slug='table' %}), um componente próprio.
+:::

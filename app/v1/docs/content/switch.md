@@ -88,6 +88,52 @@ ao teclado sem nenhum JavaScript.
 </c-docs.example>
 
 :::en
+### Description
+:::pt-br
+### Descrição
+:::
+
+<c-docs.example>
+<div class="flex max-w-sm items-start justify-between gap-6">
+  <div class="grid gap-1">
+    <c-label for="switch-airplane">Airplane mode</c-label>
+    <p class="text-sm text-muted-foreground">Turns off every connection.</p>
+  </div>
+  <c-switch id="switch-airplane" name="airplane" />
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+The thumb moves from the start to the end when switched on, and a label after
+the switch follows the text.
+
+## Accessibility
+
+It is a native checkbox inside its label: Space toggles it and a screen reader
+announces it as checked or not. Give it a visible label, or an `aria-label`
+on the switch.
+
+## API reference
+:::pt-br
+## RTL
+
+O puxador vai do início para o fim quando ligado, e um rótulo depois do
+switch acompanha o texto.
+
+## Acessibilidade
+
+É um checkbox nativo dentro do próprio rótulo: o Espaço o alterna e um leitor
+de tela o anuncia como marcado ou não. Dê a ele um rótulo visível, ou um
+`aria-label` no switch.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="switch" />
+
+:::en
 ## Notes
 
 Radix renders a button and mirrors the state into `data-state`. Here the
@@ -104,11 +150,3 @@ em volta e `group-has-[:checked]` no puxador. A diferença na prática é que es
 é um controle de formulário: nenhum campo oculto, nenhum JavaScript, e `checked`
 funciona como em qualquer outro lugar.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="switch" />

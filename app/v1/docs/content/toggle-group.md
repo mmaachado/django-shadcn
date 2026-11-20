@@ -103,6 +103,53 @@ A variante e o tamanho vão no grupo, não em cada item.
 </c-docs.example>
 
 :::en
+### Disabled
+
+`disabled` on an item reaches its button.
+:::pt-br
+### Desabilitado
+
+`disabled` num item chega ao botão dele.
+:::
+
+<c-docs.example>
+<c-toggle-group aria-label="Alignment">
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item disabled>Right</c-toggle-group.item>
+</c-toggle-group>
+</c-docs.example>
+
+:::en
+## RTL
+
+The row reverses under `dir="rtl"` and keeps its rounded ends on the
+outside, through logical radii and borders.
+
+## Accessibility
+
+The group is a `role="group"` and each item a button reporting
+`aria-pressed`. Name the group with `aria-label`, such as "Text formatting".
+
+## API reference
+:::pt-br
+## RTL
+
+A fileira se inverte sob `dir="rtl"` e mantém as pontas arredondadas do lado
+de fora, por raios e bordas lógicos.
+
+## Acessibilidade
+
+O grupo é um `role="group"` e cada item um botão que informa
+`aria-pressed`. Dê um nome ao grupo com `aria-label`, como "Formatação de
+texto".
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="toggle-group" />
+
+:::en
 ## Notes
 
 Radix hands variant and size down through React context. Cotton has no
@@ -126,11 +173,3 @@ Cada item mantém o próprio estado de pressionado. O Radix também oferece um m
 de seleção única, em que escolher um desmarca os outros — isso precisa de estado
 compartilhado e ainda não está aqui.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="toggle-group" />

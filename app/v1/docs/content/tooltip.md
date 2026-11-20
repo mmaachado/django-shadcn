@@ -86,6 +86,75 @@ teclado assim como para o ponteiro.
 </c-docs.example>
 
 :::en
+### With a keyboard shortcut
+:::pt-br
+### Com atalho de teclado
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-button variant="outline" size="icon" aria-label="Save"><c-icon name="check" /></c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Save <c-kbd>⌘S</c-kbd></c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+### Disabled button
+
+A disabled button takes no hover or focus, so wrap it in a `<span>` that does and
+put the tooltip on that.
+:::pt-br
+### Botão desabilitado
+
+Um botão desabilitado não recebe hover nem foco, então envolva-o num `<span>`
+que recebe e ponha o tooltip nele.
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <span tabindex="0" class="inline-block">
+      <c-button variant="outline" disabled>Publish</c-button>
+    </span>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Fill in the title first</c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+## RTL
+
+`side="left"` and `side="right"` name a side of the screen and stay put under
+`dir="rtl"`; top and bottom tooltips are centred.
+
+## Accessibility
+
+The content is a `role="tooltip"` and shows on hover and on focus, so a
+keyboard reaches it. It is not tied to its trigger with `aria-describedby`,
+and a touch screen has no hover, so the trigger must make sense without it.
+
+## API reference
+:::pt-br
+## RTL
+
+`side="left"` e `side="right"` nomeiam um lado da tela e ficam no lugar sob
+`dir="rtl"`; tooltips em cima e embaixo ficam centralizados.
+
+## Acessibilidade
+
+O conteúdo é um `role="tooltip"` e aparece no hover e no foco, então o
+teclado chega a ele. Ele não está ligado ao trigger por `aria-describedby`, e
+uma tela de toque não tem hover, então o trigger precisa fazer sentido sem
+ele.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="tooltip" />
+
+:::en
 ## Notes
 
 Radix puts the tooltip in a portal and measures the viewport to flip the side
@@ -100,11 +169,3 @@ há espaço. Aqui o conteúdo é posicionado em relação ao trigger com classes
 utilitárias, então `side` é uma escolha sua e não algo calculado em tempo de
 execução. Perto da borda da tela, escolha o lado que cabe.
 :::
-
-:::en
-## API reference
-:::pt-br
-## Referência da API
-:::
-
-<c-docs.api-reference name="tooltip" />

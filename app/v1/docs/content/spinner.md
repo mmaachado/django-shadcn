@@ -92,8 +92,54 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 </c-docs.example>
 
 :::en
+### Badge
+:::pt-br
+### Badge
+:::
+
+<c-docs.example>
+<c-badge variant="secondary" class="gap-1">
+  <c-spinner class="size-3" />
+  Syncing
+</c-badge>
+</c-docs.example>
+
+:::en
+### Input group
+:::pt-br
+### Input group
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.input value="mmaachado" aria-label="Username" />
+  <c-input-group.addon align="inline-end"><c-spinner /></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+## RTL
+
+A spinner turns the same way in every language.
+
+## Accessibility
+
+It carries `role="status"` and `aria-label="Loading"`, so a screen reader
+announces it. Pass your own `aria-label` to say what is loading, or in your
+language.
+
 ## API reference
 :::pt-br
+## RTL
+
+Um spinner gira para o mesmo lado em qualquer idioma.
+
+## Acessibilidade
+
+Ele leva `role="status"` e `aria-label="Loading"`, então um leitor de tela o
+anuncia. Passe o seu `aria-label` para dizer o que está carregando, ou no seu
+idioma.
+
 ## Referência da API
 :::
 
