@@ -4350,6 +4350,18 @@
       align-items: flex-start;
     }
   }
+  .rtl\:-translate-x-full:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    --tw-translate-x: -100%;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .rtl\:-translate-x-px:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    --tw-translate-x: -1px;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .rtl\:translate-x-px:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    --tw-translate-x: 1px;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .rtl\:-scale-x-100:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
     --tw-scale-x: calc(100% * -1);
     scale: var(--tw-scale-x) var(--tw-scale-y);

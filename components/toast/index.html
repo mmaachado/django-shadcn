@@ -32,7 +32,7 @@
     x-transition:enter-end="opacity-100 transform translate-y-0"
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 transform translate-x-0"
-    x-transition:leave-end="opacity-0 transform translate-x-full"
+    x-transition:leave-end="opacity-0 transform translate-x-full rtl:-translate-x-full"
     class="{% if class %}{{ class }}{% endif %} fixed bottom-5 end-5 z-[100]"
     data-toast-id="{{ id }}"
     role="alert"
