@@ -164,6 +164,39 @@ def test_the_select_is_a_combobox_the_keyboard_can_choose_from(
     assert ':not([data-disabled])' in root
 
 
+MODALS = (
+    'dialog/content.html',
+    'alert_dialog/content.html',
+    'sheet/content.html',
+    'drawer/content.html',
+    'command_dialog/index.html',
+)
+FOCUS_IN_AND_BACK = re.compile(r'x-init="let back = null;[^"]*"')
+FOCUS_TRAP = re.compile(
+    r"@keydown\.window=\"if \(open && \$event\.key === 'Tab'\)[^\"]*\""
+)
+
+
+def test_every_modal_keeps_focus_inside_and_gives_it_back(components_root):
+    """Tab walked out of an open dialog into the page behind it, and closing
+    one left focus wherever it fell. The five modals carry the same trap,
+    so a fix to one has to reach them all."""
+    found = {}
+
+    for name in MODALS:
+        source = (components_root / name).read_text(encoding='utf-8')
+        opened = FOCUS_IN_AND_BACK.findall(source)
+        trapped = FOCUS_TRAP.findall(source)
+        assert len(opened) == len(trapped) == 1, name
+        assert 'role="dialog"' in source and 'aria-modal="true"' in source
+        found[name] = (opened[0], trapped[0])
+
+    assert len(set(found.values())) == 1, 'the modals trap focus differently'
+    opened, trapped = next(iter(found.values()))
+    assert 'back.focus()' in opened
+    assert '$event.shiftKey' in trapped
+
+
 # A name declared in <c-vars> and never read does nothing, yet the docs'
 # generated reference lists it as an attribute. The ones below are declared on
 # purpose: declaring a name keeps cotton from writing it onto the element.

@@ -23,7 +23,11 @@ the screen, and that side does not change with the direction.
   x-transition:enter-end="translate-x-0 translate-y-0" x-transition:leave="transform transition ease-in duration-200"
   x-transition:leave-start="translate-x-0 translate-y-0"
   x-transition:leave-end="{% if side == 'right' %}translate-x-full{% elif side == 'left' %}-translate-x-full{% elif side == 'top' %}-translate-y-full{% elif side == 'bottom' %}translate-y-full{% endif %}"
-  role="dialog" aria-modal="true" x-cloak @click.away="hideSheet()" data-slot="sheet-content" {{ attrs }}>
+  role="dialog" aria-modal="true" x-cloak @click.away="hideSheet()"
+    x-init="let back = null; $watch('open', shown => { if (shown) { back = document.activeElement; $nextTick(() => ($el.querySelector('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])') || $el).focus()); } else if (back) { back.focus(); back = null; } })"
+    @keydown.window="if (open && $event.key === 'Tab') { const items = [...$el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])')].filter(item => item.getClientRects().length); const edge = $event.shiftKey ? items[0] : items.at(-1); if (!items.length || document.activeElement === edge || !$el.contains(document.activeElement)) { $event.preventDefault(); (items.length ? ($event.shiftKey ? items.at(-1) : items[0]) : $el).focus(); } }"
+    tabindex="-1"
+    data-slot="sheet-content" {{ attrs }}>
   <!-- Close Button -->
   <c-button type="button" variant="ghost"
     class="absolute end-4 top-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"

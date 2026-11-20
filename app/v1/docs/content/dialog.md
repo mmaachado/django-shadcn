@@ -188,10 +188,12 @@ dialog mirrors with the text.
 ## Accessibility
 
 The content is a `role="dialog"` with `aria-modal="true"`. Opening it moves
-focus to its first focusable element, the close button, Escape and a click outside close it,
-and the close button is labelled "Close". Focus is not trapped inside and the
-title is not tied to the dialog with `aria-labelledby`; add an `id` to the
-title and the attribute to the content when that matters.
+focus to its first focusable element, the close button, and Escape and a click
+outside close it. Tab and Shift+Tab cycle through what is inside and never reach the page
+behind, and closing it returns focus to the element that opened it. The close
+button is labelled "Close". The title is not tied to the dialog with
+`aria-labelledby`; add an `id` to the title and the attribute to the content
+when that matters.
 
 ## API reference
 :::pt-br
@@ -204,10 +206,11 @@ com o texto.
 ## Acessibilidade
 
 O conteúdo é um `role="dialog"` com `aria-modal="true"`. Abri-lo leva o foco ao
-primeiro elemento focável, o botão de fechar, o Escape e um clique fora o fecham, e o botão de
-fechar tem o rótulo "Close". O foco não fica preso dentro e o título não está
-ligado ao diálogo por `aria-labelledby`; acrescente um `id` ao título e o
-atributo ao conteúdo quando isso importar.
+primeiro elemento focável, o botão de fechar, e o Escape e um clique fora o
+fecham. O Tab e o Shift+Tab passam pelo que está dentro e nunca chegam à página de
+trás, e fechá-lo devolve o foco ao elemento que o abriu. O botão de fechar tem o
+rótulo "Close". O título não está ligado ao diálogo por `aria-labelledby`;
+acrescente um `id` ao título e o atributo ao conteúdo quando isso importar.
 
 ## Referência da API
 :::

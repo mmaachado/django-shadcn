@@ -13,10 +13,6 @@ dialog, and the centre is the same in either direction.
       this.open = !this.open;
       if (this.open) {
         document.body.classList.add('overflow-hidden');
-        // Focus the input when dialog opens
-        this.$nextTick(() => {
-          this.$refs.dialogContent.querySelector('input')?.focus();
-        });
       } else {
         document.body.classList.remove('overflow-hidden');
       }
@@ -59,6 +55,11 @@ dialog, and the centre is the same in either direction.
     @click.away="toggleDialog"
     @close-command="toggleDialog"
     x-ref="dialogContent"
+    role="dialog"
+    aria-modal="true"
+    x-init="let back = null; $watch('open', shown => { if (shown) { back = document.activeElement; $nextTick(() => ($el.querySelector('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])') || $el).focus()); } else if (back) { back.focus(); back = null; } })"
+    @keydown.window="if (open && $event.key === 'Tab') { const items = [...$el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])')].filter(item => item.getClientRects().length); const edge = $event.shiftKey ? items[0] : items.at(-1); if (!items.length || document.activeElement === edge || !$el.contains(document.activeElement)) { $event.preventDefault(); (items.length ? ($event.shiftKey ? items.at(-1) : items[0]) : $el).focus(); } }"
+    tabindex="-1"
   >
     <c-command>
       {{ slot }}
