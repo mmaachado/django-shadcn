@@ -9,7 +9,9 @@ description: Configure Tailwind, Alpine e django-cotton, e comece a adicionar co
 - Django 4.2 ou mais novo
 - [django-cotton](https://django-cotton.com) 2.7.1 ou mais novo, que fornece a
   sintaxe `<c-...>` em que todo componente é escrito
-- Tailwind CSS v4
+- Tailwind CSS 4.1 ou mais novo. Vários componentes usam utilitários que
+  chegaram na 4.1, e um build na 4.0 os descarta sem erro — o componente
+  renderiza, faltando uma regra aqui e ali
 - Alpine.js, para os componentes interativos
 
 ### Qual django-cotton
@@ -53,6 +55,10 @@ apoia:
 uvx django_shadcn@latest init
 ```
 
+Rodar de novo mantém o `input.css` que você já tem, e avisa — a sua paleta
+nunca é substituída sem você saber. Passe `--force` quando quiser de volta o
+que vem com a biblioteca.
+
 Aponte o Tailwind para esse arquivo e deixe ele observando seus templates:
 
 ```bash
@@ -69,6 +75,22 @@ Por fim, carregue a folha de estilo e o Alpine no seu template base:
 Servir o Alpine dos seus próprios arquivos estáticos mantém a página
 funcionando offline e evita depender de um CDN em tempo de execução. Se
 preferir um CDN, fixe a versão em vez de acompanhar a `latest`.
+
+### Plugins do Alpine
+
+Dois componentes — `accordion` e `collapsible` — animam com o
+`@alpinejs/collapse`, que o núcleo do Alpine não traz. Sem ele, os dois
+renderizam certo e simplesmente nunca animam: nenhum erro, nada no console.
+
+Carregue o plugin antes do próprio Alpine:
+
+```html
+<script src="{% static 'js/collapse.min.js' %}" defer></script>
+<script src="{% static 'js/alpine.min.js' %}" defer></script>
+```
+
+O `add` cita, no fim da execução, qualquer plugin de que um componente precise,
+então você não tem de lembrar quais precisam.
 
 ## Adicionar um componente
 
@@ -105,6 +127,16 @@ Duas flags mudam isso, de propósito:
 
 O `--sync` lista o que vai apagar e pergunta antes. Passe `--yes` para dispensar
 a confirmação em um script.
+
+Acrescente `--dry-run` a qualquer um deles para ver o resultado sem que ele
+aconteça:
+
+```bash
+uvx django_shadcn@latest add button --sync --dry-run
+```
+
+Ele imprime o mesmo relatório por arquivo que a execução de verdade, e não
+grava nada. Vale o hábito antes do `--sync`, o único modo que apaga.
 
 ## Ver o que existe
 
