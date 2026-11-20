@@ -18,6 +18,7 @@ NAV = [
         _("Blocks"),
         [
             ("allauth", "django-allauth"),
+            ("dashboard", "Dashboard"),
         ],
     ),
     (

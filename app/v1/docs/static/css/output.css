@@ -459,6 +459,9 @@
   .my-6 {
     margin-block: calc(var(--spacing) * 6);
   }
+  .-ms-1 {
+    margin-inline-start: calc(var(--spacing) * -1);
+  }
   .ms-1 {
     margin-inline-start: var(--spacing);
   }
@@ -1790,6 +1793,9 @@
   }
   .text-end {
     text-align: end;
+  }
+  .text-end\! {
+    text-align: end !important;
   }
   .text-left {
     text-align: left;
@@ -3698,6 +3704,9 @@
     .sm\:w-\[540px\] {
       width: 540px;
     }
+    .sm\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .sm\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -3826,6 +3835,9 @@
     .md\:p-0 {
       padding: 0px;
     }
+    .md\:p-6 {
+      padding: calc(var(--spacing) * 6);
+    }
     .md\:p-10 {
       padding: calc(var(--spacing) * 10);
     }
@@ -3911,6 +3923,9 @@
   @media (width >= 80rem) {
     .xl\:grid {
       display: grid;
+    }
+    .xl\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
     .xl\:grid-cols-\[1fr_200px\] {
       grid-template-columns: 1fr 200px;

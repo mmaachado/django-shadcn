@@ -15,6 +15,10 @@
   renders it as it is. Pass `base_template` in the context to extend another
   layout.
 
+- **`dashboard`.** A sidebar that folds to icons, a breadcrumb, four metrics,
+  a stacked revenue chart and a table of recent orders, all sample data to
+  replace.
+
 ## 1.9.0 — 2026-11-19
 
 Right to left. The components mirror under `dir="rtl"`, a test keeps them

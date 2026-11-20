@@ -57,6 +57,20 @@ registry: dict[str, Component] = {
     'context_menu': Component(depends=('icon',)),
     'command': Component(depends=('icon',)),
     'command_dialog': Component(depends=('command',)),
+    'dashboard': Component(
+        depends=(
+            'badge',
+            'breadcrumb',
+            'card',
+            'chart',
+            'icon',
+            'metric',
+            'separator',
+            'sidebar',
+            'table',
+        ),
+        block=True,
+    ),
     'date_picker': Component(
         depends=('button', 'calendar', 'icon', 'popover')
     ),

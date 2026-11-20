@@ -1,0 +1,186 @@
+{% extends base_template|default:"base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+{% comment %}
+A starting point, not a finished page: every number, row and link below is
+sample data written into the markup. Replace it with your view's context.
+{% endcomment %}
+<c-sidebar.provider>
+    <c-sidebar collapsible="icon">
+        <c-sidebar.header>
+            <c-sidebar.menu>
+                <c-sidebar.menu-item>
+                    <c-sidebar.menu-button href="#" tooltip="Acme Inc.">
+                        <c-icon name="gallery-vertical-end" />
+                        <span class="font-semibold">Acme Inc.</span>
+                    </c-sidebar.menu-button>
+                </c-sidebar.menu-item>
+            </c-sidebar.menu>
+        </c-sidebar.header>
+        <c-sidebar.content>
+            <c-sidebar.group>
+                <c-sidebar.group-label>Platform</c-sidebar.group-label>
+                <c-sidebar.group-content>
+                    <c-sidebar.menu>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" is_active="true" tooltip="Dashboard">
+                                <c-icon name="layout-dashboard" />
+                                <span>Dashboard</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" tooltip="Analytics">
+                                <c-icon name="chart-column" />
+                                <span>Analytics</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" tooltip="Projects">
+                                <c-icon name="folder" />
+                                <span>Projects</span>
+                            </c-sidebar.menu-button>
+                            <c-sidebar.menu-badge>12</c-sidebar.menu-badge>
+                        </c-sidebar.menu-item>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="#" tooltip="Team">
+                                <c-icon name="users" />
+                                <span>Team</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                    </c-sidebar.menu>
+                </c-sidebar.group-content>
+            </c-sidebar.group>
+        </c-sidebar.content>
+        <c-sidebar.footer>
+            <c-sidebar.menu>
+                <c-sidebar.menu-item>
+                    <c-sidebar.menu-button href="#" tooltip="Settings">
+                        <c-icon name="settings" />
+                        <span>Settings</span>
+                    </c-sidebar.menu-button>
+                </c-sidebar.menu-item>
+            </c-sidebar.menu>
+        </c-sidebar.footer>
+        <c-sidebar.rail />
+    </c-sidebar>
+
+    <c-sidebar.inset>
+        <header class="flex h-14 shrink-0 items-center gap-2 border-b px-4">
+            <c-sidebar.trigger class="-ms-1" />
+            <c-separator orientation="vertical" class="me-2 h-4" />
+            <c-breadcrumb>
+                <c-breadcrumb.list>
+                    <c-breadcrumb.item>
+                        <c-breadcrumb.link href="#">Acme Inc.</c-breadcrumb.link>
+                    </c-breadcrumb.item>
+                    <c-breadcrumb.separator />
+                    <c-breadcrumb.item>
+                        <c-breadcrumb.page>Dashboard</c-breadcrumb.page>
+                    </c-breadcrumb.item>
+                </c-breadcrumb.list>
+            </c-breadcrumb>
+        </header>
+
+        <main class="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
+            <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <c-metric>
+                    <c-metric.label>Revenue</c-metric.label>
+                    <c-metric.value>$45,231.89</c-metric.value>
+                    <c-metric.delta value="+20.1%" label="vs. last month" />
+                </c-metric>
+                <c-metric>
+                    <c-metric.label>Subscriptions</c-metric.label>
+                    <c-metric.value>2,350</c-metric.value>
+                    <c-metric.delta value="+180" label="vs. last month" />
+                </c-metric>
+                <c-metric>
+                    <c-metric.label>Churn</c-metric.label>
+                    <c-metric.value>2.4%</c-metric.value>
+                    <c-metric.delta value="-0.3%" label="vs. last month" />
+                </c-metric>
+                <c-metric>
+                    <c-metric.label>Active now</c-metric.label>
+                    <c-metric.value>573</c-metric.value>
+                    <c-metric.delta value="0" label="no change" />
+                </c-metric>
+            </div>
+
+            <c-card>
+                <c-card.header>
+                    <c-card.title>Revenue</c-card.title>
+                    <c-card.description>Online and in-store sales, January to June.</c-card.description>
+                </c-card.header>
+                <c-card.content>
+                    <c-chart
+                        data='[{"month": "Jan", "online": 1860, "store": 800}, {"month": "Feb", "online": 3050, "store": 2000}, {"month": "Mar", "online": 2370, "store": 1200}, {"month": "Apr", "online": 730, "store": 1900}, {"month": "May", "online": 2090, "store": 1300}, {"month": "Jun", "online": 2140, "store": 1400}]'
+                        config='{"online": {"label": "Online"}, "store": {"label": "In store"}}'
+                        class="aspect-auto h-64">
+                        <c-chart.plot label="Revenue by month">
+                            <c-chart.grid />
+                            <c-chart.axis-y />
+                            <c-chart.axis-x key="month" />
+                            <c-chart.area data_key="store" stack="true" />
+                            <c-chart.area data_key="online" stack="true" />
+                        </c-chart.plot>
+                        <c-chart.tooltip />
+                        <c-chart.legend />
+                    </c-chart>
+                </c-card.content>
+            </c-card>
+
+            <c-card>
+                <c-card.header>
+                    <c-card.title>Recent orders</c-card.title>
+                    <c-card.description>The last five orders across every channel.</c-card.description>
+                </c-card.header>
+                <c-card.content>
+                    <c-table>
+                        <c-table.header>
+                            <c-table.row>
+                                <c-table.head>Order</c-table.head>
+                                <c-table.head>Customer</c-table.head>
+                                <c-table.head>Status</c-table.head>
+                                <c-table.head class="text-end!">Amount</c-table.head>
+                            </c-table.row>
+                        </c-table.header>
+                        <c-table.body>
+                            <c-table.row>
+                                <c-table.cell class="font-medium">#3210</c-table.cell>
+                                <c-table.cell>Olivia Martin</c-table.cell>
+                                <c-table.cell><c-badge>Paid</c-badge></c-table.cell>
+                                <c-table.cell class="text-end tabular-nums">$1,999.00</c-table.cell>
+                            </c-table.row>
+                            <c-table.row>
+                                <c-table.cell class="font-medium">#3209</c-table.cell>
+                                <c-table.cell>Jackson Lee</c-table.cell>
+                                <c-table.cell><c-badge variant="secondary">Pending</c-badge></c-table.cell>
+                                <c-table.cell class="text-end tabular-nums">$39.00</c-table.cell>
+                            </c-table.row>
+                            <c-table.row>
+                                <c-table.cell class="font-medium">#3208</c-table.cell>
+                                <c-table.cell>Isabella Nguyen</c-table.cell>
+                                <c-table.cell><c-badge>Paid</c-badge></c-table.cell>
+                                <c-table.cell class="text-end tabular-nums">$299.00</c-table.cell>
+                            </c-table.row>
+                            <c-table.row>
+                                <c-table.cell class="font-medium">#3207</c-table.cell>
+                                <c-table.cell>William Kim</c-table.cell>
+                                <c-table.cell><c-badge variant="destructive">Refunded</c-badge></c-table.cell>
+                                <c-table.cell class="text-end tabular-nums">$99.00</c-table.cell>
+                            </c-table.row>
+                            <c-table.row>
+                                <c-table.cell class="font-medium">#3206</c-table.cell>
+                                <c-table.cell>Sofia Davis</c-table.cell>
+                                <c-table.cell><c-badge>Paid</c-badge></c-table.cell>
+                                <c-table.cell class="text-end tabular-nums">$39.00</c-table.cell>
+                            </c-table.row>
+                        </c-table.body>
+                    </c-table>
+                </c-card.content>
+            </c-card>
+        </main>
+    </c-sidebar.inset>
+</c-sidebar.provider>
+{% endblock %}
