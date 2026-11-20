@@ -19,6 +19,20 @@ description.es: Paneles que se redimensionan arrastrando el divisor.
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="resizable">
+<div class="h-[180px] w-[420px] rounded-lg border">
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Sidebar</div>
+    </c-resizable.panel>
+    <c-resizable.handle />
+    <c-resizable.panel default_size="2">
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Content</div>
+    </c-resizable.panel>
+  </c-resizable>
+</div>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -35,33 +49,19 @@ uvx django_shadcn@latest add resizable
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="h-[180px] w-[420px] rounded-lg border">
-<c-resizable>
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-6 text-sm font-medium">Sidebar</div>
-</c-resizable.panel>
-<c-resizable.handle />
-<c-resizable.panel default_size="2">
-<div class="flex h-full items-center justify-center p-6 text-sm font-medium">Content</div>
-</c-resizable.panel>
-</c-resizable>
-</div>
-</c-docs.demo-section>
-
-```html
-<div class="h-[180px] w-[420px] rounded-lg border">
-<c-resizable>
+  <c-resizable>
     <c-resizable.panel>
-        <div class="p-6">Sidebar</div>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Sidebar</div>
     </c-resizable.panel>
     <c-resizable.handle />
     <c-resizable.panel default_size="2">
-        <div class="p-6">Content</div>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Content</div>
     </c-resizable.panel>
-</c-resizable>
+  </c-resizable>
 </div>
-```
+</c-docs.example>
 
 :::en
 `default_size` is a share, not a percentage: two panels at `1` and `2` split
@@ -91,29 +91,19 @@ deixe o grupo preenchê-lo.
 ### Vertical
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="h-[260px] w-[420px] rounded-lg border">
-<c-resizable orientation="vertical">
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-6 text-sm font-medium">Top</div>
-</c-resizable.panel>
-<c-resizable.handle with_handle="true" />
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-6 text-sm font-medium">Bottom</div>
-</c-resizable.panel>
-</c-resizable>
-</div>
-</c-docs.demo-section>
-
-```html
-<div class="h-[260px]">
-<c-resizable orientation="vertical">
-    <c-resizable.panel>...</c-resizable.panel>
+  <c-resizable orientation="vertical">
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Top</div>
+    </c-resizable.panel>
     <c-resizable.handle with_handle="true" />
-    <c-resizable.panel>...</c-resizable.panel>
-</c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Bottom</div>
+    </c-resizable.panel>
+  </c-resizable>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Three panels
@@ -121,34 +111,23 @@ deixe o grupo preenchê-lo.
 ### Três painéis
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="h-[200px] w-[520px] rounded-lg border">
-<c-resizable>
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">One</div>
-</c-resizable.panel>
-<c-resizable.handle />
-<c-resizable.panel default_size="2">
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">Two</div>
-</c-resizable.panel>
-<c-resizable.handle />
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">Three</div>
-</c-resizable.panel>
-</c-resizable>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-resizable>
-    <c-resizable.panel>...</c-resizable.panel>
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-4 text-sm font-medium">One</div>
+    </c-resizable.panel>
     <c-resizable.handle />
-    <c-resizable.panel default_size="2">...</c-resizable.panel>
+    <c-resizable.panel default_size="2">
+      <div class="flex h-full items-center justify-center p-4 text-sm font-medium">Two</div>
+    </c-resizable.panel>
     <c-resizable.handle />
-    <c-resizable.panel>...</c-resizable.panel>
-</c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-4 text-sm font-medium">Three</div>
+    </c-resizable.panel>
+  </c-resizable>
 </div>
-```
+</c-docs.example>
 
 :::en
 ### Nested
@@ -156,45 +135,81 @@ deixe o grupo preenchê-lo.
 ### Aninhados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="h-[240px] w-[480px] rounded-lg border">
-<c-resizable>
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">Left</div>
-</c-resizable.panel>
-<c-resizable.handle with_handle="true" />
-<c-resizable.panel default_size="2">
-<div class="h-full">
-<c-resizable orientation="vertical">
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">Top right</div>
-</c-resizable.panel>
-<c-resizable.handle with_handle="true" />
-<c-resizable.panel>
-<div class="flex h-full items-center justify-center p-4 text-sm font-medium">Bottom right</div>
-</c-resizable.panel>
-</c-resizable>
-</div>
-</c-resizable.panel>
-</c-resizable>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-resizable>
-    <c-resizable.panel>...</c-resizable.panel>
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-4 text-sm font-medium">Left</div>
+    </c-resizable.panel>
     <c-resizable.handle with_handle="true" />
     <c-resizable.panel default_size="2">
-        <div class="h-full">
-<c-resizable orientation="vertical">
-            <c-resizable.panel>...</c-resizable.panel>
-            <c-resizable.handle with_handle="true" />
-            <c-resizable.panel>...</c-resizable.panel>
+      <div class="h-full">
+        <c-resizable orientation="vertical">
+          <c-resizable.panel>
+            <div class="flex h-full items-center justify-center p-4 text-sm font-medium">Top right</div>
+          </c-resizable.panel>
+          <c-resizable.handle with_handle="true" />
+          <c-resizable.panel>
+            <div class="flex h-full items-center justify-center p-4 text-sm font-medium">Bottom right</div>
+          </c-resizable.panel>
         </c-resizable>
+      </div>
     </c-resizable.panel>
-</c-resizable>
+  </c-resizable>
 </div>
-```
+</c-docs.example>
+
+:::en
+### Handle
+
+`with_handle="true"` draws a grip on the divider, so it reads as something to drag.
+:::pt-br
+### Alça
+
+`with_handle="true"` desenha um puxador no divisor, para ele parecer algo que se arrasta.
+:::
+
+<c-docs.example>
+<div class="h-[180px] w-[420px] rounded-lg border">
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">One</div>
+    </c-resizable.panel>
+    <c-resizable.handle with_handle="true" />
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Two</div>
+    </c-resizable.panel>
+  </c-resizable>
+</div>
+</c-docs.example>
+
+:::en
+## RTL
+
+Panels run with the text, so under `dir="rtl"` the first panel is on the
+right. Dragging still moves the divider under the pointer.
+
+## Accessibility
+
+The handle is a `role="separator"` with `aria-orientation` and takes focus,
+but it does not move with the keyboard yet: resizing needs a pointer.
+
+## API reference
+:::pt-br
+## RTL
+
+Os painéis correm com o texto, então sob `dir="rtl"` o primeiro painel fica à
+direita. Arrastar continua movendo o divisor que está sob o ponteiro.
+
+## Acessibilidade
+
+A alça é um `role="separator"` com `aria-orientation` e recebe foco, mas
+ainda não se move pelo teclado: redimensionar precisa de um ponteiro.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="resizable" />
 
 :::en
 ## Notes

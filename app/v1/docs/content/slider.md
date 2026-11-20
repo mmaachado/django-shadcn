@@ -9,6 +9,10 @@ description.es: Elige un valor dentro de un intervalo.
 <div class="w-[320px]"><c-slider name="volume" value="60" /></div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="slider">
+<div class="w-[320px]"><c-slider name="volume" value="50" /></div>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -25,15 +29,9 @@ uvx django_shadcn@latest add slider
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[320px]"><c-slider name="volume" value="50" /></div>
-</c-docs.demo-section>
-
-```html
-<div class="w-[320px]">
-    <c-slider name="volume" value="50" />
-</div>
-```
+</c-docs.example>
 
 :::en
 The slider fills the width it is given, so set the width on a wrapper
@@ -64,17 +62,12 @@ utilitárias em vez de pseudo-elementos de cada navegador.
 ### Intervalo e passo
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-[320px] flex-col gap-6">
-<c-slider name="temperature" min="16" max="30" step="1" value="22" />
-<c-slider name="ratio" min="0" max="1" step="0.05" value="0.4" />
+  <c-slider name="temperature" min="16" max="30" step="1" value="22" />
+  <c-slider name="ratio" min="0" max="1" step="0.05" value="0.4" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-slider name="temperature" min="16" max="30" step="1" value="22" />
-<c-slider name="ratio" min="0" max="1" step="0.05" value="0.4" />
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -82,13 +75,40 @@ utilitárias em vez de pseudo-elementos de cada navegador.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[320px]"><c-slider value="35" disabled /></div>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-slider value="35" disabled />
-```
+:::en
+## RTL
+
+The range input fills from the start, so under `dir="rtl"` the track fills
+from the right and the arrow keys follow the browser's direction.
+
+## Accessibility
+
+A real `<input type="range">` carries the value, so the arrow keys, Home and
+End move it and a screen reader announces it. Name it with a `<label>` or an
+`aria-label`.
+
+## API reference
+:::pt-br
+## RTL
+
+O input de intervalo se preenche a partir do início, então sob `dir="rtl"` a
+trilha se preenche a partir da direita e as setas seguem a direção do
+navegador.
+
+## Acessibilidade
+
+Um `<input type="range">` de verdade carrega o valor, então as setas, o Home e
+o End o movem e um leitor de tela o anuncia. Dê um nome a ele com um `<label>`
+ou um `aria-label`.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="slider" />
 
 :::en
 ## Notes

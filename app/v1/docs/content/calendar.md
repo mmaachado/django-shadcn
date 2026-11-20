@@ -9,19 +9,13 @@ description.es: Una cuadrícula mensual para elegir una fecha, con los nombres d
 <c-calendar class="rounded-md border" />
 </c-docs.demo-section>
 
-:::en
-<p class="mt-4 text-sm text-muted-foreground">
-    Page the months, pick a day. Today is outlined; days from the neighbouring
-    months are dimmed and still selectable.
-</p>
+<c-docs.cheat-sheet name="calendar">
+<c-calendar name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}" />
+</c-docs.cheat-sheet>
 
+:::en
 ## Installation
 :::pt-br
-<p class="mt-4 text-sm text-muted-foreground">
-    Passe os meses, escolha um dia. Hoje aparece contornado; os dias dos meses
-    vizinhos aparecem esmaecidos e continuam selecionáveis.
-</p>
-
 ## Instalação
 :::
 
@@ -31,165 +25,187 @@ uvx django_shadcn@latest add calendar
 
 :::en
 ## Usage
-:::pt-br
-## Uso
-:::
 
-```html
-<c-calendar name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}" />
-```
-
-:::en
-With `name` set, the component is a form field on its own: it renders a hidden
+With `name` set, the calendar is a form field on its own: it renders a hidden
 input carrying the ISO date, so an ordinary Django form receives
 `request.POST['due_date']` as `2026-08-13` and `forms.DateField` parses it
-without any help.
+without help. `value` selects a date when the page loads, so a form that comes
+back with errors keeps the choice.
+
+The grid is drawn by Alpine from the calendar the browser already has, so it
+needs JavaScript. Upstream hands it to `react-day-picker`; here there is no
+library to hand it to, and a copied template carries no Python of its own.
+
+What the browser does **not** decide is the language. It comes from Django,
+so the month and weekday names follow the site's active language, not the
+visitor's browser settings, and so does the first day of the week: `fr` starts
+on Monday, `en-us` and `pt-br` on Sunday, `ar-eg` on Saturday.
 
 For a field that opens on click instead of sitting on the page, use
-<a href="{% url 'page' slug='date-picker' %}">Date Picker</a>, which is
-this component inside a popover.
-
-## Where the month grid comes from
-
-Upstream hands the grid to `react-day-picker`. There is no library to hand it to
-here, and a copied template carries no Python of its own, so the grid is built
-from the calendar the browser already has.
-
-What the browser does **not** decide is the language. That comes from Django:
+[Date Picker]({% url 'page' slug='date-picker' %}), which is this calendar
+inside a popover.
 :::pt-br
-Com `name` definido, o componente é um campo de formulário por conta própria:
+## Uso
+
+Com `name` definido, o calendário é um campo de formulário por conta própria:
 ele renderiza um input oculto com a data ISO, então um formulário Django comum
 recebe `request.POST['due_date']` como `2026-08-13` e o `forms.DateField` faz o
-parse sem ajuda nenhuma.
+parse sem ajuda. `value` seleciona uma data quando a página carrega, então um
+formulário que volta com erros mantém a escolha.
+
+A grade é desenhada pelo Alpine a partir do calendário que o navegador já tem,
+então precisa de JavaScript. O upstream a entrega ao `react-day-picker`; aqui
+não há biblioteca a quem entregá-la, e um template copiado não traz Python
+próprio.
+
+O que o navegador **não** decide é o idioma. Ele vem do Django, então os nomes
+dos meses e dos dias da semana seguem o idioma ativo do site, e não as
+configurações do navegador de quem visita, e o primeiro dia da semana também:
+`fr` começa na segunda, `en-us` e `pt-br` no domingo, `ar-eg` no sábado.
 
 Para um campo que abre no clique em vez de ficar na página, use o
-<a href="{% url 'page' slug='date-picker' %}">Date Picker</a>, que é este
-componente dentro de um popover.
-
-## De onde vem a grade do mês
-
-O upstream entrega a grade ao `react-day-picker`. Aqui não há biblioteca a quem
-entregá-la, e um template copiado não traz Python próprio, então a grade é
-montada a partir do calendário que o navegador já tem.
-
-O que o navegador **não** decide é o idioma. Isso vem do Django:
+[Date Picker]({% url 'page' slug='date-picker' %}), que é este calendário
+dentro de um popover.
 :::
 
 ```html
-{% get_current_language as LANGUAGE_CODE %}
+<form method="post">
+  {% csrf_token %}
+  <c-calendar name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}" />
+  <c-button>Save</c-button>
+</form>
 ```
 
 :::en
-so the month and weekday names follow the site's active language, not the
-visitor's browser settings. Switch the language and the same page renders
-`agosto de 2026` or `août 2026`.
+## Examples
 
-The first day of the week follows the same language. `fr` starts on Monday,
-`en-us` and `pt-br` on Sunday, `ar-eg` on Saturday — without a setting to keep
-in sync.
-
-Set `first_day` when a project disagrees with its own locale:
+### Basic
 :::pt-br
-então os nomes dos meses e dos dias da semana seguem o idioma ativo do site, e
-não as configurações do navegador de quem visita. Troque o idioma e a mesma
-página renderiza `agosto de 2026` ou `août 2026`.
+## Exemplos
 
-O primeiro dia da semana segue o mesmo idioma. `fr` começa na segunda-feira,
-`en-us` e `pt-br` no domingo, `ar-eg` no sábado — sem uma configuração para
-manter em sincronia.
-
-Defina `first_day` quando um projeto discordar do próprio locale:
+### Básico
 :::
 
-```html
-<c-calendar first_day="1" />
-```
+<c-docs.example>
+<c-calendar value="2026-08-13" class="rounded-md border" />
+</c-docs.example>
 
 :::en
-`0` is Sunday and `6` is Saturday, matching Django's `FIRST_DAY_OF_WEEK`.
+### Limiting the range
 
-## Limiting the range
+`min` and `max` take ISO dates. Days outside render dimmed and their buttons
+are disabled, so they cannot be clicked or reached by keyboard.
 :::pt-br
-`0` é domingo e `6` é sábado, como no `FIRST_DAY_OF_WEEK` do Django.
+### Limitando o intervalo
 
-## Limitando o intervalo
+`min` e `max` aceitam datas ISO. Os dias fora aparecem esmaecidos e os botões
+deles ficam desabilitados, então não podem ser clicados nem alcançados pelo
+teclado.
 :::
 
-```html
-<c-calendar name="appointment" min="2026-08-10" max="2026-08-20" />
-```
-
-:::en
-Days outside the range render dimmed and their buttons are disabled, so they
-cannot be clicked or reached by keyboard.
-:::pt-br
-Os dias fora do intervalo aparecem esmaecidos e os botões deles ficam
-desabilitados, então não podem ser clicados nem alcançados pelo teclado.
-:::
-
-<c-docs.demo-section>
+<c-docs.example>
 <c-calendar min="2026-08-10" max="2026-08-20" value="2026-08-13" class="rounded-md border" />
-</c-docs.demo-section>
+</c-docs.example>
 
 :::en
-## Reacting to a selection
+### First day of the week
+
+`first_day` overrides the locale, `0` for Sunday through `6` for Saturday, as
+in Django's `FIRST_DAY_OF_WEEK`.
+:::pt-br
+### Primeiro dia da semana
+
+`first_day` passa por cima do locale, de `0` para domingo até `6` para sábado,
+como no `FIRST_DAY_OF_WEEK` do Django.
+:::
+
+<c-docs.example>
+<c-calendar first_day="1" value="2026-08-13" class="rounded-md border" />
+</c-docs.example>
+
+:::en
+### Reacting to a selection
 
 Picking a day dispatches a bubbling `calendar-change` event carrying the ISO
-date, which is how
-<a href="{% url 'page' slug='date-picker' %}">Date Picker</a> is built:
+date, which is how the date picker is built. The selection is also on the
+Alpine scope as `selected`.
 :::pt-br
-## Reagindo a uma seleção
+### Reagindo a uma seleção
 
 Escolher um dia dispara um evento `calendar-change` que borbulha e carrega a
-data ISO, que é como o
-<a href="{% url 'page' slug='date-picker' %}">Date Picker</a> é montado:
+data ISO, que é como o date picker é montado. A seleção também fica no escopo
+do Alpine, como `selected`.
 :::
 
-```html
-<div x-data="{ chosen: '' }" x-on:calendar-change="chosen = $event.detail.value">
-    <c-calendar />
-    <p x-text="chosen"></p>
+<c-docs.example>
+<div x-data="{ chosen: '' }" x-on:calendar-change="chosen = $event.detail.value" class="flex flex-col items-center gap-2">
+  <c-calendar class="rounded-md border" />
+  <p class="text-sm text-muted-foreground" x-text="chosen || 'Pick a day'"></p>
 </div>
-```
+</c-docs.example>
 
 :::en
-The selection is also on the Alpine scope as `selected`.
+## RTL
 
-## Props
+The weekdays run with the text, so under `dir="rtl"` the week starts on the
+right, and the previous and next arrows change sides and turn to point
+outwards.
 
-| Prop | Default | Meaning |
-| --- | --- | --- |
-| `name` | — | renders a hidden input under this name; leave it out for a display-only calendar |
-| `value` | — | the ISO date selected when the page loads |
-| `first_day` | the locale's | `0` for Sunday through `6` for Saturday |
-| `min` | — | the earliest selectable ISO date |
-| `max` | — | the latest selectable ISO date |
+## Accessibility
 
-## A note on what is not here
+The month is a `role="grid"` table. Each day is a button labelled with its full
+date and carrying `aria-selected`, and the month name is a live region, so
+paging is announced. The previous and next buttons are labelled. Upstream also
+moves between days with the arrow keys; here Tab moves through them, and
+disabled days are skipped.
 
-Range and multiple selection are not implemented. They have no behavioural
-parity with `react-day-picker` in a grid this size, and half of a range picker
-is worse than none — it would look like the upstream component and answer to a
-different set of rules. Single-date selection is faithful, and it is what a
-Django form field needs.
+## API reference
 :::pt-br
-A seleção também fica no escopo do Alpine, como `selected`.
+## RTL
 
-## Props
+Os dias da semana correm com o texto, então sob `dir="rtl"` a semana começa à
+direita, e as setas de anterior e próximo trocam de lado e se viram para fora.
 
-| Prop | Padrão | Significado |
-| --- | --- | --- |
-| `name` | — | renderiza um input oculto com este nome; deixe de fora para um calendário só de exibição |
-| `value` | — | a data ISO selecionada quando a página carrega |
-| `first_day` | a do locale | `0` para domingo até `6` para sábado |
-| `min` | — | a data ISO mais cedo que pode ser escolhida |
-| `max` | — | a data ISO mais tarde que pode ser escolhida |
+## Acessibilidade
 
-## Sobre o que não está aqui
+O mês é uma tabela `role="grid"`. Cada dia é um botão rotulado com a data
+completa e que leva `aria-selected`, e o nome do mês é uma região viva, então
+trocar de mês é anunciado. Os botões de anterior e próximo têm rótulo. O
+upstream também passa de um dia para o outro com as setas; aqui o Tab percorre
+os dias, e os desabilitados ficam de fora.
 
-Seleção de intervalo e seleção múltipla não estão implementadas. Elas não têm
-paridade de comportamento com o `react-day-picker` numa grade deste tamanho, e
-meio seletor de intervalo é pior do que nenhum — ele pareceria o componente do
+## Referência da API
+:::
+
+<c-docs.api-reference name="calendar" />
+
+:::en
+## Notes
+
+Upstream's range and multiple selection are not implemented. Half of a range
+picker is worse than none, as it would look like the upstream component and
+answer to a different set of rules. Single-date selection is faithful, and it
+is what a Django form field needs. The examples built on ranges, the presets,
+the date and time picker and the booked dates, have no counterpart for the
+same reason; a set of disabled days beyond `min` and `max` is the one most
+worth adding later.
+
+The month and year dropdowns, week numbers, custom cell sizes and other
+calendar systems such as Persian or Hijri are not here either. The dates are
+plain ISO dates with no time zone, which is what `DateField` stores.
+:::pt-br
+## Observações
+
+A seleção de intervalo e a múltipla do upstream não estão implementadas. Meio
+seletor de intervalo é pior do que nenhum, porque pareceria o componente do
 upstream e obedeceria a outras regras. A seleção de uma data só é fiel, e é o
-que um campo de formulário Django precisa.
+que um campo de formulário Django precisa. Os exemplos que dependem de
+intervalos, os presets, o seletor de data e hora e as datas reservadas, não têm
+equivalente pelo mesmo motivo; um conjunto de dias desabilitados além de `min`
+e `max` é o que mais vale acrescentar depois.
+
+Os dropdowns de mês e ano, os números de semana, os tamanhos de célula
+personalizados e outros sistemas de calendário, como o persa ou o hijri,
+também não estão aqui. As datas são datas ISO simples, sem fuso horário, que é
+o que o `DateField` guarda.
 :::

@@ -15,6 +15,10 @@ description.es: Iconos de lucide como componente cotton. Todo icono de la biblio
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="icon">
+<c-icon name="search" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -37,13 +41,9 @@ maior parte das vezes ele já está instalado.
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-icon name="search" />
-</c-docs.demo-section>
-
-```html
-<c-icon name="search" />
-```
+</c-docs.example>
 
 :::en
 The `name` is the icon name as it appears on <a
@@ -67,20 +67,13 @@ lista abaixo.
 ### Tamanho
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-end gap-4">
-    <c-icon name="search" class="size-4" />
-    <c-icon name="search" class="size-6" />
-    <c-icon name="search" class="size-8" />
+  <c-icon name="search" class="size-4" />
+  <c-icon name="search" class="size-6" />
+  <c-icon name="search" class="size-8" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon name="search" class="size-4" />
-<c-icon name="search" class="size-6" />
-<c-icon name="search" class="size-8" />
-```
+</c-docs.example>
 
 :::en
 ### Color
@@ -88,18 +81,13 @@ lista abaixo.
 ### Cor
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-icon name="check" class="size-5 text-muted-foreground" />
-    <c-icon name="check" class="size-5 text-primary" />
-    <c-icon name="check" class="size-5 text-destructive" />
+  <c-icon name="check" class="size-5 text-muted-foreground" />
+  <c-icon name="check" class="size-5 text-primary" />
+  <c-icon name="check" class="size-5 text-destructive" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon name="check" class="size-5 text-muted-foreground" />
-```
+</c-docs.example>
 
 :::en
 ### Inside a button
@@ -107,19 +95,12 @@ lista abaixo.
 ### Dentro de um botão
 :::
 
-<c-docs.demo-section>
-<c-button variant="outline">
-<c-icon name="search" class="size-4" />
-Search
-</c-button>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-button variant="outline">
   <c-icon name="search" class="size-4" />
   Search
 </c-button>
-```
+</c-docs.example>
 
 :::en
 ### Reacting to state
@@ -127,25 +108,16 @@ Search
 ### Reagindo ao estado
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div x-data="{ open: false }" class="flex items-center gap-3">
-    <c-button variant="outline" x-on:click="open = !open">Toggle</c-button>
-    <c-icon
-        name="chevron-down"
-        class="size-5 transition-transform"
-        x-bind:class="{ 'rotate-180': open }"
+  <c-button variant="outline" x-on:click="open = !open">Toggle</c-button>
+  <c-icon
+    name="chevron-down"
+    class="size-5 transition-transform"
+    x-bind:class="{ 'rotate-180': open }"
     />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-icon
-    name='chevron-down'
-    class='size-5 transition-transform'
-    x-bind:class=\"{ 'rotate-180': open }\"
-/>
-```
+</c-docs.example>
 
 :::en
 ### Accessibility
@@ -153,21 +125,12 @@ Search
 ### Acessibilidade
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-icon name="x" class="size-5" aria-hidden="true" />
-    <c-icon name="search" class="size-5" role="img" aria-label="Search" />
+  <c-icon name="x" class="size-5" aria-hidden="true" />
+  <c-icon name="search" class="size-5" role="img" aria-label="Search" />
 </div>
-</c-docs.demo-section>
-
-```html
-<!-- decorative, next to a visible label -->
-<c-icon name="x" class="size-5" aria-hidden="true" />
-
-<!-- carries the meaning on its own -->
-<c-icon name="search" class="size-5" role="img" aria-label="Search" />
-```
+</c-docs.example>
 
 :::en
 ## Available icons
@@ -224,3 +187,34 @@ Os ícones vêm do <a href="https://lucide.dev" target="_blank" rel="noopener
 noreferrer" class="font-medium underline underline-offset-4">Lucide</a>,
 sob a licença ISC. O aviso completo vem com o componente, em `icon/LICENSE`.
 :::
+
+:::en
+## RTL
+
+Icons do not mirror. Lucide has no RTL variants, so an arrow that means
+"next" needs `rtl:rotate-180` to point the way the text runs.
+
+## Accessibility
+
+An icon is an inline `<svg>`. One beside text is decorative and should carry
+`aria-hidden="true"`; one that stands alone, in a button, takes its name from
+the button's `aria-label`.
+
+## API reference
+:::pt-br
+## RTL
+
+Os ícones não espelham. O Lucide não tem variantes RTL, então uma seta que
+significa "próximo" precisa de `rtl:rotate-180` para apontar no sentido do
+texto.
+
+## Acessibilidade
+
+Um ícone é um `<svg>` em linha. Um ao lado de texto é decorativo e deve
+levar `aria-hidden="true"`; um que fica sozinho, num botão, recebe o nome do
+`aria-label` do botão.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="icon" />

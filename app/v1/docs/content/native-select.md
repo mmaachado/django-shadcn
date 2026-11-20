@@ -13,6 +13,13 @@ description.es: El select nativo del navegador, estilizado como el resto de la b
 </c-native-select>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="native-select">
+<c-native-select name="theme">
+  <c-native-select.option value="light">Light</c-native-select.option>
+  <c-native-select.option value="dark">Dark</c-native-select.option>
+</c-native-select>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -56,17 +63,13 @@ quando precisar de markup próprio nas opções.
 ### Pequeno
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select size="sm">
-<c-native-select.option value="10">10 per page</c-native-select.option>
-<c-native-select.option value="25">25 per page</c-native-select.option>
-<c-native-select.option value="50">50 per page</c-native-select.option>
+  <c-native-select.option value="10">10 per page</c-native-select.option>
+  <c-native-select.option value="25">25 per page</c-native-select.option>
+  <c-native-select.option value="50">50 per page</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select size="sm">...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Grouped options
@@ -74,25 +77,17 @@ quando precisar de markup próprio nas opções.
 ### Opções agrupadas
 :::
 
-<c-docs.demo-section>
-<c-native-select>
-<c-native-select.optgroup label="Fruits">
-<c-native-select.option value="apple">Apple</c-native-select.option>
-<c-native-select.option value="banana">Banana</c-native-select.option>
-</c-native-select.optgroup>
-<c-native-select.optgroup label="Vegetables">
-<c-native-select.option value="carrot">Carrot</c-native-select.option>
-</c-native-select.optgroup>
-</c-native-select>
-</c-docs.demo-section>
-
-```html
+<c-docs.example>
 <c-native-select>
   <c-native-select.optgroup label="Fruits">
     <c-native-select.option value="apple">Apple</c-native-select.option>
+    <c-native-select.option value="banana">Banana</c-native-select.option>
+  </c-native-select.optgroup>
+  <c-native-select.optgroup label="Vegetables">
+    <c-native-select.option value="carrot">Carrot</c-native-select.option>
   </c-native-select.optgroup>
 </c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -100,15 +95,11 @@ quando precisar de markup próprio nas opções.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select disabled>
-<c-native-select.option value="locked">Not available</c-native-select.option>
+  <c-native-select.option value="locked">Not available</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select disabled>...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### Invalid
@@ -116,16 +107,12 @@ quando precisar de markup próprio nas opções.
 ### Inválido
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select aria-invalid="true">
-<c-native-select.option value="">Pick one</c-native-select.option>
-<c-native-select.option value="a">Option A</c-native-select.option>
+  <c-native-select.option value="">Pick one</c-native-select.option>
+  <c-native-select.option value="a">Option A</c-native-select.option>
 </c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select aria-invalid="true">...</c-native-select>
-```
+</c-docs.example>
 
 :::en
 ### From a Django form
@@ -133,20 +120,40 @@ quando precisar de markup próprio nas opções.
 ### A partir de um formulário Django
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-native-select name="country">
-{% for value, label in countries %}
-<c-native-select.option value="{{ value }}">{{ label }}</c-native-select.option>
-{% endfor %}
-</c-native-select>
-</c-docs.demo-section>
-
-```html
-<c-native-select name="country">
-  {% for value, label in form.country.field.choices %}
-  <c-native-select.option value="{{ value }}"
-    >{{ label }}</c-native-select.option
-  >
+  {% for value, label in countries %}
+    <c-native-select.option value="{{ value }}">{{ label }}</c-native-select.option>
   {% endfor %}
 </c-native-select>
-```
+</c-docs.example>
+
+:::en
+## RTL
+
+The browser draws the options, and the chevron sits at the end of the field, so
+under `dir="rtl"` the select mirrors with the text.
+
+## Accessibility
+
+It is a native `<select>`, so the keyboard, a screen reader and a phone's
+picker all work as they do everywhere. Name it with a `<label>` tied by `for`.
+The chevron is decorative and hidden.
+
+## API reference
+:::pt-br
+## RTL
+
+O navegador desenha as opções, e o chevron fica no fim do campo, então sob
+`dir="rtl"` o select espelha com o texto.
+
+## Acessibilidade
+
+É um `<select>` nativo, então o teclado, um leitor de tela e o seletor do
+celular funcionam como em qualquer lugar. Dê um nome a ele com um `<label>`
+ligado por `for`. O chevron é decorativo e fica escondido.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="native-select" />

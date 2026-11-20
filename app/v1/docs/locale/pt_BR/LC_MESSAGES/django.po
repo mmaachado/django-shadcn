@@ -62,3 +62,46 @@ msgstr "Documentação completa"
 
 msgid "every page above, inlined as Markdown"
 msgstr "todas as páginas acima, inteiras, em Markdown"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Attribute"
+msgstr "Atributo"
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Values"
+msgstr "Valores"
+
+msgid ""
+"Every part also takes `class`, added to its own classes, and passes any "
+"other attribute on to its element."
+msgstr ""
+"Toda parte também aceita `class`, somada às próprias classes, e repassa "
+"qualquer outro atributo ao seu elemento."
+
+msgid "Parts"
+msgstr "Partes"
+
+msgid "Attributes"
+msgstr "Atributos"
+
+msgid "Cheat sheet"
+msgstr "Resumo rápido"
+
+msgid "Guides"
+msgstr "Guias"
+
+msgid "Theming"
+msgstr "Temas"
+
+msgid "CLI"
+msgstr "CLI"
+
+msgid "Forms and Django"
+msgstr "Formulários e Django"
+
+msgid "Alpine and JavaScript"
+msgstr "Alpine e JavaScript"

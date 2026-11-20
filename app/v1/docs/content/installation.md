@@ -48,8 +48,9 @@ INSTALLED_APPS = [
 ```
 
 Then initialize the theme. This creates `templates/cotton/` and drops an
-`input.css` holding the palette, the design tokens and the Geist font faces
-that every component builds on:
+`input.css` holding the palette and the design tokens that every component
+builds on, which the [Theming]({% url 'page' slug='theming' %}) page walks
+through:
 
 ```bash
 uvx django_shadcn@latest init

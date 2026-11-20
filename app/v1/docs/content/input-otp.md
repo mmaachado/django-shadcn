@@ -21,6 +21,17 @@ description.es: Un campo de código de un solo uso, con una casilla por carácte
 </c-input-otp>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="input-otp">
+<c-input-otp maxlength="4" name="pin">
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
+</c-input-otp>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -37,27 +48,16 @@ uvx django_shadcn@latest add input_otp
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="4" name="pin">
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-<c-input-otp.slot index="3" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="4" name="pin">
-    <c-input-otp.group>
-        <c-input-otp.slot index="0" />
-        <c-input-otp.slot index="1" />
-        <c-input-otp.slot index="2" />
-        <c-input-otp.slot index="3" />
-    </c-input-otp.group>
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 One real input sits transparent over the boxes and holds the whole code, so
@@ -84,37 +84,21 @@ Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
 ### Dividido em grupos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="6" name="split">
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-</c-input-otp.group>
-<c-input-otp.separator />
-<c-input-otp.group>
-<c-input-otp.slot index="3" />
-<c-input-otp.slot index="4" />
-<c-input-otp.slot index="5" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+  </c-input-otp.group>
+  <c-input-otp.separator />
+  <c-input-otp.group>
+    <c-input-otp.slot index="3" />
+    <c-input-otp.slot index="4" />
+    <c-input-otp.slot index="5" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="6" name="code">
-    <c-input-otp.group>
-        <c-input-otp.slot index="0" />
-        <c-input-otp.slot index="1" />
-        <c-input-otp.slot index="2" />
-    </c-input-otp.group>
-    <c-input-otp.separator />
-    <c-input-otp.group>
-        <c-input-otp.slot index="3" />
-        <c-input-otp.slot index="4" />
-        <c-input-otp.slot index="5" />
-    </c-input-otp.group>
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -122,22 +106,16 @@ Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-input-otp maxlength="4" disabled>
-<c-input-otp.group>
-<c-input-otp.slot index="0" />
-<c-input-otp.slot index="1" />
-<c-input-otp.slot index="2" />
-<c-input-otp.slot index="3" />
-</c-input-otp.group>
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
 </c-input-otp>
-</c-docs.demo-section>
-
-```html
-<c-input-otp maxlength="4" disabled>
-    ...
-</c-input-otp>
-```
+</c-docs.example>
 
 :::en
 ### In a Django form
@@ -161,6 +139,60 @@ Cada slot leva o próprio `index`, do mesmo jeito que no upstream.
     <c-field.error :errors="form.code.errors" />
 </c-field>
 ```
+
+:::en
+### Four digits
+
+`maxlength` sets the length, and the slots follow it.
+:::pt-br
+### Quatro dígitos
+
+O `maxlength` define o tamanho, e os slots o acompanham.
+:::
+
+<c-docs.example>
+<c-input-otp maxlength="4" aria-label="PIN">
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
+</c-input-otp>
+</c-docs.example>
+
+:::en
+## RTL
+
+The code reads left to right in every language, so the slots keep their
+order under `dir="rtl"`, as a one-time code is typed.
+
+## Accessibility
+
+One real input holds the whole code, so a screen reader hears a single
+field, and it carries `autocomplete="one-time-code"`, so the browser can fill it
+from an SMS. Give it a label. The boxes draw its value as text and are not
+hidden, so a screen reader can read the digits there too.
+
+## API reference
+:::pt-br
+## RTL
+
+O código é lido da esquerda para a direita em qualquer idioma, então os slots
+mantêm a ordem sob `dir="rtl"`, como um código de uso único é digitado.
+
+## Acessibilidade
+
+Um input de verdade guarda o código inteiro, então um leitor de tela ouve um
+campo só, e ele leva `autocomplete="one-time-code"`, então o navegador pode
+preenchê-lo a partir de um SMS. Dê um rótulo a ele. As caixas desenham o valor
+como texto e não ficam escondidas, então um leitor de tela também pode ler os
+dígitos ali.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="input-otp" />
 
 :::en
 ## Notes

@@ -11,6 +11,10 @@ description.es: Un botón de dos estados, encendido o apagado.
 </c-toggle>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="toggle">
+<c-toggle aria-label="Toggle italic"><span class="italic">I</span></c-toggle>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -27,15 +31,9 @@ uvx django_shadcn@latest add toggle
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle aria-label="Toggle italic"><span class="italic">I</span></c-toggle>
-</c-docs.demo-section>
-
-```html
-<c-toggle aria-label="Toggle italic">
-    <span class="italic">I</span>
-</c-toggle>
-```
+</c-docs.example>
 
 :::en
 The pressed state lives in Alpine and is published as `data-state="on"` and
@@ -55,17 +53,12 @@ Comece pressionado com `pressed="true"`.
 ### Variantes
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-toggle>Default</c-toggle>
-<c-toggle variant="outline">Outline</c-toggle>
+  <c-toggle>Default</c-toggle>
+  <c-toggle variant="outline">Outline</c-toggle>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle>Default</c-toggle>
-<c-toggle variant="outline">Outline</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Sizes
@@ -73,19 +66,13 @@ Comece pressionado com `pressed="true"`.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-3">
-<c-toggle variant="outline" size="sm">Small</c-toggle>
-<c-toggle variant="outline">Default</c-toggle>
-<c-toggle variant="outline" size="lg">Large</c-toggle>
+  <c-toggle variant="outline" size="sm">Small</c-toggle>
+  <c-toggle variant="outline">Default</c-toggle>
+  <c-toggle variant="outline" size="lg">Large</c-toggle>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle size="sm">Small</c-toggle>
-<c-toggle>Default</c-toggle>
-<c-toggle size="lg">Large</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Pressed by default
@@ -93,13 +80,9 @@ Comece pressionado com `pressed="true"`.
 ### Pressionado por padrão
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle variant="outline" pressed="true">Pressed</c-toggle>
-</c-docs.demo-section>
-
-```html
-<c-toggle variant="outline" pressed="true">Pressed</c-toggle>
-```
+</c-docs.example>
 
 :::en
 ### Disabled
@@ -107,10 +90,47 @@ Comece pressionado com `pressed="true"`.
 ### Desabilitado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle variant="outline" disabled>Disabled</c-toggle>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-toggle variant="outline" disabled>Disabled</c-toggle>
-```
+:::en
+### With text
+:::pt-br
+### Com texto
+:::
+
+<c-docs.example>
+<c-toggle variant="outline" aria-label="Bookmark">
+  <c-icon name="check" />
+  Bookmark
+</c-toggle>
+</c-docs.example>
+
+:::en
+## RTL
+
+A toggle has no side of its own; an icon in it stays where the markup puts it.
+
+## Accessibility
+
+It is a `<button>` that reports `aria-pressed`, so a screen reader announces
+it as a toggle button, pressed or not. One with only an icon needs an
+`aria-label`.
+
+## API reference
+:::pt-br
+## RTL
+
+Um toggle não tem um lado próprio; um ícone nele fica onde o markup o põe.
+
+## Acessibilidade
+
+É um `<button>` que informa `aria-pressed`, então um leitor de tela o anuncia
+como um botão de alternar, pressionado ou não. Um só com ícone precisa de um
+`aria-label`.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="toggle" />

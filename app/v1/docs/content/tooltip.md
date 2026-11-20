@@ -14,6 +14,15 @@ description.es: Una etiqueta breve que aparece al pasar el ratón o enfocar.
 </c-tooltip>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="tooltip">
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-button variant="outline">Hover me</c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Add to library</c-tooltip.content>
+</c-tooltip>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -30,23 +39,14 @@ uvx django_shadcn@latest add tooltip
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-tooltip>
-<c-tooltip.trigger>
-<c-button variant="outline">Hover me</c-button>
-</c-tooltip.trigger>
-<c-tooltip.content>Add to library</c-tooltip.content>
+  <c-tooltip.trigger>
+    <c-button variant="outline">Hover me</c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Add to library</c-tooltip.content>
 </c-tooltip>
-</c-docs.demo-section>
-
-```html
-<c-tooltip>
-    <c-tooltip.trigger>
-        <c-button variant="outline">Hover me</c-button>
-    </c-tooltip.trigger>
-    <c-tooltip.content>Add to library</c-tooltip.content>
-</c-tooltip>
-```
+</c-docs.example>
 
 :::en
 The trigger reacts to `mouseenter` and to `focusin`, so the tooltip shows for
@@ -64,33 +64,95 @@ teclado assim como para o ponteiro.
 ### Lados
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex items-center gap-4">
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Top</c-button></c-tooltip.trigger>
-<c-tooltip.content side="top">On top</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Right</c-button></c-tooltip.trigger>
-<c-tooltip.content side="right">To the right</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Bottom</c-button></c-tooltip.trigger>
-<c-tooltip.content side="bottom">Below</c-tooltip.content>
-</c-tooltip>
-<c-tooltip>
-<c-tooltip.trigger><c-button variant="outline" size="sm">Left</c-button></c-tooltip.trigger>
-<c-tooltip.content side="left">To the left</c-tooltip.content>
-</c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Top</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="top">On top</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Right</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="right">To the right</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Bottom</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="bottom">Below</c-tooltip.content>
+  </c-tooltip>
+  <c-tooltip>
+    <c-tooltip.trigger><c-button variant="outline" size="sm">Left</c-button></c-tooltip.trigger>
+    <c-tooltip.content side="left">To the left</c-tooltip.content>
+  </c-tooltip>
 </div>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-tooltip.content side="top">On top</c-tooltip.content>
-<c-tooltip.content side="right">To the right</c-tooltip.content>
-<c-tooltip.content side="bottom">Below</c-tooltip.content>
-<c-tooltip.content side="left">To the left</c-tooltip.content>
-```
+:::en
+### With a keyboard shortcut
+:::pt-br
+### Com atalho de teclado
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-button variant="outline" size="icon" aria-label="Save"><c-icon name="check" /></c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Save <c-kbd>⌘S</c-kbd></c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+### Disabled button
+
+A disabled button takes no hover or focus, so wrap it in a `<span>` that does and
+put the tooltip on that.
+:::pt-br
+### Botão desabilitado
+
+Um botão desabilitado não recebe hover nem foco, então envolva-o num `<span>`
+que recebe e ponha o tooltip nele.
+:::
+
+<c-docs.example>
+<c-tooltip>
+  <c-tooltip.trigger>
+    <span tabindex="0" class="inline-block">
+      <c-button variant="outline" disabled>Publish</c-button>
+    </span>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Fill in the title first</c-tooltip.content>
+</c-tooltip>
+</c-docs.example>
+
+:::en
+## RTL
+
+`side="left"` and `side="right"` name a side of the screen and stay put under
+`dir="rtl"`; top and bottom tooltips are centred.
+
+## Accessibility
+
+The content is a `role="tooltip"` and shows on hover and on focus, so a
+keyboard reaches it. It is not tied to its trigger with `aria-describedby`,
+and a touch screen has no hover, so the trigger must make sense without it.
+
+## API reference
+:::pt-br
+## RTL
+
+`side="left"` e `side="right"` nomeiam um lado da tela e ficam no lugar sob
+`dir="rtl"`; tooltips em cima e embaixo ficam centralizados.
+
+## Acessibilidade
+
+O conteúdo é um `role="tooltip"` e aparece no hover e no foco, então o
+teclado chega a ele. Ele não está ligado ao trigger por `aria-describedby`, e
+uma tela de toque não tem hover, então o trigger precisa fazer sentido sem
+ele.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="tooltip" />
 
 :::en
 ## Notes

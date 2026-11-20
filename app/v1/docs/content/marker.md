@@ -25,6 +25,15 @@ description.es: Las filas de una conversación que no son mensajes: estado, avis
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="marker">
+<c-marker>
+    <c-marker.icon>
+        <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Explored 4 files</c-marker.content>
+</c-marker>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -54,48 +63,43 @@ uvx django_shadcn@latest add marker
 The icon slot is decorative and hidden from assistive technology, so the content
 has to carry the whole meaning on its own. Nothing here is stateful.
 
-## Variants
+## Examples
+
+### Variants
 :::pt-br
 O espaço do ícone é decorativo e fica escondido das tecnologias assistivas,
 então o conteúdo tem de carregar sozinho todo o significado. Nada aqui tem
 estado.
 
-## Variantes
+## Exemplos
+
+### Variantes
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-6 text-start">
-<c-marker>
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>Default, an inline row</c-marker.content>
-</c-marker>
-<c-marker variant="border">
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>Border, with a rule underneath</c-marker.content>
-</c-marker>
-<c-marker variant="separator">
-<c-marker.content>Separator, centred between two rules</c-marker.content>
-</c-marker>
+  <c-marker>
+    <c-marker.icon>
+      <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Default, an inline row</c-marker.content>
+  </c-marker>
+  <c-marker variant="border">
+    <c-marker.icon>
+      <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Border, with a rule underneath</c-marker.content>
+  </c-marker>
+  <c-marker variant="separator">
+    <c-marker.content>Separator, centred between two rules</c-marker.content>
+  </c-marker>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-marker variant="border">...</c-marker>
-<c-marker variant="separator">
-    <c-marker.content>Today</c-marker.content>
-</c-marker>
-```
+</c-docs.example>
 
 :::en
 `separator` draws its rules with `before` and `after`, so an icon inside it
 lands between the label and the left rule rather than at the start of the row.
 Date breaks usually read better without one.
-
-## Examples
 
 ### Announcing a change
 
@@ -107,8 +111,6 @@ the text as live.
 cai entre o rótulo e o traço da esquerda, e não no início da linha. Quebras de
 data costumam ficar melhores sem ícone.
 
-## Exemplos
-
 ### Anunciando uma mudança
 
 Um marker que informa um trabalho em andamento deve ser anunciado, não só
@@ -116,25 +118,16 @@ desenhado. `role="status"` chega à raiz pelos atributos, e o brilho marca o
 texto como vivo.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-marker role="status">
-<c-marker.icon>
-<c-icon name="loader-circle" class="animate-spin" />
-</c-marker.icon>
-<c-marker.content class="shimmer">Thinking</c-marker.content>
-</c-marker>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-marker role="status">
+  <c-marker role="status">
     <c-marker.icon>
-        <c-icon name="loader-circle" class="animate-spin" />
+      <c-icon name="loader-circle" class="animate-spin" />
     </c-marker.icon>
     <c-marker.content class="shimmer">Thinking</c-marker.content>
-</c-marker>
-```
+  </c-marker>
+</div>
+</c-docs.example>
 
 :::en
 `shimmer` is a utility in `input.css`, not part of the component. It works on
@@ -156,29 +149,18 @@ Um marker pode apontar para algum lugar. Ponha o link no conteúdo e não na rai
 para que só as palavras sejam clicáveis e a linha mantenha o layout.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex w-full max-w-md flex-col gap-4 text-start">
-<c-marker>
-<c-marker.icon>
-<c-icon name="check" />
-</c-marker.icon>
-<c-marker.content>
-<a href="{% url 'page' slug='installation' %}">Opened the installation guide</a>
-</c-marker.content>
-</c-marker>
-</div>
-</c-docs.demo-section>
-
-```html
-<c-marker>
+  <c-marker>
     <c-marker.icon>
-        <c-icon name="check" />
+      <c-icon name="check" />
     </c-marker.icon>
     <c-marker.content>
-        <a href="/pull/482/">View the pull request</a>
+      <a href="{% url 'page' slug='installation' %}">Opened the installation guide</a>
     </c-marker.content>
-</c-marker>
-```
+  </c-marker>
+</div>
+</c-docs.example>
 
 :::en
 ### In a transcript
@@ -214,3 +196,50 @@ Entre mensagens, um marker é a linha que explica uma lacuna.
 </c-message>
 </c-message.group>
 </c-docs.demo-section>
+
+:::en
+## RTL
+
+The icon sits at the start and the label after it, and a separator's rules
+run to both sides, so under `dir="rtl"` a marker mirrors with the text.
+
+## Accessibility
+
+**Status and progress.** A marker that reports work in progress should be
+announced: give it `role="status"`, as the example does.
+
+**Labelled separators.** The rules are drawn with `before` and `after` and are
+not read; the label is.
+
+**Decorative icons.** The icon slot is hidden from assistive technology, so
+the text carries the whole meaning.
+
+**Interactive markers.** Put a link in the content rather than on the root, so
+only the words are the control.
+
+## API reference
+:::pt-br
+## RTL
+
+O ícone fica no início e o rótulo depois dele, e os traços de um separador
+correm para os dois lados, então sob `dir="rtl"` um marker espelha com o
+texto.
+
+## Acessibilidade
+
+**Status e progresso.** Um marker que informa um trabalho em andamento deve
+ser anunciado: dê a ele `role="status"`, como faz o exemplo.
+
+**Separadores com rótulo.** Os traços são desenhados com `before` e `after` e
+não são lidos; o rótulo é.
+
+**Ícones decorativos.** O espaço do ícone fica escondido das tecnologias
+assistivas, então o texto carrega todo o significado.
+
+**Markers interativos.** Ponha um link no conteúdo e não na raiz, para que só
+as palavras sejam o controle.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="marker" />

@@ -21,6 +21,19 @@ description.es: Área, línea, barra y tarta, dibujados desde un queryset que tu
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="chart">
+<c-chart data="{{ series }}" config="{{ config }}">
+    <c-chart.plot>
+        <c-chart.grid />
+        <c-chart.axis-y />
+        <c-chart.axis-x key="month" />
+        <c-chart.area data_key="revenue" />
+    </c-chart.plot>
+    <c-chart.tooltip />
+    <c-chart.legend />
+</c-chart>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     Move across it: the reading follows the pointer. Switch the site to dark and
@@ -150,7 +163,9 @@ instead — the result is the same `--color-<key>` your own CSS can read.
 Order matters inside the plot: the grid goes first so the series sit on top of
 it.
 
-## Bars
+## Examples
+
+### Bars
 :::pt-br
 Sem uma cor, uma chave recebe o próximo dos cinco tokens de gráfico, em ordem.
 Esses tokens são definidos no `input.css` para o claro e o escuro, e é por isso
@@ -181,7 +196,9 @@ seu próprio CSS pode ler.
 A ordem importa dentro do plot: a grade vem primeiro para que as séries fiquem
 por cima dela.
 
-## Barras
+## Exemplos
+
+### Barras
 :::
 
 ```html
@@ -237,14 +254,14 @@ Duas séries de barras dividem a categoria lado a lado. Acrescente
 :::en
 `stack="true"` works the same way on `<c-chart.area>`.
 
-## Lines
+### Lines
 
 `<c-chart.line>` is the stroke without the fill. `dots="false"` drops the
 points, which is what you want when the series is dense.
 :::pt-br
 `stack="true"` funciona do mesmo jeito no `<c-chart.area>`.
 
-## Linhas
+### Linhas
 
 `<c-chart.line>` é o traço sem o preenchimento. `dots="false"` tira os pontos,
 que é o que você quer quando a série é densa.
@@ -267,12 +284,12 @@ que é o que você quer quando a série é densa.
 </c-docs.demo-section>
 
 :::en
-## Pie and doughnut
+### Pie and doughnut
 
 A pie is polar, so it replaces the plot rather than going inside it. Its config
 is keyed by the row names, and the legend takes `name_key` to match:
 :::pt-br
-## Pizza e rosca
+### Pizza e rosca
 
 Uma pizza é polar, então ela substitui o plot em vez de ir dentro dele. O config
 dela é indexado pelos nomes das linhas, e a legenda recebe `name_key` para
@@ -302,7 +319,7 @@ combinar:
 :::en
 `thickness` is how many pixels wide the ring is, measured inwards from the edge.
 
-## Sparklines
+### Sparklines
 
 There is no sparkline component. A sparkline is this one with no grid and no
 axes, and since each axis claims its own room, dropping them gives the line the
@@ -311,7 +328,7 @@ whole width:
 `thickness` é quantos pixels de largura o anel tem, medidos da borda para
 dentro.
 
-## Sparklines
+### Sparklines
 
 Não existe um componente de sparkline. Um sparkline é este sem grade e sem
 eixos, e como cada eixo reserva o próprio espaço, tirá-los dá à linha a largura
@@ -330,13 +347,104 @@ inteira:
 That is what sits inside a
 <a href="{% url 'page' slug='metric' %}">Metric</a> card.
 
-## Numbers follow the site's language
+### Numbers follow the site's language
 
 Ticks and readings are formatted with the language Django has active for the
 request, not the one the visitor's browser is set to. The same page renders
 `3,000` in English and `3.000` in Portuguese without being told twice.
 
-## Props
+
+### Reading it from your own markup
+
+Anything inside the chart can read its scope:
+:::pt-br
+É isso que fica dentro de um card de
+<a href="{% url 'page' slug='metric' %}">Metric</a>.
+
+### Os números seguem o idioma do site
+
+As marcas e as leituras são formatadas com o idioma que o Django tem ativo na
+requisição, não com o que o navegador de quem visita usa. A mesma página
+renderiza `3,000` em inglês e `3.000` em português sem precisar de aviso.
+
+
+### Lendo do seu próprio markup
+
+Qualquer coisa dentro do gráfico pode ler o escopo dele:
+:::
+
+```html
+<c-chart data="{{ series }}" config="{{ config }}">
+    ...
+    <p x-show="hovered >= 0" x-text="reading ? reading.month : ''"></p>
+</c-chart>
+```
+
+:::en
+`rows`, `series`, `hovered`, `reading`, `ticks` and `format(value)` are all
+there.
+:::pt-br
+`rows`, `series`, `hovered`, `reading`, `ticks` e `format(value)` estão todos
+lá.
+:::
+
+:::en
+## RTL
+
+The chart does not mirror. A value axis does not turn around because the
+language does, so the plot, the axis and its ticks stay physical under
+`dir="rtl"`, on purpose and with a comment in the template. The legend and the
+tooltip are text, and follow the page.
+
+## Accessibility
+
+The plot is labelled with `label`, `Chart` by default, so give it what the
+chart shows. The drawing itself is not described point by point: the tooltip
+follows the pointer and is not reachable by keyboard, so a reader who cannot
+see the chart needs the same numbers elsewhere, such as a table beside it or
+the figures in the text.
+
+## API reference
+:::pt-br
+## RTL
+
+O gráfico não espelha. Um eixo de valores não se vira porque o idioma vira,
+então o plot, o eixo e as marcas ficam físicos sob `dir="rtl"`, de propósito e
+com um comentário no template. A legenda e o tooltip são texto, e seguem a
+página.
+
+## Acessibilidade
+
+O plot é rotulado com `label`, `Chart` por padrão, então dê a ele o que o
+gráfico mostra. O desenho em si não é descrito ponto a ponto: o tooltip
+acompanha o ponteiro e não é alcançável pelo teclado, então um leitor que não
+vê o gráfico precisa dos mesmos números em outro lugar, como uma tabela ao lado
+ou os valores no texto.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="chart" />
+
+:::en
+## Notes
+
+**What this does not do.**
+
+- **Nothing is drawn before Alpine starts.** The paths are computed from the
+  measured width, and there is no width until the page is laid out. Every
+  charting library works this way; the rest of this library does not, so it is
+  worth knowing.
+- **No zoom, brush or pan.**
+- **No log scale, and no time axis that picks its own ticks.** The x axis is
+  categorical: the view sends the label it wants shown.
+- **Not for very large series.** A few thousand points is where positioned
+  elements start to cost something. A KPI dashboard is nowhere near that.
+
+If one of those is what you need, the honest answer is a charting library, and
+the registry can declare one per component when the time comes.
+
+**What each attribute means.**
 
 | Prop | Where | Default | Meaning |
 | --- | --- | --- | --- |
@@ -352,72 +460,10 @@ request, not the one the visitor's browser is set to. The same page renders
 | `donut` | `pie` | `false` | leave a hole in the middle |
 | `thickness` | `pie` | `60` | how wide the ring is, in pixels |
 | `name_key` | `pie`, `legend` | — | the field naming each row |
-
-## Reading it from your own markup
-
-Anything inside the chart can read its scope:
 :::pt-br
-É isso que fica dentro de um card de
-<a href="{% url 'page' slug='metric' %}">Metric</a>.
+## Observações
 
-## Os números seguem o idioma do site
-
-As marcas e as leituras são formatadas com o idioma que o Django tem ativo na
-requisição, não com o que o navegador de quem visita usa. A mesma página
-renderiza `3,000` em inglês e `3.000` em português sem precisar de aviso.
-
-## Props
-
-| Prop | Onde | Padrão | Significado |
-| --- | --- | --- | --- |
-| `data` | `<c-chart>` | `[]` | as linhas, em JSON |
-| `config` | `<c-chart>` | `{}` | de chave para rótulo e cor, em JSON |
-| `label` | `<c-chart.plot>` | `Chart` | dá nome ao desenho para um leitor de tela |
-| `key` | `<c-chart.axis-x>` | — | o campo com o nome de cada linha |
-| `height` | `<c-chart.axis-x>` | `24` | pixels reservados embaixo |
-| `width` | `<c-chart.axis-y>` | `44` | pixels reservados à esquerda |
-| `data_key` | séries | — | o campo que esta série desenha |
-| `stack` | `area`, `bar` | `false` | empilha sobre a série declarada antes dela |
-| `dots` | `line` | `true` | desenha um ponto em cada valor |
-| `donut` | `pie` | `false` | deixa um furo no meio |
-| `thickness` | `pie` | `60` | a largura do anel, em pixels |
-| `name_key` | `pie`, `legend` | — | o campo que dá nome a cada linha |
-
-## Lendo do seu próprio markup
-
-Qualquer coisa dentro do gráfico pode ler o escopo dele:
-:::
-
-```html
-<c-chart data="{{ series }}" config="{{ config }}">
-    ...
-    <p x-show="hovered >= 0" x-text="reading ? reading.month : ''"></p>
-</c-chart>
-```
-
-:::en
-`rows`, `series`, `hovered`, `reading`, `ticks` and `format(value)` are all
-there.
-
-## What this does not do
-
-- **Nothing is drawn before Alpine starts.** The paths are computed from the
-  measured width, and there is no width until the page is laid out. Every
-  charting library works this way; the rest of this library does not, so it is
-  worth knowing.
-- **No zoom, brush or pan.**
-- **No log scale, and no time axis that picks its own ticks.** The x axis is
-  categorical: the view sends the label it wants shown.
-- **Not for very large series.** A few thousand points is where positioned
-  elements start to cost something. A KPI dashboard is nowhere near that.
-
-If one of those is what you need, the honest answer is a charting library, and
-the registry can declare one per component when the time comes.
-:::pt-br
-`rows`, `series`, `hovered`, `reading`, `ticks` e `format(value)` estão todos
-lá.
-
-## O que isto não faz
+**O que isto não faz.**
 
 - **Nada é desenhado antes de o Alpine começar.** Os paths são calculados a
   partir da largura medida, e não há largura até a página ser diagramada. Toda
@@ -433,4 +479,21 @@ lá.
 Se uma dessas coisas é o que você precisa, a resposta honesta é uma biblioteca
 de gráficos, e o registry pode declarar uma por componente quando chegar a
 hora.
+
+**O que cada atributo significa.**
+
+| Prop | Onde | Padrão | Significado |
+| --- | --- | --- | --- |
+| `data` | `<c-chart>` | `[]` | as linhas, em JSON |
+| `config` | `<c-chart>` | `{}` | de chave para rótulo e cor, em JSON |
+| `label` | `<c-chart.plot>` | `Chart` | dá nome ao desenho para um leitor de tela |
+| `key` | `<c-chart.axis-x>` | — | o campo com o nome de cada linha |
+| `height` | `<c-chart.axis-x>` | `24` | pixels reservados embaixo |
+| `width` | `<c-chart.axis-y>` | `44` | pixels reservados à esquerda |
+| `data_key` | séries | — | o campo que esta série desenha |
+| `stack` | `area`, `bar` | `false` | empilha sobre a série declarada antes dela |
+| `dots` | `line` | `true` | desenha um ponto em cada valor |
+| `donut` | `pie` | `false` | deixa um furo no meio |
+| `thickness` | `pie` | `60` | a largura do anel, em pixels |
+| `name_key` | `pie`, `legend` | — | o campo que dá nome a cada linha |
 :::

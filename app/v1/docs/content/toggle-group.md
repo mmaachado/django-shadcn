@@ -13,6 +13,14 @@ description.es: Un conjunto de toggles que comparten un mismo contorno.
 </c-toggle-group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="toggle-group">
+<c-toggle-group>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
+</c-toggle-group>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -29,21 +37,13 @@ uvx django_shadcn@latest add toggle_group
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group>
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group>
-    <c-toggle-group.item>Left</c-toggle-group.item>
-    <c-toggle-group.item>Center</c-toggle-group.item>
-    <c-toggle-group.item>Right</c-toggle-group.item>
-</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 Variant and size go on the group, not on each item.
@@ -59,21 +59,13 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Outline
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group variant="outline">
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group variant="outline">
-    <c-toggle-group.item>Left</c-toggle-group.item>
-    <c-toggle-group.item>Center</c-toggle-group.item>
-    <c-toggle-group.item>Right</c-toggle-group.item>
-</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 ### Sizes
@@ -81,25 +73,20 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="flex flex-col items-center gap-4">
-<c-toggle-group variant="outline" size="sm">
-<c-toggle-group.item>S</c-toggle-group.item>
-<c-toggle-group.item>M</c-toggle-group.item>
-<c-toggle-group.item>L</c-toggle-group.item>
-</c-toggle-group>
-<c-toggle-group variant="outline" size="lg">
-<c-toggle-group.item>S</c-toggle-group.item>
-<c-toggle-group.item>M</c-toggle-group.item>
-<c-toggle-group.item>L</c-toggle-group.item>
-</c-toggle-group>
+  <c-toggle-group variant="outline" size="sm">
+    <c-toggle-group.item>S</c-toggle-group.item>
+    <c-toggle-group.item>M</c-toggle-group.item>
+    <c-toggle-group.item>L</c-toggle-group.item>
+  </c-toggle-group>
+  <c-toggle-group variant="outline" size="lg">
+    <c-toggle-group.item>S</c-toggle-group.item>
+    <c-toggle-group.item>M</c-toggle-group.item>
+    <c-toggle-group.item>L</c-toggle-group.item>
+  </c-toggle-group>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-toggle-group variant="outline" size="sm">...</c-toggle-group>
-<c-toggle-group variant="outline" size="lg">...</c-toggle-group>
-```
+</c-docs.example>
 
 :::en
 ### Spaced
@@ -107,19 +94,60 @@ A variante e o tamanho vão no grupo, não em cada item.
 ### Espaçado
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-toggle-group variant="outline" spacing="1">
-<c-toggle-group.item>Left</c-toggle-group.item>
-<c-toggle-group.item>Center</c-toggle-group.item>
-<c-toggle-group.item>Right</c-toggle-group.item>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
 </c-toggle-group>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-toggle-group variant="outline" spacing="1">
-    <c-toggle-group.item>Left</c-toggle-group.item>
+:::en
+### Disabled
+
+`disabled` on an item reaches its button.
+:::pt-br
+### Desabilitado
+
+`disabled` num item chega ao botão dele.
+:::
+
+<c-docs.example>
+<c-toggle-group aria-label="Alignment">
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item disabled>Right</c-toggle-group.item>
 </c-toggle-group>
-```
+</c-docs.example>
+
+:::en
+## RTL
+
+The row reverses under `dir="rtl"` and keeps its rounded ends on the
+outside, through logical radii and borders.
+
+## Accessibility
+
+The group is a `role="group"` and each item a button reporting
+`aria-pressed`. Name the group with `aria-label`, such as "Text formatting".
+
+## API reference
+:::pt-br
+## RTL
+
+A fileira se inverte sob `dir="rtl"` e mantém as pontas arredondadas do lado
+de fora, por raios e bordas lógicos.
+
+## Acessibilidade
+
+O grupo é um `role="group"` e cada item um botão que informa
+`aria-pressed`. Dê um nome ao grupo com `aria-label`, como "Formatação de
+texto".
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="toggle-group" />
 
 :::en
 ## Notes

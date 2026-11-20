@@ -9,6 +9,10 @@ description.es: Un indicador de que algo está en marcha.
 <c-spinner />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="spinner">
+<c-spinner />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -25,13 +29,9 @@ uvx django_shadcn@latest add spinner
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-spinner />
-</c-docs.demo-section>
-
-```html
-<c-spinner />
-```
+</c-docs.example>
 
 :::en
 It is the lucide `loader-circle` icon with `animate-spin`, already carrying
@@ -49,21 +49,14 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 ### Tamanhos
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-spinner class="size-3" />
-    <c-spinner />
-    <c-spinner class="size-6" />
-    <c-spinner class="size-8" />
+  <c-spinner class="size-3" />
+  <c-spinner />
+  <c-spinner class="size-6" />
+  <c-spinner class="size-8" />
 </div>
-</c-docs.demo-section>
-
-```html
-<c-spinner class="size-3" />
-<c-spinner />
-<c-spinner class="size-6" />
-```
+</c-docs.example>
 
 :::en
 ### Inside a button
@@ -71,26 +64,18 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 ### Dentro de um botão
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-3">
-    <c-button disabled>
-        <c-spinner />
-        Saving
-    </c-button>
-    <c-button variant="outline" disabled>
-        <c-spinner />
-        Please wait
-    </c-button>
+  <c-button disabled>
+    <c-spinner />
+    Saving
+  </c-button>
+  <c-button variant="outline" disabled>
+    <c-spinner />
+    Please wait
+  </c-button>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-button disabled>
-  <c-spinner />
-  Saving
-</c-button>
-```
+</c-docs.example>
 
 :::en
 ### Color
@@ -98,15 +83,64 @@ It is the lucide `loader-circle` icon with `animate-spin`, already carrying
 ### Cor
 :::
 
-<c-docs.demo-section>
-
+<c-docs.example>
 <div class="flex items-center gap-4">
-    <c-spinner class="size-6 text-muted-foreground" />
-    <c-spinner class="size-6 text-primary" />
-    <c-spinner class="size-6 text-destructive" />
+  <c-spinner class="size-6 text-muted-foreground" />
+  <c-spinner class="size-6 text-primary" />
+  <c-spinner class="size-6 text-destructive" />
 </div>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-spinner class="size-6 text-primary" />
-```
+:::en
+### Badge
+:::pt-br
+### Badge
+:::
+
+<c-docs.example>
+<c-badge variant="secondary" class="gap-1">
+  <c-spinner class="size-3" />
+  Syncing
+</c-badge>
+</c-docs.example>
+
+:::en
+### Input group
+:::pt-br
+### Input group
+:::
+
+<c-docs.example>
+<c-input-group class="max-w-xs">
+  <c-input-group.input value="mmaachado" aria-label="Username" />
+  <c-input-group.addon align="inline-end"><c-spinner /></c-input-group.addon>
+</c-input-group>
+</c-docs.example>
+
+:::en
+## RTL
+
+A spinner turns the same way in every language.
+
+## Accessibility
+
+It carries `role="status"` and `aria-label="Loading"`, so a screen reader
+announces it. Pass your own `aria-label` to say what is loading, or in your
+language.
+
+## API reference
+:::pt-br
+## RTL
+
+Um spinner gira para o mesmo lado em qualquer idioma.
+
+## Acessibilidade
+
+Ele leva `role="status"` e `aria-label="Loading"`, então um leitor de tela o
+anuncia. Passe o seu `aria-label` para dizer o que está carregando, ou no seu
+idioma.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="spinner" />

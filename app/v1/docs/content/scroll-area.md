@@ -19,6 +19,16 @@ description.es: Un área desplazable con barra de desplazamiento acorde al tema.
 </c-scroll-area>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="scroll-area">
+<c-scroll-area class="h-32 w-[320px] rounded-md border">
+  <p class="p-4 text-start text-sm text-muted-foreground">
+    Give the scroll area a height and let the content run past it. The scrollbar
+    picks up the border colour from the palette, so it stops looking like a piece
+    of the operating system that wandered in.
+  </p>
+</c-scroll-area>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -35,21 +45,15 @@ uvx django_shadcn@latest add scroll_area
 ## Uso
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-scroll-area class="h-32 w-[320px] rounded-md border">
-<p class="p-4 text-start text-sm text-muted-foreground">
-Give the scroll area a height and let the content run past it. The scrollbar
-picks up the border colour from the palette, so it stops looking like a piece
-of the operating system that wandered in.
-</p>
+  <p class="p-4 text-start text-sm text-muted-foreground">
+    Give the scroll area a height and let the content run past it. The scrollbar
+    picks up the border colour from the palette, so it stops looking like a piece
+    of the operating system that wandered in.
+  </p>
 </c-scroll-area>
-</c-docs.demo-section>
-
-```html
-<c-scroll-area class="h-32 w-[320px] rounded-md border">
-    <p class="p-4">...</p>
-</c-scroll-area>
-```
+</c-docs.example>
 
 :::en
 The size goes on the component; the content inside is free to be taller.
@@ -66,24 +70,47 @@ vontade.
 ### Horizontal
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <c-scroll-area class="w-[320px] rounded-md border">
-<div class="flex w-max gap-4 p-4">
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">One</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Two</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Three</div>
-<div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Four</div>
-</div>
+  <div class="flex w-max gap-4 p-4">
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">One</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Two</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Three</div>
+    <div class="flex size-24 shrink-0 items-center justify-center rounded-md bg-muted text-sm">Four</div>
+  </div>
 </c-scroll-area>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-scroll-area class="w-[320px] rounded-md border">
-    <div class="flex w-max gap-4 p-4">
-        <div class="size-24 shrink-0 rounded-md bg-muted"></div>
-    </div>
-</c-scroll-area>
-```
+:::en
+## RTL
+
+A vertical area scrolls the same in either direction, and a horizontal one
+starts at the right under `dir="rtl"`, as the browser does for any scrolling
+box.
+
+## Accessibility
+
+It is a native scrolling box, so the wheel, the trackpad and touch work. A
+keyboard can scroll it only when it, or something inside, has focus: give it
+`tabindex="0"` and an `aria-label` when nothing inside is focusable.
+
+## API reference
+:::pt-br
+## RTL
+
+Uma área vertical rola igual nas duas direções, e uma horizontal começa à
+direita sob `dir="rtl"`, como o navegador faz com qualquer caixa rolável.
+
+## Acessibilidade
+
+É uma caixa de rolagem nativa, então a roda, o trackpad e o toque funcionam. O
+teclado só consegue rolá-la quando ela, ou algo dentro dela, tem foco: dê a
+ela `tabindex="0"` e um `aria-label` quando nada dentro for focável.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="scroll-area" />
 
 :::en
 ## Notes

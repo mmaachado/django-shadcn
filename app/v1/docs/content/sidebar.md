@@ -66,6 +66,35 @@ Toggle with the button, the rail on the panel's edge, or <c-kbd>⌘</c-kbd> <c-k
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="sidebar">
+<c-sidebar.provider>
+    <c-sidebar>
+        <c-sidebar.header>...</c-sidebar.header>
+        <c-sidebar.content>
+            <c-sidebar.group>
+                <c-sidebar.group-label>Workspace</c-sidebar.group-label>
+                <c-sidebar.group-content>
+                    <c-sidebar.menu>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="/inbox/" tooltip="Inbox">
+                                <c-icon name="search" />
+                                <span>Inbox</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                    </c-sidebar.menu>
+                </c-sidebar.group-content>
+            </c-sidebar.group>
+        </c-sidebar.content>
+        <c-sidebar.footer>...</c-sidebar.footer>
+        <c-sidebar.rail />
+    </c-sidebar>
+    <c-sidebar.inset>
+        <c-sidebar.trigger />
+        {{ content }}
+    </c-sidebar.inset>
+</c-sidebar.provider>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
@@ -172,52 +201,48 @@ inteiro para fora. Rótulos, badges e submenus se escondem sozinhos; o `tooltip`
 de cada botão assume o papel de rótulo.
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="relative h-[300px] w-full transform-gpu overflow-hidden rounded-lg border">
-<c-sidebar.provider class="min-h-full!">
-<c-sidebar collapsible="icon" class="h-full!">
-<c-sidebar.content>
-<c-sidebar.group>
-<c-sidebar.group-label>Workspace</c-sidebar.group-label>
-<c-sidebar.group-content>
-<c-sidebar.menu>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Search">
-<c-icon name="search" />
-<span>Search</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Drafts">
-<c-icon name="circle" />
-<span>Drafts</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-<c-sidebar.menu-item>
-<c-sidebar.menu-button tooltip="Done">
-<c-icon name="check" />
-<span>Done</span>
-</c-sidebar.menu-button>
-</c-sidebar.menu-item>
-</c-sidebar.menu>
-</c-sidebar.group-content>
-</c-sidebar.group>
-</c-sidebar.content>
-<c-sidebar.rail />
-</c-sidebar>
-<c-sidebar.inset>
-<header class="flex h-12 shrink-0 items-center gap-2 border-b px-4">
-<c-sidebar.trigger />
-<span class="text-sm font-medium">Collapse me</span>
-</header>
-</c-sidebar.inset>
-</c-sidebar.provider>
+  <c-sidebar.provider class="min-h-full!">
+    <c-sidebar collapsible="icon" class="h-full!">
+      <c-sidebar.content>
+        <c-sidebar.group>
+          <c-sidebar.group-label>Workspace</c-sidebar.group-label>
+          <c-sidebar.group-content>
+            <c-sidebar.menu>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Search">
+                  <c-icon name="search" />
+                  <span>Search</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Drafts">
+                  <c-icon name="circle" />
+                  <span>Drafts</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+              <c-sidebar.menu-item>
+                <c-sidebar.menu-button tooltip="Done">
+                  <c-icon name="check" />
+                  <span>Done</span>
+                </c-sidebar.menu-button>
+              </c-sidebar.menu-item>
+            </c-sidebar.menu>
+          </c-sidebar.group-content>
+        </c-sidebar.group>
+      </c-sidebar.content>
+      <c-sidebar.rail />
+    </c-sidebar>
+    <c-sidebar.inset>
+      <header class="flex h-12 shrink-0 items-center gap-2 border-b px-4">
+        <c-sidebar.trigger />
+        <span class="text-sm font-medium">Collapse me</span>
+      </header>
+    </c-sidebar.inset>
+  </c-sidebar.provider>
 </div>
-</c-docs.demo-section>
-
-```html
-<c-sidebar collapsible="icon">...</c-sidebar>
-```
+</c-docs.example>
 
 :::en
 ### Variants and side
@@ -300,40 +325,16 @@ mesmo canto.
 ### Placeholder de carregamento
 :::
 
-<c-docs.demo-section>
+<c-docs.example>
 <div class="w-[240px] rounded-lg bg-sidebar p-2">
-<c-sidebar.menu>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="60%" /></c-sidebar.menu-item>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="85%" /></c-sidebar.menu-item>
-<c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="70%" /></c-sidebar.menu-item>
-</c-sidebar.menu>
+  <c-sidebar.menu>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="60%" /></c-sidebar.menu-item>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="85%" /></c-sidebar.menu-item>
+    <c-sidebar.menu-item><c-sidebar.menu-skeleton show_icon="true" width="70%" /></c-sidebar.menu-item>
+  </c-sidebar.menu>
 </div>
-</c-docs.demo-section>
+</c-docs.example>
 
-```html
-<c-sidebar.menu-skeleton show_icon="true" width="60%" />
-```
-
-:::en
-## Notes
-
-Below `md` the panel slides in over a backdrop rather than becoming a
-[Sheet]({% url 'page' slug='sheet' %}) as upstream does. One tree serves both
-widths, so the menu is written once and there are no duplicate ids in the page.
-
-The width comes from `--sidebar-width` and `--sidebar-width-icon`, set on the
-provider. Override them with an inline style, which beats the defaults:
-:::pt-br
-## Observações
-
-Abaixo de `md` o painel desliza por cima de um fundo escurecido em vez de virar
-um [Sheet]({% url 'page' slug='sheet' %}) como faz o upstream. Uma árvore só
-atende às duas larguras, então o menu é escrito uma vez e não há ids duplicados
-na página.
-
-A largura vem de `--sidebar-width` e `--sidebar-width-icon`, definidos no
-provider. Sobrescreva-os com um estilo inline, que vence os padrões:
-:::
 
 ```html
 <c-sidebar.provider style="--sidebar-width: 20rem">
@@ -357,4 +358,60 @@ em volta as quebraria.
 Os tokens de cor da própria sidebar — `--sidebar`, `--sidebar-accent`,
 `--sidebar-border` e o resto — moram no `input.css`. Mude o estilo do painel lá,
 não com classes utilitárias em cada parte.
+:::
+
+:::en
+## RTL
+
+`side` names a side of the screen, so a sidebar on the left stays there under
+`dir="rtl"`; pass `side="right"` for one at the start of an RTL page. The
+menus inside follow the text.
+
+## Accessibility
+
+The menu is a list of links and buttons, so it is tabbed through like any
+navigation, and `is_active="true"` marks the current page. <c-kbd>⌘</c-kbd> or
+<c-kbd>Ctrl</c-kbd> with <c-kbd>B</c-kbd> toggles the panel, and Escape closes
+it on a phone. In the icon rail, each button's `tooltip` names it.
+
+## API reference
+:::pt-br
+## RTL
+
+O `side` nomeia um lado da tela, então uma sidebar à esquerda fica ali sob
+`dir="rtl"`; passe `side="right"` para uma no início de uma página RTL. Os
+menus dentro acompanham o texto.
+
+## Acessibilidade
+
+O menu é uma lista de links e botões, então é percorrido pelo Tab como
+qualquer navegação, e `is_active="true"` marca a página atual.
+<c-kbd>⌘</c-kbd> ou <c-kbd>Ctrl</c-kbd> com <c-kbd>B</c-kbd> alterna o painel,
+e o Escape o fecha num celular. Na faixa de ícones, o `tooltip` de cada botão
+dá nome a ele.
+
+## Referência da API
+:::
+
+<c-docs.api-reference name="sidebar" />
+
+:::en
+## Notes
+
+Below `md` the panel slides in over a backdrop rather than becoming a
+[Sheet]({% url 'page' slug='sheet' %}) as upstream does. One tree serves both
+widths, so the menu is written once and there are no duplicate ids in the page.
+
+The width comes from `--sidebar-width` and `--sidebar-width-icon`, set on the
+provider. Override them with an inline style, which beats the defaults:
+:::pt-br
+## Observações
+
+Abaixo de `md` o painel desliza por cima de um fundo escurecido em vez de virar
+um [Sheet]({% url 'page' slug='sheet' %}) como faz o upstream. Uma árvore só
+atende às duas larguras, então o menu é escrito uma vez e não há ids duplicados
+na página.
+
+A largura vem de `--sidebar-width` e `--sidebar-width-icon`, definidos no
+provider. Sobrescreva-os com um estilo inline, que vence os padrões:
 :::
