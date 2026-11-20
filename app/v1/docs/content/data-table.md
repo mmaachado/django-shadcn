@@ -9,7 +9,7 @@ description.es: Ordenación, filtrado y paginación sobre el queryset, no en el 
 <div class="w-full">
 <div class="flex items-center gap-2 pb-4">
 <c-input placeholder="Filter emails..." class="max-w-sm" />
-<c-button variant="outline" size="sm" class="ml-auto">Columns <c-icon name="chevron-down" /></c-button>
+<c-button variant="outline" size="sm" class="ms-auto">Columns <c-icon name="chevron-down" /></c-button>
 </div>
 <div class="rounded-md border">
 <c-table>
@@ -18,7 +18,7 @@ description.es: Ordenación, filtrado y paginación sobre el queryset, no en el 
 <c-table.head class="w-10"><c-checkbox /></c-table.head>
 <c-table.head>Status</c-table.head>
 <c-table.head><span class="inline-flex items-center gap-1 font-medium text-foreground">Email <c-icon name="chevron-down" class="size-4 rotate-180" /></span></c-table.head>
-<c-table.head class="text-right">Amount</c-table.head>
+<c-table.head class="text-end">Amount</c-table.head>
 </c-table.row>
 </c-table.header>
 <c-table.body>
@@ -26,25 +26,25 @@ description.es: Ordenación, filtrado y paginación sobre el queryset, no en el 
 <c-table.cell><c-checkbox /></c-table.cell>
 <c-table.cell><c-badge variant="secondary">Success</c-badge></c-table.cell>
 <c-table.cell>abe45@example.com</c-table.cell>
-<c-table.cell class="text-right tabular-nums">$242.00</c-table.cell>
+<c-table.cell class="text-end tabular-nums">$242.00</c-table.cell>
 </c-table.row>
 <c-table.row data-state="selected">
 <c-table.cell><c-checkbox checked="checked" /></c-table.cell>
 <c-table.cell><c-badge variant="outline">Processing</c-badge></c-table.cell>
 <c-table.cell>carmella@example.com</c-table.cell>
-<c-table.cell class="text-right tabular-nums">$721.00</c-table.cell>
+<c-table.cell class="text-end tabular-nums">$721.00</c-table.cell>
 </c-table.row>
 <c-table.row>
 <c-table.cell><c-checkbox /></c-table.cell>
 <c-table.cell><c-badge variant="destructive">Failed</c-badge></c-table.cell>
 <c-table.cell>monserrat@example.com</c-table.cell>
-<c-table.cell class="text-right tabular-nums">$836.00</c-table.cell>
+<c-table.cell class="text-end tabular-nums">$836.00</c-table.cell>
 </c-table.row>
 <c-table.row>
 <c-table.cell><c-checkbox /></c-table.cell>
 <c-table.cell><c-badge variant="secondary">Success</c-badge></c-table.cell>
 <c-table.cell>silas22@example.com</c-table.cell>
-<c-table.cell class="text-right tabular-nums">$174.00</c-table.cell>
+<c-table.cell class="text-end tabular-nums">$174.00</c-table.cell>
 </c-table.row>
 </c-table.body>
 </c-table>
@@ -162,7 +162,7 @@ down yourself.
             <c-table.row>
                 <c-table.cell>{{ invoice.status }}</c-table.cell>
                 <c-table.cell>{{ invoice.email }}</c-table.cell>
-                <c-table.cell class="text-right tabular-nums">{{ invoice.amount }}</c-table.cell>
+                <c-table.cell class="text-end tabular-nums">{{ invoice.amount }}</c-table.cell>
             </c-table.row>
             {% empty %}
             <c-table.empty>No results.</c-table.empty>

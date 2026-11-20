@@ -6,7 +6,7 @@ description.es: La superficie del mensaje, con la variante, la alineación y las
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<div class="flex w-full max-w-md flex-col gap-8 text-left">
+<div class="flex w-full max-w-md flex-col gap-8 text-start">
 <c-bubble variant="muted">
 <c-bubble.content>I checked the registry output and removed the stale route.</c-bubble.content>
 </c-bubble>
@@ -48,7 +48,7 @@ side of the conversation the reader is on; `muted` and `secondary` are the
 neutral surfaces for the other side.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-bubble>
 <c-bubble.content>Default</c-bubble.content>
 </c-bubble>
@@ -86,7 +86,7 @@ neutral surfaces for the other side.
 the bubble follows it without being told.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-bubble variant="muted">
 <c-bubble.content>Aligned to the start.</c-bubble.content>
 </c-bubble>
@@ -110,7 +110,7 @@ Reactions overlap the edge of the surface. `side` picks the top or the bottom
 edge, `align` picks the corner.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-10 text-left">
+<div class="flex w-full max-w-md flex-col gap-10 text-start">
 <c-bubble variant="muted">
 <c-bubble.content>Bottom and end, the default.</c-bubble.content>
 <c-bubble.reactions>
@@ -156,7 +156,7 @@ focus treatment is already in the variant, waiting for an element that can take
 it.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-bubble variant="outline">
 <c-bubble.content tag="button">I forgot my password</c-bubble.content>
 </c-bubble>
@@ -187,7 +187,7 @@ content, exactly as the upstream example does — the bubble stays presentationa
 and the open state lives one level up.
 
 <c-docs.demo-section>
-<c-collapsible class="w-full max-w-md text-left">
+<c-collapsible class="w-full max-w-md text-start">
 <c-bubble variant="muted">
 <c-bubble.content>
 <p>The focus ring was being drawn by the primitive and by the style file at the same time, which is why it doubled up on the outline variant.</p>
@@ -224,7 +224,7 @@ and the open state lives one level up.
 separate messages.
 
 <c-docs.demo-section>
-<c-bubble.group class="w-full max-w-md text-left">
+<c-bubble.group class="w-full max-w-md text-start">
 <c-bubble variant="muted">
 <c-bubble.content>One thought.</c-bubble.content>
 </c-bubble>
