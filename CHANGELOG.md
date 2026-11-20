@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.11.1 — Unreleased
+
+### Fixed
+
+Writing the accessibility and RTL sections of every page turned these up.
+
+- **`dialog` and `alert_dialog` move focus in when they open.** They meant to
+  focus their first button or field, but did it once as the page loaded, while
+  hidden, so opening one left focus on the trigger behind it.
+- **`breadcrumb`'s separator and `calendar`'s month arrows turn under
+  `dir="rtl"`.** The chevrons kept pointing right and left, away from where
+  the trail and the months go.
+- **`tabs` declares `default_value`.** It was read without being declared, so
+  it was also written onto the root element as a stray attribute.
+
 ## 1.11.0 — 2026-11-19
 
 Parity again. The two components upstream added after 1.8.0, `code_block`
