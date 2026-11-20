@@ -379,7 +379,21 @@ class CheatSheetTests(SimpleTestCase):
 
 # Component pages already rebuilt to the structure below. The last batch of
 # the rebuild replaces this with every component page.
-REBUILT = {"button"}
+REBUILT = {
+    "button",
+    "a",
+    "accordion",
+    "alert",
+    "alert-dialog",
+    "aspect-ratio",
+    "attachment",
+    "avatar",
+    "badge",
+    "breadcrumb",
+    "bubble",
+    "button-group",
+    "calendar",
+}
 
 
 class PageStructureTests(SimpleTestCase):

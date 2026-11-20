@@ -65,16 +65,57 @@ uvx django_shadcn@latest add allauth
 ```
 
 :::en
-<p class="text-sm text-muted-foreground mt-4">
-    This will install 17 templates to <c-docs.code class="text-sm">templates/account/</c-docs.code>
-    along with the required UI components.
-</p>
-<p class="text-sm text-muted-foreground mt-4">
-    You can also use these templates without django-allauth.
-</p>
+This is a block, not a component. It installs 17 templates to
+`templates/account/`, under the names django-allauth looks for, and the
+components they use to `templates/cotton/`: Card, Button, Input, Label,
+Checkbox, Alert, Badge and Separator.
 
-## All Templates
+## Usage
 
+django-allauth renders its own templates unless a project template of the same
+name comes first. Django checks the directories in `DIRS` before the apps, so
+with `templates/` in `DIRS` these replace allauth's as soon as they are on
+disk. There is nothing to wire up beyond allauth itself.
+
+Each page extends your `base.html` and fills its
+`{% verbatim %}{% block content %}{% endverbatim %}`, the contract the other
+blocks use too. The forms are rendered field by field from allauth's own form,
+so a bound value and its errors come back after a failed post, with the
+`csrf_token` in place. They are plain forms and work without JavaScript.
+
+The pages open with `{% verbatim %}{% load account %}{% endverbatim %}`, which
+comes from django-allauth. Without allauth installed, take the markup and point
+the forms at your own views.
+
+## All templates
+:::pt-br
+Isto é um bloco, não um componente. Ele instala 17 templates em
+`templates/account/`, com os nomes que o django-allauth procura, e os
+componentes que eles usam em `templates/cotton/`: Card, Button, Input, Label,
+Checkbox, Alert, Badge e Separator.
+
+## Uso
+
+O django-allauth renderiza os próprios templates, a menos que um template do
+projeto com o mesmo nome venha antes. O Django confere os diretórios de `DIRS`
+antes dos apps, então com `templates/` em `DIRS` estes substituem os do allauth
+assim que estiverem no disco. Não há nada para ligar além do próprio allauth.
+
+Cada página estende o seu `base.html` e preenche o
+`{% verbatim %}{% block content %}{% endverbatim %}` dele, o contrato que os
+outros blocos também usam. Os formulários são renderizados campo a campo a
+partir do formulário do próprio allauth, então um valor preenchido e os erros
+voltam depois de um envio com falha, com o `csrf_token` no lugar. São
+formulários comuns e funcionam sem JavaScript.
+
+As páginas abrem com `{% verbatim %}{% load account %}{% endverbatim %}`, que
+vem do django-allauth. Sem o allauth instalado, aproveite o markup e aponte os
+formulários para as suas próprias views.
+
+## Todos os templates
+:::
+
+:::en
 <div class="grid gap-2 text-sm">
     <div class="grid grid-cols-2 gap-4">
         <div class="space-y-2">
@@ -116,39 +157,7 @@ uvx django_shadcn@latest add allauth
         </div>
     </div>
 </div>
-
-## Components Used
-
-<p class="text-muted-foreground mb-4">
-    The following components are automatically installed:
-</p>
-<div class="flex flex-wrap gap-2">
-    <a href="{% url 'page' slug='card' %}"><c-badge variant="outline">Card</c-badge></a>
-    <a href="{% url 'page' slug='button' %}"><c-badge variant="outline">Button</c-badge></a>
-    <a href="{% url 'page' slug='input' %}"><c-badge variant="outline">Input</c-badge></a>
-    <a href="{% url 'page' slug='label' %}"><c-badge variant="outline">Label</c-badge></a>
-    <a href="{% url 'page' slug='checkbox' %}"><c-badge variant="outline">Checkbox</c-badge></a>
-    <a href="{% url 'page' slug='alert' %}"><c-badge variant="outline">Alert</c-badge></a>
-    <a href="{% url 'page' slug='badge' %}"><c-badge variant="outline">Badge</c-badge></a>
-    <a href="{% url 'page' slug='separator' %}"><c-badge variant="outline">Separator</c-badge></a>
-</div>
-
-## Examples
-
-<!-- Login -->
-
-### Login
 :::pt-br
-<p class="text-sm text-muted-foreground mt-4">
-    Isto instala 17 templates em <c-docs.code class="text-sm">templates/account/</c-docs.code>
-    junto com os componentes de interface de que eles precisam.
-</p>
-<p class="text-sm text-muted-foreground mt-4">
-    Você também pode usar estes templates sem o django-allauth.
-</p>
-
-## Todos os templates
-
 <div class="grid gap-2 text-sm">
     <div class="grid grid-cols-2 gap-4">
         <div class="space-y-2">
@@ -190,12 +199,8 @@ uvx django_shadcn@latest add allauth
         </div>
     </div>
 </div>
+:::
 
-## Componentes usados
-
-<p class="text-muted-foreground mb-4">
-    Os componentes a seguir são instalados automaticamente:
-</p>
 <div class="flex flex-wrap gap-2">
     <a href="{% url 'page' slug='card' %}"><c-badge variant="outline">Card</c-badge></a>
     <a href="{% url 'page' slug='button' %}"><c-badge variant="outline">Button</c-badge></a>
@@ -207,9 +212,17 @@ uvx django_shadcn@latest add allauth
     <a href="{% url 'page' slug='separator' %}"><c-badge variant="outline">Separator</c-badge></a>
 </div>
 
+:::en
+## Examples
+
+The previews below show the pages' markup with sample text, outside allauth.
+
+### Login
+:::pt-br
 ## Exemplos
 
-<!-- Login -->
+As prévias abaixo mostram o markup das páginas com texto de exemplo, fora do
+allauth.
 
 ### Login
 :::
@@ -264,12 +277,8 @@ uvx django_shadcn@latest add allauth
 </c-docs.demo-section>
 
 :::en
-<!-- Signup -->
-
-### Signup
+### Sign up
 :::pt-br
-<!-- Signup -->
-
 ### Cadastro
 :::
 
@@ -323,12 +332,8 @@ uvx django_shadcn@latest add allauth
 </c-docs.demo-section>
 
 :::en
-<!-- Logout -->
-
 ### Logout
 :::pt-br
-<!-- Logout -->
-
 ### Logout
 :::
 
@@ -349,12 +354,8 @@ uvx django_shadcn@latest add allauth
 </c-docs.demo-section>
 
 :::en
-<!-- Password Reset -->
-
-### Password Reset
+### Password reset
 :::pt-br
-<!-- Password Reset -->
-
 ### Redefinição de senha
 :::
 
@@ -388,3 +389,45 @@ uvx django_shadcn@latest add allauth
     </c-card.footer>
 </c-card>
 </c-docs.demo-section>
+
+:::en
+## RTL
+
+The pages are built from logical utilities, so under `dir="rtl"` the forms and
+the cards mirror with the text. allauth translates its labels and messages, so
+a right-to-left language gets its own words as well as its direction.
+
+## Accessibility
+
+Every field has a `<c-label>` tied to it through `for` and the field's id, and
+required fields carry `required`. Errors are written under their field in red,
+which a screen reader reads in order but does not tie to the input: add
+`aria-describedby` pointing at the error when that matters.
+
+## Notes
+
+The [Login and Sign Up]({% url 'page' slug='login' %}) block is the same idea
+as a split-screen design with a plain form, for a project that handles accounts
+itself or wants that layout for allauth's forms.
+:::pt-br
+## RTL
+
+As páginas são feitas de utilitários lógicos, então sob `dir="rtl"` os
+formulários e os cards espelham junto com o texto. O allauth traduz os rótulos
+e as mensagens, então um idioma da direita para a esquerda ganha as próprias
+palavras além da direção.
+
+## Acessibilidade
+
+Todo campo tem um `<c-label>` ligado a ele pelo `for` e pelo id do campo, e os
+campos obrigatórios levam `required`. Os erros ficam escritos embaixo do campo
+em vermelho, o que um leitor de tela lê em ordem mas não liga ao input:
+acrescente um `aria-describedby` apontando para o erro quando isso importar.
+
+## Observações
+
+O bloco [Login and Sign Up]({% url 'page' slug='login' %}) é a mesma ideia como
+um design em tela dividida com um formulário simples, para um projeto que cuida
+das contas por conta própria ou que quer esse layout para os formulários do
+allauth.
+:::
