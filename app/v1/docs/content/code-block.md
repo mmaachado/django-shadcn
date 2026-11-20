@@ -24,6 +24,21 @@ description.es: Código, salida de terminal y diffs, con cabecera opcional, núm
 </c-code-block>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="code-block">
+<c-code-block>
+  <c-code-block.header>
+    <c-code-block.title>views.py</c-code-block.title>
+    <c-code-block.actions>
+      <c-code-block.copy-button />
+    </c-code-block.actions>
+  </c-code-block.header>
+  <c-code-block.content line_numbers="true">
+    <c-code-block.line>def dashboard(request):</c-code-block.line>
+    <c-code-block.line>    return render(request, "dashboard.html")</c-code-block.line>
+  </c-code-block.content>
+</c-code-block>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

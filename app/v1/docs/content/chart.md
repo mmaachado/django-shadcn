@@ -21,6 +21,19 @@ description.es: Área, línea, barra y tarta, dibujados desde un queryset que tu
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="chart">
+<c-chart data="{{ series }}" config="{{ config }}">
+    <c-chart.plot>
+        <c-chart.grid />
+        <c-chart.axis-y />
+        <c-chart.axis-x key="month" />
+        <c-chart.area data_key="revenue" />
+    </c-chart.plot>
+    <c-chart.tooltip />
+    <c-chart.legend />
+</c-chart>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     Move across it: the reading follows the pointer. Switch the site to dark and

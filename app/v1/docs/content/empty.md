@@ -23,6 +23,21 @@ looking for.
 </c-empty>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="empty">
+<c-empty>
+  <c-empty.header>
+    <c-empty.media variant="icon">
+      <c-icon name="search" />
+    </c-empty.media>
+    <c-empty.title>No results found</c-empty.title>
+    <c-empty.description>Try a different search.</c-empty.description>
+  </c-empty.header>
+  <c-empty.content>
+    <c-button variant="outline">Clear filters</c-button>
+  </c-empty.content>
+</c-empty>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -33,6 +33,23 @@ description.es: Un archivo dentro de un mensaje, con vista previa, metadatos, es
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="attachment">
+<c-attachment>
+    <c-attachment.media variant="image">
+        <img src="{{ file.url }}" alt="">
+    </c-attachment.media>
+    <c-attachment.content>
+        <c-attachment.title>{{ file.name }}</c-attachment.title>
+        <c-attachment.description>{{ file.type }} · {{ file.size }}</c-attachment.description>
+    </c-attachment.content>
+    <c-attachment.actions>
+        <c-attachment.action aria-label="Remove">
+            <c-icon name="x" />
+        </c-attachment.action>
+    </c-attachment.actions>
+</c-attachment>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -31,6 +31,31 @@ Press
 
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="command-dialog">
+<c-command-dialog shortcut_key="k">
+  <c-slot name="trigger_slot">
+    <p class="text-sm text-muted-foreground">
+      Press
+      <kbd
+        class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100"
+      >
+        <span class="text-xs">⌘</span>K
+      </kbd>
+    </p>
+  </c-slot>
+
+  <c-command.input placeholder="Type a command or search..." />
+  <c-command.list>
+    <c-command.empty>No results found.</c-command.empty>
+    <c-command.group heading="Suggestions">
+      <c-command.item value="calendar">Calendar</c-command.item>
+      <c-command.item value="search-emoji">Search Emoji</c-command.item>
+      <c-command.item value="calculator">Calculator</c-command.item>
+    </c-command.group>
+  </c-command.list>
+</c-command-dialog>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

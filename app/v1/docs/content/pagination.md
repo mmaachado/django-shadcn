@@ -18,6 +18,17 @@ description.es: Navegación entre páginas de un listado.
 </c-pagination>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="pagination">
+<c-pagination>
+  <c-pagination.content>
+    <c-pagination.item><c-pagination.previous href="#" /></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#" is_active="true">1</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.link href="#">2</c-pagination.link></c-pagination.item>
+    <c-pagination.item><c-pagination.next href="#" /></c-pagination.item>
+  </c-pagination.content>
+</c-pagination>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

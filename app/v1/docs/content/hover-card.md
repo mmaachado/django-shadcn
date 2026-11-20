@@ -25,6 +25,17 @@ description.es: Una tarjeta de vista previa que abre al pasar el ratón por un e
 </c-hover-card>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="hover-card">
+<c-hover-card>
+  <c-hover-card.trigger>
+    <a href="#" class="text-sm font-medium underline underline-offset-4">Hover this link</a>
+  </c-hover-card.trigger>
+  <c-hover-card.content>
+    <p class="text-sm text-muted-foreground text-start">Enough room for a sentence or two of context.</p>
+  </c-hover-card.content>
+</c-hover-card>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

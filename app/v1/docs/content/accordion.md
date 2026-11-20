@@ -30,6 +30,17 @@ description.es: Encabezados apilados que revelan, cada uno, una sección de cont
         </c-accordion>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="accordion">
+<c-accordion type='single' collapsible='true'>
+    <c-accordion.item value='item-1'>
+        <c-accordion.trigger value='item-1'>Is it for Django?</c-accordion.trigger>
+        <c-accordion.content value='item-1'>
+            Yes. All components are compatible with Django.
+        </c-accordion.content>
+    </c-accordion.item>
+</c-accordion>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -29,7 +29,7 @@ from .content import (
     untranslated,
 )
 from .nav import NAV, SLUGS
-from .reference import attributes, table
+from .reference import attributes, cheat_sheet, table
 from .views import BLOCK_EXTENDS
 
 
@@ -360,3 +360,18 @@ class ReferenceTests(SimpleTestCase):
 
         self.assertContains(response, "<code>&lt;c-button&gt;</code>")
         self.assertContains(response, "<code>ghost</code>")
+
+
+class CheatSheetTests(SimpleTestCase):
+    def test_it_names_the_tag_the_parts_and_the_root_attributes(self):
+        box = cheat_sheet("card", "<c-card>...</c-card>")
+
+        self.assertIn("<code>&lt;c-card&gt;</code>", box)
+        self.assertIn("<code>&lt;c-card.header&gt;</code>", box)
+        self.assertTrue(box.endswith("```html\n<c-card>...</c-card>\n```"))
+
+    def test_the_attributes_carry_their_defaults(self):
+        box = cheat_sheet("button", "<c-button>Button</c-button>")
+
+        self.assertIn("<code>variant=&quot;default&quot;</code>", box)
+        self.assertNotIn("Parts", box)

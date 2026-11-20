@@ -31,6 +31,23 @@ description.es: La fila de una conversación: avatar, alineación, encabezado y 
 </c-message.group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="message">
+<c-message>
+    <c-message.avatar>
+        <c-avatar>
+            <c-avatar.fallback>CN</c-avatar.fallback>
+        </c-avatar>
+    </c-message.avatar>
+    <c-message.content>
+        <c-message.header>Assistant</c-message.header>
+        <c-bubble variant="muted">
+            <c-bubble.content>How can I help?</c-bubble.content>
+        </c-bubble>
+        <c-message.footer>Just now</c-message.footer>
+    </c-message.content>
+</c-message>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

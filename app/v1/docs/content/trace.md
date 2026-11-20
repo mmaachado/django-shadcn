@@ -45,6 +45,16 @@ where to look first.
 </c-trace>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="trace">
+<c-trace>
+  <c-trace.line>
+    <c-trace.icon><c-icon name="search" /></c-trace.icon>
+    <c-trace.title>Searched the registry</c-trace.title>
+    <c-trace.description>3 results</c-trace.description>
+  </c-trace.line>
+</c-trace>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -19,6 +19,20 @@ description.es: Paneles que se redimensionan arrastrando el divisor.
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="resizable">
+<div class="h-[180px] w-[420px] rounded-lg border">
+  <c-resizable>
+    <c-resizable.panel>
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Sidebar</div>
+    </c-resizable.panel>
+    <c-resizable.handle />
+    <c-resizable.panel default_size="2">
+      <div class="flex h-full items-center justify-center p-6 text-sm font-medium">Content</div>
+    </c-resizable.panel>
+  </c-resizable>
+</div>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

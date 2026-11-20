@@ -24,6 +24,13 @@ Show Toast
 
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="toast">
+<c-toast.trigger toast_target="toast-success"> Show Toast </c-toast.trigger>
+<c-toast id="toast-success">
+  <c-toast.content description="Your message here." />
+</c-toast>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

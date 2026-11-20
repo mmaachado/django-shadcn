@@ -68,6 +68,32 @@ description.es: El contenedor de scroll de una conversación — la parte que de
 </c-message-scroller.provider>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="message-scroller">
+<c-message-scroller.provider default_scroll_position="last-anchor">
+    <c-message-scroller class="h-[600px]">
+        <c-message-scroller.viewport class="p-4">
+            <c-message-scroller.content>
+                {% for message in messages %}
+                    <c-message-scroller.item
+                        message_id="{{ message.id }}"
+                        scroll_anchor="{{ message.starts_a_turn|yesno:'true,false' }}">
+                        <c-message align="{{ message.align }}">
+                            <c-message.content>
+                                <c-bubble variant="muted">
+                                    <c-bubble.content>{{ message.text }}</c-bubble.content>
+                                </c-bubble>
+                            </c-message.content>
+                        </c-message>
+                    </c-message-scroller.item>
+                {% endfor %}
+            </c-message-scroller.content>
+        </c-message-scroller.viewport>
+        <c-message-scroller.button direction="start" />
+        <c-message-scroller.button direction="end" />
+    </c-message-scroller>
+</c-message-scroller.provider>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     It opened at the last turn rather than at the bottom, with the row before it

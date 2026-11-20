@@ -14,6 +14,15 @@ description.es: Una etiqueta breve que aparece al pasar el ratón o enfocar.
 </c-tooltip>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="tooltip">
+<c-tooltip>
+  <c-tooltip.trigger>
+    <c-button variant="outline">Hover me</c-button>
+  </c-tooltip.trigger>
+  <c-tooltip.content>Add to library</c-tooltip.content>
+</c-tooltip>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

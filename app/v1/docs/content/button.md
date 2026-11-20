@@ -9,6 +9,10 @@ description.es: Muestra un botón, o un componente con aspecto de botón.
 <c-button>Button</c-button>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="button">
+<c-button>Button</c-button>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

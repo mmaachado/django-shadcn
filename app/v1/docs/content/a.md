@@ -9,6 +9,10 @@ description.es: Un ancla con el estilo de la variante link del botón.
 <c-a href="#">Link</c-a>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="a">
+<c-a href="#">Link</c-a>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

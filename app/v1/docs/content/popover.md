@@ -31,6 +31,15 @@ description.es: Muestra contenido enriquecido sobre la página, abierto por un b
 </c-popover>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="popover">
+<c-popover>
+  <c-popover.trigger>
+    <c-button variant="outline">Open Popover</c-button>
+  </c-popover.trigger>
+  <c-popover.content> Place content for popover here. </c-popover.content>
+</c-popover>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

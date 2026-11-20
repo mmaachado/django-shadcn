@@ -13,6 +13,13 @@ description.es: Agrupa botones relacionados bajo un solo contorno.
 </c-button-group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="button-group">
+<c-button-group>
+  <c-button variant="outline">Day</c-button>
+  <c-button variant="outline">Week</c-button>
+</c-button-group>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

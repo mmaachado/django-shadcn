@@ -13,6 +13,13 @@ description.es: El select nativo del navegador, estilizado como el resto de la b
 </c-native-select>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="native-select">
+<c-native-select name="theme">
+  <c-native-select.option value="light">Light</c-native-select.option>
+  <c-native-select.option value="dark">Dark</c-native-select.option>
+</c-native-select>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

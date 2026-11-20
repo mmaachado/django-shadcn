@@ -19,6 +19,16 @@ description.es: Un área desplazable con barra de desplazamiento acorde al tema.
 </c-scroll-area>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="scroll-area">
+<c-scroll-area class="h-32 w-[320px] rounded-md border">
+  <p class="p-4 text-start text-sm text-muted-foreground">
+    Give the scroll area a height and let the content run past it. The scrollbar
+    picks up the border colour from the palette, so it stops looking like a piece
+    of the operating system that wandered in.
+  </p>
+</c-scroll-area>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

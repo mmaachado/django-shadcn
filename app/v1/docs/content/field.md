@@ -13,6 +13,14 @@ description.es: Organiza la etiqueta, el control, la descripción y los errores 
 </c-field>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="field">
+<c-field>
+  <c-field.label for="email">Email</c-field.label>
+  <c-input id="email" type="email" />
+  <c-field.description>We will never share your address.</c-field.description>
+</c-field>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

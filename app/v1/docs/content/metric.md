@@ -30,6 +30,14 @@ description.es: El número grande del que está hecho un dashboard de KPI — un
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="metric">
+<c-metric>
+    <c-metric.label>Revenue</c-metric.label>
+    <c-metric.value>{{ revenue|floatformat:2 }}</c-metric.value>
+    <c-metric.delta value="{{ change }}" label="vs. last month" />
+</c-metric>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -24,6 +24,17 @@ description.es: Una tarjeta con encabezado, contenido y pie.
 </c-card>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="card">
+<c-card class="w-[380px]">
+  <c-card.header>
+    <c-card.title>Title</c-card.title>
+    <c-card.description>Description</c-card.description>
+  </c-card.header>
+  <c-card.content>Content</c-card.content>
+  <c-card.footer> Footer </c-card.footer>
+</c-card>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -9,6 +9,10 @@ description.es: Un indicador de cuánto de una tarea se ha completado.
 <c-progress value="65" max="100" class="w-[60%]"/>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="progress">
+<c-progress value="65" max="100" class="w-[60%]" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

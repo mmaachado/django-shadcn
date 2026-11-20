@@ -12,6 +12,10 @@ description.es: Un control que alterna entre encendido y apagado.
 </label>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="switch">
+<c-switch name="notifications" checked />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

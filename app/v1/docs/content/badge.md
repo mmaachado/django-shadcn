@@ -9,6 +9,10 @@ description.es: Muestra una insignia, o un componente con aspecto de insignia.
 <c-badge variant="default">Default</c-badge>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="badge">
+<c-badge variant="default">Default</c-badge>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -25,12 +25,20 @@ CODE_BLOCK = re.compile(r"<pre>.*?</pre>", re.DOTALL)
 # :::pt-br opens a language inside a passage, a bare ::: closes the passage.
 PASSAGE = re.compile(r"^:::([a-z]{2}(?:-[a-z]+)?)?[ \t]*$")
 FENCE = re.compile(r"^(```|~~~)")
-DEMO_OPEN = re.compile(r"^<c-docs\.(?:demo-section|example)\b")
-DEMO_CLOSE = re.compile(r"</c-docs\.(?:demo-section|example)>")
+DEMO_OPEN = re.compile(r"^<c-docs\.(?:demo-section|example|cheat-sheet)\b")
+DEMO_CLOSE = re.compile(r"</c-docs\.(?:demo-section|example|cheat-sheet)>")
 
 # The attribute reference of a component, generated from its templates.
 REFERENCE = re.compile(
     r'^<c-docs\.api-reference name="(?P<name>[\w-]+)"\s*/>[ \t]*$', re.MULTILINE
+)
+
+# The tag, the parts, the root's attributes and a snippet, near the top.
+CHEAT_SHEET = re.compile(
+    r'^<c-docs\.cheat-sheet name="(?P<name>[\w-]+)">[ \t]*\n'
+    r"(?P<snippet>.*?)\n"
+    r"</c-docs\.cheat-sheet>[ \t]*$",
+    re.DOTALL | re.MULTILINE,
 )
 
 # A demo written once: rendered, and shown below as its own source.
@@ -206,8 +214,14 @@ def source(slug):
 
 
 def _expand_references(body):
-    from .reference import table
+    from .reference import cheat_sheet, table
 
+    body = CHEAT_SHEET.sub(
+        lambda match: cheat_sheet(
+            match.group("name").replace("-", "_"), match.group("snippet")
+        ),
+        body,
+    )
     return REFERENCE.sub(
         lambda match: table(match.group("name").replace("-", "_")), body
     )

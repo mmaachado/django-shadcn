@@ -25,6 +25,15 @@ description.es: Las filas de una conversación que no son mensajes: estado, avis
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="marker">
+<c-marker>
+    <c-marker.icon>
+        <c-icon name="check" />
+    </c-marker.icon>
+    <c-marker.content>Explored 4 files</c-marker.content>
+</c-marker>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

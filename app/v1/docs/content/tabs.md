@@ -60,6 +60,19 @@ Change your password here. After saving, you'll be logged out.
 </c-tabs>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="tabs">
+<c-tabs default_value="account">
+  <c-tabs.list>
+    <c-tabs.trigger value="account">Account</c-tabs.trigger>
+    <c-tabs.trigger value="password">Password</c-tabs.trigger>
+  </c-tabs.list>
+  <c-tabs.content value="account"
+    >Make changes to your account here.</c-tabs.content
+  >
+  <c-tabs.content value="password">Change your password here.</c-tabs.content>
+</c-tabs>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -11,6 +11,10 @@ description.es: Un botón de dos estados, encendido o apagado.
 </c-toggle>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="toggle">
+<c-toggle aria-label="Toggle italic"><span class="italic">I</span></c-toggle>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

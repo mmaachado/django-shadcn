@@ -15,6 +15,16 @@ description.es: Mantiene el contenido dentro de la proporción que elijas.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="aspect-ratio">
+<div class="w-[300px]">
+  <c-aspect-ratio ratio="16/9" class="overflow-hidden rounded-lg bg-muted">
+    <div class="flex size-full items-center justify-center text-sm text-muted-foreground">
+      16 / 9
+    </div>
+  </c-aspect-ratio>
+</div>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

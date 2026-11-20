@@ -55,6 +55,60 @@ Install and set up your project.
 
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="navigation-menu">
+<c-navigation-menu>
+  <c-navigation-menu.list>
+    <c-navigation-menu.item>
+      <c-navigation-menu.trigger index="0"
+        >Getting started</c-navigation-menu.trigger
+      >
+      <c-navigation-menu.content index="0">
+        <c-navigation-menu.link href="/introduction"
+          >Introduction</c-navigation-menu.link
+        >
+        <c-navigation-menu.link href="/installation"
+          >Installation</c-navigation-menu.link
+        >
+      </c-navigation-menu.content>
+    </c-navigation-menu.item>
+
+    <c-navigation-menu.item>
+      <c-navigation-menu.trigger index="1"
+        >Components</c-navigation-menu.trigger
+      >
+      <c-navigation-menu.content index="1">
+        <div class="md:w-[150px]">
+          <c-navigation-menu.link href="/accordion"
+            >Accordion</c-navigation-menu.link
+          >
+          <c-navigation-menu.link href="/button">Button</c-navigation-menu.link>
+          <c-navigation-menu.link href="/card">Card</c-navigation-menu.link>
+        </div>
+      </c-navigation-menu.content>
+    </c-navigation-menu.item>
+
+    <c-navigation-menu.item>
+      <c-navigation-menu.trigger index="2">Utilities</c-navigation-menu.trigger>
+      <c-navigation-menu.content index="2">
+        <div class="md:w-[150px]">
+          <c-navigation-menu.link href="/typography"
+            >Typography</c-navigation-menu.link
+          >
+          <c-navigation-menu.link href="/icons">Icons</c-navigation-menu.link>
+          <c-navigation-menu.link href="/colors">Colors</c-navigation-menu.link>
+        </div>
+      </c-navigation-menu.content>
+    </c-navigation-menu.item>
+
+    <c-navigation-menu.item>
+      <c-navigation-menu.link href="https://shadcn-django.com/"
+        >Documentation</c-navigation-menu.link
+      >
+    </c-navigation-menu.item>
+  </c-navigation-menu.list>
+</c-navigation-menu>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

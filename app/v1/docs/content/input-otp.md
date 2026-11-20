@@ -21,6 +21,17 @@ description.es: Un campo de código de un solo uso, con una casilla por carácte
 </c-input-otp>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="input-otp">
+<c-input-otp maxlength="4" name="pin">
+  <c-input-otp.group>
+    <c-input-otp.slot index="0" />
+    <c-input-otp.slot index="1" />
+    <c-input-otp.slot index="2" />
+    <c-input-otp.slot index="3" />
+  </c-input-otp.group>
+</c-input-otp>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

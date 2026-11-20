@@ -21,6 +21,22 @@ This sheet appears from the right of the screen.
 </c-sheet>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="sheet">
+<c-sheet>
+  <c-sheet.trigger>
+    <c-button variant="outline">Open</c-button>
+  </c-sheet.trigger>
+  <c-sheet.content side="right">
+    <c-sheet.header>
+      <c-sheet.title>Right Sheet</c-sheet.title>
+      <c-sheet.description>
+        This sheet appears from the right of the screen.
+      </c-sheet.description>
+    </c-sheet.header>
+  </c-sheet.content>
+</c-sheet>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

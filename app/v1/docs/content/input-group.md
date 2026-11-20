@@ -14,6 +14,15 @@ description.es: Envuelve un campo con iconos, texto o botones bajo un solo conto
 </c-input-group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="input-group">
+<c-input-group>
+  <c-input-group.addon>
+    <c-icon name="search" />
+  </c-input-group.addon>
+  <c-input-group.input placeholder="Search..." />
+</c-input-group>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

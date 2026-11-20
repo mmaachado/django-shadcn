@@ -19,6 +19,12 @@ description.es: La superficie del mensaje, con la variante, la alineación y las
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="bubble">
+<c-bubble variant="muted">
+    <c-bubble.content>How can I help you today?</c-bubble.content>
+</c-bubble>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -25,6 +25,23 @@ description.es: Formularios HTML bien presentados.
         </form>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="form">
+<form class="w-2/3 space-y-4">
+  <c-form.field>
+    <c-form.label for="email">Email</c-form.label>
+    <c-input id="email" type="email" placeholder="Email"></c-input>
+    <c-form.description> This will be your username. </c-form.description>
+  </c-form.field>
+
+  <c-form.field>
+    <c-form.label for="password">Password</c-form.label>
+    <c-input id="password" type="password" placeholder="Password"></c-input>
+  </c-form.field>
+
+  <c-button type="submit">Sign in</c-button>
+</form>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -20,6 +20,19 @@ Right click here
 </c-context-menu>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="context-menu">
+<c-context-menu>
+  <c-context-menu.trigger class="flex h-[120px] w-[280px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </c-context-menu.trigger>
+  <c-context-menu.content class="w-48">
+    <c-context-menu.item>Profile</c-context-menu.item>
+    <c-context-menu.item>Billing</c-context-menu.item>
+    <c-context-menu.item>Settings</c-context-menu.item>
+  </c-context-menu.content>
+</c-context-menu>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

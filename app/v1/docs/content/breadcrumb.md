@@ -23,6 +23,20 @@ description.es: Muestra la ruta hasta la página actual como una jerarquía de e
 </c-breadcrumb>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="breadcrumb">
+<c-breadcrumb>
+  <c-breadcrumb.list>
+    <c-breadcrumb.item>
+      <c-breadcrumb.link href="/">Home</c-breadcrumb.link>
+    </c-breadcrumb.item>
+    <c-breadcrumb.separator />
+    <c-breadcrumb.item>
+      <c-breadcrumb.page>Current</c-breadcrumb.page>
+    </c-breadcrumb.item>
+  </c-breadcrumb.list>
+</c-breadcrumb>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

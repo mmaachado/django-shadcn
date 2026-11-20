@@ -17,6 +17,13 @@ description.es: Una imagen con alternativa para representar al usuario.
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="avatar">
+<c-avatar>
+  <c-avatar.image src="https://github.com/mmaachado.png" alt="@mmaachado" />
+  <c-avatar.fallback>MM</c-avatar.fallback>
+</c-avatar>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

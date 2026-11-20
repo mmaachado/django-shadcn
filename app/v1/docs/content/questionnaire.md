@@ -55,6 +55,33 @@ description.es: Un flujo de preguntas que avanza paso a paso y aun así envía u
 </c-questionnaire>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="questionnaire">
+<c-questionnaire action="{% url 'onboarding' %}" method="post">
+    {% csrf_token %}
+    <c-questionnaire.progress />
+
+    <c-questionnaire.item>
+        <c-questionnaire.title>What should we prototype next?</c-questionnaire.title>
+        <c-questionnaire.choices>
+            <c-questionnaire.choice name="direction" value="delegation" required>
+                Sub-agent delegation
+            </c-questionnaire.choice>
+            <c-questionnaire.choice name="direction" value="questions" required>
+                Question prompts
+            </c-questionnaire.choice>
+        </c-questionnaire.choices>
+        <c-questionnaire.error />
+    </c-questionnaire.item>
+
+    <c-questionnaire.actions>
+        <c-questionnaire.previous />
+        <c-questionnaire.skip />
+        <c-questionnaire.next />
+        <c-questionnaire.submit />
+    </c-questionnaire.actions>
+</c-questionnaire>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     The demo above uses <code>method="get"</code>, so submitting it puts the

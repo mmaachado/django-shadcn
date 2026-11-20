@@ -19,6 +19,22 @@ description.es: Campo con autocompletado y paleta de comandos, con lista de suge
         />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="combobox">
+<c-combobox
+  :options="[]"
+  placeholder="Search framework..."
+  button_text="Select framework..."
+  width="w-[200px]"
+/>
+<!-- Options can be a list of dicts with values and labels -->
+<!-- options=[
+    {'value': 'django', 'label': 'Django'},
+    {'value': 'tailwind', 'label': 'Tailwind'},
+    {'value': 'alpine.js', 'label': 'Alpine.js'},
+    {'value': 'htmx', 'label': 'HTMX'},
+]-->
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

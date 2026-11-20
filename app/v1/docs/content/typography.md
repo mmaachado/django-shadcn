@@ -16,6 +16,11 @@ description.es: Estilos para títulos, párrafos, listas y texto en línea.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="typography">
+<c-typography.h1>Taxing Laughter</c-typography.h1>
+<c-typography.p>The king thought long and hard.</c-typography.p>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

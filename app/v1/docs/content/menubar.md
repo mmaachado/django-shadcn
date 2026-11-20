@@ -33,6 +33,24 @@ description.es: Una barra de menús, como la de una aplicación de escritorio.
 </c-menubar>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="menubar">
+<c-menubar>
+  <c-menubar.menu>
+    <c-menubar.trigger>File</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item>New tab</c-menubar.item>
+      <c-menubar.item>Open</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
+  <c-menubar.menu>
+    <c-menubar.trigger>Help</c-menubar.trigger>
+    <c-menubar.content>
+      <c-menubar.item>Documentation</c-menubar.item>
+    </c-menubar.content>
+  </c-menubar.menu>
+</c-menubar>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

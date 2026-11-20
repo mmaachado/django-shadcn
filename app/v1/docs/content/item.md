@@ -20,6 +20,21 @@ description.es: Una fila con medios, texto y acciones. Sirve para listas, ajuste
 </c-item>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="item">
+<c-item variant="outline">
+  <c-item.media variant="icon">
+    <c-icon name="search" />
+  </c-item.media>
+  <c-item.content>
+    <c-item.title>Title</c-item.title>
+    <c-item.description>Description</c-item.description>
+  </c-item.content>
+  <c-item.actions>
+    <c-button variant="outline" size="sm">Open</c-button>
+  </c-item.actions>
+</c-item>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

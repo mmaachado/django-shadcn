@@ -22,6 +22,19 @@ description.es: Un panel que se expande y se contrae.
 </c-collapsible>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="collapsible">
+<c-collapsible class="w-[350px] text-start">
+  <c-collapsible.trigger class="inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium hover:bg-accent">
+    Show details
+  </c-collapsible.trigger>
+  <c-collapsible.content>
+    <p class="mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground">
+      Everything you were not looking at a moment ago.
+    </p>
+  </c-collapsible.content>
+</c-collapsible>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

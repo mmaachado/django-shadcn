@@ -20,6 +20,19 @@ description.es: Una lista de opciones para que el usuario elija, abierta por un 
 </c-select>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="select">
+<c-select class="w-[180px]">
+  <c-select.trigger>
+    <c-select.value placeholder="Theme" />
+  </c-select.trigger>
+  <c-select.content>
+    <c-select.item value="light">Light</c-select.item>
+    <c-select.item value="dark">Dark</c-select.item>
+    <c-select.item value="system">System</c-select.item>
+  </c-select.content>
+</c-select>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

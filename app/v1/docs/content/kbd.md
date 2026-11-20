@@ -12,6 +12,10 @@ description.es: Muestra una tecla o una combinación de teclas.
 </c-kbd.group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="kbd">
+<c-kbd>K</c-kbd>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

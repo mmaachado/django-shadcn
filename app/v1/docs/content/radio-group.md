@@ -22,6 +22,19 @@ description.es: Un conjunto de opciones donde solo se puede elegir una.
 </c-radio-group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="radio-group">
+<c-radio-group class="text-start">
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="delivery" value="standard" checked />
+    <span class="text-sm font-medium">Standard</span>
+  </label>
+  <label class="flex items-center gap-3">
+    <c-radio-group.item name="delivery" value="express" />
+    <span class="text-sm font-medium">Express</span>
+  </label>
+</c-radio-group>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

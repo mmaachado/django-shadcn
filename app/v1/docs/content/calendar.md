@@ -9,6 +9,10 @@ description.es: Una cuadrícula mensual para elegir una fecha, con los nombres d
 <c-calendar class="rounded-md border" />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="calendar">
+<c-calendar name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}" />
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     Page the months, pick a day. Today is outlined; days from the neighbouring

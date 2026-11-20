@@ -15,6 +15,10 @@ description.es: Iconos de lucide como componente cotton. Todo icono de la biblio
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="icon">
+<c-icon name="search" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

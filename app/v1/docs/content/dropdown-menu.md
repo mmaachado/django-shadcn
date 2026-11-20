@@ -24,6 +24,22 @@ description.es: Un menú que abre un botón — un conjunto de acciones, por eje
 </c-dropdown-menu>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="dropdown-menu">
+<c-dropdown-menu>
+    <c-dropdown-menu.trigger>
+        <c-button variant="outline">Open</c-button>
+    </c-dropdown-menu.trigger>
+    <c-dropdown-menu.content class="w-56">
+        <c-dropdown-menu.label>My Account</c-dropdown-menu.label>
+        <c-dropdown-menu.separator />
+        <c-dropdown-menu.item>Profile</c-dropdown-menu.item>
+        <c-dropdown-menu.item>Billing</c-dropdown-menu.item>
+        <c-dropdown-menu.separator />
+        <c-dropdown-menu.item variant="destructive">Log out</c-dropdown-menu.item>
+    </c-dropdown-menu.content>
+</c-dropdown-menu>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

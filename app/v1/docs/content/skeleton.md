@@ -16,6 +16,10 @@ description.es: Un espacio reservado mientras el contenido carga.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="skeleton">
+<c-skeleton class="h-4 w-[250px]" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -22,6 +22,21 @@ description.es: Un conjunto de diapositivas que se desplaza en horizontal o en v
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="carousel">
+<c-carousel>
+    <c-carousel.content>
+        {% for photo in photos %}
+            <c-carousel.item class="md:basis-1/2 lg:basis-1/3">
+                <img src="{{ photo.url }}" alt="{{ photo.alt }}">
+            </c-carousel.item>
+        {% endfor %}
+    </c-carousel.content>
+    <c-carousel.previous />
+    <c-carousel.next />
+    <c-carousel.dots />
+</c-carousel>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     The arrows, the dots and the arrow keys all move it. So does dragging it,

@@ -29,6 +29,27 @@ Drag the handle down to dismiss, or press Escape.
 </c-drawer>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="drawer">
+<c-drawer>
+    <c-drawer.trigger>
+        <c-button variant="outline">Open drawer</c-button>
+    </c-drawer.trigger>
+    <c-drawer.overlay />
+    <c-drawer.content>
+        <c-drawer.header>
+            <c-drawer.title>Move to folder</c-drawer.title>
+            <c-drawer.description>Pick where this should live.</c-drawer.description>
+        </c-drawer.header>
+        <c-drawer.footer>
+            <c-button>Move</c-button>
+            <c-drawer.close>
+                <c-button variant="outline" class="w-full">Cancel</c-button>
+            </c-drawer.close>
+        </c-drawer.footer>
+    </c-drawer.content>
+</c-drawer>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

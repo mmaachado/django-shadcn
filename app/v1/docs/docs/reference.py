@@ -12,6 +12,7 @@ Read from there, the reference cannot fall behind the component.
 import re
 
 from django.conf import settings
+from django.utils.html import escape
 from django.utils.translation import gettext as _
 
 CVARS = re.compile(r"<c-vars\b([^>]*)>")
@@ -98,3 +99,39 @@ def table(component):
         )
     )
     return "\n".join(lines).strip()
+
+
+def cheat_sheet(component, snippet):
+    """The tag, its parts, the root's attributes and one snippet, as a box
+    of HTML followed by the snippet in a fence."""
+
+    def code(text):
+        return f"<code>{escape(text)}</code>"
+
+    found = parts(component)
+    root, *rest = found
+    rows = [f'<dt>{_("Tag")}</dt><dd>{code(f"<{root[0]}>")}</dd>']
+    if rest:
+        tags = " ".join(code(f"<{tag}>") for tag, _rows in rest)
+        rows.append(
+            f'<dt>{_("Parts")}</dt><dd class="flex flex-wrap gap-1">{tags}</dd>'
+        )
+    if root[1]:
+        attrs = " ".join(
+            code(f'{name}="{default}"' if default else name)
+            for name, default, _values in root[1]
+        )
+        rows.append(
+            f'<dt>{_("Attributes")}</dt><dd class="flex flex-wrap gap-1">{attrs}</dd>'
+        )
+
+    box = (
+        '<div class="mt-6 rounded-lg border border-border bg-muted/30 p-4 text-sm"'
+        ' data-slot="cheat-sheet">'
+        f'<p class="mb-3 font-medium">{_("Cheat sheet")}</p>'
+        '<dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2'
+        ' [&_dt]:text-muted-foreground">'
+        + "".join(rows)
+        + "</dl></div>"
+    )
+    return f"{box}\n\n```html\n{snippet.strip(chr(10))}\n```"

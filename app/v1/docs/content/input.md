@@ -9,6 +9,10 @@ description.es: Muestra un campo de formulario, o un componente con aspecto de c
 <c-input type="email" placeholder="Email" />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="input">
+<c-input type="email" placeholder="Email" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

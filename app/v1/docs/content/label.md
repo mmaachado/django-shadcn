@@ -13,6 +13,10 @@ description.es: Una etiqueta accesible asociada a un control.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="label">
+<c-label for="email">Email</c-label> <c-input id="email" type="email" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

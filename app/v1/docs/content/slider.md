@@ -9,6 +9,10 @@ description.es: Elige un valor dentro de un intervalo.
 <div class="w-[320px]"><c-slider name="volume" value="60" /></div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="slider">
+<div class="w-[320px]"><c-slider name="volume" value="50" /></div>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

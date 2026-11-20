@@ -41,6 +41,28 @@ A list of your recent invoices.
 </c-table>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="table">
+<c-table>
+  <c-table.caption> A list of your recent invoices. </c-table.caption>
+  <c-table.header>
+    <c-table.row>
+      <c-table.head class="w-[100px]">Invoice</c-table.head>
+      <c-table.head>Status</c-table.head>
+      <c-table.head>Method</c-table.head>
+      <c-table.head class="text-end">Amount</c-table.head>
+    </c-table.row>
+  </c-table.header>
+  <c-table.body>
+    <c-table.row>
+      <c-table.cell class="font-medium">INV001</c-table.cell>
+      <c-table.cell>Paid</c-table.cell>
+      <c-table.cell>Card</c-table.cell>
+      <c-table.cell class="text-end">$100</c-table.cell>
+    </c-table.row>
+  </c-table.body>
+</c-table>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -9,6 +9,10 @@ description.es: Muestra un área de texto, o un componente con aspecto de área 
 <c-textarea placeholder="Type your message here." />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="textarea">
+<c-textarea placeholder="Type your message here." />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

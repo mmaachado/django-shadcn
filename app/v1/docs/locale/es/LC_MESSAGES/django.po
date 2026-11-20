@@ -81,3 +81,12 @@ msgid ""
 msgstr ""
 "Cada parte también acepta `class`, sumada a sus propias clases, y pasa "
 "cualquier otro atributo a su elemento."
+
+msgid "Parts"
+msgstr "Partes"
+
+msgid "Attributes"
+msgstr "Atributos"
+
+msgid "Cheat sheet"
+msgstr "Resumen rápido"

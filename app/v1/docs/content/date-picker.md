@@ -9,6 +9,14 @@ description.es: Un campo de fecha para un formulario Django común — un botón
 <c-date-picker />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="date-picker">
+<form method="post">
+    {% csrf_token %}
+    <c-date-picker name="due_date" value="{{ form.due_date.value|date:'Y-m-d' }}" />
+    <c-button type="submit">Save</c-button>
+</form>
+</c-docs.cheat-sheet>
+
 :::en
 <p class="mt-4 text-sm text-muted-foreground">
     The button shows the date the way the active locale writes it. What goes to

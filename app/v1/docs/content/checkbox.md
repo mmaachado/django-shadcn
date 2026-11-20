@@ -18,6 +18,10 @@ description.es: Un control que el usuario alterna entre marcado y sin marcar.
         </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="checkbox">
+<c-checkbox id="terms" />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

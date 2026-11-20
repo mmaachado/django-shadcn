@@ -66,6 +66,35 @@ Toggle with the button, the rail on the panel's edge, or <c-kbd>⌘</c-kbd> <c-k
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="sidebar">
+<c-sidebar.provider>
+    <c-sidebar>
+        <c-sidebar.header>...</c-sidebar.header>
+        <c-sidebar.content>
+            <c-sidebar.group>
+                <c-sidebar.group-label>Workspace</c-sidebar.group-label>
+                <c-sidebar.group-content>
+                    <c-sidebar.menu>
+                        <c-sidebar.menu-item>
+                            <c-sidebar.menu-button href="/inbox/" tooltip="Inbox">
+                                <c-icon name="search" />
+                                <span>Inbox</span>
+                            </c-sidebar.menu-button>
+                        </c-sidebar.menu-item>
+                    </c-sidebar.menu>
+                </c-sidebar.group-content>
+            </c-sidebar.group>
+        </c-sidebar.content>
+        <c-sidebar.footer>...</c-sidebar.footer>
+        <c-sidebar.rail />
+    </c-sidebar>
+    <c-sidebar.inset>
+        <c-sidebar.trigger />
+        {{ content }}
+    </c-sidebar.inset>
+</c-sidebar.provider>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

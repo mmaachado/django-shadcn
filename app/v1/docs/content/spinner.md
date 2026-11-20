@@ -9,6 +9,10 @@ description.es: Un indicador de que algo está en marcha.
 <c-spinner />
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="spinner">
+<c-spinner />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -13,6 +13,14 @@ description.es: Un conjunto de toggles que comparten un mismo contorno.
 </c-toggle-group>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="toggle-group">
+<c-toggle-group>
+  <c-toggle-group.item>Left</c-toggle-group.item>
+  <c-toggle-group.item>Center</c-toggle-group.item>
+  <c-toggle-group.item>Right</c-toggle-group.item>
+</c-toggle-group>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

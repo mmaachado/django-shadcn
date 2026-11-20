@@ -122,6 +122,12 @@ markup and shows the same text below it as the code to copy, Django tags
 included, so the two cannot drift apart. Keep fenced code for what is not a
 demo: install commands, Python and settings.
 
+Two parts of the page are generated from the templates, so they cannot fall
+behind them: `<c-docs.api-reference name="<name>" />`, the table of every
+attribute, its default and its values, and `<c-docs.cheat-sheet name="<name>">`
+under the opening demo, holding the snippet it shows beside the tag, the parts
+and the attributes.
+
 The last two are what makes the component findable, and they are written in the
 same pull request as the component itself — documentation written later is
 documentation that describes an earlier version.

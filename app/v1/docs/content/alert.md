@@ -30,6 +30,15 @@ description.es: Destaca un aviso para llamar la atención del usuario.
         </c-alert>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="alert">
+<c-alert variant='default'>
+    <c-alert.title>Heads up!</c-alert.title>
+    <c-alert.description>
+    You can add components to your app using the cli.
+    </c-alert.description>
+</c-alert>
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br

@@ -22,6 +22,10 @@ description.es: Separa contenido visual o semánticamente.
 </div>
 </c-docs.demo-section>
 
+<c-docs.cheat-sheet name="separator">
+<c-separator />
+</c-docs.cheat-sheet>
+
 :::en
 ## Installation
 :::pt-br
