@@ -99,3 +99,6 @@ msgstr "Temas"
 
 msgid "CLI"
 msgstr "CLI"
+
+msgid "Forms and Django"
+msgstr "Formularios y Django"
