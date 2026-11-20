@@ -2168,6 +2168,9 @@
   .caret-transparent {
     caret-color: transparent;
   }
+  .accent-foreground {
+    accent-color: var(--foreground);
+  }
   .accent-primary {
     accent-color: var(--primary);
   }

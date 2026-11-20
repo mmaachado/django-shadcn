@@ -90,3 +90,9 @@ msgstr "Atributos"
 
 msgid "Cheat sheet"
 msgstr "Resumen rápido"
+
+msgid "Guides"
+msgstr "Guías"
+
+msgid "Theming"
+msgstr "Temas"

@@ -15,6 +15,12 @@ NAV = [
         ],
     ),
     (
+        _("Guides"),
+        [
+            ("theming", _("Theming")),
+        ],
+    ),
+    (
         _("Blocks"),
         [
             ("allauth", "django-allauth"),
