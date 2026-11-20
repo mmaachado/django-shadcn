@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.12.1 — Unreleased
+
+Fixes from a security review of 1.12.0. None of them needs a change in a
+project's templates.
+
+### Fixed
+
+- **A `dialog` trigger with `as_child="true"` opens only its own dialog.** It
+  dispatched a window-wide event that every dialog listened for, so one click
+  opened every dialog on the page.
+- **`add` refuses a symlink in a component's directory.** It wrote through
+  one, so a link committed into a repository could have it overwrite, or
+  create, a file outside the project. The run now stops before the first
+  write and names the path.
+
+### Security
+
+- **The release pipeline is split and pinned.** Building, publishing and
+  creating the GitHub release are separate jobs, each with only the
+  permission it needs, and every action runs from a pinned commit.
+- **Icon partials are checked as they are generated.** Anything that is not
+  a plain SVG shape stops the generator, so a tampered upstream release
+  cannot reach the templates the package ships.
+
 ## 1.12.0 — 2026-11-20
 
 The keyboard and screen reader gaps the 1.11.1 pages documented, fixed in the
