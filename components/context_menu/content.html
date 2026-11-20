@@ -4,7 +4,10 @@
     @scroll.window.passive="open = false"
     @resize.window.passive="open = false" x-bind:style="`left: ${x}px; top: ${y}px`"
     x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-95"
-    x-transition:enter-end="opacity-100 scale-100" role="menu" class="
+    x-transition:enter-end="opacity-100 scale-100" role="menu" tabindex="-1"
+    @keydown="const items = [...$el.querySelectorAll('[role^=menuitem]:not([data-disabled])')].filter(item => item.closest('[role=menu]') === $el); const at = items.indexOf(document.activeElement); const closer = getComputedStyle($el).direction === 'rtl' ? 'ArrowRight' : 'ArrowLeft'; let next = null; if ($event.key === 'ArrowDown') next = items[(at + 1) % items.length]; else if ($event.key === 'ArrowUp') next = items[(at < 0 ? items.length : at) - 1 + (at === 0 ? items.length : 0)]; else if ($event.key === 'Home') next = items[0]; else if ($event.key === 'End') next = items.at(-1); else if (($event.key === 'Enter' || $event.key === ' ') && at >= 0) { $event.preventDefault(); $event.stopPropagation(); items[at].click(); } else if ($event.key === closer && $el.matches('[data-slot$=sub-content]')) { $event.preventDefault(); $event.stopPropagation(); subOpen = false; $el.parentElement.querySelector('[aria-haspopup=menu]')?.focus(); } else if ($event.key.length === 1 && !$event.ctrlKey && !$event.metaKey && !$event.altKey) next = [...items.slice(at + 1), ...items.slice(0, at + 1)].find(item => item.textContent.trim().toLowerCase().startsWith($event.key.toLowerCase())); if (next) { $event.preventDefault(); $event.stopPropagation(); next.focus(); }"
+    x-init="let back = null; $watch('open', shown => { if (shown) { back = document.activeElement; $nextTick(() => $el.focus()); } else if ($el.contains(document.activeElement)) { back?.focus(); back = null; } })"
+    @focusout="$el.contains($event.relatedTarget) || (open = false)" class="
     fixed z-50 min-w-[8rem] rounded-md border
     bg-popover p-1 text-popover-foreground shadow-md
     {% if class %}

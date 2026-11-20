@@ -314,8 +314,13 @@ up with the start of the trigger. A submenu opens on the other side.
 
 The content is a `role="menu"`, the items `menuitem`, `menuitemcheckbox` or
 `menuitemradio` with `aria-checked`, and the trigger and submenu triggers report
-`aria-haspopup` and `aria-expanded`. Escape closes the menu. There is no roving
-focus: Tab moves through the items rather than the arrow keys.
+`aria-haspopup` and `aria-expanded`. Enter, Space or Down on the trigger open the menu. Opening it from the keyboard focuses the first item; opening it with the
+pointer focuses the menu, and Down or Up then go to the first or last item.
+Down and Up move through the items, wrapping, Home and End go to the ends,
+typing a letter jumps to the next item that starts with it, and Enter or Space
+activates the item. Right opens a submenu on its first item and Left closes it,
+swapped under `dir="rtl"`. Disabled items are skipped.
+Escape, picking an item or Tab close it, and focus goes back to the trigger.
 
 ## API reference
 :::pt-br
@@ -329,8 +334,14 @@ início do trigger. Um submenu abre do outro lado.
 
 O conteúdo é um `role="menu"`, os itens são `menuitem`, `menuitemcheckbox`
 ou `menuitemradio` com `aria-checked`, e o trigger e os triggers de submenu
-informam `aria-haspopup` e `aria-expanded`. O Escape fecha o menu. Não há foco
-itinerante: o Tab percorre os itens, e não as setas.
+informam `aria-haspopup` e `aria-expanded`. O Enter, o Espaço ou a seta para baixo no trigger abrem o menu. Abri-lo pelo teclado foca o primeiro item; abri-lo com o ponteiro foca o
+menu, e as setas para baixo ou para cima vão então para o primeiro ou o último
+item. As setas para baixo e para cima passam pelos itens, dando a volta, Home e
+End vão para as pontas, digitar uma letra pula para o próximo item que começa
+com ela, e o Enter ou o Espaço ativam o item. A seta para a direita abre um
+submenu no primeiro item e a seta para a esquerda o fecha, trocadas sob
+`dir="rtl"`. Itens desabilitados são pulados.
+O Escape, escolher um item ou o Tab o fecham, e o foco volta para o trigger.
 
 ## Referência da API
 :::

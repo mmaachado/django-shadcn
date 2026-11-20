@@ -1,6 +1,6 @@
 <c-vars class="" variant="default" inset=""></c-vars>
 
-<div role="menuitem" @click="active = null" class="
+<div role="menuitem" tabindex="-1" @pointermove="$el.focus()" @click="active = null" class="
     relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5
     text-sm outline-hidden select-none
     focus:bg-accent focus:text-accent-foreground

@@ -197,6 +197,55 @@ def test_every_modal_keeps_focus_inside_and_gives_it_back(components_root):
     assert '$event.shiftKey' in trapped
 
 
+MENUS = ('dropdown_menu', 'context_menu', 'menubar')
+MENU_KEYS = re.compile(
+    r'@keydown="const items = \[\.\.\.\$el\.querySelectorAll[^"]*"'
+)
+SUB_KEYS = re.compile(
+    r'@keydown="if \(\$event\.key === \(getComputedStyle[^"]*"'
+)
+
+
+def test_every_menu_takes_the_arrow_keys(components_root):
+    """The items were divs nothing could focus: an open menu answered to the
+    pointer and to Escape, and the keyboard could not reach anything in it.
+    Every panel, top level or submenu, carries the same handler."""
+    panels, subs = set(), set()
+
+    for menu in MENUS:
+
+        def read(name, menu=menu):
+            path = components_root / menu / f'{name}.html'
+            return path.read_text(encoding='utf-8')
+
+        for name in ('content', 'sub_content'):
+            found = MENU_KEYS.findall(read(name))
+            assert len(found) == 1, f'{menu}/{name}'
+            panels.add(found[0])
+        for name in ('item', 'checkbox_item', 'radio_item', 'sub_trigger'):
+            assert 'tabindex="-1"' in read(name), f'{menu}/{name}'
+        found = SUB_KEYS.findall(read('sub_trigger'))
+        assert len(found) == 1, f'{menu}/sub_trigger'
+        subs.add(found[0])
+        assert 'rtl:rotate-180' in read('sub_trigger')
+        assert '@focusout=' in read('content')
+
+    assert len(panels) == 1, 'the menus handle keys differently'
+    assert len(subs) == 1, 'the submenu triggers handle keys differently'
+    (keys,) = panels
+    for key in ('ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', 'subOpen'):
+        assert key in keys
+    assert "direction === 'rtl'" in keys
+
+
+def test_the_menubar_moves_between_its_menus(components_root):
+    source = (components_root / 'menubar' / 'index.html').read_text(
+        encoding='utf-8'
+    )
+    assert "querySelectorAll('[data-slot=menubar-trigger]" in source
+    assert "direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight'" in source
+
+
 # A name declared in <c-vars> and never read does nothing, yet the docs'
 # generated reference lists it as an attribute. The ones below are declared on
 # purpose: declaring a name keeps cotton from writing it onto the element.

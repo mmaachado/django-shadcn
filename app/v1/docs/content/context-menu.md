@@ -286,10 +286,13 @@ with the text. A submenu opens on the other side.
 
 The content is a `role="menu"`, the items `menuitem`, `menuitemcheckbox` or
 `menuitemradio` with `aria-checked`, and a submenu trigger reports
-`aria-haspopup` and `aria-expanded`. Escape closes the menu. There is no roving
-focus: the menu answers to the pointer and to Escape, not to the arrow keys,
-and a right click is the only way to open it, so whatever it offers needs
-another way in for a keyboard.
+`aria-haspopup` and `aria-expanded`. Opening it focuses the menu, and Down or Up go to the first or last item.
+Down and Up move through the items, wrapping, Home and End go to the ends,
+typing a letter jumps to the next item that starts with it, and Enter or Space
+activates the item. Right opens a submenu on its first item and Left closes it,
+swapped under `dir="rtl"`. Disabled items are skipped. Escape, picking an item
+or Tab close it, and focus goes back to where it was. A right click opens it,
+so whatever it offers needs another way in for a keyboard.
 
 ## API reference
 :::pt-br
@@ -303,10 +306,15 @@ submenu abre do outro lado.
 
 O conteúdo é um `role="menu"`, os itens são `menuitem`, `menuitemcheckbox` ou
 `menuitemradio` com `aria-checked`, e um trigger de submenu informa
-`aria-haspopup` e `aria-expanded`. O Escape fecha o menu. Não há foco
-itinerante: o menu responde ao ponteiro e ao Escape, não às setas, e um clique
-com o botão direito é o único jeito de abri-lo, então o que ele oferece precisa
-de outro caminho para o teclado.
+`aria-haspopup` e `aria-expanded`. Abri-lo foca o menu, e as setas para baixo ou para cima vão para o primeiro
+ou o último item. As setas para baixo e para cima passam pelos itens, dando a
+volta, Home e End vão para as pontas, digitar uma letra pula para o próximo
+item que começa com ela, e o Enter ou o Espaço ativam o item. A seta para a
+direita abre um submenu no primeiro item e a seta para a esquerda o fecha,
+trocadas sob `dir="rtl"`. Itens desabilitados são pulados. O Escape, escolher
+um item ou o Tab o fecham, e o foco volta para onde estava. Um clique com o
+botão direito o abre, então o que ele oferece precisa de outro caminho para o
+teclado.
 
 ## Referência da API
 :::
