@@ -25,7 +25,8 @@ SUMMARY = _(
 # noise for a reader that cannot see them.
 DEMO = re.compile(
     r"<c-docs\.demo-section.*?</c-docs\.demo-section>\n*"
-    r"|<c-docs\.block-preview[^>]*/>\n*",
+    r"|<c-docs\.block-preview[^>]*/>\n*"
+    r'|<div[^>]*data-slot="cheat-sheet">.*?</dl></div>\n*',
     re.DOTALL,
 )
 

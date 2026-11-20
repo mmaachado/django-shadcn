@@ -428,3 +428,11 @@ class PageStructureTests(SimpleTestCase):
                 wrong.append(f"{slug}: sections out of order")
 
         self.assertEqual(wrong, [])
+
+
+class LlmsFullTests(SimpleTestCase):
+    def test_the_cheat_sheet_box_is_left_out_and_its_snippet_kept(self):
+        text = self.client.get(reverse("llms-full")).content.decode()
+
+        self.assertNotIn('data-slot="cheat-sheet"', text)
+        self.assertIn('<c-button variant="outline" type="button">Button</c-button>', text)
