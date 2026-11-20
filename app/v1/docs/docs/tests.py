@@ -17,6 +17,12 @@ from django.utils import translation
 
 from scripts.check_stylesheet import classes, main
 
+from .content import (
+    PassageError,
+    _translate,
+    missing_prose,
+    untranslated,
+)
 from .nav import NAV
 
 
@@ -101,3 +107,65 @@ class StylesheetDiffTests(SimpleTestCase):
                 sys, "argv", ["check_stylesheet.py", committed, build]
             ):
                 main()
+
+
+DEMO = '<c-docs.demo-section>\n<c-button>Save</c-button>\n</c-docs.demo-section>\n'
+
+PAGE = (
+    DEMO
+    + "\n:::en\n## Usage\n\nPress it.\n:::pt-br\n## Uso\n\nAperte.\n:::\n\n"
+    + "```html\n<c-button>Save</c-button>\n```\n\n"
+    + "Not translated yet.\n"
+)
+
+
+class PassageTests(SimpleTestCase):
+    def test_the_active_language_picks_its_passage(self):
+        body = _translate(PAGE, "pt-br")
+
+        self.assertIn("## Uso\n\nAperte.", body)
+        self.assertNotIn("Press it.", body)
+
+    def test_a_missing_language_falls_back_to_english(self):
+        body = _translate(PAGE, "es")
+
+        self.assertIn("## Usage\n\nPress it.", body)
+        self.assertIn("Not translated yet.", body)
+
+    def test_the_demo_and_the_code_are_shared(self):
+        for language in ("en", "pt-br", "es"):
+            with self.subTest(language=language):
+                body = _translate(PAGE, language)
+                self.assertEqual(body.count("<c-button>Save</c-button>"), 2)
+                self.assertNotIn(":::", body)
+
+    def test_markers_inside_fenced_code_are_left_alone(self):
+        body = "```text\n:::pt-br\n```\n"
+
+        self.assertEqual(_translate(body, "pt-br"), body)
+
+    def test_a_malformed_passage_is_refused(self):
+        cases = {
+            "fenced code": ":::en\n```html\n<p></p>\n```\n:::\n",
+            "a demo": ":::en\n" + DEMO + ":::\n",
+            "no English": ":::pt-br\nOlá.\n:::\n",
+            "unknown language": ":::en\nHi.\n:::xx\nHi.\n:::\n",
+            "a language twice": ":::en\nHi.\n:::en\nHi.\n:::\n",
+            "never closed": ":::en\nHi.\n",
+            "nothing to close": "Hi.\n:::\n",
+        }
+
+        for case, body in cases.items():
+            with self.subTest(case=case):
+                with self.assertRaises(PassageError):
+                    _translate(body, "en")
+
+    def test_untranslated_prose_is_reported_once_per_paragraph(self):
+        self.assertEqual(missing_prose(PAGE, "pt-br"), ["Not translated yet."])
+        self.assertEqual(
+            missing_prose(PAGE, "es"), ["## Usage", "Not translated yet."]
+        )
+
+    def test_a_whole_file_override_counts_as_translated(self):
+        self.assertEqual(untranslated("introduction", "pt-br"), [])
+        self.assertEqual(untranslated("introduction", "en"), [])
