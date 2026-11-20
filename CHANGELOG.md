@@ -2,6 +2,15 @@
 
 ## 1.11.0 — Unreleased
 
+### Added
+
+- **`code_block`.** Code, terminal output and diffs, in a bordered block with
+  an optional header and footer, line numbers from `start_line`, line variants
+  for `added`, `removed` and `highlighted`, and a copy button. The button
+  copies `value`, or the block's own text when there is none, and announces
+  "Copied" for two seconds. The content is always left to right. No syntax
+  highlighting, as upstream.
+
 ### Fixed
 
 - **`message_scroller` no longer flashes its oldest rows.** A transcript opened

@@ -43,6 +43,7 @@ NAV = [
             ("carousel", "Carousel"),
             ("chart", "Chart"),
             ("checkbox", "Checkbox"),
+            ("code-block", "Code Block"),
             ("collapsible", "Collapsible"),
             ("combobox", "Combobox"),
             ("command", "Command"),
