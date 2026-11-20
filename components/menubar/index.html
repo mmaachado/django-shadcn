@@ -4,7 +4,8 @@
 Which menu is open is tracked by element identity, so a menu needs no name and
 the trigger and content find each other through their shared parent.
 {% endcomment %}
-<div x-data="{ active: null }" @click.outside="active = null" @keydown.escape.window="active = null" role="menubar"
+<div x-data="{ active: null, viaKeyboard: false }" @click.outside="active = null" @keydown.escape.window="active = null" role="menubar"
+    @keydown="const forth = getComputedStyle($el).direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight'; const back = forth === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft'; const triggers = [...$el.querySelectorAll('[data-slot=menubar-trigger]:not([disabled])')]; const at = triggers.findIndex(trigger => trigger.parentElement.contains(document.activeElement)); if (at < 0 || ($event.key !== forth && $event.key !== back && $event.key !== 'Home' && $event.key !== 'End')) return; if (($event.key === 'Home' || $event.key === 'End') && !triggers.includes(document.activeElement)) return; $event.preventDefault(); const next = $event.key === 'Home' ? triggers[0] : $event.key === 'End' ? triggers.at(-1) : triggers[(at + ($event.key === forth ? 1 : -1) + triggers.length) % triggers.length]; if (active) { viaKeyboard = true; active = next.parentElement; } else next.focus();"
     class="
     flex h-9 items-center gap-1 rounded-md border bg-background p-1 shadow-xs
     {% if class %}

@@ -26,7 +26,8 @@
     x-transition:leave-end="opacity-0 scale-95"
     @click.away="hideDialog"
     class="fixed z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full {% if class %}{{ class }}{% endif %}"
-    x-init="$watch('open', shown => shown && $nextTick(() => $el.querySelector('button, [tabindex]:not([tabindex=\'-1\']), input, select, textarea')?.focus()))"
+    x-init="let back = null; $watch('open', shown => { if (shown) { back = document.activeElement; $nextTick(() => ($el.querySelector('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])') || $el).focus()); } else if (back) { back.focus(); back = null; } })"
+    @keydown.window="if (open && $event.key === 'Tab') { const items = [...$el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])')].filter(item => item.getClientRects().length); const edge = $event.shiftKey ? items[0] : items.at(-1); if (!items.length || document.activeElement === edge || !$el.contains(document.activeElement)) { $event.preventDefault(); (items.length ? ($event.shiftKey ? items.at(-1) : items[0]) : $el).focus(); } }"
     tabindex="-1"
     data-slot="alert-dialog-content" {{ attrs }}
   >

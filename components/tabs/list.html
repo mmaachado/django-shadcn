@@ -2,7 +2,7 @@
 
 <div
   class="inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground {% if class %}{{ class }}{% endif %}"
-  role="tablist"
+  role="tablist" @keydown="move($event)"
   data-slot="tabs-list" {{ attrs }}
 >
   {{ slot }}

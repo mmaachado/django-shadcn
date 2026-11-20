@@ -21,6 +21,9 @@ change with the direction.
     @pointercancel.window="endDrag($el)"
     role="dialog"
     aria-modal="true"
+    x-init="let back = null; $watch('open', shown => { if (shown) { back = document.activeElement; $nextTick(() => ($el.querySelector('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])') || $el).focus()); } else if (back) { back.focus(); back = null; } })"
+    @keydown.window="if (open && $event.key === 'Tab') { const items = [...$el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex^=\'-\'])')].filter(item => item.getClientRects().length); const edge = $event.shiftKey ? items[0] : items.at(-1); if (!items.length || document.activeElement === edge || !$el.contains(document.activeElement)) { $event.preventDefault(); (items.length ? ($event.shiftKey ? items.at(-1) : items[0]) : $el).focus(); } }"
+    tabindex="-1"
     class="
     group/drawer-content fixed z-50 flex h-auto flex-col bg-background
     group-data-[direction=top]/drawer:inset-x-0

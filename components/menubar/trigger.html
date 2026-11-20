@@ -1,6 +1,7 @@
 <c-vars class=""></c-vars>
 
-<button type="button" @click="active = active === $el.parentElement ? null : $el.parentElement"
+<button type="button" @click="viaKeyboard = $event.detail === 0; active = active === $el.parentElement ? null : $el.parentElement"
+    @keydown.down.prevent="viaKeyboard = true; active = $el.parentElement"
     @mouseenter="if (active) active = $el.parentElement"
     x-bind:data-state="active === $el.parentElement ? 'open' : 'closed'"
     x-bind:aria-expanded="active === $el.parentElement" aria-haspopup="menu" class="

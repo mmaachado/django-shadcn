@@ -1,7 +1,8 @@
 <c-vars class="" inset=""></c-vars>
 
 <div
-    role="menuitem"
+    role="menuitem" tabindex="-1" @pointermove="$el.focus()"
+    @keydown="if ($event.key === (getComputedStyle($el).direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight') || $event.key === 'Enter' || $event.key === ' ') { $event.preventDefault(); $event.stopPropagation(); subOpen = true; $nextTick(() => $el.parentElement.querySelector(':scope > [data-slot$=sub-content] [role^=menuitem]:not([data-disabled])')?.focus()); }"
     aria-haspopup="menu"
     x-bind:aria-expanded="subOpen"
     x-bind:data-state="subOpen ? 'open' : 'closed'"
@@ -23,5 +24,5 @@
     "
 >
     {{ slot }}
-    <c-icon name="chevron-right" class="ms-auto size-4" />
+    <c-icon name="chevron-right" class="ms-auto size-4 rtl:rotate-180" />
 </div>

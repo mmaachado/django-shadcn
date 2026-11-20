@@ -200,8 +200,16 @@ mirror. A submenu opens on the other side.
 
 Each menu is a `role="menu"` of `menuitem`, `menuitemcheckbox` and
 `menuitemradio` items with `aria-checked`, and triggers report `aria-haspopup`
-and `aria-expanded`. Escape closes the open menu. There is no roving focus:
-the bar answers to the pointer and Tab, not to the arrow keys.
+and `aria-expanded`. Left and Right move between the triggers, swapped under `dir="rtl"`, and
+Home and End go to the first and last; with a menu open they open the
+neighbouring one instead. Enter, Space or Down on a trigger open its menu.
+Opening it from the keyboard focuses the first item; opening it with the
+pointer focuses the menu, and Down or Up then go to the first or last item.
+Down and Up move through the items, wrapping, Home and End go to the ends,
+typing a letter jumps to the next item that starts with it, and Enter or Space
+activates the item. Right opens a submenu on its first item and Left closes it,
+swapped under `dir="rtl"`. Disabled items are skipped. Escape, picking an item or Tab close the menu, and focus
+goes back to its trigger. Every trigger stays in the Tab order.
 
 ## API reference
 :::pt-br
@@ -215,8 +223,18 @@ menus espelham. Um submenu abre do outro lado.
 
 Cada menu é um `role="menu"` de itens `menuitem`, `menuitemcheckbox` e
 `menuitemradio` com `aria-checked`, e os triggers informam `aria-haspopup` e
-`aria-expanded`. O Escape fecha o menu aberto. Não há foco itinerante: a barra
-responde ao ponteiro e ao Tab, não às setas.
+`aria-expanded`. As setas para a esquerda e para a direita passam pelos triggers, trocadas
+sob `dir="rtl"`, e Home e End vão para o primeiro e o último; com um menu
+aberto, elas abrem o vizinho. O Enter, o Espaço ou a seta para baixo num
+trigger abrem o menu dele. Abri-lo pelo teclado foca o primeiro item; abri-lo com o ponteiro foca o
+menu, e as setas para baixo ou para cima vão então para o primeiro ou o último
+item. As setas para baixo e para cima passam pelos itens, dando a volta, Home e
+End vão para as pontas, digitar uma letra pula para o próximo item que começa
+com ela, e o Enter ou o Espaço ativam o item. A seta para a direita abre um
+submenu no primeiro item e a seta para a esquerda o fecha, trocadas sob
+`dir="rtl"`. Itens desabilitados são pulados. O Escape, escolher um item ou o
+Tab fecham o menu, e o foco volta para o trigger dele. Todo trigger continua na
+ordem do Tab.
 
 ## Referência da API
 :::

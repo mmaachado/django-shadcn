@@ -142,10 +142,15 @@ and an icon before a label moves with it.
 ## Accessibility
 
 The list is a `role="tablist"`, the triggers `role="tab"` and the panels
-`role="tabpanel"`, and the hidden panels leave the reading order. The triggers
-do not report `aria-selected` or point at their panels with `aria-controls`,
-and the arrow keys do not move between them: Tab does. Name the list with
-`aria-label` when the tabs need one.
+`role="tabpanel"`, and the hidden panels leave the reading order. The active
+tab reports `aria-selected="true"`, and each tab and panel name each other
+through `aria-controls` and `aria-labelledby`, with ids generated per tab set.
+
+Only the active tab is in the Tab order, so Tab goes from the list straight
+into the panel. Left and Right move to the previous and next tab and open it,
+wrapping at the ends and swapping under `dir="rtl"`; Home and End go to the
+first and last. Disabled tabs are skipped. Name the list with `aria-label`
+when the tabs need one.
 
 ## API reference
 :::pt-br
@@ -157,10 +162,16 @@ direita, e um ícone antes de um rótulo se move junto.
 ## Acessibilidade
 
 A lista é um `role="tablist"`, os triggers `role="tab"` e os painéis
-`role="tabpanel"`, e os painéis escondidos saem da leitura. Os triggers não
-informam `aria-selected` nem apontam para os painéis com `aria-controls`, e as
-setas não passam de um para o outro: o Tab passa. Dê um nome à lista com
-`aria-label` quando as abas precisarem.
+`role="tabpanel"`, e os painéis escondidos saem da leitura. A aba ativa
+informa `aria-selected="true"`, e cada aba e painel dão nome um ao outro com
+`aria-controls` e `aria-labelledby`, com ids gerados para cada conjunto de
+abas.
+
+Só a aba ativa fica na ordem do Tab, então o Tab vai da lista direto para o
+painel. As setas para a esquerda e para a direita vão para a aba anterior e a
+seguinte e a abrem, dando a volta nas pontas e trocando de lado sob
+`dir="rtl"`; Home e End vão para a primeira e a última. Abas desabilitadas são
+puladas. Dê um nome à lista com `aria-label` quando as abas precisarem.
 
 ## Referência da API
 :::
