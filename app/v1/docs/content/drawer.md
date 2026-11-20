@@ -196,9 +196,11 @@ text.
 ## Accessibility
 
 The content is a `role="dialog"` with `aria-modal="true"`, and Escape closes
-it. Focus is not moved into the drawer or trapped there, so put the first
-thing to do near its top, and dragging the handle is a pointer gesture only:
-keep a close button for the keyboard.
+it. Opening it moves focus to its first focusable element, so put the first
+thing to do near its top. Tab and Shift+Tab cycle through what is inside and never reach the page
+behind, and closing it returns focus to the element that opened it.
+Dragging the handle is a pointer gesture only: keep a close button for the
+keyboard.
 
 ## API reference
 :::pt-br
@@ -211,9 +213,11 @@ texto.
 ## Acessibilidade
 
 O conteúdo é um `role="dialog"` com `aria-modal="true"`, e o Escape o fecha.
-O foco não é levado para dentro do drawer nem preso ali, então ponha a primeira
-coisa a fazer perto do topo dele, e arrastar a alça é um gesto só de ponteiro:
-mantenha um botão de fechar para o teclado.
+Abri-lo leva o foco ao primeiro elemento focável, então ponha a primeira coisa
+a fazer perto do topo dele. O Tab e o Shift+Tab passam pelo que está dentro e nunca chegam à página de
+trás, e fechá-lo devolve o foco ao elemento que o abriu.
+Arrastar a alça é um gesto só de ponteiro: mantenha um botão de fechar para o
+teclado.
 
 ## Referência da API
 :::

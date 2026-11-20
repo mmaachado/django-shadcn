@@ -5,8 +5,32 @@
     activeTab: $el.dataset.defaultValue,
     setActiveTab(value) {
       this.activeTab = value;
+    },
+    // A tab is in the Tab order when it is the active one, or the first
+    // when none is, so the list is always reachable.
+    reachable(tab) {
+      return this.activeTab
+        ? this.activeTab === tab.dataset.value
+        : tab === tab.closest('[role=tablist]').querySelector('[role=tab]:not([disabled])');
+    },
+    // Arrows move to the next or previous tab and select it, wrapping, and
+    // follow the direction of the text; Home and End go to the ends.
+    move(event) {
+      const tabs = [...event.currentTarget.querySelectorAll('[role=tab]:not([disabled])')]
+        .filter(tab => tab.closest('[role=tablist]') === event.currentTarget);
+      const at = tabs.indexOf(document.activeElement);
+      const steps = { ArrowRight: 1, ArrowLeft: -1 };
+      if (at < 0 || !(event.key in steps || event.key === 'Home' || event.key === 'End')) return;
+      event.preventDefault();
+      const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
+      const next = event.key === 'Home' ? 0
+        : event.key === 'End' ? tabs.length - 1
+        : (at + steps[event.key] * (rtl ? -1 : 1) + tabs.length) % tabs.length;
+      tabs[next].focus();
+      tabs[next].click();
     }
   }"
+  x-id="['tab', 'tabpanel']"
   data-default-value="{{ default_value }}"
   class="{% if class %}{{ class }}{% endif %}"
   data-slot="tabs" {{ attrs }}

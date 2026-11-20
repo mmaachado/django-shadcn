@@ -191,9 +191,10 @@ at its end, so under `dir="rtl"` the dialog mirrors with the text.
 
 The content is a `role="dialog"` with `aria-modal="true"`. Opening it moves
 focus to its first button or field, Escape closes it, and the page behind
-stops scrolling. Focus is not trapped inside, so Tab can still reach the page
-behind, and the title is not tied to the dialog with `aria-labelledby`: add an
-`id` to the title and the attribute to the content when that matters.
+stops scrolling. Tab and Shift+Tab cycle through what is inside and never reach the page
+behind, and closing it returns focus to the element that opened it. The title is not
+tied to the dialog with `aria-labelledby`: add an `id` to the title and the
+attribute to the content when that matters.
 
 ## API reference
 :::pt-br
@@ -205,10 +206,11 @@ dela, então sob `dir="rtl"` o diálogo espelha junto com o texto.
 ## Acessibilidade
 
 O conteúdo é um `role="dialog"` com `aria-modal="true"`. Abri-lo leva o foco ao
-primeiro botão ou campo, o Escape o fecha, e a página de trás para de rolar. O
-foco não fica preso dentro, então o Tab ainda alcança a página de trás, e o
-título não está ligado ao diálogo por `aria-labelledby`: acrescente um `id` ao
-título e o atributo ao conteúdo quando isso importar.
+primeiro botão ou campo, o Escape o fecha, e a página de trás para de rolar.
+O Tab e o Shift+Tab passam pelo que está dentro e nunca chegam à página de
+trás, e fechá-lo devolve o foco ao elemento que o abriu. O título não está ligado ao
+diálogo por `aria-labelledby`: acrescente um `id` ao título e o atributo ao
+conteúdo quando isso importar.
 
 ## Referência da API
 :::

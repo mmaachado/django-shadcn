@@ -146,10 +146,11 @@ under `dir="rtl"`.
 
 ## Accessibility
 
-Opening the dialog moves focus to the search field, and Escape closes it. The
-dialog does not trap focus or announce itself as a dialog, so keep the trigger
-a real button and tell readers the shortcut in words, as the trigger text does
-here.
+The panel is a `role="dialog"` with `aria-modal="true"`. Opening it moves
+focus to the search field, and Escape closes it. Tab and Shift+Tab cycle through what is inside and never reach the page
+behind, and closing it returns focus to the element that opened it.
+Keep the trigger a real button and tell readers the shortcut in words, as the
+trigger text does here.
 
 ## API reference
 :::pt-br
@@ -160,10 +161,11 @@ antes do campo e os atalhos no fim dos itens trocam de lado sob `dir="rtl"`.
 
 ## Acessibilidade
 
-Abrir o diálogo leva o foco ao campo de busca, e o Escape o fecha. O diálogo
-não prende o foco nem se anuncia como diálogo, então mantenha o trigger como um
-botão de verdade e diga o atalho em palavras ao leitor, como o texto do trigger
-faz aqui.
+O painel é um `role="dialog"` com `aria-modal="true"`. Abri-lo leva o foco ao
+campo de busca, e o Escape o fecha. O Tab e o Shift+Tab passam pelo que está dentro e nunca chegam à página de
+trás, e fechá-lo devolve o foco ao elemento que o abriu.
+Mantenha o trigger como um botão de verdade e diga o atalho em palavras ao
+leitor, como o texto do trigger faz aqui.
 
 ## Referência da API
 :::

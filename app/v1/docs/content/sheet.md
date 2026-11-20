@@ -145,9 +145,9 @@ the end corner.
 ## Accessibility
 
 The content is a `role="dialog"` with `aria-modal="true"`, and Escape closes
-it. Focus does not move into the sheet when it opens and is not trapped there,
-so a keyboard user tabs in from the trigger; the close button is labelled
-"Close".
+it. Opening it moves focus to its first focusable element, the close button,
+which is labelled "Close". Tab and Shift+Tab cycle through what is inside and never reach the page
+behind, and closing it returns focus to the element that opened it.
 
 ## API reference
 :::pt-br
@@ -159,10 +159,10 @@ canto do fim.
 
 ## Acessibilidade
 
-O conteúdo é um `role="dialog"` com `aria-modal="true"`, e o Escape o fecha. O
-foco não vai para dentro do sheet quando ele abre nem fica preso ali, então
-quem usa o teclado entra pelo Tab a partir do trigger; o botão de fechar tem o
-rótulo "Close".
+O conteúdo é um `role="dialog"` com `aria-modal="true"`, e o Escape o fecha.
+Abri-lo leva o foco ao primeiro elemento focável, o botão de fechar, que tem o
+rótulo "Close". O Tab e o Shift+Tab passam pelo que está dentro e nunca chegam à página de
+trás, e fechá-lo devolve o foco ao elemento que o abriu.
 
 ## Referência da API
 :::
