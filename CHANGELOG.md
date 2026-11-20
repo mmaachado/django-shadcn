@@ -25,6 +25,9 @@
   nested items and a footer link, and a header with the breadcrumb and an
   account menu. It is meant to be copied into your layouts and extended, with
   each page filling `{% block main %}`.
+- **`settings`.** A settings page in two tabs, each its own form: a profile
+  with described fields, and notification preferences as labelled switches in
+  a bordered list.
 
 ## 1.9.0 — 2026-11-19
 

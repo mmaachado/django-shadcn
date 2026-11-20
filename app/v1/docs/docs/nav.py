@@ -20,6 +20,7 @@ NAV = [
             ("allauth", "django-allauth"),
             ("dashboard", "Dashboard"),
             ("login", "Login and Sign Up"),
+            ("settings", "Settings"),
             ("sidebar-layout", "Sidebar Layout"),
         ],
     ),
