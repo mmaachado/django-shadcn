@@ -14,6 +14,8 @@ import django
 import pytest
 from django.conf import settings
 
+from django_shadcn.components import registry
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 COMPONENTS_ROOT = REPO_ROOT / 'components'
 
@@ -36,9 +38,10 @@ if not settings.configured:
     )
     django.setup()
 
-# allauth ships page templates rather than cotton components, and they open
-# with {% load account %} from a library we do not install.
-NOT_COMPONENTS = {'allauth'}
+# Blocks ship page templates rather than cotton components: they extend the
+# project's base.html, and allauth's open with {% load account %} from a
+# library we do not install.
+NOT_COMPONENTS = {name for name, entry in registry.items() if entry.block}
 
 # Required attributes, so the component has something to render.
 CONTEXT = {

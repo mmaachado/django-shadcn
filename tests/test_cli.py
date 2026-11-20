@@ -14,7 +14,7 @@ from typer.testing import CliRunner
 
 from django_shadcn import main
 from django_shadcn.add import destination_for, mode_for, resolve_components
-from django_shadcn.components import canonical, registry
+from django_shadcn.components import Component, canonical, registry
 from django_shadcn.main import app
 from django_shadcn.merge import WriteMode
 
@@ -159,4 +159,23 @@ def test_cotton_components_go_under_the_cotton_directory():
 
 
 def test_allauth_goes_to_the_templates_root():
+    assert destination_for('allauth') == Path('templates/account')
+
+
+def test_a_block_gets_a_directory_of_its_own(monkeypatch):
+    """Syncing one block mirrors its own directory, so two blocks never
+    share one."""
+    monkeypatch.setitem(registry, 'dashboard_demo', Component(block=True))
+    monkeypatch.setitem(registry, 'settings_demo', Component(block=True))
+
+    assert destination_for('dashboard_demo') == Path(
+        'templates/blocks/dashboard_demo'
+    )
+    assert destination_for('settings_demo') == Path(
+        'templates/blocks/settings_demo'
+    )
+
+
+def test_a_template_root_entry_wins_over_the_block_directory():
+    assert registry['allauth'].block
     assert destination_for('allauth') == Path('templates/account')

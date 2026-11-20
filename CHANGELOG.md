@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.10.0 — Unreleased
+
+### Added
+
+- **Blocks.** A block is a page assembled from components. It is added like
+  one, `add dashboard`, and brings its components along, but its page lands
+  in `templates/blocks/<name>/page.html`, one directory per block, so
+  `--sync` on one block never reaches another. `list` shows blocks apart from
+  components; `allauth` moves there too and still installs to
+  `templates/account/`.
+
+  The page extends your `base.html` and fills `{% block content %}`, so a view
+  renders it as it is. Pass `base_template` in the context to extend another
+  layout.
+
+- **`dashboard`.** A sidebar that folds to icons, a breadcrumb, four metrics,
+  a stacked revenue chart and a table of recent orders, all sample data to
+  replace.
+- **`login`.** A split-screen log-in page and a sign-up page beside it, each
+  a card with the form, an "or continue with" divider and two provider
+  buttons. Markup only: point the forms at your views, or at django-allauth.
+- **`sidebar_layout`.** The application shell: a sidebar with a search field,
+  nested items and a footer link, and a header with the breadcrumb and an
+  account menu. It is meant to be copied into your layouts and extended, with
+  each page filling `{% block main %}`.
+- **`settings`.** A settings page in two tabs, each its own form: a profile
+  with described fields, and notification preferences as labelled switches in
+  a bordered list.
+
 ## 1.9.0 — 2026-11-19
 
 Right to left. The components mirror under `dir="rtl"`, a test keeps them

@@ -24,7 +24,9 @@ SUMMARY = _(
 # The rendered demos repeat what the code examples already show, and only add
 # noise for a reader that cannot see them.
 DEMO = re.compile(
-    r"<c-docs\.demo-section.*?</c-docs\.demo-section>\n*", re.DOTALL
+    r"<c-docs\.demo-section.*?</c-docs\.demo-section>\n*"
+    r"|<c-docs\.block-preview[^>]*/>\n*",
+    re.DOTALL,
 )
 
 
