@@ -21,6 +21,10 @@
 - **`login`.** A split-screen log-in page and a sign-up page beside it, each
   a card with the form, an "or continue with" divider and two provider
   buttons. Markup only: point the forms at your views, or at django-allauth.
+- **`sidebar_layout`.** The application shell: a sidebar with a search field,
+  nested items and a footer link, and a header with the breadcrumb and an
+  account menu. It is meant to be copied into your layouts and extended, with
+  each page filling `{% block main %}`.
 
 ## 1.9.0 — 2026-11-19
 

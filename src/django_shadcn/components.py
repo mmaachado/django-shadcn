@@ -111,6 +111,18 @@ registry: dict[str, Component] = {
     'sheet': Component(depends=('button', 'icon')),
     'separator': Component(),
     'sidebar': Component(depends=('icon',)),
+    'sidebar_layout': Component(
+        depends=(
+            'avatar',
+            'breadcrumb',
+            'button',
+            'dropdown_menu',
+            'icon',
+            'separator',
+            'sidebar',
+        ),
+        block=True,
+    ),
     'skeleton': Component(),
     'spinner': Component(depends=('icon',)),
     'slider': Component(),

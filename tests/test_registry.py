@@ -15,7 +15,9 @@ from django_shadcn.constants import TEMPLATE_ROOT_COMPONENTS
 # dynamic tag: <c-component :is="..."> resolves at render time.
 RESERVED_TAGS = frozenset({'vars', 'slot', 'component'})
 
-COTTON_TAG = re.compile(r'<c-([a-zA-Z0-9_]+)')
+# <c-dropdown-menu> is the dropdown_menu directory: cotton reads a hyphen in
+# the tag as the underscore in the name.
+COTTON_TAG = re.compile(r'<c-([a-zA-Z0-9_-]+)')
 
 # Alpine directives that a plugin registers, mapped to the package shipping
 # it. Anything Alpine's core provides has no entry here.
@@ -30,7 +32,10 @@ def components_used_by(directory: Path) -> set[str]:
     """Root component names referenced from within a component."""
     used: set[str] = set()
     for template in directory.rglob('*.html'):
-        used.update(COTTON_TAG.findall(template.read_text(encoding='utf-8')))
+        source = template.read_text(encoding='utf-8')
+        used.update(
+            tag.replace('-', '_') for tag in COTTON_TAG.findall(source)
+        )
     return used - RESERVED_TAGS - {directory.name}
 
 
