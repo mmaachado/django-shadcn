@@ -15,7 +15,7 @@ A list of your recent invoices.
 <c-table.head class="w-[100px]">Invoice</c-table.head>
 <c-table.head>Status</c-table.head>
 <c-table.head>Method</c-table.head>
-<c-table.head class="text-right">Amount</c-table.head>
+<c-table.head class="text-end">Amount</c-table.head>
 </c-table.row>
 </c-table.header>
 <c-table.body>
@@ -23,19 +23,19 @@ A list of your recent invoices.
 <c-table.cell class="font-medium">INV001</c-table.cell>
 <c-table.cell>Paid</c-table.cell>
 <c-table.cell>Card</c-table.cell>
-<c-table.cell class="text-right">$100</c-table.cell>
+<c-table.cell class="text-end">$100</c-table.cell>
 </c-table.row>
 <c-table.row>
 <c-table.cell class="font-medium">INV002</c-table.cell>
 <c-table.cell>Pending</c-table.cell>
 <c-table.cell>PayPal</c-table.cell>
-<c-table.cell class="text-right">$200</c-table.cell>
+<c-table.cell class="text-end">$200</c-table.cell>
 </c-table.row>
 <c-table.row>
 <c-table.cell class="font-medium">INV003</c-table.cell>
 <c-table.cell>Failed</c-table.cell>
 <c-table.cell>Card</c-table.cell>
-<c-table.cell class="text-right">$300</c-table.cell>
+<c-table.cell class="text-end">$300</c-table.cell>
 </c-table.row>
 </c-table.body>
 </c-table>
@@ -57,7 +57,7 @@ uvx django_shadcn@latest add table
       <c-table.head class="w-[100px]">Invoice</c-table.head>
       <c-table.head>Status</c-table.head>
       <c-table.head>Method</c-table.head>
-      <c-table.head class="text-right">Amount</c-table.head>
+      <c-table.head class="text-end">Amount</c-table.head>
     </c-table.row>
   </c-table.header>
   <c-table.body>
@@ -65,7 +65,7 @@ uvx django_shadcn@latest add table
       <c-table.cell class="font-medium">INV001</c-table.cell>
       <c-table.cell>Paid</c-table.cell>
       <c-table.cell>Card</c-table.cell>
-      <c-table.cell class="text-right">$100</c-table.cell>
+      <c-table.cell class="text-end">$100</c-table.cell>
     </c-table.row>
   </c-table.body>
 </c-table>

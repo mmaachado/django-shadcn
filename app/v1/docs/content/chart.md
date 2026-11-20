@@ -6,7 +6,7 @@ description.es: Área, línea, barra y tarta, dibujados desde un queryset que tu
 ---
 
 <c-docs.demo-section class="min-h-[380px]">
-<div class="w-full text-left">
+<div class="w-full text-start">
 <c-chart data='[{"month": "January", "revenue": 1200, "profit": 300}, {"month": "February", "revenue": 1800, "profit": 500}, {"month": "March", "revenue": 1500, "profit": 400}, {"month": "April", "revenue": 2400, "profit": 900}, {"month": "May", "revenue": 2100, "profit": 700}, {"month": "June", "revenue": 3000, "profit": 1100}]' config='{"revenue": {"label": "Revenue"}, "profit": {"label": "Profit"}}'>
 <c-chart.plot label="Revenue and profit by month">
 <c-chart.grid />
@@ -130,7 +130,7 @@ it.
 ```
 
 <c-docs.demo-section class="min-h-[380px]">
-<div class="w-full text-left">
+<div class="w-full text-start">
 <c-chart data='[{"month": "Jan", "revenue": 1200, "profit": 300}, {"month": "Feb", "revenue": 1800, "profit": 500}, {"month": "Mar", "revenue": 1500, "profit": 400}, {"month": "Apr", "revenue": 2400, "profit": 900}, {"month": "May", "revenue": 2100, "profit": 700}, {"month": "Jun", "revenue": 3000, "profit": 1100}]' config='{"revenue": {"label": "Revenue"}, "profit": {"label": "Profit"}}'>
 <c-chart.plot label="Revenue and profit by month">
 <c-chart.grid />
@@ -149,7 +149,7 @@ Two bar series share the category side by side. Add `stack="true"` to both and
 they pile up instead, with the axis rescaling to the total:
 
 <c-docs.demo-section class="min-h-[380px]">
-<div class="w-full text-left">
+<div class="w-full text-start">
 <c-chart data='[{"month": "Jan", "revenue": 1200, "profit": 300}, {"month": "Feb", "revenue": 1800, "profit": 500}, {"month": "Mar", "revenue": 1500, "profit": 400}, {"month": "Apr", "revenue": 2400, "profit": 900}, {"month": "May", "revenue": 2100, "profit": 700}, {"month": "Jun", "revenue": 3000, "profit": 1100}]' config='{"revenue": {"label": "Revenue"}, "profit": {"label": "Profit"}}'>
 <c-chart.plot label="Revenue and profit stacked by month">
 <c-chart.grid />
@@ -172,7 +172,7 @@ they pile up instead, with the axis rescaling to the total:
 points, which is what you want when the series is dense.
 
 <c-docs.demo-section class="min-h-[380px]">
-<div class="w-full text-left">
+<div class="w-full text-start">
 <c-chart data='[{"day": "Mon", "signups": 34, "trials": 12}, {"day": "Tue", "signups": 41, "trials": 18}, {"day": "Wed", "signups": 28, "trials": 9}, {"day": "Thu", "signups": 55, "trials": 24}, {"day": "Fri", "signups": 47, "trials": 21}, {"day": "Sat", "signups": 22, "trials": 7}, {"day": "Sun", "signups": 19, "trials": 5}]' config='{"signups": {"label": "Signups"}, "trials": {"label": "Trials"}}'>
 <c-chart.plot label="Signups and trials by day">
 <c-chart.grid />

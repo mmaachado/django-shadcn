@@ -1,7 +1,7 @@
 <c-vars class="" type="default" title description></c-vars>
 
 <div class="
-    group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all
+    group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pe-6 shadow-lg transition-all
 
     {% if type == 'default' %}border bg-background text-foreground
     {% elif type == 'destructive' %}destructive group border-destructive bg-destructive text-destructive-foreground
@@ -16,7 +16,7 @@
       <p class="text-sm font-semibold [&+div]:text-xs">{{ title }}</p>
       <p class="text-sm opacity-90 ">{{ description }}</p>
       <button @click="hide"
-        class="absolute right-1 top-1 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-hidden focus:ring-1 group-hover:opacity-100 group-[.destructive]:text-red-300 hover:group-[.destructive]:text-red-50 focus:group-[.destructive]:ring-red-400 focus:group-[.destructive]:ring-offset-red-600">
+        class="absolute end-1 top-1 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-hidden focus:ring-1 group-hover:opacity-100 group-[.destructive]:text-red-300 hover:group-[.destructive]:text-red-50 focus:group-[.destructive]:ring-red-400 focus:group-[.destructive]:ring-offset-red-600">
         <c-icon name="x" class="size-4" />
       </button>
     </div>

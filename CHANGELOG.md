@@ -1,5 +1,44 @@
 # Changelog
 
+## 1.9.0 — 2026-11-19
+
+Right to left. The components mirror under `dir="rtl"`, a test keeps them
+that way, and a new `direction` page shows the one attribute that sets it.
+
+### Changed
+
+- **Logical margins and padding.** The components use `ms-`/`me-`/`ps-`/`pe-`
+  where they used `ml-`/`mr-`/`pl-`/`pr-`, so under `dir="rtl"` the spacing
+  moves to the mirrored side. Under `dir="ltr"` both compute to the same side,
+  and nothing changes.
+
+  Two cases keep the physical utility. The value axis of `chart` keeps its
+  `pr-2`, because the plot does not mirror. The gap in `tooltip` and
+  `hover_card` stays on the side the `side` prop names, `left` or `right`.
+
+- **Logical inset and text alignment.** `left-`/`right-` became
+  `start-`/`end-` and `text-left`/`text-right` became `text-start`/`text-end`.
+  Under `dir="rtl"`, submenus open on the mirrored side, menu item indicators
+  and close buttons move with the text, and an `align="start"` menu, hover
+  card or reaction row lines up with the start of the line.
+
+  Four kinds of position stay physical. A side the markup names, as in
+  `side="left"` on `sheet`, `sidebar`, `tooltip` and `hover_card` or
+  `direction="left"` on `drawer`, is a side of the screen. A centred element,
+  `left-1/2` with `-translate-x-1/2`, sits in the same place in either
+  direction. `carousel` scrolls with `scrollLeft` and the arrow keys, so its
+  buttons keep their sides. The value axis of `chart` does not mirror.
+
+- **Logical borders and radii.** `border-l`/`border-r` became
+  `border-s`/`border-e` and `rounded-l-*`/`rounded-r-*` became
+  `rounded-s-*`/`rounded-e-*`. Under `dir="rtl"`, `button_group`,
+  `toggle_group`, `input_otp` and a selected range in `calendar` keep their
+  rounded ends on the outside of the row, and the rule beside `blockquote` and
+  `sidebar` submenus moves to the start of the line.
+
+  The edge of `drawer` and `sidebar` stays physical, for the same reason as
+  their position: `direction` and `side` name a side of the screen.
+
 ## 1.8.0 — 2026-08-14
 
 Charts, and the last component the registry was missing. Parity with shadcn/ui

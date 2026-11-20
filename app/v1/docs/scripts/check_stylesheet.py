@@ -1,8 +1,9 @@
-"""Compare the class names in two builds of the stylesheet.
+"""Compare two builds of the stylesheet.
 
-Two Tailwind patch releases can format the same set of classes differently,
-so the committed file and a fresh build are compared by the classes they
-define, not byte for byte.
+The class names are compared first, since a list of missing and stale classes
+is what tells a contributor which component changed. When the names match, the
+two texts are compared with line endings normalised, which catches a changed
+declaration or token.
 
     python scripts/check_stylesheet.py static/css/output.css <new build>
 """
@@ -24,10 +25,23 @@ def classes(css):
 
 def main():
     committed_path, build_path = sys.argv[1:3]
-    committed = classes(Path(committed_path).read_text(encoding="utf-8"))
-    build = classes(Path(build_path).read_text(encoding="utf-8"))
+    committed_text = Path(committed_path).read_text(encoding="utf-8")
+    build_text = Path(build_path).read_text(encoding="utf-8")
+    committed = classes(committed_text)
+    build = classes(build_text)
+
+    rebuild = (
+        f"{committed_path} is out of date. Rebuild it, from "
+        "app/v1/docs:\nnpx @tailwindcss/cli -i assets/input.css "
+        "-o static/css/output.css"
+    )
 
     if committed == build:
+        # read_text turns \r\n into \n, so a Windows checkout compares equal.
+        if committed_text != build_text:
+            raise SystemExit(
+                f"same classes, but the CSS differs\n{rebuild}"
+            )
         print(f"{len(committed)} classes, {committed_path} is up to date")
         return
 
@@ -51,11 +65,7 @@ def main():
         for name in stale[:20]:
             print(f"  {unescape(name)}")
 
-    raise SystemExit(
-        f"{committed_path} is out of date. Rebuild it, from app/v1/docs:\n"
-        "npx @tailwindcss/cli -i assets/input.css "
-        "-o static/css/output.css"
-    )
+    raise SystemExit(rebuild)
 
 
 if __name__ == "__main__":

@@ -99,7 +99,7 @@ focus and validation state.
 <c-input-group.textarea placeholder="Write a message..." rows="3" />
 <c-input-group.addon align="block-end" class="border-t">
 <c-input-group.text>Markdown supported</c-input-group.text>
-<c-input-group.button size="sm" class="ml-auto">Send</c-input-group.button>
+<c-input-group.button size="sm" class="ms-auto">Send</c-input-group.button>
 </c-input-group.addon>
 </c-input-group>
 </c-docs.demo-section>

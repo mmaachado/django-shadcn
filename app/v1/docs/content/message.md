@@ -6,7 +6,7 @@ description.es: La fila de una conversación: avatar, alineación, encabezado y 
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message>
 <c-message.avatar>
 <c-avatar>
@@ -67,7 +67,7 @@ a plain paragraph all work.
 the far side, the footer aligns with it, and the avatar changes sides.
 
 <c-docs.demo-section>
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message>
 <c-message.avatar>
 <c-avatar>
@@ -113,7 +113,7 @@ the far side, the footer aligns with it, and the avatar changes sides.
 of the run and leave it off the others, so the run reads as one turn.
 
 <c-docs.demo-section>
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message align="end">
 <c-message.content>
 <c-bubble align="end">
@@ -162,7 +162,7 @@ When a footer is present the avatar lifts so it stays level with the message
 rather than with the timestamp.
 
 <c-docs.demo-section>
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message>
 <c-message.avatar>
 <c-avatar>

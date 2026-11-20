@@ -6,7 +6,7 @@ description.es: Un archivo dentro de un mensaje, con vista previa, metadatos, es
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-attachment>
 <c-attachment.media variant="image">
 <img src="https://github.com/mmaachado.png" alt="">
@@ -68,7 +68,7 @@ Five, and each one changes more than a label: `idle` dashes the border,
 the media red.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-attachment state="idle">
 <c-attachment.media>
 <c-icon name="circle" />
@@ -131,7 +131,7 @@ by itself when the reader has asked for reduced motion.
 into a tile, with the media on top and the actions floating over its corner.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-attachment size="sm">
 <c-attachment.media>
 <c-icon name="check" />
@@ -181,7 +181,7 @@ behind the actions on purpose: the remove button keeps its own click and its
 own tab stop, and neither swallows the other.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-attachment>
 <c-attachment.media variant="image">
 <img src="https://github.com/mmaachado.png" alt="">
@@ -273,7 +273,7 @@ this component.
 ### Inside a message
 
 <c-docs.demo-section>
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message align="end">
 <c-message.content>
 <c-attachment size="sm">

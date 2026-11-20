@@ -6,7 +6,7 @@ description.es: Un flujo de preguntas que avanza paso a paso y aun así envía u
 ---
 
 <c-docs.demo-section class="min-h-[420px]">
-<c-questionnaire method="get" class="mx-auto w-full max-w-lg text-left">
+<c-questionnaire method="get" class="mx-auto w-full max-w-lg text-start">
 <c-questionnaire.progress />
 
 <c-questionnaire.item>
@@ -118,7 +118,7 @@ Each question is an item. Give the controls a `name` and the view reads them
 back under that name — the component adds nothing of its own to the payload.
 
 <c-docs.demo-section>
-<c-questionnaire method="get" class="mx-auto w-full max-w-lg text-left">
+<c-questionnaire method="get" class="mx-auto w-full max-w-lg text-start">
 <c-questionnaire.progress />
 <c-questionnaire.item>
 <c-questionnaire.title>Pick one</c-questionnaire.title>

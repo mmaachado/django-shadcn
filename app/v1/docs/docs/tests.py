@@ -5,12 +5,17 @@ manifest would otherwise only show up after the deploy. Run collectstatic
 first: the storage backend raises when the manifest is missing.
 """
 
+import sys
+import tempfile
+from pathlib import Path
+from unittest import mock
+
 from django.conf import settings
 from django.test import SimpleTestCase
 from django.urls import reverse
 from django.utils import translation
 
-from scripts.check_stylesheet import classes
+from scripts.check_stylesheet import classes, main
 
 from .nav import NAV
 
@@ -56,3 +61,43 @@ class StylesheetClassTests(SimpleTestCase):
                 "\\32 xl\\:grid",
             },
         )
+
+
+class StylesheetDiffTests(SimpleTestCase):
+    def write(self, tmp_path, name, content):
+        path = Path(tmp_path) / name
+        path.write_bytes(content.encode("utf-8"))
+        return str(path)
+
+    def test_same_classes_different_declaration_fails(self):
+        with tempfile.TemporaryDirectory() as tmp_path:
+            committed = self.write(
+                tmp_path, "committed.css", ".w-4 { width: 1rem; }\n"
+            )
+            build = self.write(
+                tmp_path, "build.css", ".w-4 { width: 2rem; }\n"
+            )
+
+            with mock.patch.object(
+                sys, "argv", ["check_stylesheet.py", committed, build]
+            ):
+                with self.assertRaises(SystemExit) as raised:
+                    main()
+
+            self.assertIn(
+                "same classes, but the CSS differs", str(raised.exception)
+            )
+
+    def test_only_crlf_difference_passes(self):
+        with tempfile.TemporaryDirectory() as tmp_path:
+            committed = self.write(
+                tmp_path, "committed.css", ".w-4 { width: 1rem; }\r\n"
+            )
+            build = self.write(
+                tmp_path, "build.css", ".w-4 { width: 1rem; }\n"
+            )
+
+            with mock.patch.object(
+                sys, "argv", ["check_stylesheet.py", committed, build]
+            ):
+                main()

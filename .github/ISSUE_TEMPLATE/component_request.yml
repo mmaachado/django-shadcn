@@ -1,7 +1,7 @@
 name: "Component request"
 description: Ask for a shadcn/ui component that is not ported yet
 title: "[component]: "
-labels: ["component"]
+labels: ["components"]
 body:
   - type: markdown
     attributes:

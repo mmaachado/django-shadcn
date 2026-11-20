@@ -11,6 +11,10 @@ in advance. Widen it when the numbers are long enough to collide with the grid.
     {% endif %}
     " data-slot="chart-axis-y" data-width="{{ width }}"
     x-init="padding.left = Number($el.dataset.width) || 0" {{ attrs }}>
+    {% comment %}
+    pr-2, left-0 and text-right stay physical: this is the value axis of the
+    plot, and it does not mirror when the language does.
+    {% endcomment %}
     <template x-for="value in ticks" :key="value">
         <div class="absolute left-0 -translate-y-1/2 pr-2 text-right text-muted-foreground tabular-nums"
             x-bind:style="'top: ' + y(value) + 'px; width: ' + inner.left + 'px'"

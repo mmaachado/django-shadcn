@@ -1,5 +1,11 @@
 <c-vars class="" side="bottom" align="center"></c-vars>
 
+{% comment %}
+right-full, left-full, mr-1 and ml-1 stay physical. They put the card on
+the side that side="left" or side="right" names, and that side does not
+change with the direction. left-1/2 centres it, which is the same in
+either direction. align="start" and align="end" are logical.
+{% endcomment %}
 <div
     x-show="open"
     x-cloak
@@ -22,8 +28,8 @@
     {% endif %}
 
     {% if align == 'center' %}left-1/2 -translate-x-1/2
-    {% elif align == 'start' %}left-0
-    {% elif align == 'end' %}right-0
+    {% elif align == 'start' %}start-0
+    {% elif align == 'end' %}end-0
     {% endif %}
 
     {% if class %}

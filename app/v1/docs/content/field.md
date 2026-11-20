@@ -6,7 +6,7 @@ description.es: Organiza la etiqueta, el control, la descripción y los errores 
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<c-field class="w-[360px] text-left">
+<c-field class="w-[360px] text-start">
 <c-field.label for="email">Email</c-field.label>
 <c-input id="email" type="email" placeholder="you@example.com" />
 <c-field.description>We will never share your address.</c-field.description>
@@ -39,7 +39,7 @@ fields at once.
 ### Group
 
 <c-docs.demo-section>
-<c-field.group class="w-full max-w-md text-left">
+<c-field.group class="w-full max-w-md text-start">
 <c-field>
 <c-field.label for="name">Name</c-field.label>
 <c-input id="name" placeholder="Ada Lovelace" />
@@ -62,7 +62,7 @@ fields at once.
 ### Horizontal
 
 <c-docs.demo-section>
-<c-field orientation="horizontal" class="w-full max-w-md text-left">
+<c-field orientation="horizontal" class="w-full max-w-md text-start">
 <c-checkbox id="terms" />
 <c-field.content>
 <c-field.label for="terms">Accept the terms</c-field.label>
@@ -84,7 +84,7 @@ fields at once.
 ### Fieldset and legend
 
 <c-docs.demo-section>
-<c-field.set class="w-full max-w-md text-left">
+<c-field.set class="w-full max-w-md text-start">
 <c-field.legend>Notifications</c-field.legend>
 <c-field.description>Choose how you want to be reached.</c-field.description>
 <c-field.group>
@@ -111,7 +111,7 @@ fields at once.
 ### Separator
 
 <c-docs.demo-section>
-<c-field.group class="w-full max-w-md text-left">
+<c-field.group class="w-full max-w-md text-start">
 <c-field>
 <c-field.label for="username">Username</c-field.label>
 <c-input id="username" />
@@ -132,7 +132,7 @@ fields at once.
 
 <c-docs.demo-section>
 
-<div class="flex w-full max-w-md flex-col gap-6 text-left">
+<div class="flex w-full max-w-md flex-col gap-6 text-start">
     <c-field data-invalid="true">
         <c-field.label for="password">Password</c-field.label>
         <c-input id="password" type="password" aria-invalid="true" />
@@ -156,7 +156,7 @@ fields at once.
 ### Title inside a label
 
 <c-docs.demo-section>
-<c-field.label class="w-full max-w-md text-left">
+<c-field.label class="w-full max-w-md text-start">
 <c-field orientation="horizontal">
 <c-checkbox id="pro" />
 <c-field.content>

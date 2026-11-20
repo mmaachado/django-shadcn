@@ -6,7 +6,7 @@ description.es: Las filas de una conversación que no son mensajes: estado, avis
 ---
 
 <c-docs.demo-section class="min-h-[350px]">
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-marker>
 <c-marker.icon>
 <c-icon name="check" />
@@ -48,7 +48,7 @@ has to carry the whole meaning on its own. Nothing here is stateful.
 ## Variants
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-6 text-left">
+<div class="flex w-full max-w-md flex-col gap-6 text-start">
 <c-marker>
 <c-marker.icon>
 <c-icon name="check" />
@@ -87,7 +87,7 @@ A marker that reports work in progress should be announced, not just drawn.
 the text as live.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-marker role="status">
 <c-marker.icon>
 <c-icon name="loader-circle" class="animate-spin" />
@@ -116,7 +116,7 @@ A marker can point somewhere. Put the link in the content rather than on the
 root, so only the words are clickable and the row keeps its layout.
 
 <c-docs.demo-section>
-<div class="flex w-full max-w-md flex-col gap-4 text-left">
+<div class="flex w-full max-w-md flex-col gap-4 text-start">
 <c-marker>
 <c-marker.icon>
 <c-icon name="check" />
@@ -144,7 +144,7 @@ root, so only the words are clickable and the row keeps its layout.
 Between messages, a marker is the line that explains a gap.
 
 <c-docs.demo-section>
-<c-message.group class="w-full max-w-md text-left">
+<c-message.group class="w-full max-w-md text-start">
 <c-message>
 <c-message.content>
 <c-bubble variant="muted">

@@ -1,6 +1,11 @@
 <c-vars class="" direction="end" label=""></c-vars>
 
 {% comment %}
+left-1/2 stays physical: with -translate-x-1/2 it centres the button, and the
+centre is the same in either direction.
+{% endcomment %}
+
+{% comment %}
 Inactive rather than absent: it keeps its place in the tab order and animates
 out, which is what upstream does. `pointer-events-none` is what stops it being
 clicked while it is invisible.
