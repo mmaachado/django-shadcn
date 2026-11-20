@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.12.0 — Unreleased
+## 1.12.0 — 2026-11-20
 
 The keyboard and screen reader gaps the 1.11.1 pages documented, fixed in the
 components, and the transforms that did not mirror under `dir="rtl"`. Nothing
